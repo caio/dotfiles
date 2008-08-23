@@ -7,6 +7,11 @@ then
     export PATH=${HOME}/bin:$PATH
 fi
 
+if [[ -z "${TZ}"  ]]
+then
+    export TZ=Brazil/East
+fi
+
 # Bash completion
 # The username restriction is due to network weirdness
 if [ -e /etc/bash*completion ] && [ "`whoami`" != "ra059467" ]
