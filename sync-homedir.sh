@@ -1,5 +1,6 @@
 #!/bin/bash
 # Syncs current repo files with home dir
+# This is too damn dirty, I know
 
 ############
 # WARNING! #

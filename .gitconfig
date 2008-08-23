@@ -4,3 +4,7 @@
 [color]
 	status = auto
 	branch = auto
+
+[url "git@github.com:caio/"]
+    insteadOf = github:
+
