@@ -1,0 +1,17 @@
+[ui]
+username=Caio Nascimento <caioromao@gmail.com>
+
+[extensions]
+hgext.extdiff =
+
+[defaults]
+cdiff = -q
+
+[extdiff]
+cmd.cdiff = colordiff
+opts.cdiff = -uprN
+cmd.gdiff = gvim
+opts.gdiff = -f '+next' -d
+cmd.vdiff = vim
+opts.vdiff = -f '+next' -d
+cmd.kdiff = kdiff3

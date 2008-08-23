@@ -1,0 +1,126 @@
+! RXVT
+
+Xft.antialias:			true
+
+rxvt*geometry:         	80x25
+rxvt*background:       	#000000
+rxvt*foreground:       	#ffffff
+!rxvt*inheritPixmap:    	true
+!rxvt*reverseVideo:	false
+rxvt*tintColor:        	#dfdfdf
+!rxvt*shading:	        20		!trans, 0=opaque    
+!rxvt*fading:	        10		!term unfocus      
+rxvt*font			xft:Monospace:pixelsize=21
+rxvt*scrollBar:	false	
+rxvt*scrollBar_floating:	true
+rxvt*scrollBar_right:	false
+rxvt*scrollColor:		#000000
+rxvt*saveLines:		5500
+!rxvt*termName:		rxvt
+rxvt*cursorColor:		#d8d8d8
+rxvt*colorBD:		lightyellow
+rxvt*colorUL:		yellow   
+
+!colors
+!black
+rxvt*color0:		#676767
+rxvt*color8:	        #757575
+!red
+rxvt*color1:	        #EA6868
+rxvt*color9:	        #FF7272
+!green
+rxvt*color2:	        #ABCB8D
+rxvt*color10:	        #AFD78A
+!yellow
+rxvt*color3:	        #E8AE5B
+rxvt*color11:	        #FFA75D
+!blue
+rxvt*color4:	        #71C5F4
+rxvt*color12:	        #67CDE9
+!magenta
+rxvt*color5:	        #E2BAF1
+rxvt*color13:	        #ECAEE9
+!cyan
+rxvt*color6:	        #21F1EA
+rxvt*color14:	        #36FFFC
+!white
+rxvt*color7:	        #F1F1F1
+rxvt*color15:	        #FFFFFF
+
+!
+!XTerm*underLine: on
+XTerm*colorMode: on
+XTerm*colorBD: lightyellow
+!XTerm*colorBDMode: off
+XTerm*colorUL: yellow
+XTerm*colorULMode: on
+XTerm*dynamicColors: off
+XTerm*highlightSelection: true
+
+! Colorscheme based on the gvim colorscheme desert
+XTerm*background: #313031
+XTerm*foreground: White
+
+!colors
+!(unknown)
+XTerm*color0: #000000
+XTerm*color7: #bebebe
+XTerm*color8: #666666
+XTerm*color9: #cf6171
+XTerm*color10: #c5f779
+XTerm*color11: #fff796
+XTerm*color12: #4186be
+XTerm*color13: #cf9ebe
+XTerm*color14: #71bebe
+XTerm*color15: #ffffff
+
+!(1 is an option color in .Xdefaults)
+XTerm*color1: #ffa2a5
+
+!(2 is a resource color in .Xdefaults)
+XTerm*color2: #bdb66b
+
+!(3 is for def/return color in python)
+XTerm*color3: #f7e78c
+
+!(4 is for comments color in python)
+XTerm*color4: #84cfef
+
+!(5 is for import/from color in python)
+XTerm*color5: #ce5d5a
+
+!(6 is for function color in python)
+XTerm*color6: #87ff87
+
+!set the font, and fond size
+! this also uses a antialias/scalable font
+!xterm*faceName: Bitstream Vera Sans Mono
+xterm*faceName: Inconsolata
+xterm*faceSize: 10
+
+!set the window geometry
+XTerm*geometry: 80x20
+XTerm*scrollBar: false	
+
+
+
+
+! NEDIT
+
+nedit*enableThinThickness:     True
+nedit*enableToggleVisual:      True
+nedit*enableToggleColor:       True
+nedit*XmToggleButton.indicatorSize: 11
+nedit*enableEtchedInMenu:      True
+nedit*XmMenuShell*XmTearOffButton*ShadowThickness:   2
+nedit*text.background:          white
+nedit*text.selectBackground:   #D0D0FF
+nedit*text.lineNumForeground:  #A0A0D0
+nedit*background:              gray85
+nedit*statsForm.background:    gray85
+nedit*statsLine.background:    gray85
+nedit*bottomShadowColor:       gray65
+nedit*topShadowColor:          #fefefe
+nedit*XmText.background:       white
+nedit*XmTextField.background:  white
+nedit*XmList.background:       white

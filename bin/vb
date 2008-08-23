@@ -1,0 +1,24 @@
+#!/bin/bash
+
+BLUE="\033[0;34m"
+RED="\033[0;31m"
+LIGHT_RED="\033[1;31m"
+WHITE="\033[0;37m"
+NO_COLOUR="\033[0m"
+
+views=$(cleartool lsview | grep wxmp34 | cut -s -d\/ -f 2,3)
+
+for i in $views
+do
+    viewname=$(echo $i|cut -d/ -f 2|cut -d. -f 1)
+    branchname=$(cat /${i}/config_spec| grep wxmp34| awk '{ print $5 }'| sort| uniq)
+    for j in $branchname
+    do
+        if [ -e "$CLEARCASE_ROOT" ] && [[ "$viewname" = "$(basename $CLEARCASE_ROOT)" ]]
+        then
+            echo -e ${BLUE} $viewname${WHITE}: ${RED}$branchname${NO_COLOUR}
+        else
+            echo " $viewname: $j"
+        fi
+    done
+done
