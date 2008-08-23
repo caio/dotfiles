@@ -1,3 +1,10 @@
+" Simple .vimrc file assembled by Caio Romão
+"
+" Most of it has come from ciaranm's with
+" some slight changes to fit my taste
+" 
+" Please check http://github.com/ciaranm/dotfiles-ciaranm
+" for the original
 scriptencoding utf-8
 
 "-----------------------------------------------------------------------
