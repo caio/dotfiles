@@ -7,9 +7,10 @@ then
     export PATH=${HOME}/bin:$PATH
 fi
 
-if [[ -z "${TZ}"  ]]
+# Git custom PS1 command
+if [[ -f ~/.source/gitrc ]]
 then
-    export TZ=Brazil/East
+    source ~/.source/gitrc
 fi
 
 # Bash completion
@@ -33,7 +34,8 @@ bash_prompt_cmd() {
         local RE="\[\e[0;31m\]"
         local PROMPT="${CY}$"
         [ $UID -eq "0" ] && PROMPT="${RE}#"
-        [ -n "$CLEARCASE_ROOT" ] && PROMPT="${BL}(${RE}$(basename $CLEARCASE_ROOT)${BL})${CY}$"
+        [ -n "$CLEARCASE_ROOT" ] && PROMPT="${BL}(${RE}$(basename $CLEARCASE_ROOT)${BL}) ${CY}$"
+        [ -n "$(__git_custom_ps1)" ] && PROMPT="${BL}(${RE}$(__git_custom_ps1)${BL}) ${CY}$"
 
         # Add the first part of the prompt: username,host, and time
         local PROMPT_PWD=""
