@@ -7,7 +7,7 @@ OnDesktop Mouse5 :PrevWorkspace
 Mod1 Tab :NextWindow
 Mod1 Shift Tab :PrevWindow
 Mod1 F2 :ExecCommand fbrun
-Mod1 F3 :ExecCommand xterm
+Mod1 F3 :ExecCommand rxvt
 
 Mod1 Control Right :NextWorkspace
 Mod1 Control Left :PrevWorkspace

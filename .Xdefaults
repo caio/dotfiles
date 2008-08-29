@@ -2,7 +2,7 @@
 
 Xft.antialias:			true
 
-rxvt*geometry:         	80x25
+rxvt*geometry:         	80x20
 rxvt*background:       	#000000
 rxvt*foreground:       	#ffffff
 !rxvt*inheritPixmap:    	true
@@ -19,7 +19,7 @@ rxvt*saveLines:		5500
 !rxvt*termName:		rxvt
 rxvt*cursorColor:		#d8d8d8
 rxvt*colorBD:		lightyellow
-rxvt*colorUL:		yellow   
+rxvt*colorUL:		yellow
 
 !colors
 !black

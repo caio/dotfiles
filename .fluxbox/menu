@@ -16,7 +16,7 @@
 #     session.menuFile: /builddir/.fluxbox/my-menu
 [begin] (/dev/null)
 [encoding] {UTF-8}
-      [exec] (xterm) {xterm}
+      [exec] (term) {rxvt}
       [exec] (firefox) {firefox}
       [exec] () {}
       [exec]   (Run) {fbrun }
