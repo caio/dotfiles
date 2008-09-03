@@ -1,51 +1,51 @@
-! RXVT
+! URxvt
 
 Xft.antialias:			true
 
-rxvt*geometry:         	80x20
-rxvt*background:       	#000000
-rxvt*foreground:       	#ffffff
-!rxvt*inheritPixmap:    	true
-!rxvt*reverseVideo:	false
-rxvt*tintColor:        	#dfdfdf
-!rxvt*shading:	        20		!trans, 0=opaque    
-!rxvt*fading:	        10		!term unfocus      
-rxvt*font			xft:Monospace:pixelsize=21
-rxvt*scrollBar:	false	
-rxvt*scrollBar_floating:	true
-rxvt*scrollBar_right:	false
-rxvt*scrollColor:		#000000
-rxvt*saveLines:		5500
-!rxvt*termName:		rxvt
-rxvt*cursorColor:		#d8d8d8
-rxvt*colorBD:		lightyellow
-rxvt*colorUL:		yellow
+URxvt*geometry:         	80x20
+URxvt*background:       	#000000
+URxvt*foreground:       	#ffffff
+!URxvt*inheritPixmap:    	true
+!URxvt*reverseVideo:	false
+URxvt*tintColor:        	#dfdfdf
+!URxvt*shading:	        20		!trans, 0=opaque    
+!URxvt*fading:	        10		!term unfocus      
+URxvt*font			xft:Monospace:pixelsize=21
+URxvt*scrollBar:	false
+URxvt*scrollBar_floating:	true
+URxvt*scrollBar_right:	false
+URxvt*scrollColor:		#000000
+URxvt*saveLines:		5500
+!URxvt*termName:		URxvt
+URxvt*cursorColor:		#d8d8d8
+URxvt*colorBD:		lightyellow
+URxvt*colorUL:		yellow
 
 !colors
 !black
-rxvt*color0:		#676767
-rxvt*color8:	        #757575
+URxvt*color0:		#676767
+URxvt*color8:	        #757575
 !red
-rxvt*color1:	        #EA6868
-rxvt*color9:	        #FF7272
+URxvt*color1:	        #EA6868
+URxvt*color9:	        #FF7272
 !green
-rxvt*color2:	        #ABCB8D
-rxvt*color10:	        #AFD78A
+URxvt*color2:	        #ABCB8D
+URxvt*color10:	        #AFD78A
 !yellow
-rxvt*color3:	        #E8AE5B
-rxvt*color11:	        #FFA75D
+URxvt*color3:	        #E8AE5B
+URxvt*color11:	        #FFA75D
 !blue
-rxvt*color4:	        #71C5F4
-rxvt*color12:	        #67CDE9
+URxvt*color4:	        #71C5F4
+URxvt*color12:	        #67CDE9
 !magenta
-rxvt*color5:	        #E2BAF1
-rxvt*color13:	        #ECAEE9
+URxvt*color5:	        #E2BAF1
+URxvt*color13:	        #ECAEE9
 !cyan
-rxvt*color6:	        #21F1EA
-rxvt*color14:	        #36FFFC
+URxvt*color6:	        #21F1EA
+URxvt*color14:	        #36FFFC
 !white
-rxvt*color7:	        #F1F1F1
-rxvt*color15:	        #FFFFFF
+URxvt*color7:	        #F1F1F1
+URxvt*color15:	        #FFFFFF
 
 !
 !XTerm*underLine: on
@@ -100,7 +100,7 @@ xterm*faceSize: 10
 
 !set the window geometry
 XTerm*geometry: 80x20
-XTerm*scrollBar: false	
+XTerm*scrollBar: false
 
 
 
