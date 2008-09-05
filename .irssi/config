@@ -28,7 +28,7 @@ servers = (
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
-    autoconnect = "yes";
+    autoconnect = "no";
   },
   {
     address = "irc.oftc.net";
@@ -87,7 +87,8 @@ channels = (
   { name = "#devdrivers"; chatnet = "ibm"; autojoin = "yes"; },
   { name = "#gentoo"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#kernel-br"; chatnet = "oftc"; autojoin = "yes"; },
-  { name = "#kernelnewbies"; chatnet = "oftc"; autojoin = "yes"; }
+  { name = "#kernelnewbies"; chatnet = "oftc"; autojoin = "yes"; },
+  { name = "#autotest"; chatnet = "oftc"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -257,7 +258,11 @@ settings = {
     rawlog_lines = "1000";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { theme = "irssi"; autolog = "yes"; };
+  "fe-common/core" = {
+    theme = "irssi";
+    autolog = "yes";
+    autolog_path = "~/.irclogs/$tag/$0.log";
+  };
   "perl/core/scripts" = { nicklist_height = "31"; nicklist_width = "15"; };
 };
 logs = { };
