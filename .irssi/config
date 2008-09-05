@@ -21,6 +21,22 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.oftc.net";
+    chatnet = "oftc";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
   }
 );
 
@@ -59,6 +75,8 @@ chatnets = {
   SILC = { type = "SILC"; };
   Ubuntu = { type = "IRC"; };
   ibm = { type = "IRC"; };
+  freenode = { type = "IRC"; };
+  oftc = { type = "IRC"; };
 };
 
 channels = (
@@ -66,7 +84,10 @@ channels = (
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
   { name = "#ltcbr"; chatnet = "ibm"; autojoin = "yes"; },
   { name = "#ltcunicamp"; chatnet = "ibm"; autojoin = "yes"; },
-  { name = "#devdrivers"; chatnet = "ibm"; autojoin = "yes"; }
+  { name = "#devdrivers"; chatnet = "ibm"; autojoin = "yes"; },
+  { name = "#gentoo"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#kernel-br"; chatnet = "oftc"; autojoin = "yes"; },
+  { name = "#kernelnewbies"; chatnet = "oftc"; autojoin = "yes"; }
 );
 
 aliases = {
