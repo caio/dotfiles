@@ -20,7 +20,7 @@ servers = (
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
-    autoconnect = "yes";
+    autoconnect = "no";
   },
   {
     address = "irc.freenode.net";
@@ -36,7 +36,7 @@ servers = (
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
-    autoconnect = "yes";
+    autoconnect = "no";
   }
 );
 
@@ -198,7 +198,6 @@ statusbar = {
         window = { };
         window_empty = { };
         lag = { priority = "-1"; };
-        act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
       };
@@ -248,6 +247,14 @@ statusbar = {
         topicbarend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_0 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -261,8 +268,15 @@ settings = {
   "fe-common/core" = {
     theme = "irssi";
     autolog = "yes";
-    autolog_path = "~/.irclogs/$tag/$0.log";
+    autolog_path = "~/.logs/irc/$tag/$0.log";
   };
-  "perl/core/scripts" = { nicklist_height = "31"; nicklist_width = "15"; };
+  "perl/core/scripts" = {
+    nicklist_height = "31";
+    nicklist_width = "15";
+    awl_display_key = "$Q%K|%n$H$C$S";
+    awl_block = "10";
+    awl_separator = "\\ ";
+    awl_placement = "top";
+  };
 };
 logs = { };

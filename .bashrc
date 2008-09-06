@@ -1,6 +1,9 @@
 # plain .bashrc - should work on any Linux environment
 # assembled by: Caio Romão <caioromao@gmail.com>
 
+# disabling flow control
+stty -ixon -ixoff
+
 # setting up custom bin-dir
 if [ -d ${HOME}/bin ]
 then
