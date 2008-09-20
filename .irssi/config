@@ -248,7 +248,6 @@ statusbar = {
       };
     };
     awl_0 = {
-      placement = "top";
       items = {
         barstart = { priority = "100"; };
         awl_0 = { };
@@ -276,7 +275,8 @@ settings = {
     awl_display_key = "$Q%K|%n$H$C$S";
     awl_block = "10";
     awl_separator = "\\ ";
-    awl_placement = "top";
+    awl_placement = "= bottom";
+    awl_display_key_active = "[%K$H%n$C$S]";
   };
 };
 logs = { };
