@@ -81,9 +81,6 @@ if has("syntax")
     syntax on
 endif
 
-" enable virtual edit in vblock mode, and one past the end
-"set virtualedit=block,onemore
-
 if has("gui_running")
 "    set guifont=Bitstream\ Vera\ Sans\ Mono\ 8 
     set guifont=Inconsolata\ 10 
@@ -120,7 +117,6 @@ set softtabstop=4
 " Do clever indent things. Don't make a # force column zero.
 set autoindent
 set smartindent
-inoremap # X<BS>#
 
 " Syntax when printing
 set popt+=syntax:y
@@ -141,7 +137,6 @@ set statusline+=%h%1*%m%r%w%0*               " flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}, " filetype
 set statusline+=%{&encoding},                " encoding
 set statusline+=%{&fileformat}]              " file format
-"set statusline+=%{GitBranchInfoString}]
 set statusline+=%=                           " right align
 set statusline+=%2*0x%-8B\                   " current char
 set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
@@ -175,7 +170,6 @@ set fillchars=fold:-
 "-----------------------------------------------------------------------
 
 "setlocal foldcolumn=2
-" I don't like line numbers anymore
 set nonumber
 
 "-----------------------------------------------------------------------
@@ -189,15 +183,6 @@ noremap <space> <C-f>
 " Commonly used commands
 nmap <silent> <F3> :silent nohlsearch<CR>
 imap <silent> <F3> <C-o>:silent nohlsearch<CR>
-
-" Kill line
-noremap <C-k> "_dd
-
-" Delete blank lines
-noremap <Leader>dbl :g/^$/d<CR>:nohls<CR>
-
-" q: sucks
-nmap q: :q
 
 " tab completion
 if has("eval")
@@ -295,19 +280,6 @@ let OmniCpp_SelectFirstItem = 2
 " Close the preview window automatically
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" miniBufExpl
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1 
-
-" git-branch-info
-let g:git_branch_status_head_current=1
-let g:git_branch_status_text="git:"
-let g:git_branch_status_nogit="no rev"
-let g:git_branch_status_around=""
-let g:git_branch_status_ignore_remotes=1
 
 "-----------------------------------------------------------------------
 " vim: set shiftwidth=4 softtabstop=4 expandtab tw=120                 :
