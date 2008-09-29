@@ -280,3 +280,7 @@ settings = {
   };
 };
 logs = { };
+hilights = (
+  { text = "rcaio"; nick = "yes"; word = "yes"; },
+  { text = "caio"; nick = "yes"; word = "yes"; }
+);
