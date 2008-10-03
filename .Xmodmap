@@ -4,6 +4,7 @@
 clear Mod1
 clear Mod2
 clear Mod3
+clear Mod4
 keycode   8 =
 keycode   9 = Escape Escape
 keycode  10 = 1 exclam bar
@@ -104,7 +105,7 @@ keycode 112 = KP_Divide
 keycode 113 = Mode_switch
 keycode 114 = Break
 ! 115 = Windows Key. Modded to work as a new Mod key
-keycode 115 = F13
+keycode 115 = Meta_L
 keycode 116 = Mode_switch
 keycode 227 = Menu
 keycode 234 = XF86Back
@@ -119,3 +120,4 @@ keycode 162 = XF86AudioPlay
 add Mod1 = Alt_L
 add Mod2 = Mode_switch
 add Mod3 = Multi_key
+add Mod4 = Meta_L
