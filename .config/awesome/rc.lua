@@ -148,18 +148,35 @@ end
 -- Battery widget
 battwidget = widget({
     type = 'textbox',
-    name = 'mywidget',
+    name = 'battwidget',
     align = 'right'
 })
 
-function run_script()
+function run_batt()
     local filedescriptor = io.popen('battery')
     local value = filedescriptor:read()
     filedescriptor:close()
 
     return {value}
 end
-wicked.register(battwidget, run_script, "$1", 5)
+wicked.register(battwidget, run_batt, "$1", 5)
+-- }}}
+
+-- Sound widget
+sndwidget = widget({
+    type = 'textbox',
+    name = 'sndinfo',
+    align = 'right'
+})
+
+function run_sndinfo()
+    local filedescriptor = io.popen('soundinfo')
+    local value = filedescriptor:read()
+    filedescriptor:close()
+
+    return {value}
+end
+wicked.register(sndwidget, run_sndinfo, "$1", 5)
 -- }}}
 
 -- Memory usage
@@ -170,7 +187,19 @@ memwidget = widget({
 })
 
 wicked.register(memwidget, wicked.widgets.mem,
-    ' <span color="white">[mem:</span> $2Mb/$3Mb<span color="white">]</span>')
+    ' <span color="white">[</span>$2<span color="white">/</span>$3<span color="white">]</span> ')
+-- }}}
+
+-- Date widget
+datewidget = widget({
+    type = 'textbox',
+    name = 'datewidget',
+    align= 'right'
+})
+
+wicked.register(datewidget, wicked.widgets.date,
+    ' <span color="white">[</span>%H%M<span color="white">|</span>%m%d<span color="white">]</span>')
+
 -- }}}
 
 -- Create a wibox for each screen and add it
@@ -184,8 +213,10 @@ for s = 1, screen.count() do
         mytasklist,
         mylauncher,
         mypromptbox,
+        sndwidget,
         memwidget,
         battwidget,
+        datewidget,
         mylayoutbox[s],
         s == 1 and mysystray or nil
     })
