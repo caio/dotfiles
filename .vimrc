@@ -92,7 +92,7 @@ if has("gui_running")
     colorscheme moria
 else
     set background=dark
-    colorscheme desert 
+    colorscheme inkpot
 endif
 
 " No icky toolbar, menu or scrollbars in the GUI

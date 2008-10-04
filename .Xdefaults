@@ -3,14 +3,13 @@
 Xft.antialias:			true
 
 URxvt*geometry:         	80x20
-URxvt*background:       	#000000
-URxvt*foreground:       	#ffffff
+
 !URxvt*inheritPixmap:    	true
 !URxvt*reverseVideo:	false
 URxvt*tintColor:        	#dfdfdf
 !URxvt*shading:	        20		!trans, 0=opaque    
 !URxvt*fading:	        10		!term unfocus      
-URxvt*font			xft:Monospace:pixelsize=21
+URxvt*font			"xft:Inconsolata:pixelsize=21"
 URxvt*scrollBar:	false
 URxvt*scrollBar_floating:	true
 URxvt*scrollBar_right:	false
@@ -22,32 +21,26 @@ URxvt*colorBD:		lightyellow
 URxvt*colorUL:		yellow
 
 !colors
-!black
-URxvt*color0:		#676767
-URxvt*color8:	        #757575
-!red
-URxvt*color1:	        #EA6868
-URxvt*color9:	        #FF7272
-!green
-URxvt*color2:	        #ABCB8D
-URxvt*color10:	        #AFD78A
-!yellow
-URxvt*color3:	        #E8AE5B
-URxvt*color11:	        #FFA75D
-!blue
-URxvt*color4:	        #71C5F4
-URxvt*color12:	        #67CDE9
-!magenta
-URxvt*color5:	        #E2BAF1
-URxvt*color13:	        #ECAEE9
-!cyan
-URxvt*color6:	        #21F1EA
-URxvt*color14:	        #36FFFC
-!white
-URxvt*color7:	        #F1F1F1
-URxvt*color15:	        #FFFFFF
+URxvt*background: #313031
+URxvt*foreground: #ffffff
+URxvt*color0: #000000
+URxvt*color7: #bebebe
+URxvt*color8: #666666
+URxvt*color9: #cf6171
+URxvt*color10: #c5f779
+URxvt*color11: #fff796
+URxvt*color12: #4186be
+URxvt*color13: #cf9ebe
+URxvt*color14: #71bebe
+URxvt*color15: #ffffff
+URxvt*color1: #ffa2a5
+URxvt*color2: #bdb66b
+URxvt*color3: #f7e78c
+URxvt*color4: #84cfef
+URxvt*color5: #ce5d5a
+URxvt*color6: #87ff87
 
-!
+
 !XTerm*underLine: on
 XTerm*colorMode: on
 XTerm*colorBD: lightyellow
@@ -60,9 +53,6 @@ XTerm*highlightSelection: true
 ! Colorscheme based on the gvim colorscheme desert
 XTerm*background: #313031
 XTerm*foreground: White
-
-!colors
-!(unknown)
 XTerm*color0: #000000
 XTerm*color7: #bebebe
 XTerm*color8: #666666
@@ -73,32 +63,16 @@ XTerm*color12: #4186be
 XTerm*color13: #cf9ebe
 XTerm*color14: #71bebe
 XTerm*color15: #ffffff
-
-!(1 is an option color in .Xdefaults)
 XTerm*color1: #ffa2a5
-
-!(2 is a resource color in .Xdefaults)
 XTerm*color2: #bdb66b
-
-!(3 is for def/return color in python)
 XTerm*color3: #f7e78c
-
-!(4 is for comments color in python)
 XTerm*color4: #84cfef
-
-!(5 is for import/from color in python)
 XTerm*color5: #ce5d5a
-
-!(6 is for function color in python)
 XTerm*color6: #87ff87
 
-!set the font, and fond size
-! this also uses a antialias/scalable font
-!xterm*faceName: Bitstream Vera Sans Mono
 xterm*faceName: Inconsolata
 xterm*faceSize: 10
 
-!set the window geometry
 XTerm*geometry: 80x20
 XTerm*scrollBar: false
 
