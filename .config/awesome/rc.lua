@@ -12,7 +12,7 @@ theme_path = "/usr/share/awesome/themes/default"
 
 -- This is used later as the default terminal to run.
 terminal = "urxvt"
-broser = "firefox"
+browser = "firefox"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -24,10 +24,10 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    "tile",
-    "tiletop",
-    "max",
-    "floating"
+    "tile",    -- 1
+    "tiletop", -- 2
+    "max",     -- 3
+    "floating" -- 4
 }
 
 -- Table of clients that should be set floating. The index may be either
@@ -80,13 +80,22 @@ tagnames =
     "util",
     "misc",
 }
+taglayouts =
+{
+    3, -- max
+    1, -- tiled
+    1, -- tiled
+    1, -- tiled
+    1, -- tiled
+    1  -- tiled
+}
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = {}
     -- Create 9 tags per screen.
     for tagnumber = 1, 6 do
-        tags[s][tagnumber] = tag({ name = tagnames[tagnumber], layout = layouts[1] })
+        tags[s][tagnumber] = tag({ name = tagnames[tagnumber], layout = layouts[taglayouts[tagnumber]] })
         -- Add tags to screen one by one
         tags[s][tagnumber].screen = s
     end
