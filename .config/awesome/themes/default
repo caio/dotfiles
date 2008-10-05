@@ -2,11 +2,11 @@
 -- Default awesome theme --
 ---------------------------
 
-font          = sans 8
+font          = nu 8
 
 bg_normal     = #222222
-bg_focus      = #535d6c
-bg_urgent     = #ff0000
+bg_focus      = #118dc2
+bg_urgent     = #59d6ff
 
 fg_normal     = #aaaaaa
 fg_focus      = #ffffff
@@ -14,8 +14,8 @@ fg_urgent     = #ffffff
 
 border_width  = 1
 border_normal = #000000
-border_focus  = #535d6c
-border_marked = #91231c
+border_focus  = #118dc2
+border_marked = #59d6ff
 
 # There are another variables sets
 # overriding the default one when
@@ -26,7 +26,7 @@ border_marked = #91231c
 #taglist_bg_focus = #ff0000
 
 # Display the taglist squares
-taglist_squares = true
+taglist_squares = false
 
 # You can add as many variables as
 # you wish and access them by using
@@ -34,7 +34,7 @@ taglist_squares = true
 #bg_widget    = #cc0000
 
 # Display close button inside titlebar
-titlebar_close_button = true
+titlebar_close_button = false
 
 # Define the image to load
 @ (if titlebar_close_button_[normal|focus] these values are ignored)

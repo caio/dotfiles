@@ -1,46 +1,3 @@
-! URxvt
-
-Xft.antialias:			true
-
-URxvt*geometry:         	80x20
-
-!URxvt*inheritPixmap:    	true
-!URxvt*reverseVideo:	false
-URxvt*tintColor:        	#dfdfdf
-!URxvt*shading:	        20		!trans, 0=opaque    
-!URxvt*fading:	        10		!term unfocus      
-URxvt*font			"xft:Inconsolata:pixelsize=21"
-URxvt*scrollBar:	false
-URxvt*scrollBar_floating:	true
-URxvt*scrollBar_right:	false
-URxvt*scrollColor:		#000000
-URxvt*saveLines:		5500
-!URxvt*termName:		URxvt
-URxvt*cursorColor:		#d8d8d8
-URxvt*colorBD:		lightyellow
-URxvt*colorUL:		yellow
-
-!colors
-URxvt*background: #313031
-URxvt*foreground: #ffffff
-URxvt*color0: #000000
-URxvt*color7: #bebebe
-URxvt*color8: #666666
-URxvt*color9: #cf6171
-URxvt*color10: #c5f779
-URxvt*color11: #fff796
-URxvt*color12: #4186be
-URxvt*color13: #cf9ebe
-URxvt*color14: #71bebe
-URxvt*color15: #ffffff
-URxvt*color1: #ffa2a5
-URxvt*color2: #bdb66b
-URxvt*color3: #f7e78c
-URxvt*color4: #84cfef
-URxvt*color5: #ce5d5a
-URxvt*color6: #87ff87
-
-
 !XTerm*underLine: on
 XTerm*colorMode: on
 XTerm*colorBD: lightyellow
@@ -70,14 +27,54 @@ XTerm*color4: #84cfef
 XTerm*color5: #ce5d5a
 XTerm*color6: #87ff87
 
-xterm*faceName: Inconsolata
-xterm*faceSize: 10
+xterm*faceName: Terminus
+xterm*faceSize: 8
 
 XTerm*geometry: 80x20
 XTerm*scrollBar: false
 
+! urxvt
 
+Xft.antialias: true
+urxvt*geometry: 80x20
+!urxvt*inheritPixmap:     true
+!urxvt*reverseVideo: false
+urxvt*tintColor: #dfdfdf
+!urxvt*shading:         20  !trans, 0=opaque    
+!urxvt*fading:         10  !term unfocus      
+urxvt.font xft:Terminus-8
+urxvt.perl-ext-common: default,matcher
+urxvt*scrollBar: false
+urxvt*scrollBar_floating: true
+urxvt*scrollBar_right: false
+urxvt*scrollColor:  #000000
+urxvt*urllauncher: firefox
+urxvt*matcher.button: 3
+urxvt*saveLines: 8192
+urxvt*termName:  xterm
+urxvt*cursorColor:  #d8d8d8
+urxvt*colorBD:  lightyellow
+urxvt*colorUL:  yellow
 
+!colors
+urxvt*background: #313031
+urxvt*foreground: #ffffff
+urxvt*color0: #000000
+urxvt*color7: #bebebe
+urxvt*color8: #666666
+urxvt*color9: #cf6171
+urxvt*color10: #c5f779
+urxvt*color11: #fff796
+urxvt*color12: #4186be
+urxvt*color13: #cf9ebe
+urxvt*color14: #71bebe
+urxvt*color15: #ffffff
+urxvt*color1: #ffa2a5
+urxvt*color2: #bdb66b
+urxvt*color3: #f7e78c
+urxvt*color4: #84cfef
+urxvt*color5: #ce5d5a
+urxvt*color6: #87ff87
 
 ! NEDIT
 

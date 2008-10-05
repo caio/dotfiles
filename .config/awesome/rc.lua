@@ -14,7 +14,7 @@ icondir = awdir.."icons/"
 theme = "default"
 
 -- This is used later as the default terminal to run.
-terminal = "urxvt"
+terminal = "urxvt -fn xft:terminus:pixelsize=8"
 browser = "firefox"
 
 -- Default modkey.
@@ -169,12 +169,22 @@ function run_batt(format)
     local bat = io.popen('battery.pl')
     local state = 'a/c'
     local l = bat:lines()
+    local charg = false
 
     for line in l do
+        if line:find('Charging') ~= nil then
+            charg = true
+        end
         if line:find('Time left') ~= nil then
             if line:find('Infinite') == nil then
-                pend = line:find(' (', 0, true)
-                pstart = line:find(':', 0, true)
+                if charg == true then
+                    pend = line:find(')', 0, true)
+                    pstart = line.find('(', 0, true)
+                end
+                if charg == false then
+                    pend = line:find(' (', 0, true)
+                    pstart = line:find(':', 0, true)
+                end
                 state = line:sub(pstart+1,pend)
             end
         end
@@ -182,7 +192,7 @@ function run_batt(format)
 
     return {state}
 end
-wicked.register(battwidget, run_batt, "$1", 4)
+wicked.register(battwidget, run_batt, "$1 ", 4)
 
 batticon = awful.widget.launcher({ name = "batticon",
                                    align = "right",
