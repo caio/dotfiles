@@ -117,6 +117,7 @@ keycode 144 = XF86AudioPrev
 keycode 153 = XF86AudioNext
 keycode 164 = XF86AudioStop
 keycode 162 = XF86AudioPlay
+keycode 160 = XF86AudioMute
 add Mod1 = Alt_L
 add Mod2 = Mode_switch
 add Mod3 = Multi_key
