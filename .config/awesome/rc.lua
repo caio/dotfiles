@@ -7,8 +7,9 @@ require("beautiful")
 require("wicked")
 
 -- {{{ Variable definitions
--- This is a file path to a theme file which will defines colors.
-theme_path = "/usr/share/awesome/themes/default"
+homedir = os.getenv("HOME")
+awdir = homedir.."/.config/awesome/"
+theme = "themes/default"
 
 -- This is used later as the default terminal to run.
 terminal = "urxvt"
@@ -24,10 +25,11 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    "tile",    -- 1
-    "tiletop", -- 2
-    "max",     -- 3
-    "floating" -- 4
+    "tile",     -- 1
+    "tiletop",  -- 2
+    "max",      -- 3
+    "floating", -- 4
+    "fairh"     -- 5
 }
 
 -- Table of clients that should be set floating. The index may be either
@@ -61,7 +63,7 @@ use_titlebar = false
 
 -- {{{ Initialization
 -- Initialize theme (colors).
-beautiful.init(theme_path)
+beautiful.init(awdir..theme)
 
 -- Register theme in awful.
 -- This allows to not pass plenty of arguments to each function
@@ -78,7 +80,7 @@ tagnames =
 {
     "www",
     "dev",
-    "conf",
+    "chat",
     "remote",
     "util",
     "misc",
@@ -86,7 +88,7 @@ tagnames =
 taglayouts =
 {
     3, -- max
-    1, -- tiled
+    5, -- fairh
     1, -- tiled
     1, -- tiled
     4, -- floating
@@ -147,7 +149,7 @@ mysystray = widget({ type = "systray", name = "mysystray", align = "right" })
 -- We need one layoutbox per screen.
 mylayoutbox = {}
 for s = 1, screen.count() do
-    mylayoutbox[s] = widget({ type = "imagebox", name = "mylayoutbox", align = "right" })
+    mylayoutbox[s] = widget({ type = "imagebox", name = "mylayoutbox", align = "left" })
     mylayoutbox[s]:buttons({
         button({ }, 1, function () awful.layout.inc(layouts, 1) end),
         button({ }, 3, function () awful.layout.inc(layouts, -1) end),
@@ -174,21 +176,39 @@ end
 wicked.register(battwidget, run_batt, "$1", 5)
 -- }}}
 
--- Sound widget
-sndwidget = widget({
+-- Sndwidget
+soundwidget = widget({
     type = 'textbox',
-    name = 'sndinfo',
+    name = 'soundwidget',
     align = 'right'
 })
 
-function run_sndinfo()
-    local filedescriptor = io.popen('soundinfo')
-    local value = filedescriptor:read()
-    filedescriptor:close()
+function amixer_volume(format)
+    local pcm = io.popen('amixer get PCM')
+    local spkr = io.popen('amixer get Speaker')
+    local l = pcm:lines()
+    local m = spkr:lines()
+    local v = ''
+    local st = ''
 
-    return {value}
+    for line in m do
+        if line:find('[off]') ~= nil then
+            st = 'M'
+        end
+    end
+    for line in l do
+        if line:find('Front Left:') ~= nil then
+            pend = line:find('%]', 0, true)
+            pstart = line:find('[', 0, true)
+            v = line:sub(pstart+1, pend)
+        end
+    end
+
+    return {v..st}
 end
-wicked.register(sndwidget, run_sndinfo, "$1", 5)
+
+wicked.register(soundwidget, amixer_volume,
+                ' <span color="white">[snd:</span> $1<span color="white">]</span>',4)
 -- }}}
 
 -- Memory usage
@@ -223,13 +243,13 @@ for s = 1, screen.count() do
     mywibox[s]:widgets({
         mytaglist,
         mytasklist,
-        mylauncher,
+        --mylauncher,
+        mylayoutbox[s],
         mypromptbox,
-        sndwidget,
+        soundwidget,
         memwidget,
         battwidget,
         datewidget,
-        mylayoutbox[s],
         s == 1 and mysystray or nil
     })
     mywibox[s].screen = s
