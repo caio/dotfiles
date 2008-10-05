@@ -209,7 +209,7 @@ soundwidget = widget({
 
 function amixer_volume(format)
     local pcm = io.popen('amixer get PCM')
-    local spkr = io.popen('amixer get Speaker')
+    local spkr = io.popen('amixer get Master')
     local l = pcm:lines()
     local m = spkr:lines()
     local v = ''
@@ -468,6 +468,12 @@ for i = 1, keynumber do
                    end):add()
 end
 -- }}}
+
+-- X11 interaction
+-- Volume
+keybinding({ }, "XF86AudioRaiseVolume", function () awful.spawn("amixer -q set PCM 5%+ unmute") end):add()
+keybinding({ }, "XF86AudioLowerVolume", function () awful.spawn("amixer -q set PCM 5%- unmute") end):add()
+keybinding({ }, "XF86AudioMute", function () awful.spawn("amixer -q set Master toggle") end):add()
 
 -- {{{ Hooks
 -- Hook function to execute when focusing a client.
