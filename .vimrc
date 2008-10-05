@@ -88,8 +88,8 @@ endif
 
 " Try to load a nice colourscheme
 if has("gui_running")
-    set background=light
-    colorscheme moria
+    set background=dark
+    colorscheme inkpot
 else
     set background=dark
     colorscheme inkpot

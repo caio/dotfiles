@@ -40,6 +40,7 @@ floatapps =
     ["MPlayer"] = true,
     ["pinentry"] = true,
     ["gimp"] = true,
+    ["Thunar"] = true,
     -- by instance
     ["mocp"] = true
 }
@@ -50,6 +51,8 @@ apptags =
 {
     -- ["Firefox"] = { screen = 1, tag = 2 },
     -- ["mocp"] = { screen = 2, tag = 4 },
+    ["Thunar"] = { screen = 1, tag = 5 },
+    ["Gvim"] = { screen = 1, tag = 2 }
 }
 
 -- Define if we want to use titlebar on all applications.
@@ -86,7 +89,7 @@ taglayouts =
     1, -- tiled
     1, -- tiled
     1, -- tiled
-    1, -- tiled
+    4, -- floating
     1  -- tiled
 }
 tags = {}
