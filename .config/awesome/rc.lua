@@ -9,7 +9,9 @@ require("wicked")
 -- {{{ Variable definitions
 homedir = os.getenv("HOME")
 awdir = homedir.."/.config/awesome/"
-theme = "themes/default"
+themedir = awdir.."themes/"
+icondir = awdir.."icons/"
+theme = "default"
 
 -- This is used later as the default terminal to run.
 terminal = "urxvt"
@@ -63,7 +65,7 @@ use_titlebar = false
 
 -- {{{ Initialization
 -- Initialize theme (colors).
-beautiful.init(awdir..theme)
+beautiful.init(themedir..theme)
 
 -- Register theme in awful.
 -- This allows to not pass plenty of arguments to each function
@@ -109,6 +111,8 @@ for s = 1, screen.count() do
 end
 -- }}}
 
+-- WIDGETS
+
 -- {{{ Wibox
 -- Create a taglist widget
 mytaglist = widget({ type = "taglist", name = "mytaglist" })
@@ -137,11 +141,6 @@ mytextbox = widget({ type = "textbox", name = "mytextbox", align = "right" })
 mytextbox.text = "<b><small> " .. AWESOME_RELEASE .. " </small></b>"
 mypromptbox = widget({ type = "textbox", name = "mypromptbox", align = "left" })
 
--- Create a laucher widget
-mylauncher = awful.widget.launcher({ name = "mylauncher",
-                                     image = "/usr/share/awesome/icons/awesome16.png",
-                                     command = terminal .. " -e man awesome"})
-
 -- Create a systray
 mysystray = widget({ type = "systray", name = "mysystray", align = "right" })
 
@@ -166,14 +165,29 @@ battwidget = widget({
     align = 'right'
 })
 
-function run_batt()
-    local filedescriptor = io.popen('battery')
-    local value = filedescriptor:read()
-    filedescriptor:close()
+function run_batt(format)
+    local bat = io.popen('battery.pl')
+    local state = 'a/c'
+    local l = bat:lines()
 
-    return {value}
+    for line in l do
+        if line:find('Time left') ~= nil then
+            if line:find('Infinite') == nil then
+                pend = line:find(' (', 0, true)
+                pstart = line:find(':', 0, true)
+                state = line:sub(pstart+1,pend)
+            end
+        end
+    end
+
+    return {state}
 end
-wicked.register(battwidget, run_batt, "$1", 5)
+wicked.register(battwidget, run_batt, "$1", 4)
+
+batticon = awful.widget.launcher({ name = "batticon",
+                                   align = "right",
+                                   image = icondir.."powercfg-settings.png",
+                                   command = terminal .. " -e powertop"})
 -- }}}
 
 -- Sndwidget
@@ -192,23 +206,27 @@ function amixer_volume(format)
     local st = ''
 
     for line in m do
-        if line:find('[off]') ~= nil then
-            st = 'M'
+        if line:find('off') ~= nil then
+            st = '[M]'
         end
     end
     for line in l do
         if line:find('Front Left:') ~= nil then
             pend = line:find('%]', 0, true)
             pstart = line:find('[', 0, true)
-            v = line:sub(pstart+1, pend)
+            v = line:sub(pstart+1, pend).."%"
         end
     end
 
     return {v..st}
 end
 
-wicked.register(soundwidget, amixer_volume,
-                ' <span color="white">[snd:</span> $1<span color="white">]</span>',4)
+wicked.register(soundwidget, amixer_volume,' $1 ',4)
+
+soundicon = awful.widget.launcher({ name = "soundicon",
+                                    align = "right",
+                                    image = icondir.."file-sound.png",
+                                    command = terminal .. " -e alsamixer"})
 -- }}}
 
 -- Memory usage
@@ -219,7 +237,12 @@ memwidget = widget({
 })
 
 wicked.register(memwidget, wicked.widgets.mem,
-    ' <span color="white">[</span>$2<span color="white">/</span>$3<span color="white">]</span> ')
+    '$2/$3mb ')
+
+memicon = awful.widget.launcher({ name = "memicon",
+                                  align = "right",
+                                  image = icondir.."sd-card.png",
+                                  command = terminal .. " -e htop"})
 -- }}}
 
 -- Date widget
@@ -230,7 +253,12 @@ datewidget = widget({
 })
 
 wicked.register(datewidget, wicked.widgets.date,
-    ' <span color="white">[</span>%H%M<span color="white">|</span>%m%d<span color="white">]</span>')
+    ' %H%M %m%d ')
+
+dateicon = awful.widget.launcher({ name = "dateicon",
+                                   align = "right",
+                                   image = icondir.."calendar.png",
+                                   command = terminal .. " -e htop"})
 
 -- }}}
 
@@ -243,12 +271,15 @@ for s = 1, screen.count() do
     mywibox[s]:widgets({
         mytaglist,
         mytasklist,
-        --mylauncher,
         mylayoutbox[s],
         mypromptbox,
+        soundicon,
         soundwidget,
+        memicon,
         memwidget,
+        batticon,
         battwidget,
+        dateicon,
         datewidget,
         s == 1 and mysystray or nil
     })
