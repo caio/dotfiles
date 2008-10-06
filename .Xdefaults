@@ -51,7 +51,7 @@ urxvt*scrollColor:  #000000
 urxvt*urllauncher: firefox
 urxvt*matcher.button: 3
 urxvt*saveLines: 8192
-urxvt*termName:  xterm
+!urxvt*termName:  xterm
 urxvt*cursorColor:  #d8d8d8
 urxvt*colorBD:  lightyellow
 urxvt*colorUL:  yellow
