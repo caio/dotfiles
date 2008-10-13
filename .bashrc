@@ -35,17 +35,18 @@ bash_prompt_cmd() {
         local WH="\[\e[1;37m\]"
         local BR="\[\e[0;33m\]"
         local RE="\[\e[0;31m\]"
+        local OT="\[\e[1;35m\]"
         local RET="${CY}${?}${BL}| "
         local PROMPT="${RET}${CY}$"
         [ $UID -eq "0" ] && PROMPT="${RET}${RE}#"
-        [ -n "$CLEARCASE_ROOT" ] && PROMPT="${RET}${BL}(${RE}$(basename $CLEARCASE_ROOT)${BL}) ${CY}$"
-        [ -n "$(__git_custom_ps1)" ] && PROMPT="${RET}${BL}(${RE}$(__git_custom_ps1)${BL}) ${CY}$"
+        [ -n "$CLEARCASE_ROOT" ] && PROMPT="${RET}${BL}(${OT}$(basename $CLEARCASE_ROOT)${BL}) ${CY}$"
+        [ -n "$(__git_custom_ps1)" ] && PROMPT="${RET}${BL}(${OT}$(__git_custom_ps1)${BL}) ${CY}$"
 
         # Add the first part of the prompt: username,host, and time
         local PROMPT_PWD=""
-        local PS1_T1="$BL[$CY`whoami`@\h$BL:$CY\t$BL:$CY "
+        local PS1_T1="$BL[$CY`whoami`@\h$BL:$CY`date +%H%M`$BL:$CY"
         local ps_len=$(( ${#PS1_T1} - 12 * 6 + 6 + 4 )) #Len adjust for colors, time and var
-        local PS1_T2=" $BL]\n${PROMPT} \[\e[0m\]"
+        local PS1_T2="$BL]\n${PROMPT} \[\e[0m\]"
         local startpos=""
 
         PROMPT_PWD="${PWD/#$HOME/~}"
@@ -101,6 +102,7 @@ function cdpushd()
 }
 
 alias cd=cdpushd
+alias cdd='cd -'
 alias ctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 
 
@@ -108,10 +110,11 @@ alias ctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 # History #
 ###########
 
-export HISTSIZE=1000
-export HISTFILESIZE=1000
+export HISTSIZE=4000
+export HISTFILESIZE=4000
 export HISTIGNORE="ls:l:c:clear:d:cd:dc:bg:fg"
-export HISTCONTROL=ignoredups
+export HISTCONTROL=erasedups
+export HISTTIMEFORMAT='%m%d %H%M: '
 
 
 #############
