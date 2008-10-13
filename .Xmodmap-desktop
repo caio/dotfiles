@@ -1,0 +1,9 @@
+clear Mod4
+keycode  21 = slash backslash
+keycode  47 = dead_tilde dead_circumflex
+keycode 115 = Meta_L
+keycode 117 = Menu
+add Mod1 = Alt_L
+add Mod2 = Mode_switch
+add Mod3 = Multi_key
+add Mod4 = Meta_L
