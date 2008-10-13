@@ -37,10 +37,11 @@ bash_prompt_cmd() {
         local RE="\[\e[0;31m\]"
         local OT="\[\e[1;35m\]"
         local RET="${CY}${?}${BL}| "
-        local PROMPT="${RET}${CY}$"
-        [ $UID -eq "0" ] && PROMPT="${RET}${RE}#"
-        [ -n "$CLEARCASE_ROOT" ] && PROMPT="${RET}${BL}(${OT}$(basename $CLEARCASE_ROOT)${BL}) ${CY}$"
-        [ -n "$(__git_custom_ps1)" ] && PROMPT="${RET}${BL}(${OT}$(__git_custom_ps1)${BL}) ${CY}$"
+        local LPROM="${CY}$"
+        [ $UID -eq "0" ] && LPROM="${RE}#"
+        local PROMPT="${RET}${LPROM}"
+        [ -n "$CLEARCASE_ROOT" ] && PROMPT="${RET}${BL}(${OT}$(basename $CLEARCASE_ROOT)${BL}) ${LPROM}"
+        [ -n "$(__git_custom_ps1)" ] && PROMPT="${RET}${BL}(${OT}$(__git_custom_ps1)${BL}) ${LPROM}"
 
         # Add the first part of the prompt: username,host, and time
         local PROMPT_PWD=""
