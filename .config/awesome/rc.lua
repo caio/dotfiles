@@ -456,13 +456,13 @@ keybinding({ modkey }, "y", function ()
 end):add()
 
 -- Volume
-keybinding({ }, "XF86AudioRaiseVolume", function () awful.spawn("amixer -q set PCM 5%+ unmute") end):add()
-keybinding({ }, "XF86AudioLowerVolume", function () awful.spawn("amixer -q set PCM 5%- unmute") end):add()
-keybinding({ }, "XF86AudioMute", function () awful.spawn("amixer -q set Master toggle") end):add()
-keybinding({ }, "XF86AudioPrev", function () awful.spawn("mpc prev") end):add()
-keybinding({ }, "XF86AudioNext", function () awful.spawn("mpc next") end):add()
-keybinding({ }, "XF86AudioStop", function () awful.spawn("mpc stop") end):add()
-keybinding({ }, "XF86AudioPlay", function () awful.spawn("mpc toggle") end):add()
+keybinding({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set PCM 5%+ unmute") end):add()
+keybinding({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set PCM 5%- unmute") end):add()
+keybinding({ }, "XF86AudioMute", function () awful.util.spawn("amixer -q set Master toggle") end):add()
+keybinding({ }, "XF86AudioPrev", function () awful.util.spawn("mpc prev") end):add()
+keybinding({ }, "XF86AudioNext", function () awful.util.spawn("mpc next") end):add()
+keybinding({ }, "XF86AudioStop", function () awful.util.spawn("mpc stop") end):add()
+keybinding({ }, "XF86AudioPlay", function () awful.util.spawn("mpc toggle") end):add()
 
 -- Client awful tagging: this is useful to tag some clients and then do stuff like move to tag on them
 keybinding({ modkey }, "t", awful.client.togglemarked):add()
