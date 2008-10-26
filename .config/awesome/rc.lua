@@ -212,28 +212,22 @@ soundwidget = widget({
 function amixer_volume(format)
     local pcm = io.popen('amixer get PCM')
     local spkr = io.popen('amixer get Master')
-    local l = pcm:lines()
-    local m = spkr:lines()
+    local l = pcm:read('*a')
+    local m = spkr:read('*a')
     local v = ''
     local st = ''
 
-    for line in m do
-        if line:find('off') ~= nil then
-            st = '[M]'
-        end
-    end
-    for line in l do
-        if line:find('Front Left:') ~= nil then
-            pend = line:find('%]', 0, true)
-            pstart = line:find('[', 0, true)
-            v = line:sub(pstart+1, pend).."%"
-        end
+    if string.match(m, 'off') then
+        st = '[M]'
     end
 
-    return {v..st}
+    v = string.match(l,'Front Left:%s+%a+%s+%d+%s+[^a](%d+)')
+
+    ret_message = string.format('%s%s %s',v,'%%',st)
+    return {ret_message}
 end
 
-wicked.register(soundwidget, amixer_volume,' $1 ',4)
+wicked.register(soundwidget, amixer_volume,' $1',4)
 
 soundicon = awful.widget.launcher({ name = "soundicon",
                                     align = "right",
@@ -299,8 +293,8 @@ for s = 1, screen.count() do
                          fg = beautiful.fg_normal, bg = beautiful.bg_normal })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = { mylauncher,
-                           mytaglist[s],
                            mylayoutbox[s],
+                           mytaglist[s],
                            mypromptbox[s],
                            mytasklist[s],
                            soundicon,
