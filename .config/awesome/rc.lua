@@ -13,9 +13,11 @@ themedir = awdir.."themes/"
 icondir = awdir.."icons/"
 theme = "default"
 
--- This is used later as the default terminal to run.
 terminal = "urxvt -fn xft:terminus:pixelsize=8"
+editor = os.getenv("EDITOR") or "vim"
+editor_cmd = terminal .. " -e " .. editor
 browser = "firefox"
+
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -31,7 +33,9 @@ layouts =
     "tiletop",  -- 2
     "max",      -- 3
     "floating", -- 4
-    "fairh"     -- 5
+    "fairh",    -- 5
+    "spiral",   -- 6
+    "dwindle"   -- 7
 }
 
 -- Table of clients that should be set floating. The index may be either
@@ -53,7 +57,7 @@ floatapps =
 -- Use the screen and tags indices.
 apptags =
 {
-    -- ["Firefox"] = { screen = 1, tag = 2 },
+    ["Firefox"] = { screen = 1, tag = 1 },
     -- ["mocp"] = { screen = 2, tag = 4 },
     ["Thunar"] = { screen = 1, tag = 5 },
     ["Gvim"] = { screen = 1, tag = 2 }
@@ -100,64 +104,55 @@ tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = {}
-    -- Create 9 tags per screen.
     for tagnumber = 1, 6 do
         tags[s][tagnumber] = tag({ name = tagnames[tagnumber], layout = layouts[taglayouts[tagnumber]] })
-        -- Add tags to screen one by one
         tags[s][tagnumber].screen = s
     end
-    -- I'm sure you want to see at least one tag.
     tags[s][1].selected = true
 end
 -- }}}
 
--- WIDGETS
-
 -- {{{ Wibox
--- Create a taglist widget
-mytaglist = widget({ type = "taglist", name = "mytaglist" })
-mytaglist:buttons({
-    button({ }, 1, function (object, tag) awful.tag.viewonly(tag) end),
-    button({ modkey }, 1, function (object, tag) awful.client.movetotag(tag) end),
-    button({ }, 3, function (object, tag) tag.selected = not tag.selected end),
-    button({ modkey }, 3, function (object, tag) awful.client.toggletag(tag) end),
-    button({ }, 4, awful.tag.viewnext),
-    button({ }, 5, awful.tag.viewprev)
-})
-mytaglist.label = awful.widget.taglist.label.all
 
--- Create a tasklist widget
-mytasklist = widget({ type = "tasklist", name = "mytasklist" })
-mytasklist:buttons({
-    button({ }, 1, function (object, c) client.focus = c; c:raise() end),
-    button({ }, 4, function () awful.client.focus.byidx(1) end),
-    button({ }, 5, function () awful.client.focus.byidx(-1) end)
-})
-mytasklist.label = awful.widget.tasklist.label.currenttags
+-- Create a laucher widget and a main menu
+myawesomemenu = {
+   {"manual", terminal .. " -e man awesome" },
+   {"edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
+   {"restart", awesome.restart },
+   {"quit", awesome.quit }
+}
 
--- Create a textbox widget
-mytextbox = widget({ type = "textbox", name = "mytextbox", align = "right" })
--- Set the default text in textbox
-mytextbox.text = "<b><small> " .. AWESOME_RELEASE .. " </small></b>"
-mypromptbox = widget({ type = "textbox", name = "mypromptbox", align = "left" })
+mymainmenu = {
+   {"awesome", myawesomemenu, "/usr/share/awesome/icons/awesome16.png" },
+   {"open terminal", terminal }
+}
+
+mylauncher = awful.widget.launcher({ name = "mylauncher",
+                                     image = "/usr/share/awesome/icons/awesome16.png",
+                                     menu = { id="mymainmenu", items=mymainmenu } })
 
 -- Create a systray
 mysystray = widget({ type = "systray", name = "mysystray", align = "right" })
 
--- Create an iconbox widget which will contains an icon indicating which layout we're using.
--- We need one layoutbox per screen.
-mylayoutbox = {}
-for s = 1, screen.count() do
-    mylayoutbox[s] = widget({ type = "imagebox", name = "mylayoutbox", align = "left" })
-    mylayoutbox[s]:buttons({
-        button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-        button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-        button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-        button({ }, 5, function () awful.layout.inc(layouts, -1) end)
-    })
-    mylayoutbox[s].image = image("/usr/share/awesome/icons/layouts/tilew.png")
-end
 
+-- Create a wibox for each screen and add it
+mywibox = {}
+mypromptbox = {}
+mylayoutbox = {}
+mytaglist = {}
+mytaglist.buttons = { button({ }, 1, awful.tag.viewonly),
+                      button({ modkey }, 1, awful.client.movetotag),
+                      button({ }, 3, function (tag) tag.selected = not tag.selected end),
+                      button({ modkey }, 3, awful.client.toggletag),
+                      button({ }, 4, awful.tag.viewnext),
+                      button({ }, 5, awful.tag.viewprev) }
+mytasklist = {}
+mytasklist.buttons = { button({ }, 1, function (c) client.focus = c; c:raise() end),
+                       button({ }, 3, function () awful.menu.clients({ width=250 }) end),
+                       button({ }, 4, function () awful.client.focus.byidx(1) end),
+                       button({ }, 5, function () awful.client.focus.byidx(-1) end) }
+
+-- Custom widgets
 -- Battery widget
 battwidget = widget({
     type = 'textbox',
@@ -166,31 +161,37 @@ battwidget = widget({
 })
 
 function run_batt(format)
-    local bat = io.popen('battery.pl')
-    local state = 'a/c'
-    local l = bat:lines()
-    local charg = false
+    local statefd = io.popen('cat /proc/acpi/battery/BAT0/state')
+    local infofd = io.popen('cat /proc/acpi/battery/BAT0/info')
 
-    for line in l do
-        if line:find('Charging') ~= nil then
-            charg = true
-        end
-        if line:find('Time left') ~= nil then
-            if line:find('Infinite') == nil then
-                if charg == true then
-                    pend = line:find(')', 0, true)
-                    pstart = line.find('(', 0, true)
-                end
-                if charg == false then
-                    pend = line:find(' (', 0, true)
-                    pstart = line:find(':', 0, true)
-                end
-                state = line:sub(pstart+1,pend)
-            end
-        end
+    if not statefd or not infofd then
+        return 'no info'
     end
 
-    return {state}
+    local state = statefd:read("*a")
+    local info = infofd:read("*a")
+    statefd:close()
+    infofd:close()
+
+    local battstate = string.match(state, 'charging state:%s+(%a+)')
+    local capacity = string.match(state, 'remaining capacity:%s+(%d+)')
+    local lastfull = string.match(info, 'last full capacity:%s+(%d+)')
+    local rate = string.match(state, 'present rate:%s+(%d+)')
+    local time_left = capacity / rate
+    local icon = "▴"
+
+    if battstate == 'discharging' then
+        icon = "▾"
+    elseif battstate == 'charged' then
+        return {' a/c'}
+    end
+
+    local minutes_left = (time_left - math.floor(time_left)) * 60
+    local percentage = (capacity / lastfull) * 100
+
+    local ret_message = string.format(" %s%.1f%s (%.0fh%.0f)",
+                            icon,percentage, '%%', time_left, minutes_left)
+    return {ret_message}
 end
 wicked.register(battwidget, run_batt, "$1 ", 4)
 
@@ -271,35 +272,54 @@ dateicon = awful.widget.launcher({ name = "dateicon",
                                    command = terminal .. " -e htop"})
 
 -- }}}
+-- }}}
 
--- Create a wibox for each screen and add it
-mywibox = {}
+
 for s = 1, screen.count() do
+    -- Create a promptbox for each screen
+    mypromptbox[s] = widget({ type = "textbox", name = "mypromptbox" .. s, align = "left" })
+    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
+    -- We need one layoutbox per screen.
+    mylayoutbox[s] = widget({ type = "imagebox", name = "mylayoutbox", align = "left" })
+    mylayoutbox[s]:buttons({ button({ }, 1, function () awful.layout.inc(layouts, 1) end),
+                             button({ }, 3, function () awful.layout.inc(layouts, -1) end),
+                             button({ }, 4, function () awful.layout.inc(layouts, 1) end),
+                             button({ }, 5, function () awful.layout.inc(layouts, -1) end) })
+    -- Create a taglist widget
+    mytaglist[s] = awful.widget.taglist.new(s, awful.widget.taglist.label.all, mytaglist.buttons)
+
+    -- Create a tasklist widget
+    mytasklist[s] = awful.widget.tasklist.new(function(c)
+                                                  return awful.widget.tasklist.label.currenttags(c, s)
+                                              end, mytasklist.buttons)
+
+    -- Create the wibox
     mywibox[s] = wibox({ position = "top", name = "mywibox" .. s,
-                             fg = beautiful.fg_normal, bg = beautiful.bg_normal })
+                         fg = beautiful.fg_normal, bg = beautiful.bg_normal })
     -- Add widgets to the wibox - order matters
-    mywibox[s]:widgets({
-        mytaglist,
-        mytasklist,
-        mylayoutbox[s],
-        mypromptbox,
-        soundicon,
-        soundwidget,
-        memicon,
-        memwidget,
-        batticon,
-        battwidget,
-        dateicon,
-        datewidget,
-        s == 1 and mysystray or nil
-    })
+    mywibox[s].widgets = { mylauncher,
+                           mytaglist[s],
+                           mylayoutbox[s],
+                           mypromptbox[s],
+                           mytasklist[s],
+                           soundicon,
+                           soundwidget,
+                           memicon,
+                           memwidget,
+                           batticon,
+                           battwidget,
+                           dateicon,
+                           datewidget,
+                           s == 1 and mysystray or nil }
     mywibox[s].screen = s
 end
 -- }}}
 
 -- {{{ Mouse bindings
 awesome.buttons({
-    button({ }, 3, function () awful.util.spawn(terminal) end),
+    button({ }, 3, function () awful.menu.new({ id="mymainmenu", items=mymainmenu }) end),
+    button({ }, 4, awful.tag.viewnext),
+    button({ }, 5, awful.tag.viewprev)
 })
 -- }}}
 
@@ -353,7 +373,7 @@ keybinding({ modkey }, "Escape", awful.tag.history.restore):add()
 keybinding({ modkey }, "Return", function () awful.util.spawn(terminal) end):add()
 
 keybinding({ modkey, "Control" }, "r", function ()
-                                           mypromptbox.text =
+                                           mypromptbox[mouse.screen].text =
                                                awful.util.escape(awful.util.restart())
                                         end):add()
 keybinding({ modkey, "Shift" }, "q", awesome.quit):add()
@@ -387,24 +407,25 @@ keybinding({ modkey, "Shift" }, "space", function () awful.layout.inc(layouts, -
 
 -- Prompt
 keybinding({ modkey }, "F1", function ()
-                                 awful.prompt.run({ prompt = "Run: " }, mypromptbox, awful.util.spawn, awful.completion.bash,
-os.getenv("HOME") .. "/.cache/awesome/history") end):add()
+                                 awful.prompt.run({ prompt = "Run: " }, mypromptbox[mouse.screen], awful.util.spawn, awful.completion.bash,
+awful.util.getdir("cache") .. "/history") end):add()
 keybinding({ modkey }, "F4", function ()
-                                 awful.prompt.run({ prompt = "Run Lua code: " }, mypromptbox, awful.util.eval, awful.prompt.bash,
-os.getenv("HOME") .. "/.cache/awesome/history_eval") end):add()
+                                 awful.prompt.run({ prompt = "Run Lua code: " }, mypromptbox[mouse.screen], awful.util.eval, awful.prompt.bash,
+awful.util.getdir("cache") .. "/history_eval") end):add()
 keybinding({ modkey, "Ctrl" }, "i", function ()
-                                        if mypromptbox.text then
-                                            mypromptbox.text = nil
+                                        local s = mouse.screen
+                                        if mypromptbox[s].text then
+                                            mypromptbox[s].text = nil
                                         else
-                                            mypromptbox.text = nil
+                                            mypromptbox[s].text = nil
                                             if client.focus.class then
-                                                mypromptbox.text = "Class: " .. client.focus.class .. " "
+                                                mypromptbox[s].text = "Class: " .. client.focus.class .. " "
                                             end
                                             if client.focus.instance then
-                                                mypromptbox.text = mypromptbox.text .. "Instance: ".. client.focus.instance .. " "
+                                                mypromptbox[s].text = mypromptbox[s].text .. "Instance: ".. client.focus.instance .. " "
                                             end
                                             if client.focus.role then
-                                                mypromptbox.text = mypromptbox.text .. "Role: ".. client.focus.role
+                                                mypromptbox[s].text = mypromptbox[s].text .. "Role: ".. client.focus.role
                                             end
                                         end
                                     end):add()
@@ -439,6 +460,15 @@ keybinding({ modkey }, "y", function ()
    end
 end):add()
 
+-- Volume
+keybinding({ }, "XF86AudioRaiseVolume", function () awful.spawn("amixer -q set PCM 5%+ unmute") end):add()
+keybinding({ }, "XF86AudioLowerVolume", function () awful.spawn("amixer -q set PCM 5%- unmute") end):add()
+keybinding({ }, "XF86AudioMute", function () awful.spawn("amixer -q set Master toggle") end):add()
+keybinding({ }, "XF86AudioPrev", function () awful.spawn("mpc prev") end):add()
+keybinding({ }, "XF86AudioNext", function () awful.spawn("mpc next") end):add()
+keybinding({ }, "XF86AudioStop", function () awful.spawn("mpc stop") end):add()
+keybinding({ }, "XF86AudioPlay", function () awful.spawn("mpc toggle") end):add()
+
 -- Client awful tagging: this is useful to tag some clients and then do stuff like move to tag on them
 keybinding({ modkey }, "t", awful.client.togglemarked):add()
 keybinding({ modkey, 'Shift' }, "t", function ()
@@ -468,16 +498,6 @@ for i = 1, keynumber do
                    end):add()
 end
 -- }}}
-
--- X11 interaction
--- Volume
-keybinding({ }, "XF86AudioRaiseVolume", function () awful.spawn("amixer -q set PCM 5%+ unmute") end):add()
-keybinding({ }, "XF86AudioLowerVolume", function () awful.spawn("amixer -q set PCM 5%- unmute") end):add()
-keybinding({ }, "XF86AudioMute", function () awful.spawn("amixer -q set Master toggle") end):add()
-keybinding({ }, "XF86AudioPrev", function () awful.spawn("mpc prev") end):add()
-keybinding({ }, "XF86AudioNext", function () awful.spawn("mpc next") end):add()
-keybinding({ }, "XF86AudioStop", function () awful.spawn("mpc stop") end):add()
-keybinding({ }, "XF86AudioPlay", function () awful.spawn("mpc toggle") end):add()
 
 -- {{{ Hooks
 -- Hook function to execute when focusing a client.
@@ -580,7 +600,7 @@ awful.hooks.arrange.register(function (screen)
     -- Uncomment if you want mouse warping
     --[[
     if client.focus then
-        local c_c = client.focus:coords()
+        local c_c = client.focus:geometry()
         local m_c = mouse.coords()
 
         if m_c.x < c_c.x or m_c.x >= c_c.x + c_c.width or
@@ -592,14 +612,4 @@ awful.hooks.arrange.register(function (screen)
     end
     ]]
 end)
-
--- Hook called every second
---awful.hooks.timer.register(1, function ()
-    -- For unix time_t lovers
---    mytextbox.text = " " .. os.time() .. " time_t "
-    -- Otherwise use:
-    -- mytextbox.text = " " .. os.date() .. " "
---end)
--- }}}
-
 
