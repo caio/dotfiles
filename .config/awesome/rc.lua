@@ -5,6 +5,7 @@ require("awful")
 require("tabulous")
 require("beautiful")
 require("wicked")
+require("naughty")
 
 -- {{{ Variable definitions
 homedir = os.getenv("HOME")

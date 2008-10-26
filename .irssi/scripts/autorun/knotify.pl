@@ -47,7 +47,7 @@ sub hilight {
 
 sub kde_print {
 	my ($text) = @_;
-	system("kdialog --title 'IRC Activity' --passivepopup '$text' 2");
+    system("echo 'naughty.notify({title = \"IRSSI\", text = \"$text\", timeout = 3, position = \"bottom_right\"})' | awesome-client -");
 }
 
 #--------------------------------------------------------------------
