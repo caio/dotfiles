@@ -1,0 +1,11 @@
+#
+# WeeChat plugins configuration file, created by WeeChat v0.2.6 on Sun Oct 26 13:40:53 2008
+# WARNING! Be careful when editing this file, WeeChat writes this file when options are updated.
+#
+aspell.check-sync = "0"
+aspell.color = "red"
+aspell.word-size = "2"
+charset.global.decode = "ISO-8859-1"
+python.naughtywee.icon = "/usr/share/pixmaps/gnome-irc.png"
+python.naughtywee.position = "bottom_right"
+python.naughtywee.timeout = "3"
