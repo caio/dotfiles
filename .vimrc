@@ -89,10 +89,10 @@ endif
 " Try to load a nice colourscheme
 if has("gui_running")
     set background=dark
-    colorscheme inkpot
+    colorscheme moria
 else
     set background=dark
-    colorscheme inkpot
+    colorscheme moria
 endif
 
 " No icky toolbar, menu or scrollbars in the GUI
