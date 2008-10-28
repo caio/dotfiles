@@ -110,7 +110,6 @@ def run_notify(nick, chan, message):
     cmd = build_command(args[0], args[1], timeout, icon, position)
     args = ['echo', cmd]
 
-    weechat.prnt(cmd)
     p1 = Popen(args, stdout = PIPE)
     p2 = Popen(["awesome-client"], stdin = p1.stdout)
     p2.communicate()
