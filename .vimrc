@@ -20,6 +20,9 @@ endif
 " settings
 "-----------------------------------------------------------------------
 
+" Map leader to <space>
+let mapleader=' '
+
 " Enable mouse
 set mouse=a
 
@@ -53,7 +56,10 @@ set incsearch
 
 " Selective case insensitivity
 set ignorecase
-set infercase
+set smartcase
+
+" Don't inherit title
+set title
 
 " Show full tags when doing search completion
 set showfulltag
@@ -70,8 +76,16 @@ endif
 
 " Use the cool tab complete menu
 set wildmenu
+set wildmode=list:longest
 set wildignore+=*.o,*~,.lo
 set suffixes+=.in,.a
+
+" List tabs and trailling spaces with <leader>s
+set listchars=tab:>-,trail:·,eol:$
+nmap <silent> <leader>s :set nolist!<CR>
+
+" Don't bug me with silly 'continue' messages
+set shortmess=atI
 
 " Allow edit buffers to be hidden
 set hidden
@@ -230,6 +244,10 @@ nmap <silent><F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 map <silent><C-Left> <C-T>
 map <silent><C-Right> <C-]>
 
+" Buffer management
+nmap <C-h> :bp<CR>
+nmap <C-l> :bn<CR>
+
 "-----------------------------------------------------------------------
 " plugin / script / app settings
 "-----------------------------------------------------------------------
@@ -261,6 +279,9 @@ if has("eval")
     let html_use_css=1
     let use_xhtml=1
 endif
+
+" % matches on if/else, html tags, etc.
+runtime macros/matchit.vim
 
 "-----------------------------------------------------------------------
 " final commands
