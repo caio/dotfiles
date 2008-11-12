@@ -11,7 +11,7 @@ homedir = os.getenv("HOME")
 awdir = homedir.."/.config/awesome/"
 themedir = awdir.."themes/"
 icondir = awdir.."icons/"
-theme = "default"
+theme = "default/theme"
 
 terminal = "urxvt -fn xft:terminus:pixelsize=8"
 editor = os.getenv("EDITOR") or "vim"
@@ -119,12 +119,12 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu.new({ items = { { "awesome", myawesomemenu, "/usr/share/awesome/icons/awesome16.png" },
+mymainmenu = awful.menu.new({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                         { "open terminal", terminal }
                                       }
                             })
-
-mylauncher = awful.widget.launcher({ image = "/usr/share/awesome/icons/awesome16.png",
+ylauncher = awful.widget.launcher({ image = "/usr/share/awesome/icons/awesome16.png",
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 -- Create a systray
@@ -534,7 +534,7 @@ end)
 awful.hooks.arrange.register(function (screen)
     local layout = awful.layout.get(screen)
     if layout then
-        mylayoutbox[screen].image = image("/usr/share/awesome/icons/layouts/" .. layout .. "w.png")
+        mylayoutbox[screen].image = image(beautiful["layout_" .. layout])
     else
         mylayoutbox[screen].image = nil
     end
