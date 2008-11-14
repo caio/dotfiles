@@ -21,7 +21,7 @@ endif
 "-----------------------------------------------------------------------
 
 " Map leader to <space>
-let mapleader=' '
+let mapleader=','
 
 " Enable mouse
 set mouse=a
@@ -190,10 +190,6 @@ set nonumber
 " mappings
 "-----------------------------------------------------------------------
 
-" Make <space> in normal mode go down a page rather than left a
-" character
-noremap <space> <C-f>
-
 " Commonly used commands
 nmap <silent> <F3> :silent nohlsearch<CR>
 imap <silent> <F3> <C-o>:silent nohlsearch<CR>
@@ -227,17 +223,17 @@ endfunction
 inoremap <silent><HOME> <C-O>:call <SID>SmartHome()<CR>
 nnoremap <silent><HOME> :call <SID>SmartHome()<CR>
 
-imap <F2> <C-O>\be
-nmap <F2> \be
+imap <F2> <C-O><leader>be
+nmap <F2> <leader>be
+
+imap <leader>p <C-O>:YRShow<CR>
+nmap <leader>p :YRShow<CR>
 
 imap <silent><F1> <C-O>:NERDTreeToggle<CR>
 nmap <silent><F1> :NERDTreeToggle<CR>
 
 nmap <silent><F5> :Tlist<CR>
 imap <silent><F5> <C-O>:Tlist<CR>
-
-imap <F4> <C-O>:A<CR>
-nmap <F4> :A<CR>
 
 nmap <silent><F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
