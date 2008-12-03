@@ -1,37 +1,45 @@
-!XTerm*underLine: on
-XTerm*colorMode: on
-XTerm*colorBD: lightyellow
-!XTerm*colorBDMode: off
-XTerm*colorUL: yellow
-XTerm*colorULMode: on
-XTerm*dynamicColors: off
-XTerm*highlightSelection: true
-
-! Colorscheme based on the gvim colorscheme desert
-XTerm*background: #313031
-XTerm*foreground: White
-XTerm*color0: #000000
-XTerm*color7: #bebebe
-XTerm*color8: #666666
-XTerm*color9: #cf6171
-XTerm*color10: #c5f779
-XTerm*color11: #fff796
-XTerm*color12: #4186be
-XTerm*color13: #cf9ebe
-XTerm*color14: #71bebe
-XTerm*color15: #ffffff
-XTerm*color1: #ffa2a5
-XTerm*color2: #bdb66b
-XTerm*color3: #f7e78c
-XTerm*color4: #84cfef
-XTerm*color5: #ce5d5a
-XTerm*color6: #87ff87
+!xterm*underLine: on
+xterm*colorMode: on
+xterm*colorBD: lightyellow
+!xterm*colorBDMode: off
+xterm*colorUL: yellow
+xterm*colorULMode: on
+xterm*dynamicColors: off
+xterm*highlightSelection: true
 
 xterm*faceName: Terminus
 xterm*faceSize: 8
 
-XTerm*geometry: 80x20
-XTerm*scrollBar: false
+xterm*geometry: 80x20
+xterm*scrollBar: false
+
+xterm*background : #2e3436
+xterm*foreground : #ffffff
+! Black
+xterm*color8     : #888a85
+xterm*color0     : #2e3436
+! Red
+xterm*color9     : #ef2828
+xterm*color1     : #a40000
+! Green
+xterm*color10   : #8ae234
+xterm*color2    : #4e9a06
+! Yellow
+xterm*color11   : #fce94f
+xterm*color3    : #c4a000
+! Blue
+xterm*color12   : #729fcf
+xterm*color4    : #204a87
+! Purple
+xterm*color13   : #ad7fa8
+xterm*color5    : #5c3566
+! Cyan
+xterm*color14   : #92B19E
+xterm*color6    : #A1CDCD
+! White
+xterm*color15   : #eeeeec
+xterm*color7    : #babdb6
+
 
 ! urxvt
 
@@ -57,24 +65,30 @@ urxvt*colorBD:  lightyellow
 urxvt*colorUL:  yellow
 
 !colors
-urxvt*background: #313031
-urxvt*foreground: #ffffff
-urxvt*color0: #000000
-urxvt*color7: #bebebe
-urxvt*color8: #666666
-urxvt*color9: #cf6171
-urxvt*color10: #c5f779
-urxvt*color11: #fff796
-urxvt*color12: #4186be
-urxvt*color13: #cf9ebe
-urxvt*color14: #71bebe
-urxvt*color15: #ffffff
-urxvt*color1: #ffa2a5
-urxvt*color2: #bdb66b
-urxvt*color3: #f7e78c
-urxvt*color4: #84cfef
-urxvt*color5: #ce5d5a
-urxvt*color6: #87ff87
+! Black
+urxvt*color8     : #888a85
+urxvt*color0     : #2e3436
+! Red
+urxvt*color9     : #ef2828
+urxvt*color1     : #a40000
+! Green
+urxvt*color10   : #8ae234
+urxvt*color2    : #4e9a06
+! Yellow
+urxvt*color11   : #fce94f
+urxvt*color3    : #c4a000
+! Blue
+urxvt*color12   : #729fcf
+urxvt*color4    : #204a87
+! Purple
+urxvt*color13   : #ad7fa8
+urxvt*color5    : #5c3566
+! Cyan
+urxvt*color14   : #92B19E
+urxvt*color6    : #A1CDCD
+! White
+urxvt*color15   : #eeeeec
+urxvt*color7    : #babdb6
 
 ! NEDIT
 

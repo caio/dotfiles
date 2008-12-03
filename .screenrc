@@ -3,7 +3,8 @@
   defutf8 on
 
 # Statusline
-  hardstatus alwayslastline "%{= dR} %-Lw%50>%{= dG}%n%f* %{= dW}%t%{= dR}%+Lw%<"
+  hardstatus alwayslastline
+  hardstatus string '%{= kK}%{w}%H %{K}%= %{= kw}%?%-Lw%?%{B}(%{W}%n%f %t%?(%u)%?%{B})%{w}%?%+Lw%?%?%= %{K}%{B} %{w}%c%{K}'
 
 # use F8 to turn the status bar off at the bottom of the screen
   bindkey -k k8 hardstatus alwayslastline
