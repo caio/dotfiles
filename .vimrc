@@ -96,8 +96,8 @@ imap <leader>p <C-O>:YRShow<CR>
 nmap <leader>p :YRShow<CR>
 
 " NERDTree
-imap <silent><F1> <C-O>:NERDTreeToggle<CR>
-nmap <silent><F1> :NERDTreeToggle<CR>
+imap <silent><F4> <C-O>:NERDTreeToggle<CR>
+nmap <silent><F4> :NERDTreeToggle<CR>
 
 " Taglist
 nmap <silent><F5> :Tlist<CR>
