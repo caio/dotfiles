@@ -3,9 +3,9 @@
 "              ( f.ingram.lists <AT> gmail.com )
 " Description: An attempt to implement TextMate style Snippets. Features include
 "              automatic cursor placement and command execution.
-" $LastChangedDate: 2008-03-13 07:20:14 -0300 (Thu, 13 Mar 2008) $
+" $LastChangedDate: 2008-12-11 12:35:55 -0200 (Qui, 11 Dez 2008) $
 " Version:     1.1
-" $Revision: 141 $
+" $Revision: 145 $
 "
 " This file contains some simple functions that attempt to emulate some of the 
 " behaviour of 'Snippets' from the OS X editor TextMate, in particular the
@@ -93,7 +93,7 @@ if globpath(&rtp, 'plugin/snippetEmu.vim') != ""
   call confirm("It looks like you've got an old version of snippetsEmu installed. Please delete the file 'snippetEmu.vim' from the plugin directory. Note lack of 's'")
 endif
 
-let s:debug = 0
+let s:debug = 1
 let s:Disable = 0
 
 function! s:Debug(func, text)
@@ -176,7 +176,11 @@ function! s:SnipMapKeys()
     if s:supInstalled == 1
       exec 'imap '.g:snippetsEmu_key.' <Plug>Jumper'
     else
-      exec 'imap <unique> '.g:snippetsEmu_key.' <Plug>Jumper'
+      try
+        exec 'imap <unique> '.g:snippetsEmu_key.' <Plug>Jumper'
+      catch /E227/
+        exec 'imap '.g:snippetsEmu_key.' <Plug>Jumper'
+      endtry
     endif
   endif
 
@@ -673,7 +677,7 @@ function! <SID>Jumper()
   " First we'll check that the user hasn't just typed a snippet to expand
   let origword = matchstr(strpart(getline("."), 0, s:curCurs), '\(^\|\s\)\S\{-}$')
   let origword = substitute(origword, '\s', "", "")
-  "call s:Debug("Jumper", "Original word was: ".origword)
+  "call s:Debug("Jumper", "Original word based on whitespace was: ".origword)
   let word = s:Hash(origword)
   " The following code is lifted from the imaps.vim script - Many
   " thanks for the inspiration to add the TextMate compatibility
@@ -692,7 +696,7 @@ function! <SID>Jumper()
   if found == 0
     " Check using keyword boundary
     let origword = matchstr(strpart(getline("."), 0, s:curCurs), '\k\{-}$')
-    "call s:Debug("Jumper", "Original word was: ".origword)
+    "call s:Debug("Jumper", "Original word based on keyword boundary was: ".origword)
     let word = s:Hash(origword)
     if exists('b:trigger_'.word)
       exe 'let rhs = b:trigger_'.word
@@ -716,8 +720,9 @@ function! <SID>Jumper()
     let b:search_sav = @/
     " Count the number of lines in the rhs
     let move_up = ""
-    if len(split(rhs, "\<CR>")) - 1 != 0
-      let move_up = len(split(rhs, "\<CR>")) - 1
+    "call s:Debug("Jumper", "Len split RHS: ".len(split(rhs, "\<CR>", 1)))
+    if len(split(rhs, "\<CR>", 1)) - 1 != 0
+      let move_up = len(split(rhs, "\<CR>", 1)) - 1
       let move_up = move_up."\<Up>"
     endif
 
