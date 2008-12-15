@@ -13,6 +13,7 @@ let mapleader=','
 set mouse=a
 set nowrap
 set nocompatible
+set shortmess=a
 set showcmd
 set showmatch
 set hlsearch
@@ -39,6 +40,8 @@ set backspace=indent,eol,start
 set backup
 set backupdir=./.backup,/tmp,.
 set directory=.,./.backup,/tmp
+set lazyredraw
+set noswapfile
 set title
 set noerrorbells
 set visualbell t_vb=
