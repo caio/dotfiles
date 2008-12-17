@@ -13,4 +13,4 @@ License
 
 Unless stated otherwise, you're free to copy, modify and distribute anything here that was **created by me**.
 
-As stated before, some of the content come from untracked sources and I can't (and won't) be responsible for it's licensing, so if you're going to use anything here for non-GPLed projects, please send me a note **AND** use google to see if someone owns a pice of it.
+As stated before, some of the content come from untracked sources and I can't (and won't) be responsible for it's licensing, so if you're going to use anything here for non-GPLed projects, please send me a note **AND** use google to see if someone owns a piece of it.
