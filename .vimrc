@@ -113,6 +113,9 @@ let Tlist_WinWidth=28
 let Tlist_Exit_OnlyWindow=1
 let Tlist_File_Fold_Auto_Close = 1
 
+" Yankring
+let g:yankring_history_file = '.yankring_history'
+
 " TOhtml options
 let html_number_lines=1
 let html_use_css=1
