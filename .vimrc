@@ -47,7 +47,7 @@ set noerrorbells
 set visualbell t_vb=
 
 if has("gui_running")
-    set guifont=DejaVu\ Sans\ Mono\ 8
+    set guifont=Envy\ Code\ R\ 9
     let moria_style='dark'
     colorscheme moria 
     set guioptions-=m
