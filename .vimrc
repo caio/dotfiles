@@ -44,12 +44,12 @@ set lazyredraw
 set noswapfile
 set title
 set noerrorbells
-set visualbell t_vb=
+set novisualbell
 
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 9
-    let moria_style='dark'
-    colorscheme moria 
+    "let moria_style='dark'
+    colorscheme wombat
     set guioptions-=m
     set guioptions-=T
     set guioptions-=l
@@ -123,6 +123,11 @@ let use_xhtml=1
 
 " Matchit plugin
 runtime macros/matchit.vim
+
+" Python synxtax file
+let python_highlight_all=1
+let python_slow_sync=1
+let python_print_as_function=1
 
 " OmniCPPComplete settings
 " let OmniCpp_GlobalScopeSearch = 1
