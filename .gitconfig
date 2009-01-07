@@ -7,6 +7,8 @@
     co = checkout
     st = status
     br = branch
+    nb = checkout -b
+    lastweek = log --pretty=oneline --since='1 week ago' --until='today'
     logg = log --pretty=oneline
     loga = log --pretty=format:'%Cblue %h %Cgreen %an %Creset %s'
 
