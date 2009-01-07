@@ -8,9 +8,9 @@
     st = status
     br = branch
     nb = checkout -b
-    lastweek = log --pretty=oneline --since='1 week ago' --until='today'
     logg = log --pretty=oneline
     loga = log --pretty=format:'%Cblue %h %Cgreen %an %Creset %s'
+    lastweek = log --pretty=format:'%Cblue %h %Cgreen %an %Creset %s' --since='1 week ago' --until='today'
 
 [core]
     editor = vim
