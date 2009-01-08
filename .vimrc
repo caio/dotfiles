@@ -69,10 +69,15 @@ nmap <C-l> :bn<CR>
 imap <C-h> <C-o>:bp<CR>
 imap <C-l> <C-o>:bn<CR>
 
+nmap <F7> :setlocal spell! spelllang=en<CR>
+imap <F7> <C-o>:setlocal spell! spelllang=en<CR>
+nmap <F8> :setlocal spell! spelllang=pt-br<CR>
+imap <F8> <C-o>:setlocal spell! spelllang=pt-br<CR>
+
 " Fuzzy Finder
-nmap <silent><leader>f <C-o>:FuzzyFinderFile<CR>
-nmap <silent><leader>t <C-o>:FuzzyFinderTag<CR>
-nmap <silent><leader>d <C-o>:FuzzyFinderDir<CR>
+nmap <silent><leader>f :FuzzyFinderFile<CR>
+nmap <silent><leader>t :FuzzyFinderTag<CR>
+nmap <silent><leader>d :FuzzyFinderDir<CR>
 nnoremap <leader>g :FuzzyFinderFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR> 
 
 " List trailling chars
