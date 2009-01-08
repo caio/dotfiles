@@ -49,8 +49,7 @@ set novisualbell
 
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 9
-    "let moria_style='dark'
-    colorscheme wombat
+    colorscheme wombat256
     set guioptions-=m
     set guioptions-=T
     set guioptions-=l
@@ -58,8 +57,7 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=R
 else
-    let moria_style='dark'
-    colorscheme moria
+    colorscheme wombat256
 endif
 
 nmap <silent> <F3> :silent nohlsearch<CR>
@@ -129,6 +127,9 @@ runtime macros/matchit.vim
 let python_highlight_all=1
 let python_slow_sync=1
 let python_print_as_function=1
+
+" Numbermarks plugin
+let g:Signs_file_path_corey='/tmp'
 
 " OmniCPPComplete settings
 " let OmniCpp_GlobalScopeSearch = 1
