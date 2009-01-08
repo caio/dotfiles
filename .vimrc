@@ -71,8 +71,8 @@ imap <C-l> <C-o>:bn<CR>
 
 nmap <F7> :setlocal spell! spelllang=en<CR>
 imap <F7> <C-o>:setlocal spell! spelllang=en<CR>
-nmap <F8> :setlocal spell! spelllang=pt-br<CR>
-imap <F8> <C-o>:setlocal spell! spelllang=pt-br<CR>
+nmap <F8> :setlocal spell! spelllang=pt_br<CR>
+imap <F8> <C-o>:setlocal spell! spelllang=pt_br<CR>
 
 " Fuzzy Finder
 nmap <silent><leader>f :FuzzyFinderFile<CR>
