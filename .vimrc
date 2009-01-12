@@ -136,6 +136,9 @@ let python_print_as_function=1
 " Numbermarks plugin
 let g:Signs_file_path_corey='/tmp'
 
+" ANTLR3 Syntax
+au BufRead,BufNewFile *.g set syntax=antlr3
+
 " OmniCPPComplete settings
 " let OmniCpp_GlobalScopeSearch = 1
 " let OmniCpp_NamespaceSearch = 2
