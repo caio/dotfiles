@@ -1,5 +1,5 @@
 #
-# WeeChat configuration file, created by WeeChat v0.2.6 on Sun Oct 26 13:40:53 2008
+# WeeChat configuration file, created by WeeChat v0.2.6 on Tue Jan 13 10:25:54 2009
 # WARNING! Be careful when editing this file, WeeChat writes this file when exiting.
 #
 
@@ -422,7 +422,7 @@ server_realname = "Caio Romão"
 server_hostname = ""
 server_command = ""
 server_command_delay = 1
-server_autojoin = "#ltcbr,#ltcunicamp,#devdrivers"
+server_autojoin = "#ltcbr,#ltcunicamp,#devdrivers,#ecm.#ltc-kernel,#kernel-br"
 server_autorejoin = on
 server_notify_levels = ""
 
