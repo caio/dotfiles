@@ -136,8 +136,14 @@ let python_print_as_function=1
 " Numbermarks plugin
 let g:Signs_file_path_corey='/tmp'
 
+" FontSize plugin
+nmap <silent>+ :call LargerFont()<CR>
+nmap <silent>- :call SmallerFont()<CR>
+
 " ANTLR3 Syntax
 au BufRead,BufNewFile *.g set syntax=antlr3
+" StringTemplate Syntax
+au BufRead,BufNewFile *.stg set syntax=stringtemplate
 
 " OmniCPPComplete settings
 " let OmniCpp_GlobalScopeSearch = 1
