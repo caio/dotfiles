@@ -56,6 +56,7 @@ if has("gui_running")
     set guioptions-=L
     set guioptions-=r
     set guioptions-=R
+    set guioptions-=b
 else
     colorscheme wombat256
 endif

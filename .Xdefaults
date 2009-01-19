@@ -44,13 +44,15 @@ xterm*color7    : #babdb6
 ! urxvt
 
 Xft.antialias: true
+urxvt*background : #2e3436
+urxvt*foreground : #ffffff
 urxvt*geometry: 80x20
 !urxvt*inheritPixmap:     true
 !urxvt*reverseVideo: false
 urxvt*tintColor: #dfdfdf
 !urxvt*shading:         20  !trans, 0=opaque    
 !urxvt*fading:         10  !term unfocus      
-urxvt.font xft:Terminus-8
+urxvt.font xft:Envy\ Code\ R-9
 urxvt.perl-ext-common: default,matcher
 urxvt*scrollBar: false
 urxvt*scrollBar_floating: true
