@@ -1,44 +1,65 @@
-# Git PS1 function
+#!/bin/bash
+#
+# Set our bash prompt according to the branch/status of the current git
+# repository.
+#
+# Forked from http://gist.github.com/31934
 
-__git_custom_ps1 ()
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+BLUE="\[\033[0;34m\]"
+LIGHT_RED="\[\033[1;31m\]"
+LIGHT_GREEN="\[\033[1;32m\]"
+WHITE="\[\033[1;37m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+COLOR_NONE="\[\e[0m\]"
+
+
+function is_git_repository
 {
-    local g="$(git rev-parse --git-dir 2>/dev/null)"
-    if [ -n "$g" ]; then
-        local r
-        local b
-        if [ -d "$g/../.dotest" ]
-        then
-            r="|AM/REBASE"
-            b="$(git symbolic-ref HEAD 2>/dev/null)"
-        elif [ -f "$g/.dotest-merge/interactive" ]
-        then
-            r="|REBASE-i"
-            b="$(cat $g/.dotest-merge/head-name)"
-        elif [ -d "$g/.dotest-merge" ]
-        then
-            r="|REBASE-m"
-            b="$(cat $g/.dotest-merge/head-name)"
-        elif [ -f "$g/MERGE_HEAD" ]
-        then
-            r="|MERGING"
-            b="$(git symbolic-ref HEAD 2>/dev/null)"
-        else
-            if [ -f $g/BISECT_LOG ]
-            then
-                r="|BISECTING"
-            fi
-            if ! b="$(git symbolic-ref HEAD 2>/dev/null)"
-            then
-                b="$(cut -c1-7 $g/HEAD)..."
-            fi
-        fi
-
-        if [ -n "$1" ]; then
-            printf "$1" "${b##refs/heads/}$r"
-        else
-            printf "%s" "${b##refs/heads/}$r"
-        fi
-    fi
+    git branch > /dev/null 2>&1
 }
 
+
+function parse_git_branch
+{
+    # Only display git info if we're inside a git repository.
+    is_git_repository || return 1
+
+    # Capture the output of the "git status" command.
+    git_status="$(git status 2> /dev/null)"
+
+    # Set color based on clean/staged/dirty.
+    if [[ ${git_status} =~ "working directory clean" ]]; then
+        state="${GREEN}"
+    elif [[ ${git_status} =~ "Changes to be committed" ]]; then
+        state="${YELLOW}"
+    else
+        state="${RED}"
+    fi
+
+    # Set arrow icon based on status against remote.
+    remote_pattern="# Your branch is (ahead of|behind)"
+    if [[ ${git_status} =~ ${remote_pattern} ]]; then
+        if [[ ${BASH_REMATCH[1]} == "ahead of" ]]; then
+            remote="↑"
+        else
+            remote="↓"
+        fi
+    fi
+    diverge_pattern="# Your branch and (.*) have diverged"
+    if [[ ${git_status} =~ ${diverge_pattern} ]]; then
+        remote="↕"
+    fi
+
+    # Get the name of the branch.
+    branch_pattern="^# On branch ([^${IFS}]*)"
+    if [[ ${git_status} =~ ${branch_pattern} ]]; then
+        branch=${BASH_REMATCH[1]}
+    fi
+
+    # Display the prompt.
+    echo "${state}${branch}${remote}${COLOR_NONE} "
+}
 

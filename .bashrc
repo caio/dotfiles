@@ -14,6 +14,7 @@ fi
 if [[ -f ~/.source/gitrc ]]
 then
     source ~/.source/gitrc
+    GITRC_OK="True"
 fi
 
 # Bash completion
@@ -30,38 +31,43 @@ export EDITOR="vim"
 # PROMPT
 # credits to B-Con from ArchLinux forums for this :)
 bash_prompt_cmd() {
-        local CY="\[\e[0;37m\]" # Each is 12 chars long
-        local BL="\[\e[1;34m\]"
-        local WH="\[\e[1;37m\]"
-        local BR="\[\e[0;33m\]"
-        local RE="\[\e[0;31m\]"
-        local OT="\[\e[1;35m\]"
-        local RET="${CY}${?}${BL}| "
-        local LPROM="${CY}$"
-        [ $UID -eq "0" ] && LPROM="${RE}#"
-        local PROMPT="${RET}${LPROM}"
-        [ -n "$CLEARCASE_ROOT" ] && PROMPT="${RET}${BL}(${OT}$(basename $CLEARCASE_ROOT)${BL}) ${LPROM}"
-        [ -n "$(__git_custom_ps1)" ] && PROMPT="${RET}${BL}(${OT}$(__git_custom_ps1)${BL}) ${LPROM}"
+    local RETVAL=$?
+    local CY="\[\e[0;37m\]" # Each is 12 chars long
+    local BL="\[\e[1;34m\]"
+    local WH="\[\e[1;37m\]"
+    local BR="\[\e[0;33m\]"
+    local RE="\[\e[1;31m\]"
+    local OT="\[\e[1;35m\]"
 
-        # Add the first part of the prompt: username,host, and time
-        local PROMPT_PWD=""
-        local PS1_T1="$BL[$CY`whoami`@\h$BL:$CY`date +%H%M`$BL:$CY"
-        local ps_len=$(( ${#PS1_T1} - 12 * 6 + 6 + 4 )) #Len adjust for colors, time and var
-        local PS1_T2="$BL]\n${PROMPT} \[\e[0m\]"
-        local startpos=""
+    local RET="${RE}${RETVAL}! "
+    [ $RETVAL -eq 0 ] && RET=""
 
-        PROMPT_PWD="${PWD/#$HOME/~}"
-        local overflow_prefix="..."
-        local pwdlen=${#PROMPT_PWD}
-        local maxpwdlen=$(( COLUMNS - ps_len ))
-        # Sometimes COLUMNS isn't initiliased, if it isn't, fall back on 80
-        [ $maxpwdlen -lt 0 ] && maxpwdlen=$(( 80 - ps_len )) 
+    local LPROM="${CY}$"
+    [ $UID -eq "0" ] && LPROM="${RE}#"
 
-        if [ $pwdlen -gt $maxpwdlen ] ; then
-                startpos=$(( $pwdlen - maxpwdlen + ${#overflow_prefix} ))
-                PROMPT_PWD="${overflow_prefix}${PROMPT_PWD:$startpos:$maxpwdlen}"
-        fi      
-        export PS1="${PS1_T1}${PROMPT_PWD}${PS1_T2}"
+    local PROMPT="${RET}${LPROM}"
+    [ -n "$GITRC_OK" ] && PROMPT="${RET}$(parse_git_branch)${LPROM}"
+
+    # Add the first part of the prompt: username,host, and time
+    local PROMPT_PWD=""
+    local PS1_T1="$BL[$CY`whoami`@\h$BL:$CY`date +%H%M`$BL:$CY"
+    local ps_len=$(( ${#PS1_T1} - 12 * 6 + 6 + 4 )) #Len adjust for colors, time and var
+    local PS1_T2="$BL]\n${PROMPT} \[\e[0m\]"
+    local startpos=""
+
+    PROMPT_PWD="${PWD/#$HOME/~}"
+    local overflow_prefix="..."
+    local pwdlen=${#PROMPT_PWD}
+    local maxpwdlen=$(( COLUMNS - ps_len ))
+    # Sometimes COLUMNS isn't initiliased, if it isn't, fall back on 80
+    [ $maxpwdlen -lt 0 ] && maxpwdlen=$(( 80 - ps_len ))
+
+    if [ $pwdlen -gt $maxpwdlen ] ; then
+        startpos=$(( $pwdlen - maxpwdlen + ${#overflow_prefix} ))
+        PROMPT_PWD="${overflow_prefix}${PROMPT_PWD:$startpos:$maxpwdlen}"
+    fi
+
+    export PS1="${PS1_T1}${PROMPT_PWD}${PS1_T2}"
 }
 PROMPT_COMMAND=bash_prompt_cmd
 
