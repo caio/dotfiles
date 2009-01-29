@@ -58,7 +58,7 @@ if has("gui_running")
     set guioptions-=R
     set guioptions-=b
 else
-    colorscheme wombat256
+    colorscheme vibrantink
 endif
 
 nmap <silent> <F3> :silent nohlsearch<CR>
