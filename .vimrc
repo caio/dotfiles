@@ -50,13 +50,7 @@ set novisualbell
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 9
     colorscheme wombat256
-    set guioptions-=m
-    set guioptions-=T
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=R
-    set guioptions-=b
+    set guioptions=a
 else
     colorscheme vibrantink
 endif
