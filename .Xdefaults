@@ -1,4 +1,12 @@
-!xterm*underLine: on
+! Global
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hintstyle: hintfull
+Xft.hinting: true
+
+! Xterm
+
+xterm*underLine: on
 xterm*colorMode: on
 xterm*colorBD: lightyellow
 !xterm*colorBDMode: off
@@ -6,10 +14,8 @@ xterm*colorUL: yellow
 xterm*colorULMode: on
 xterm*dynamicColors: off
 xterm*highlightSelection: true
-
 xterm*faceName: Terminus
 xterm*faceSize: 8
-
 xterm*geometry: 80x20
 xterm*scrollBar: false
 
@@ -43,16 +49,13 @@ xterm*color7    : #babdb6
 
 ! urxvt
 
-Xft.antialias: true
+!urxvt*termName:  xterm
+urxvt*xftAntialias: true
 urxvt*background : #2e3436
 urxvt*foreground : #ffffff
 urxvt*geometry: 80x20
-!urxvt*inheritPixmap:     true
-!urxvt*reverseVideo: false
 urxvt*tintColor: #dfdfdf
-!urxvt*shading:         20  !trans, 0=opaque    
-!urxvt*fading:         10  !term unfocus      
-urxvt.font xft:Envy\ Code\ R-9
+urxvt*font: xft:Envy\ Code\ R:pixelsize=14
 urxvt.perl-ext-common: default,matcher
 urxvt*scrollBar: false
 urxvt*scrollBar_floating: true
@@ -61,7 +64,6 @@ urxvt*scrollColor:  #000000
 urxvt*urllauncher: firefox
 urxvt*matcher.button: 3
 urxvt*saveLines: 8192
-!urxvt*termName:  xterm
 urxvt*cursorColor:  #d8d8d8
 urxvt*colorBD:  lightyellow
 urxvt*colorUL:  yellow
