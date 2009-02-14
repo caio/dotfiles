@@ -46,6 +46,7 @@ set noswapfile
 set title
 set noerrorbells
 set novisualbell
+set foldmethod=marker
 
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 9
