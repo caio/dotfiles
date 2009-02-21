@@ -27,6 +27,7 @@ fi
 # EXPORTS
 export GWT_EXTERNAL_BROWSER="firefox"
 export EDITOR="vim"
+export PYTHONSTARTUP="$HOME/.pythonrc.py"
 
 # PROMPT
 # credits to B-Con from ArchLinux forums for this :)
