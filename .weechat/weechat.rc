@@ -422,7 +422,7 @@ server_realname = "Caio Romão"
 server_hostname = ""
 server_command = ""
 server_command_delay = 1
-server_autojoin = "#ltcbr,#ltcunicamp,#devdrivers,#ecm.#ltc-kernel,#kernel-br"
+server_autojoin = "#ltcbr,#ltcunicamp,#devdrivers,#ecm,#ltc-kernel,#kernel-br"
 server_autorejoin = on
 server_notify_levels = ""
 

@@ -1,14 +1,29 @@
 #!/usr/bin/python
 # -*- encoding: utf-8 -*-
 """
-  This script is a complete ripoff from:
+  Script to run notify-send on highlights and private messages.
+  Highlights are configured via weechat itself, this script has only
+  two configuration variables:
+    `time`    - time to show message
+    `icon`    - icon to set for notify-send
+  Supports non-english messages, channels, nicknames as soon as weechat
+  knows about them with recode plugin.
+  It also supports (somehow) finding correct DBUS_SESSION_BUS_ADDRESS on
+  linux in runtime, so if you run weechat in screen, kill X and reattach,
+  everything will still run without issues.
 
-  weenotify - Leonid Evdokimov (weechat at darkk dot net dot ru)
+  The script is in the public domain.
+  Leonid Evdokimov (weechat at darkk dot net dot ru)
   http://darkk.net.ru/weechat/weenotify.py
 
-  Don't even think about cretiting me :)
-
-  For issues, contact Caio <caioromao at gmail dot com>
+0.01
+0.02 - versions written by Pawel Pogorzelski
+0.3  - initial commit
+0.4  - notify-send requires escaping of «<» -> &lt; etc.
+       at least that's valid for x11-misc/notification-daemon-0.3.7
+0.5  - better autodetection if X-server is running, one more weirdness added
+       every notify-send failure is reported
+0.6  - better weechat.register error and IRC colors handling
 """
 
 import weechat
@@ -17,7 +32,7 @@ import os
 import errno
 import xml.sax.saxutils as saxutils
 from itertools import ifilter, chain
-from subprocess import Popen, PIPE
+from subprocess import Popen
 from locale import getlocale
 
 class OsSupport(object):
@@ -80,39 +95,77 @@ class NoNotificationDaemonError(LookupError):
     pass
 
 
-def build_command(title, message, timeout = None, icon = None, position = None):
-    cmd = 'naughty.notify({'
-    if title:
-        cmd = '%s title = \'%s\',' % (cmd, title)
-    if message:
-        cmd = '%s text = \'%s\',' % (cmd, message)
-    if timeout:
-        cmd = '%s timeout = %s,' % (cmd, timeout)
-    if icon:
-        cmd = '%s icon = \'%s\',' % (cmd, icon)
-    if position:
-        cmd = '%s position = \'%s\'' % (cmd, position)
-    cmd = '%s %s' % (cmd, '})')
-    return cmd
+def get_env_ext():
+    X = []
+    for pid in weeos.listpids():
+        if weeos.get_exe_fname(pid) == 'X':
+            X.append(pid)
+
+    # I rely on the fact, that "X" is seldom child of "X"
+    # So X produces one and only one session, session starter
+    # is usually child or sister of "X", so I'm looking for
+    # dbus variables there
+    init_children = set()
+    for pid in X:
+        init_children.add(weeos.get_parents(pid)[-2])
+
+    for pid in weeos.listpids():
+        try:
+            if weeos.get_parents(pid)[-2] in init_children:
+                renv = weeos.get_environment(pid)
+                # notification-daemon has DBUS_STARTER_ADDRESS
+                # variable that may be passed as DBUS_SESSION_BUS_ADDRESS
+                # But sometimes notification-daemon is not running, 
+                # that's why the ugly hack is used
+                return {
+                    'DBUS_SESSION_BUS_ADDRESS': renv['DBUS_SESSION_BUS_ADDRESS'],
+                    'DISPLAY':                  renv['DISPLAY'],
+                    }
+        except:
+            continue
+    raise NoNotificationDaemonError
+
+
+env_ext = {}
+def update_env_ext():
+    try:
+        new_env = get_env_ext()
+        weechat.prnt("Dbus daemon found, environment: %s" % str(new_env), '', '')
+    except NoNotificationDaemonError:
+        new_env = {}
+        weechat.prnt("No dbus daemon found...", '', '')
+    except NotImplementedError, e:
+        new_env = {}
+        weechat.prnt('Dynamic DBUS_SESSION_BUS_ADDRESS detection is not supported on your OS: %s' % str(e), '', '')
+    global env_ext
+    updated = (env_ext != new_env)
+    env_ext = new_env
+    return updated
+
 
 
 
 def run_notify(nick, chan, message):
-    args = []
-    timeout = int(weechat.get_plugin_config('timeout'))
+    # FIXME: possible bug if notify-send loops
+    args = ['notify-send']
+    delay = int(weechat.get_plugin_config('time')) * 1000
+    if delay:
+        args.extend(['-t', str(delay)])
     icon = weechat.get_plugin_config('icon')
-    position = weechat.get_plugin_config('position')
-    if icon and not os.path.exists(icon):
-        icon = None
-    args.extend([saxutils.escape(s) for s in (u'%s on %s' % (nick, chan), message)])
+    if icon and os.path.exists(icon):
+        args.extend(['-i', icon])
+    args.extend([saxutils.escape(s) for s in ('--', u'%s wrote to %s' % (nick, chan), message)])
     args = [s.encode(local_charset) for s in args]
+    null = open(os.devnull)
 
-    cmd = build_command(args[0], args[1], timeout, icon, position)
-    args = ['echo', cmd]
-
-    p1 = Popen(args, stdout = PIPE)
-    p2 = Popen(["awesome-client"], stdin = p1.stdout)
-    p2.communicate()
+    newenv = dict(chain(os.environ.iteritems(), env_ext.iteritems()))
+    p = Popen(args, env = newenv, stdout = null, stderr = null)
+    if p.wait() != 0 and update_env_ext():
+        # failed to use old environment, but environment changed
+        newenv = dict(chain(os.environ.iteritems(), env_ext.iteritems()))
+        p = Popen(args, env = newenv, stdout = null, stderr = null)
+        if p.wait() != 0:
+            weechat.prnt("notify-send error", '', '')
 
 
 def parse_privmsg(server, command):
@@ -174,12 +227,11 @@ def main():
     global weeos, local_charset
 
     default = {
-            "timeout": "3",
-            "icon": "/usr/share/pixmaps/gnome-irc.png",
-            "position": "bottom_right"
+            "time": "3",
+            "icon": "/usr/share/pixmaps/gnome-irc.png"
             }
 
-    if weechat.register("naughtywee", "0.1", "", "awesome naughty notification upon hilight"):
+    if weechat.register("weenotify", "0.6", "", "notify-send on highlight/private msg"):
         for k, v in default.items():
             if not weechat.get_plugin_config(k):
                 weechat.set_plugin_config(k, v)
@@ -190,7 +242,8 @@ def main():
             weeos = LinuxSupport()
         else:
             weeos = OsSupport()
-        
+
+        update_env_ext()
         weechat.add_message_handler("weechat_highlight", "on_msg")
         weechat.add_message_handler("weechat_pv", "on_msg")
 
