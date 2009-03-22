@@ -7,7 +7,6 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
-compiler ruby
 
 let mapleader=','
 
@@ -47,6 +46,7 @@ set title
 set noerrorbells
 set novisualbell
 set foldmethod=marker
+set completeopt=menu,preview,longest
 
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 9
@@ -147,11 +147,10 @@ au BufRead,BufNewFile *.stg set syntax=stringtemplate
 " let OmniCpp_ShowPrototypeInAbbr = 1
 " let OmniCpp_SelectFirstItem = 2
 " Close the preview window automatically
-" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
-
-" By http://github.com/ciaranm/dotfiles-ciaranm
+" from http://github.com/ciaranm/dotfiles-ciaranm
 set laststatus=2
 set statusline=
 set statusline+=%2*%-3.3n%0*\                " buffer number
@@ -162,7 +161,7 @@ set statusline+=%{&encoding},                " encoding
 set statusline+=%{&fileformat}]              " file format
 set statusline+=%=                           " right align
 set statusline+=%2*0x%-8B\                   " current char
-set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+set statusline+=%-14.(%l,%c%V%)\ %<%80O      " hex offset
 if has('title') && (has('gui_running') || &title)
     set titlestring=
     set titlestring+=%f\                     " file name
