@@ -36,3 +36,9 @@
 
 [url "git@github.com:caio/"]
     insteadOf = github:
+
+[url "git://github.com/"]
+    insteadOf = gh:
+
+[merge]
+	tool = vimdiff
