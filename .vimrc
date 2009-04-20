@@ -50,10 +50,10 @@ set completeopt=menu,preview,longest,menuone
 
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 9
-    colorscheme wombat256
+    colorscheme xoria256 
     set guioptions=a
 else
-    colorscheme vibrantink
+    colorscheme xoria256
 endif
 
 nmap <silent> <F3> :silent nohlsearch<CR>
