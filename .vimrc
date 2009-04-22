@@ -53,6 +53,7 @@ if has("gui_running")
     colorscheme xoria256 
     set guioptions=a
 else
+    set t_Co=256
     colorscheme xoria256
 endif
 
