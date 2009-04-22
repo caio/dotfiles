@@ -60,6 +60,6 @@ function parse_git_branch
     fi
 
     # Display the prompt.
-    echo "${state}${branch}${remote}${COLOR_NONE} "
+    echo "${state}${branch}${remote}${COLOR_NONE}"
 }
 

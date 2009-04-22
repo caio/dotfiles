@@ -46,9 +46,10 @@ bash_prompt_cmd() {
     local LPROM="${CY}$"
     [ $UID -eq "0" ] && LPROM="${RE}#"
 
-    local PROMPT="${RET}${LPROM}"
-    [ -n "$GITRC_OK" ] && PROMPT="${RET}$(parse_git_branch)${LPROM}"
-    [ `which hs_ps1.py 2>/dev/null` ] && PROMPT="${RET}$(hg_ps1.py) ${LPROM}"
+    local SCMSTATUS=""
+    [ `which hg_ps1.py 2>/dev/null` ] && SCMSTATUS="$(hg_ps1.py)"
+    [ -n "$GITRC_OK" ] && SCMSTATUS="${SCMSTATUS}$(parse_git_branch)"
+    local PROMPT="${RET}${SCMSTATUS}${LPROM}"
 
     # Add the first part of the prompt: username,host, and time
     local PROMPT_PWD=""

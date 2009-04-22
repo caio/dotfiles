@@ -19,6 +19,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
 # USA.
 
+COLOR_BRANCH = '\[\e[0;32m\]'
+COLOR_STATUS = '\[\e[1;35m\]'
+
 def main():
     import sys
     from mercurial import ui, hg, error
@@ -36,7 +39,7 @@ def main():
         branch_name = r.getlocalbranch() or 'default'
         r.loadlocalbranch(branch_name)
     else:
-        branch_name = r.dirstate.branch().rstrip()
+        branch_name = "%s%s" % (COLOR_BRANCH, r.dirstate.branch().rstrip())
 
     # repository.status(rev1, rev2, match, ignored, clean, unknown)
     # (last three params are flags whether to include files of the given status)
@@ -45,10 +48,12 @@ def main():
     stat = r.status('.', None, None, False, False, True)
 
     sys.stdout.write(branch_name)
+    status = ""
     if True in [bool(l) for l in stat[0:4]]:
-      print "!",
+      status = "!"
     elif stat[4]:
-      print "?",
+      status = "?"
+    print "%s%s " % (COLOR_STATUS, status)
 
 if __name__ == '__main__':
     main()
