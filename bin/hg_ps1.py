@@ -50,9 +50,9 @@ def main():
     sys.stdout.write(branch_name)
     status = ""
     if True in [bool(l) for l in stat[0:4]]:
-      status += "!"
+      status = "!"
     elif stat[4]:
-      status += "?"
+      status = "?"
     print "%s%s " % (COLOR_STATUS, status)
 
 if __name__ == '__main__':
