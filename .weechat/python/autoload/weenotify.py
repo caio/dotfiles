@@ -147,14 +147,12 @@ def update_env_ext():
 
 def run_notify(nick, chan, message):
     # FIXME: possible bug if notify-send loops
-    args = ['notify-send']
+    args = ['kdialog', '--passivepopup']
     delay = int(weechat.get_plugin_config('time')) * 1000
+    #icon = weechat.get_plugin_config('icon')
+    args.extend([saxutils.escape(s) for s in (message, '--title', u'%s wrote to %s' % (nick, chan))])
     if delay:
-        args.extend(['-t', str(delay)])
-    icon = weechat.get_plugin_config('icon')
-    if icon and os.path.exists(icon):
-        args.extend(['-i', icon])
-    args.extend([saxutils.escape(s) for s in ('--', u'%s wrote to %s' % (nick, chan), message)])
+        args.extend([str(delay)])
     args = [s.encode(local_charset) for s in args]
     null = open(os.devnull)
 
