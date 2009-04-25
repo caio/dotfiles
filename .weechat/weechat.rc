@@ -1,5 +1,5 @@
 #
-# WeeChat configuration file, created by WeeChat v0.2.6.1 on Wed Apr 22 14:32:41 2009
+# WeeChat configuration file, created by WeeChat v0.2.6.1 on Sat Apr 25 10:27:06 2009
 # WARNING! Be careful when editing this file, WeeChat writes this file when exiting.
 #
 
@@ -466,6 +466,6 @@ server_realname = "Caio Romão"
 server_hostname = ""
 server_command = ""
 server_command_delay = 1
-server_autojoin = "#archlinux,#archlinux.br,#git,#mercurial,##kernel,#pardus-devel,#gpsl"
+server_autojoin = "#git,#mercurial,#gpsl,#gsoc-brasil,#pardus-devel,#kde-devel"
 server_autorejoin = on
 server_notify_levels = ""
