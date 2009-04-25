@@ -61,13 +61,13 @@ systray_background_id = 0
 #---------------------------------------------
 # CLOCK
 #---------------------------------------------
-time1_format = %H:%M
-time1_font = sans 8
-time2_format = %A %d %B
-time2_font = sans 6
-clock_font_color = #ffffff 76
-clock_padding = 10 0
-clock_background_id = 0
+# time1_format = %H:%M
+# time1_font = sans 8
+# time2_format = %A %d %B
+# time2_font = sans 6
+# clock_font_color = #ffffff 76
+# clock_padding = 10 0
+# clock_background_id = 0
 
 #---------------------------------------------
 # MOUSE ACTION ON TASK
