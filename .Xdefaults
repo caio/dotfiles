@@ -19,40 +19,38 @@ xterm*faceSize: 8
 xterm*geometry: 80x20
 xterm*scrollBar: false
 
-xterm*background : #2e3436
-xterm*foreground : #ffffff
+xterm*background : #000000
+xterm*foreground : #f2f2f2
 ! Black
-xterm*color8     : #888a85
-xterm*color0     : #2e3436
+xterm*color8     : #686868
+xterm*color0     : #000000
 ! Red
-xterm*color9     : #ef2828
-xterm*color1     : #a40000
+xterm*color9     : #e52222
+xterm*color1     : #de2121
 ! Green
-xterm*color10   : #8ae234
-xterm*color2    : #4e9a06
+xterm*color10   : #a6e326
+xterm*color2    : #9fd529
 ! Yellow
-xterm*color11   : #fce94f
-xterm*color3    : #c4a000
+xterm*color11   : #fc941d
+xterm*color3    : #dd821a
 ! Blue
-xterm*color12   : #729fcf
-xterm*color4    : #204a87
+xterm*color12   : #c48dff
+xterm*color4    : #9d72ce
 ! Purple
-xterm*color13   : #ad7fa8
-xterm*color5    : #5c3566
+xterm*color13   : #fa2473
+xterm*color5    : #dd2065
 ! Cyan
-xterm*color14   : #92B19E
-xterm*color6    : #A1CDCD
+xterm*color14   : #66d9f0
+xterm*color6    : #5cc6d8
 ! White
-xterm*color15   : #eeeeec
-xterm*color7    : #babdb6
+xterm*color15   : #f2f2f2
+xterm*color7    : #d5d5d5
 
 
 ! urxvt
 
 !urxvt*termName:  xterm
 urxvt*xftAntialias: true
-urxvt*background : #2e3436
-urxvt*foreground : #ffffff
 urxvt*geometry: 80x20
 urxvt*tintColor: #dfdfdf
 urxvt*font: xft:Envy\ Code\ R:pixelsize=14
@@ -68,31 +66,32 @@ urxvt*cursorColor:  #d8d8d8
 urxvt*colorBD:  lightyellow
 urxvt*colorUL:  yellow
 
-!colors
+urxvt*background : #000000
+urxvt*foreground : #f2f2f2
 ! Black
-urxvt*color8     : #888a85
-urxvt*color0     : #2e3436
+urxvt*color8     : #686868
+urxvt*color0     : #000000
 ! Red
-urxvt*color9     : #ef2828
-urxvt*color1     : #a40000
+urxvt*color9     : #e52222
+urxvt*color1     : #de2121
 ! Green
-urxvt*color10   : #8ae234
-urxvt*color2    : #4e9a06
+urxvt*color10   : #a6e326
+urxvt*color2    : #9fd529
 ! Yellow
-urxvt*color11   : #fce94f
-urxvt*color3    : #c4a000
+urxvt*color11   : #fc941d
+urxvt*color3    : #dd821a
 ! Blue
-urxvt*color12   : #729fcf
-urxvt*color4    : #204a87
+urxvt*color12   : #c48dff
+urxvt*color4    : #9d72ce
 ! Purple
-urxvt*color13   : #ad7fa8
-urxvt*color5    : #5c3566
+urxvt*color13   : #fa2473
+urxvt*color5    : #dd2065
 ! Cyan
-urxvt*color14   : #92B19E
-urxvt*color6    : #A1CDCD
+urxvt*color14   : #66d9f0
+urxvt*color6    : #5cc6d8
 ! White
-urxvt*color15   : #eeeeec
-urxvt*color7    : #babdb6
+urxvt*color15   : #f2f2f2
+urxvt*color7    : #d5d5d5
 
 ! NEDIT
 
