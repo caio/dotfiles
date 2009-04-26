@@ -1,28 +1,45 @@
 # plain .bashrc - should work on any Linux environment
 # assembled by: Caio Romão <caioromao@gmail.com>
 
+pathremove () {
+    local IFS=':'
+    local NEWPATH
+    local DIR
+    local PATHVARIABLE=${2:-PATH}
+    for DIR in ${!PATHVARIABLE} ; do
+        if [ "$DIR" != "$1" ] ; then
+            NEWPATH=${NEWPATH:+$NEWPATH:}$DIR
+        fi
+    done
+    export $PATHVARIABLE="$NEWPATH"
+}
+
+pathprepend () {
+    pathremove $1 $2
+    local PATHVARIABLE=${2:-PATH}
+    export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
+}
+
+pathappend () {
+    pathremove $1 $2
+    local PATHVARIABLE=${2:-PATH}
+    export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
+}
+
 # disabling flow control
 stty -ixon -ixoff
 
 # setting up custom bin-dir
-if [ -d ${HOME}/bin ]
-then
-    export PATH=${HOME}/bin:$PATH
-fi
+[ -d ${HOME}/bin ] && pathprepend ${HOME}/bin
+
+# google appengine
+[ -d /opt/google-appengine ] && pathappend /opt/google-appengine
 
 # Git custom PS1 command
-if [[ -f ~/.source/gitrc ]]
-then
-    source ~/.source/gitrc
-    GITRC_OK="True"
-fi
+[ -f ~/.source/gitrc ] && . ~/.source/gitrc && GITRC_OK="True"
 
 # Bash completion
-# The username restriction is due to network weirdness
-if [ -e /etc/bash*completion ] && [ "`whoami`" != "ra059467" ]
-then
-    . /etc/bash*completion
-fi
+[ -e /etc/bash_completion ] && . /etc/bash_completion
 
 # EXPORTS
 export GWT_EXTERNAL_BROWSER="firefox"
@@ -99,21 +116,15 @@ function cdpushd()
 {
     if [ -n "$1" ]
     then
-        if [[ $1 != "." ]]
-        then
-            pushd "$*"
-        fi
+        [[ $1 != "." ]] && pushd "$*"
     else
-        if [ "$(pwd)" != "$HOME" ]
-        then
-            pushd ~
-        fi
+        [ "$(pwd)" != "$HOME" ] && pushd ~
     fi
 }
 
 alias cd=cdpushd
 alias cdd='cd -'
-alias ctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
+alias cpptags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 
 
 ###########
@@ -145,12 +156,12 @@ function hgdiff()
 # load Motorola config file
 if [[ "$(whoami)" = "wxmp34" ]] && [[ -f ~/.source/motorolarc ]]
 then
-    source ~/.source/motorolarc
+    . ~/.source/motorolarc
 fi
 
 # load Unicamp config file
 if [[ "$(whoami)" = "ra059467" ]] && [[ -f ~/.source/unicamprc ]]
 then
-    source ~/.source/unicamprc
+    . ~/.source/unicamprc
 fi
 
