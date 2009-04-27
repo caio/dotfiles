@@ -153,6 +153,9 @@ function hgdiff()
 # Add sources bellow this comment to avoid replacing of the new commands #
 ##########################################################################
 
+# KDE's development script
+[ -f ~/.source/kdedevrc ] && [ -d ~/src/kde ] && . ~/.source/kdedevrc
+
 # load Motorola config file
 if [[ "$(whoami)" = "wxmp34" ]] && [[ -f ~/.source/motorolarc ]]
 then
