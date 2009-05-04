@@ -148,7 +148,7 @@ def update_env_ext():
 def run_notify(nick, chan, message):
     # FIXME: possible bug if notify-send loops
     args = ['kdialog', '--passivepopup']
-    delay = int(weechat.get_plugin_config('time')) * 1000
+    delay = weechat.get_plugin_config('time')
     #icon = weechat.get_plugin_config('icon')
     args.extend([saxutils.escape(s) for s in (message, '--title', u'%s wrote to %s' % (nick, chan))])
     if delay:
@@ -225,7 +225,7 @@ def main():
     global weeos, local_charset
 
     default = {
-            "time": "3",
+            "time": "2",
             "icon": "/usr/share/pixmaps/gnome-irc.png"
             }
 
