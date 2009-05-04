@@ -9,9 +9,9 @@
     br = branch
     nb = checkout -b
     logg = log --pretty=oneline
-    loga = log --pretty=format:'%Cblue %h %Cgreen %an %Creset %s'
-    lastweek = log --pretty=format:'%Cblue %h %Cgreen %an %Creset %s' --since='1 week ago' --until='today'
-    lw = log --pretty=format:'%Cblue %h %Cgreen %an %Creset %s' --since='1 week ago' --until='today' --name-status
+    loga = log --pretty=format:'%Cblue%h %Cgreen%an %Creset%s'
+    lastweek = log --pretty=format:'%Cblue%h %Cgreen%an %Creset%s' --since='1 week ago' --until='today'
+    lw = log --pretty=format:'%Cblue%h %Cgreen%an %Creset%s' --since='1 week ago' --until='today' --name-status
     report = log --date=short --since='last month 18th' --until='today' --grep='caio' --pretty=format:'%Cblue%cd %Cgreen %an %Creset %s' --author='caio'
 
 [core]
