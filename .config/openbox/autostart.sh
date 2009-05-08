@@ -1,13 +1,14 @@
 #!/bin/sh
-/home/seed/bin/load_abnt2_keymap &
-/home/seed/.fehbg &
-conky -c /home/seed/.conky/clock &
-conky -c /home/seed/.conky/weather &
-conky -c /home/seed/.conky/sys &
-conky -c /home/seed/.conky/disk &
-conky -c /home/seed/.conky/mpd &
+ck-launch-session &
+~/bin/load_abnt2_keymap &
+~/.fehbg &
+conky -c ~/.conky/clock &
+conky -c ~/.conky/weather &
+conky -c ~/.conky/sys &
+conky -c ~/.conky/disk &
+conky -c ~/.conky/mpd &
 thunar --daemon &
-(tint2 &
-sleep 1s
+pypanel &
 parcellite &
-wicd-client) &
+nm-applet &
+exit 0
