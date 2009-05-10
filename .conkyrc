@@ -22,7 +22,7 @@ double_buffer yes
 
 # Minimum size of text area
 minimum_size 180 0
-#maximum_width 200
+maximum_width 180
 
 # Draw shades?
 draw_shades no
@@ -85,5 +85,5 @@ ${font StyleBats:size=16}A${font} CPU1: ${cpu cpu1}% ${alignr}${cpubar cpu1 8,60
 ${font StyleBats:size=16}A${font} CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 8,60}
 ${font StyleBats:size=16}g${font} RAM: $memperc% ${alignr}${membar 8,60}
 ${font StyleBats:size=16}j${font} SWAP: $swapperc% ${alignr}${swapbar 8,60}
-${if_existing /proc/net/route wlan0}${font PizzaDude Bullets:size=14}Z${font} ${wireless_essid wlan0}: ${wireless_link_qual wlan0}% ${alignr}${wireless_link_bar 8,60 wlan0}
-${endif}
+${if_existing /proc/net/route wlan0}${font PizzaDude Bullets:size=14}Z${font} ${wireless_essid wlan0}: ${wireless_link_qual wlan0}% ${alignr}${wireless_link_bar 8,60 wlan0}${endif}
+${if_mpd_playing}${font StyleBats:size=16}o${font} ${mpd_artist 12} ${alignr}${mpd_bar 8,60}${endif}
