@@ -1,0 +1,23 @@
+auto-center = yes
+hide-cursor = 1
+set-xterm-title = yes
+xterm-title-format =  "[[%artist% - ]%title%]|[%file]"
+## colors: black,red,green,yellow,blue,magenta,cyan,white,gray
+enable-colors = yes
+
+color background = black 
+color title = white
+color title-bold = gray
+color line = gray
+color line-flags = brightblue
+color list = white
+color list-bold = green
+color progressbar = gray
+color status-state = gray
+color status-time = blue
+color alert = brightred
+
+
+
+set-xterm-title = yes
+
