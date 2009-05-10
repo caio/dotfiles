@@ -7,15 +7,16 @@ enable-colors = yes
 
 color background = black 
 color title = white
-color title-bold = gray
-color line = gray
-color line-flags = brightblue
+color title-bold = yellow
+color line = white
+color line-flags = gray
 color list = white
 color list-bold = green
-color progressbar = gray
-color status-state = gray
-color status-time = blue
-color alert = brightred
+color progressbar = white
+color status-state = white
+color status-song = red
+color status-time = gray
+color alert = gray
 
 
 
