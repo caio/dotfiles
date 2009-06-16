@@ -50,7 +50,7 @@ set completeopt=menu,preview,longest,menuone
 
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 9
-    colorscheme xoria256 
+    colorscheme xoria256
     set guioptions=a
 else
     set t_Co=256
@@ -75,11 +75,14 @@ imap <F8> <C-o>:setlocal spell! spelllang=pt_br<CR>
 nmap <silent><leader>f :FuzzyFinderFile<CR>
 nmap <silent><leader>t :FuzzyFinderTag<CR>
 nmap <silent><leader>d :FuzzyFinderDir<CR>
-nnoremap <leader>g :FuzzyFinderFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR> 
+nnoremap <leader>g :FuzzyFinderFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
 
-" List trailling chars
+" List trailing chars
 set listchars=tab:>-,trail:·,eol:$
 nmap <silent> <leader>s :set nolist!<CR>
+
+" Strip trailing whitespace
+nmap <silent><leader>ws :%s/\s\+$//g<CR>
 
 " IDE-like home key
 function! s:SmartHome()
