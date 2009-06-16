@@ -4,7 +4,7 @@
 
 # Statusline
   hardstatus alwayslastline
-  hardstatus string '%{= kK}%{w}%H %{K}%= %{= kw}%?%-Lw%?%{B}(%{W}%n%f %t%?(%u)%?%{B})%{w}%?%+Lw%?%?%= %{K}%{B} %{w}%c%{K}'
+  hardstatus string '%{= kw}%?%-Lw%?%{B}(%{W}%n%f %t%?(%u)%?%{B})%{w}%?%+Lw%?%?%= %{K}%{B} %{w}%c%{K}'
 
 # use F8 to turn the status bar off at the bottom of the screen
   bindkey -k k8 hardstatus alwayslastline
@@ -13,23 +13,23 @@
 
 # No bell at all
   vbell off                                # default: off
-  vbell_msg "   -- Ring, Ring!! --   "        # default: "Wuff,Wuff!!"
+  vbell_msg "   -- Ring, Ring!! --   "     # default: "Wuff,Wuff!!"
 
 # Automatically detach on hangup. 
-  autodetach on                                # default: on
+  autodetach on                            # default: on
 
 # Don't display the copyright page
-  startup_message off                        # default: on
+  startup_message off                      # default: on
 
 # Affects the copying of text regions
-  crlf off                                # default: off
+  crlf off                                 # default: off
 
 # Change default scrollback value for new windows
-  defscrollback 1000                        # default: 100
+  defscrollback 1000                       # default: 100
 
 # Define the time that all windows monitored for silence should 
 # wait before displaying a message. Default 30 seconds.
-  silencewait 15                        # default: 30
+  silencewait 15                           # default: 30
 
   shell $SHELL
 
@@ -89,16 +89,15 @@
 
 # Time a message is displayed if screen is not disturbed by
 # other activity. The dafault is 5 seconds:
-msgwait 15
+ msgwait 15
 
 # Don't you want to start programs which need a DISPLAY ?
-setenv DISPLAY ':0'
-logfile ~/.logs/screen/%Y-%m-%d_%0c
+ setenv DISPLAY ':0'
+ logfile ~/.logs/screen/%Y-%m-%d_%0c
 
 #####
 # tell screen that you term can scroll
-termcapinfo xterm ti@:te@
+ termcapinfo xterm ti@:te@
 # bind Shift+PgUp/PgDn
-bindkey -m "^[[5;2~" stuff ^b
-bindkey -m "^[[6;2~" stuff ^f
-
+ bindkey -m "^[[5;2~" stuff ^b
+ bindkey -m "^[[6;2~" stuff ^f
