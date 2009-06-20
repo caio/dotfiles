@@ -89,15 +89,19 @@
 
 # Time a message is displayed if screen is not disturbed by
 # other activity. The dafault is 5 seconds:
- msgwait 15
+  msgwait 15
 
 # Don't you want to start programs which need a DISPLAY ?
- setenv DISPLAY ':0'
- logfile ~/.logs/screen/%Y-%m-%d_%0c
+  setenv DISPLAY ':0'
+  logfile ~/.logs/screen/%Y-%m-%d_%0c
 
-#####
 # tell screen that you term can scroll
- termcapinfo xterm ti@:te@
+  termcapinfo xterm ti@:te@
 # bind Shift+PgUp/PgDn
- bindkey -m "^[[5;2~" stuff ^b
- bindkey -m "^[[6;2~" stuff ^f
+  bindkey -m "^[[5;2~" stuff ^b
+  bindkey -m "^[[6;2~" stuff ^f
+
+# 256 colors
+  attrcolor b ".I"
+  defbce "on"
+  termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'

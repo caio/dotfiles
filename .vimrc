@@ -59,12 +59,10 @@ endif
 
 nmap <silent> <F3> :silent nohlsearch<CR>
 imap <silent> <F3> <C-o>:silent nohlsearch<CR>
-map <silent><C-Left> <C-T>
-map <silent><C-Right> <C-]>
-nmap <C-h> :bp<CR>
-nmap <C-l> :bn<CR>
-imap <C-h> <C-o>:bp<CR>
-imap <C-l> <C-o>:bn<CR>
+nmap <A-h> :bp<CR>
+nmap <A-l> :bn<CR>
+imap <A-h> <C-o>:bp<CR>
+imap <A-l> <C-o>:bn<CR>
 
 nmap <F7> :setlocal spell! spelllang=en<CR>
 imap <F7> <C-o>:setlocal spell! spelllang=en<CR>
