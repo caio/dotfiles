@@ -67,6 +67,8 @@ nmap h :bp<CR>
 nmap l :bn<CR>
 imap h <C-o>:bp<CR>
 imap l <C-o>:bn<CR>
+imap  
+nmap  
 
 nmap <F7> :setlocal spell! spelllang=en<CR>
 imap <F7> <C-o>:setlocal spell! spelllang=en<CR>
