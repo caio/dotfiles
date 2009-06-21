@@ -50,19 +50,23 @@ set completeopt=menu,preview,longest,menuone
 
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 9
-    colorscheme xoria256
+    colorscheme herald
+    " FontSize plugin
+    nmap <silent><A-+> :call LargerFont()<CR>
+    nmap <silent><A--> :call SmallerFont()<CR>
+    " Remove GUI
     set guioptions=a
 else
     set t_Co=256
-    colorscheme xoria256
+    colorscheme herald
 endif
 
 nmap <silent> <F3> :silent nohlsearch<CR>
 imap <silent> <F3> <C-o>:silent nohlsearch<CR>
-nmap <A-h> :bp<CR>
-nmap <A-l> :bn<CR>
-imap <A-h> <C-o>:bp<CR>
-imap <A-l> <C-o>:bn<CR>
+nmap h :bp<CR>
+nmap l :bn<CR>
+imap h <C-o>:bp<CR>
+imap l <C-o>:bn<CR>
 
 nmap <F7> :setlocal spell! spelllang=en<CR>
 imap <F7> <C-o>:setlocal spell! spelllang=en<CR>
@@ -113,10 +117,10 @@ let Tlist_Enable_Fold_Column=0
 let Tlist_Compact_Format=1
 let Tlist_WinWidth=28
 let Tlist_Exit_OnlyWindow=1
-let Tlist_File_Fold_Auto_Close = 1
+let Tlist_File_Fold_Auto_Close=1
 
 " Yankring
-let g:yankring_history_file = '.yankring_history'
+let g:yankring_history_file='.yankring_history'
 
 " TOhtml options
 let html_number_lines=1
@@ -134,10 +138,6 @@ let python_print_as_function=1
 " Numbermarks plugin
 let g:Signs_file_path_corey='/tmp'
 
-" FontSize plugin
-nmap <silent>+ :call LargerFont()<CR>
-nmap <silent>- :call SmallerFont()<CR>
-
 " ANTLR3 Syntax
 au BufRead,BufNewFile *.g set syntax=antlr3
 " StringTemplate Syntax
@@ -152,14 +152,16 @@ au BufRead,BufNewFile *.stg set syntax=stringtemplate
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+
 set laststatus=2
-set statusline=
+set statusline=%2*
 set statusline+=%f\                          " file name
-set statusline+=\[%{strlen(&ft)?&ft:'nil'},  " filetype
-set statusline+=%{&encoding},                " encoding
-set statusline+=%{&fileformat}]              " file format
-set statusline+=%2*0x%B\|                    " current char
-set statusline+=%(%l,%c%)\|%O,%<%P           " line, column, offset
+set statusline+=%h%m%r%w                     " flags
+set statusline+=\[%{strlen(&ft)?&ft:'-'},    " filetype
+set statusline+=%{&enc},                     " encoding
+set statusline+=%{&ff}]\                     " file format
+set statusline+=0x%B\                        " current char
+set statusline+=%l,%c\ %O,%P                 " line, column, offset
 if has('title') && (has('gui_running') || &title)
     set titlestring=
     set titlestring+=%f\                     " file name
@@ -171,4 +173,14 @@ if (&term =~ "xterm") && (&termencoding == "")
     set termencoding=utf-8
 endif
 
-" vim: set shiftwidth=4 softtabstop=4 expandtab tw=120
+" Append modeline after last line in buffer.
+" Use substitute() (not printf()) to handle '%%s' modeline in LaTeX files.
+function! AppendModeline()
+  let save_cursor = getpos('.')
+  let append = ' vim: set ts='.&tabstop.' sw='.&shiftwidth.' tw='.&textwidth.':'
+  $put =substitute(&commentstring, '%s', append, '')
+  call setpos('.', save_cursor)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+" vim: set ts=4 sw=4 tw=72:
