@@ -6,11 +6,8 @@ require("beautiful")
 require("naughty")
 
 -- {{{ Variable definitions
--- Themes define colours, icons, and wallpapers
--- The default is a dark theme
-theme_path = "/usr/share/awesome/themes/default/theme.lua"
--- Uncommment this for a lighter theme
--- theme_path = "/usr/share/awesome/themes/sky/theme.lua"
+config_path = awful.util.getdir("config")
+theme_path = config_path .. "/theme.lua"
 
 -- Actually load theme
 beautiful.init(theme_path)
@@ -60,7 +57,7 @@ floatapps =
 -- Use the screen and tags indices.
 apptags =
 {
-    -- ["Firefox"] = { screen = 1, tag = 2 },
+     ["Navigator"] = { screen = 1, tag = 1 },
     -- ["mocp"] = { screen = 2, tag = 4 },
 }
 
