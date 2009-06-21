@@ -40,7 +40,7 @@ set backspace=indent,eol,start
 set backup
 set backupdir=./.backup,/tmp,.
 set directory=.,./.backup,/tmp
-set lazyredraw
+set nolazyredraw
 set noswapfile
 set title
 set noerrorbells
@@ -152,27 +152,23 @@ au BufRead,BufNewFile *.stg set syntax=stringtemplate
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
-" from http://github.com/ciaranm/dotfiles-ciaranm
 set laststatus=2
 set statusline=
-set statusline+=%2*%-3.3n%0*\                " buffer number
 set statusline+=%f\                          " file name
-set statusline+=%h%1*%m%r%w%0*               " flags
-set statusline+=\[%{strlen(&ft)?&ft:'none'}, " filetype
+set statusline+=\[%{strlen(&ft)?&ft:'nil'},  " filetype
 set statusline+=%{&encoding},                " encoding
 set statusline+=%{&fileformat}]              " file format
-set statusline+=%=                           " right align
-set statusline+=%2*0x%-8B\                   " current char
-set statusline+=%-14.(%l,%c%V%)\ %<%80O      " hex offset
+set statusline+=%2*0x%B\|                    " current char
+set statusline+=%(%l,%c%)\|%O,%<%P           " line, column, offset
 if has('title') && (has('gui_running') || &title)
     set titlestring=
     set titlestring+=%f\                     " file name
     set titlestring+=%h%m%r%w                " flags
-    set titlestring+=\ -\ %{substitute(getcwd(),\ $HOME,\ '~',\ '')}        " working directory
+    " working directory
+    set titlestring+=\ -\ %{substitute(getcwd(),\ $HOME,\ '~',\ '')}
 endif
 if (&term =~ "xterm") && (&termencoding == "")
     set termencoding=utf-8
 endif
-
 
 " vim: set shiftwidth=4 softtabstop=4 expandtab tw=120
