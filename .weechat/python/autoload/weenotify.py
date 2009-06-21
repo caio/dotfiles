@@ -115,7 +115,7 @@ def get_env_ext():
                 renv = weeos.get_environment(pid)
                 # notification-daemon has DBUS_STARTER_ADDRESS
                 # variable that may be passed as DBUS_SESSION_BUS_ADDRESS
-                # But sometimes notification-daemon is not running, 
+                # But sometimes notification-daemon is not running,
                 # that's why the ugly hack is used
                 return {
                     'DBUS_SESSION_BUS_ADDRESS': renv['DBUS_SESSION_BUS_ADDRESS'],
@@ -143,16 +143,16 @@ def update_env_ext():
     return updated
 
 
-
-
 def run_notify(nick, chan, message):
     # FIXME: possible bug if notify-send loops
-    args = ['kdialog', '--passivepopup']
-    delay = weechat.get_plugin_config('time')
-    #icon = weechat.get_plugin_config('icon')
-    args.extend([saxutils.escape(s) for s in (message, '--title', u'%s wrote to %s' % (nick, chan))])
+    args = ['notify-send']
+    delay = int(weechat.get_plugin_config('time')) * 1000
     if delay:
-        args.extend([str(delay)])
+        args.extend(['-t', str(delay)])
+    icon = weechat.get_plugin_config('icon')
+    if icon and os.path.exists(icon):
+        args.extend(['-i', icon])
+    args.extend([saxutils.escape(s) for s in ('--', u'%s wrote to %s' % (nick, chan), message)])
     args = [s.encode(local_charset) for s in args]
     null = open(os.devnull)
 
@@ -225,7 +225,7 @@ def main():
     global weeos, local_charset
 
     default = {
-            "time": "2",
+            "time": "3",
             "icon": "/usr/share/pixmaps/gnome-irc.png"
             }
 
@@ -247,6 +247,6 @@ def main():
 
 main()
 
-# vim:set tabstop=4 softtabstop=4 shiftwidth=4: 
-# vim:set foldmethod=marker foldlevel=32 foldmarker={{{,}}}: 
-# vim:set expandtab: 
+# vim:set tabstop=4 softtabstop=4 shiftwidth=4:
+# vim:set foldmethod=marker foldlevel=32 foldmarker={{{,}}}:
+# vim:set expandtab:
