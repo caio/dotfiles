@@ -50,6 +50,7 @@ floatapps =
     ["Thunar"] = true,
     ["XArchiver"] = true,
     ["Download"] = true,
+    ["Extension"] = true,
     -- by instance
 }
 
