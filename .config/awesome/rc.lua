@@ -53,6 +53,7 @@ floatapps =
     ["Extension"] = true,
     ["gajim.py"] = true,
     ["transmission"] = true,
+    ["wicd-client.py"] = true,
     -- by instance
 }
 
@@ -425,7 +426,8 @@ function run_once(prg)
     os.execute(cmd)
 end
 
-run_once("nm-applet")
+run_once("wicd-client")
 run_once("xfce4-power-manager")
+run_onde("load_abnt2_keymap")
 -- }}}
 
