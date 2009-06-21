@@ -51,6 +51,8 @@ floatapps =
     ["XArchiver"] = true,
     ["Download"] = true,
     ["Extension"] = true,
+    ["gajim.py"] = true,
+    ["transmission"] = true,
     -- by instance
 }
 
