@@ -12,9 +12,9 @@ RM=/bin/rm
 CP=/bin/cp
 
 # Removing files
-${RM} -rf ~/.vim* ~/.bashrc ~/.hgrc ~/.mplayer ~/.source ~/.Xdefaults ~/.pythonrc.py ~/.gitconfig ~/.irssi ~/.screenrc
+${RM} -rf ~/.vim* ~/.bashrc ~/.hgrc ~/.mplayer ~/.source ~/.Xdefaults ~/.pythonrc.py ~/.gitconfig ~/.screenrc
 
 # Copying new ones
-${CP} -R .vim* .bashrc .mplayer .source .Xdefaults .pythonrc.py .gitconfig .irssi .screenrc ~
+${CP} -R .vim* .bashrc .mplayer .source .Xdefaults .pythonrc.py .gitconfig .screenrc ~
 ${CP} hgrc ~/.hgrc
 
