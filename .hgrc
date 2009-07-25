@@ -1,11 +1,12 @@
 [ui]
 username=Caio Romão <caioromao@gmail.com>
 
-[extensions]
-hgext.extdiff =
-
 [defaults]
 cdiff = -q
+
+[extensions]
+hgext.extdiff =
+hgext.pager =
 
 [extdiff]
 cmd.cdiff = colordiff
@@ -15,3 +16,6 @@ opts.gdiff = -f '+next' -d
 cmd.vdiff = vim
 opts.vdiff = -f '+next' -d
 cmd.kdiff = kdiff3
+
+[pager]
+pager = LESS='FSRX' less
