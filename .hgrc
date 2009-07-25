@@ -19,3 +19,4 @@ cmd.kdiff = kdiff3
 
 [pager]
 pager = LESS='FSRX' less
+ignore = update, push, pull, merge, fetch, clone, record, crecord
