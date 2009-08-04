@@ -70,9 +70,9 @@ bash_prompt_cmd() {
 
     # Add the first part of the prompt: username,host, and time
     local PROMPT_PWD=""
-    local PS1_T1="$BL[$CY`whoami`@\h$BL:$CY`date +%H%M`$BL:$CY"
-    local ps_len=$(( ${#PS1_T1} - 12 * 6 + 6 + 4 )) #Len adjust for colors, time and var
-    local PS1_T2="$BL]\n${PROMPT} \[\e[0m\]"
+    local PS1_T1=" $CY"
+    local PS1_T2="$BL${PROMPT} \[\e[0m\]"
+    local ps_len=$(( ${#PS1_T1} + ${#PS1_T2} - 12 * 5 ))
     local startpos=""
 
     PROMPT_PWD="${PWD/#$HOME/~}"
@@ -87,7 +87,7 @@ bash_prompt_cmd() {
         PROMPT_PWD="${overflow_prefix}${PROMPT_PWD:$startpos:$maxpwdlen}"
     fi
 
-    export PS1="${PS1_T1}${PROMPT_PWD}${PS1_T2}"
+    export PS1="${BL}${PROMPT_PWD}${PS1_T1}${PS1_T2}"
 }
 PROMPT_COMMAND=bash_prompt_cmd
 
