@@ -53,7 +53,8 @@ xterm*color7    : #d5d5d5
 urxvt*xftAntialias: true
 urxvt*geometry: 80x20
 urxvt*tintColor: #dfdfdf
-urxvt*font: xft:Envy\ Code\ R:pixelsize=14
+! urxvt*font: xft:Envy\ Code\ R:pixelsize=14
+urxvt*font: xft:Inconsolata:pixelsize=14
 urxvt.perl-ext-common: default,matcher
 urxvt*scrollBar: false
 urxvt*scrollBar_floating: true
