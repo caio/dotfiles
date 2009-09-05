@@ -76,10 +76,10 @@ nmap <F8> :setlocal spell! spelllang=pt_br<CR>
 imap <F8> <C-o>:setlocal spell! spelllang=pt_br<CR>
 
 " Fuzzy Finder
-nmap <silent><leader>f :FuzzyFinderFile<CR>
-nmap <silent><leader>t :FuzzyFinderTag<CR>
-nmap <silent><leader>d :FuzzyFinderDir<CR>
-nnoremap <leader>g :FuzzyFinderFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+nmap <silent><leader>f :FufFile<CR>
+nmap <silent><leader>t :FufTag<CR>
+nmap <silent><leader>d :FufDir<CR>
+nnoremap <leader>g :FufFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
 
 " List trailing chars
 set listchars=tab:>-,trail:·,eol:$
@@ -136,9 +136,6 @@ runtime macros/matchit.vim
 let python_highlight_all=1
 let python_slow_sync=1
 let python_print_as_function=1
-
-" Numbermarks plugin
-let g:Signs_file_path_corey='/tmp'
 
 " ANTLR3 Syntax
 au BufRead,BufNewFile *.g set syntax=antlr3
