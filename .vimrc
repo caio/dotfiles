@@ -102,9 +102,10 @@ nnoremap <silent><HOME> :call <SID>SmartHome()<CR>
 imap <F2> <C-O><leader>be
 nmap <F2> <leader>be
 
-" Yarking
+" Yankring
 imap <leader>p <C-O>:YRShow<CR>
 nmap <leader>p :YRShow<CR>
+let g:yankring_history_file='.yankring_history'
 
 " NERDTree
 imap <silent><F4> <C-O>:NERDTreeToggle<CR>
@@ -120,9 +121,6 @@ let Tlist_Compact_Format=1
 let Tlist_WinWidth=28
 let Tlist_Exit_OnlyWindow=1
 let Tlist_File_Fold_Auto_Close=1
-
-" Yankring
-let g:yankring_history_file='.yankring_history'
 
 " TOhtml options
 let html_number_lines=1
@@ -147,6 +145,7 @@ au BufRead,BufNewFile *.stg set syntax=stringtemplate
 " let OmniCpp_NamespaceSearch = 2
 " let OmniCpp_ShowPrototypeInAbbr = 1
 " let OmniCpp_SelectFirstItem = 2
+
 " Close the preview window automatically
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
