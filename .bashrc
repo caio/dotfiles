@@ -26,6 +26,8 @@ pathappend () {
     export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
 }
 
+alias pwdappend='pathappend $(pwd)'
+
 # disabling flow control
 stty -ixon -ixoff
 
@@ -57,22 +59,29 @@ bash_prompt_cmd() {
     local RE="\[\e[1;31m\]"
     local OT="\[\e[1;35m\]"
 
-    local RET="${RE}${RETVAL}! "
-    [ $RETVAL -eq 0 ] && RET=""
+    local ps_len=0
+    local RET=""
+    if [ $RETVAL -ne 0 ]; then
+        CNT=${#RETVAL}
+        ps_len=$((ps_len + CNT + 2))
+        RET="${RE}${RETVAL}! "
+    fi
 
     local LPROM="${CY}$"
     [ $UID -eq "0" ] && LPROM="${RE}#"
+    ps_len=$((ps_len + 1))
 
     local SCMSTATUS=""
     [ `which hg_ps1.py 2>/dev/null` ] && SCMSTATUS="$(hg_ps1.py)"
-    [ -n "$GITRC_OK" ] && SCMSTATUS="${SCMSTATUS}$(parse_git_branch)"
+    [ -n "$GITRC_OK" ] && SCMSTATUS="$(parse_git_branch)"
     local PROMPT="${RET}${SCMSTATUS}${LPROM}"
+    [ ${#SCMSTATUS} -gt 12 ] && ps_len=$((ps_len + ${#SCMSTATUS} - 12))
 
     # Add the first part of the prompt: username,host, and time
     local PROMPT_PWD=""
     local PS1_T1=" $CY"
     local PS1_T2="$BL${PROMPT} \[\e[0m\]"
-    local ps_len=$(( ${#PS1_T1} + ${#PS1_T2} - 12 * 5 ))
+    ps_len=$((ps_len + 2))
     local startpos=""
 
     PROMPT_PWD="${PWD/#$HOME/~}"
