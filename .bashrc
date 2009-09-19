@@ -56,6 +56,7 @@ bash_prompt_cmd() {
     local BL="\[\e[1;34m\]"
     local WH="\[\e[1;37m\]"
     local BR="\[\e[0;33m\]"
+    local OR="\[\e[1;33m\]"
     local RE="\[\e[1;31m\]"
     local OT="\[\e[1;35m\]"
 
@@ -71,13 +72,19 @@ bash_prompt_cmd() {
     [ $UID -eq "0" ] && LPROM="${RE}#"
     ps_len=$((ps_len + 1))
 
+    local VENVSTATUS=""
+    if [ ${#envname} -gt 0 ]
+    then
+        VENVSTATUS="${OR}·${envname} "
+        ps_len=$((ps_len + ${#envname} - 12 - 1))
+    fi
+
     local SCMSTATUS=""
     [ `which hg_ps1.py 2>/dev/null` ] && SCMSTATUS="$(hg_ps1.py)"
     [ -n "$GITRC_OK" ] && SCMSTATUS="$(parse_git_branch)"
-    local PROMPT="${RET}${SCMSTATUS}${LPROM}"
     [ ${#SCMSTATUS} -gt 12 ] && ps_len=$((ps_len + ${#SCMSTATUS} - 12))
 
-    # Add the first part of the prompt: username,host, and time
+    local PROMPT="${RET}${VENVSTATUS}${SCMSTATUS}${LPROM}"
     local PROMPT_PWD=""
     local PS1_T1=" $CY"
     local PS1_T2="$BL${PROMPT} \[\e[0m\]"

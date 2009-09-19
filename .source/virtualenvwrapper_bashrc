@@ -164,6 +164,7 @@ function workon () {
         deactivate
     fi
     
+    envname=$env_name
     source "$activate"
     
     # Save the deactivate function from virtualenv
@@ -186,6 +187,7 @@ function workon () {
 
         virtualenvwrapper_source_hook "$env_postdeactivate_hook"
         virtualenvwrapper_source_hook "$WORKON_HOME/postdeactivate"
+        unset envname
     }'
     
     virtualenvwrapper_source_hook "$WORKON_HOME/postactivate"
