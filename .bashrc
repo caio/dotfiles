@@ -162,6 +162,14 @@ function hgdiff()
 # Add sources bellow this comment to avoid replacing of the new commands #
 ##########################################################################
 
+# Virtualenv wrapper
+WORKON_HOME=${HOME}/.virtualenvs
+if [ -f ~/.source/virtualenvwrapper_bashrc ] && [ -d $WORKON_HOME ]
+then
+    export WORKON_HOME
+    . ~/.source/virtualenvwrapper_bashrc
+fi
+
 # KDE's development script
 [ -f ~/.source/kdedevrc ] && [ -d ~/src/kde ] && . ~/.source/kdedevrc
 
