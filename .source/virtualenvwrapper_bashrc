@@ -29,7 +29,7 @@ fi
 
 # Normalize the directory name in case it includes 
 # relative path components.
-WORKON_HOME=$(sh -c 'cd "$WORKON_HOME"; pwd')
+WORKON_HOME=$(sh -c 'cd "$WORKON_HOME" &>/dev/null; pwd')
 export WORKON_HOME
 
 # Verify that the WORKON_HOME directory exists
@@ -90,7 +90,7 @@ function virtualenvwrapper_run_hook () {
 function mkvirtualenv () {
     eval "envname=\$$#"
     virtualenvwrapper_verify_workon_home || return 1
-    (cd "$WORKON_HOME" &&
+    (cd "$WORKON_HOME"  &>/dev/null &&
         virtualenv "$@" &&
         virtualenvwrapper_run_hook "./premkvirtualenv" "$envname"
         )
@@ -129,7 +129,7 @@ function virtualenvwrapper_show_workon_options () {
     # NOTE: DO NOT use ls here because colorized versions spew control characters
     #       into the output list.
     # echo seems a little faster than find, even with -depth 3.
-    (cd "$WORKON_HOME"; for f in */bin/activate; do echo $f; done) | sed 's|^\./||' | sed 's|/bin/activate||' | sort
+    (cd "$WORKON_HOME" &>/dev/null; for f in */bin/activate; do echo $f; done) | sed 's|^\./||' | sed 's|/bin/activate||' | sort
 #    (cd "$WORKON_HOME"; find -L . -depth 3 -path '*/bin/activate') | sed 's|^\./||' | sed 's|/bin/activate||' | sort
 }
 
@@ -288,13 +288,13 @@ function add2virtualenv () {
 function cdsitepackages () {
     virtualenvwrapper_verify_active_environment || return 1
     site_packages="`virtualenvwrapper_get_site_packages_dir`"
-    cd "$site_packages"
+    cd "$site_packages" &>/dev/null
 }
 
 # Does a ``cd`` to the root of the currently-active virtualenv.
 function cdvirtualenv () {
     virtualenvwrapper_verify_active_environment || return 1
-    cd $VIRTUAL_ENV/$1
+    cd $VIRTUAL_ENV/$1 &>/dev/null
 }
 
 # Shows the content of the site-packages directory of the currently-active
