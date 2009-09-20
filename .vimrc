@@ -127,6 +127,9 @@ let html_number_lines=1
 let html_use_css=1
 let use_xhtml=1
 
+" Inkpot
+let g:inkpot_black_background=1
+
 " Matchit plugin
 runtime macros/matchit.vim
 
