@@ -139,6 +139,8 @@ let python_print_as_function=1
 au BufRead,BufNewFile *.g set syntax=antlr3
 " StringTemplate Syntax
 au BufRead,BufNewFile *.stg set syntax=stringtemplate
+" Markdown Syntax
+au BufRead,BufNewFile *.md set ft=mkd
 
 " OmniCPPComplete settings
 " let OmniCpp_GlobalScopeSearch = 1
