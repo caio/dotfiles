@@ -37,8 +37,8 @@ stty -ixon -ixoff
 # google appengine
 [ -d /opt/google-appengine ] && pathappend /opt/google-appengine
 
-# Git custom PS1 command
-[ -f ~/.source/gitrc ] && . ~/.source/gitrc && GITRC_OK="True"
+# VCS PS1 Command
+. ~/.source/vcsinfo.sh
 
 # Bash completion
 [ -e /etc/bash_completion ] && . /etc/bash_completion
@@ -54,11 +54,11 @@ bash_prompt_cmd() {
     local RETVAL=$?
     local CY="\[\e[0;37m\]" # Each is 12 chars long
     local BL="\[\e[1;34m\]"
-    local WH="\[\e[1;37m\]"
-    local BR="\[\e[0;33m\]"
-    local OR="\[\e[1;33m\]"
     local RE="\[\e[1;31m\]"
-    local OT="\[\e[1;35m\]"
+    local OR="\[\e[33;40m\]"
+    local PK="\[\e[35;40m\]"
+    local GR="\[\e[32;40m\]"
+    local WH="\[\e[37;40m\]"
 
     local ps_len=0
     local RET=""
@@ -75,14 +75,14 @@ bash_prompt_cmd() {
     local VENVSTATUS=""
     if [ ${#envname} -gt 0 ]
     then
-        VENVSTATUS="${OR}·${envname} "
-        ps_len=$((ps_len + ${#envname} - 12 - 1))
+        VENVSTATUS="·${OR}·${envname} "
+        ps_len=$((ps_len + ${#envname} - 12 - 2))
     fi
 
+    __vcs_dir
     local SCMSTATUS=""
-    [ `which hg_ps1.py 2>/dev/null` ] && SCMSTATUS="$(hg_ps1.py)"
-    [ -n "$GITRC_OK" ] && SCMSTATUS="$(parse_git_branch)"
-    [ ${#SCMSTATUS} -gt 12 ] && ps_len=$((ps_len + ${#SCMSTATUS} - 12))
+    [ "$__vcs_prefix" != "" ] && SCMSTATUS="${WH}${__vcs_prefix}:${__vcs_ref} "
+    [ ${#SCMSTATUS} -gt 1 ] && ps_len=$((ps_len + ${#SCMSTATUS} - 12))
 
     local PROMPT="${RET}${VENVSTATUS}${SCMSTATUS}${LPROM}"
     local PROMPT_PWD=""
