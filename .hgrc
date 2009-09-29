@@ -5,14 +5,13 @@ username=Caio Romão <caioromao@gmail.com>
 cdiff = -q
 
 [extensions]
-alias=
 convert=
 extdiff=
 graphlog=
 patchbomb=
 record=
-hgext.extdiff =
-hgext.pager =
+extdiff =
+pager =
 
 [alias]
 blame=annotate -u -n
