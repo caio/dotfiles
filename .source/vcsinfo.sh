@@ -96,8 +96,8 @@ __vcs_dir() {
 
   __vcs_base_dir="${base_dir/$HOME/~}"
   if [ -n "$vcs" ]; then
-      __vcs_prefix="($vcs)"
-      __vcs_ref="[$ref]"
+      __vcs_prefix="$vcs"
+      __vcs_ref="$ref"
       __vcs_sub_dir="${sub_dir}"
   else
       __vcs_prefix=""
