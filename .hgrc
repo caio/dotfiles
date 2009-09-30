@@ -10,8 +10,14 @@ extdiff=
 graphlog=
 patchbomb=
 record=
-extdiff =
-pager =
+extdiff=
+pager=
+color=
+fetch=
+parentrevspec=
+rebase=
+bookmarks=
+mq=
 
 [alias]
 blame=annotate -u -n
@@ -23,8 +29,6 @@ git=True
 [extdiff]
 cmd.sbsdiff  = diff
 opts.sbsdiff = -N -b --side-by-side --width=90
-cmd.cdiff = colordiff
-opts.cdiff = -uprN
 cmd.gdiff = gvim
 opts.gdiff = -f '+next' -d
 cmd.vdiff = vim
@@ -34,3 +38,21 @@ cmd.kdiff = kdiff3
 [pager]
 pager = LESS='FSRX' less
 ignore = update, push, pull, merge, fetch, clone, record, crecord
+
+[merge-patterns]
+** = filemerge
+
+[merge-tools]
+filemerge.executable = gvim
+filemerge.args = -d $local $other
+filemerge.checkchanged = true
+filemerge.gui = true
+
+[color]
+status.modified = blue
+status.added = green
+status.removed = yellow
+status.deleted = yellow bold
+status.unknown = none
+status.ignored = none
+diff.trailingwhitespace = bold red_background
