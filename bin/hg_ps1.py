@@ -53,7 +53,7 @@ def main():
       status = "!"
     elif stat[4]:
       status = "?"
-    print "%s%s " % (COLOR_STATUS, status)
+    print "%s%s" % (COLOR_STATUS, status)
 
 if __name__ == '__main__':
     main()
