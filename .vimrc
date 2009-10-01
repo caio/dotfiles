@@ -144,7 +144,9 @@ au BufRead,BufNewFile *.g set syntax=antlr3
 " StringTemplate Syntax
 au BufRead,BufNewFile *.stg set syntax=stringtemplate
 " Markdown Syntax
-au BufRead,BufNewFile *.md set ft=mkd
+au! BufRead,BufNewFile *.md set ft=mkd
+au! BufRead,BufNewFile *.mkd set ft=mkd
+au! BufRead,BufNewFile *.pdc set ft=pdc
 
 " OmniCPPComplete settings
 " let OmniCpp_GlobalScopeSearch = 1
