@@ -71,7 +71,7 @@ __vcs_dir() {
   }
 
   svn_dir() {
-      [ -d ".svn" ] || return 1
+      [ -d ".svn" ] && [ -d $(readlink .) ] || return 1
       base_dir="."
       while [ -d "$base_dir/../.svn" ]; do base_dir="$base_dir/.."; done
       base_dir=$(readlink -f "$base_dir")
