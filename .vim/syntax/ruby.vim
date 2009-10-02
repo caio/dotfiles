@@ -18,7 +18,7 @@ if has("folding") && exists("ruby_fold")
   setlocal foldmethod=syntax
 endif
 
-syn cluster rubyNotTop			contains=@rubyExtendedStringSpecial,@rubyRegexpSpecial,@rubyDeclaration,rubyConditional,rubyTodo
+syn cluster rubyNotTop			contains=@rubyExtendedStringSpecial,@rubyRegexpSpecial,@rubyDeclaration,rubyConditional,rubyExceptional,rubyMethodExceptional,rubyTodo
 
 if exists("ruby_space_errors")
   if !exists("ruby_no_trail_space_error")
@@ -64,7 +64,7 @@ syn region rubyRegexpParens	matchgroup=rubyRegexpSpecial   start="(\(?:\|?<\=[=!
 syn region rubyRegexpBrackets	matchgroup=rubyRegexpCharClass start="\[\^\="									skip="\\\]" end="\]" contained transparent contains=rubyStringEscape,rubyRegexpEscape,rubyRegexpCharClass oneline
 syn match  rubyRegexpCharClass	"\\[DdHhSsWw]"		contained display
 syn match  rubyRegexpCharClass	"\[:\^\=\%(alnum\|alpha\|ascii\|blank\|cntrl\|digit\|graph\|lower\|print\|punct\|space\|upper\|xdigit\):\]"		contained
-syn match  rubyRegexpEscape	"\\[].*?+^$|\\/(){}[]"	contained display
+syn match  rubyRegexpEscape	"\\[].*?+^$|\\/(){}[]"	contained
 syn match  rubyRegexpQuantifier	"[*?+][?+]\="		contained display
 syn match  rubyRegexpQuantifier	"{\d\+\%(,\d*\)\=}?\="	contained display
 syn match  rubyRegexpAnchor	"[$^]\|\\[ABbGZz]"	contained display
@@ -82,12 +82,12 @@ syn cluster rubyRegexpSpecial		contains=rubyInterpolation,rubyNoInterpolation,ru
 
 " Numbers and ASCII Codes
 syn match rubyASCIICode	"\%(\w\|[]})\"'/]\)\@<!\%(?\%(\\M-\\C-\|\\C-\\M-\|\\M-\\c\|\\c\\M-\|\\c\|\\C-\|\\M-\)\=\%(\\\o\{1,3}\|\\x\x\{1,2}\|\\\=\S\)\)"
-syn match rubyInteger	"\<0[xX]\x\+\%(_\x\+\)*\>"								display
-syn match rubyInteger	"\<\%(0[dD]\)\=\%(0\|[1-9]\d*\%(_\d\+\)*\)\>"						display
-syn match rubyInteger	"\<0[oO]\=\o\+\%(_\o\+\)*\>"								display
-syn match rubyInteger	"\<0[bB][01]\+\%(_[01]\+\)*\>"								display
-syn match rubyFloat	"\<\%(0\|[1-9]\d*\%(_\d\+\)*\)\.\d\+\%(_\d\+\)*\>"					display
-syn match rubyFloat	"\<\%(0\|[1-9]\d*\%(_\d\+\)*\)\%(\.\d\+\%(_\d\+\)*\)\=\%([eE][-+]\=\d\+\%(_\d\+\)*\)\>"	display
+syn match rubyInteger	"\%(\%(\w\|[]})\"']\s*\)\@<!-\)\=\<0[xX]\x\+\%(_\x\+\)*\>"								display
+syn match rubyInteger	"\%(\%(\w\|[]})\"']\s*\)\@<!-\)\=\<\%(0[dD]\)\=\%(0\|[1-9]\d*\%(_\d\+\)*\)\>"						display
+syn match rubyInteger	"\%(\%(\w\|[]})\"']\s*\)\@<!-\)\=\<0[oO]\=\o\+\%(_\o\+\)*\>"								display
+syn match rubyInteger	"\%(\%(\w\|[]})\"']\s*\)\@<!-\)\=\<0[bB][01]\+\%(_[01]\+\)*\>"								display
+syn match rubyFloat	"\%(\%(\w\|[]})\"']\s*\)\@<!-\)\=\<\%(0\|[1-9]\d*\%(_\d\+\)*\)\.\d\+\%(_\d\+\)*\>"					display
+syn match rubyFloat	"\%(\%(\w\|[]})\"']\s*\)\@<!-\)\=\<\%(0\|[1-9]\d*\%(_\d\+\)*\)\%(\.\d\+\%(_\d\+\)*\)\=\%([eE][-+]\=\d\+\%(_\d\+\)*\)\>"	display
 
 " Identifiers
 syn match rubyLocalVariableOrMethod "\<[_[:lower:]][_[:alnum:]]*[?!=]\=" contains=NONE display transparent
@@ -101,6 +101,8 @@ syn match  rubySymbol			"[]})\"':]\@<!:\%(\^\|\~\|<<\|<=>\|<=\|<\|===\|==\|=\~\|
 syn match  rubySymbol			"[]})\"':]\@<!:\$\%(-.\|[`~<=>_,;:!?/.'"@$*\&+0]\)"
 syn match  rubySymbol			"[]})\"':]\@<!:\%(\$\|@@\=\)\=\h\w*"
 syn match  rubySymbol			"[]})\"':]\@<!:\h\w*\%([?!=]>\@!\)\="
+syn match  rubySymbol			"\%([{(,]\_s*\)\@<=\l\w*[!?]\=::\@!"he=e-1
+syn match  rubySymbol			"[]})\"':]\@<!\h\w*[!?]\=:\s\@="he=e-1
 syn region rubySymbol			start="[]})\"':]\@<!:'"  end="'"  skip="\\\\\|\\'"  contains=rubyQuoteEscape fold
 syn region rubySymbol			start="[]})\"':]\@<!:\"" end="\"" skip="\\\\\|\\\"" contains=@rubyStringSpecial fold
 
@@ -188,6 +190,16 @@ syn match  rubyFunction "\%([[:space:].]\|^\)\@<=\%(\[\]=\=\|\*\*\|[+-]@\=\|[*/%
 
 syn cluster rubyDeclaration	contains=rubyAliasDeclaration,rubyAliasDeclaration2,rubyMethodDeclaration,rubyModuleDeclaration,rubyClassDeclaration,rubyFunction,rubyBlockParameter
 
+" Keywords
+" Note: the following keywords have already been defined:
+" begin case class def do end for if module unless until while
+syn match   rubyControl		"\<\%(and\|break\|in\|next\|not\|or\|redo\|rescue\|retry\|return\)\>[?!]\@!"
+syn match   rubyOperator	"\<defined?" display
+syn match   rubyKeyword		"\<\%(super\|yield\)\>[?!]\@!"
+syn match   rubyBoolean		"\<\%(true\|false\)\>[?!]\@!"
+syn match   rubyPseudoVariable	"\<\%(nil\|self\|__FILE__\|__LINE__\)\>[?!]\@!"
+syn match   rubyBeginEnd	"\<\%(BEGIN\|END\)\>[?!]\@!"
+
 " Expensive Mode - match 'end' with the appropriate opening keyword for syntax
 " based folding and special highlighting of module/class/method definitions
 if !exists("b:ruby_no_expensive") && !exists("ruby_no_expensive")
@@ -196,9 +208,9 @@ if !exists("b:ruby_no_expensive") && !exists("ruby_no_expensive")
   syn match  rubyDefine "\<undef\>"		nextgroup=rubyFunction skipwhite skipnl
   syn match  rubyClass	"\<class\>"		nextgroup=rubyClassDeclaration	skipwhite skipnl
   syn match  rubyModule "\<module\>"		nextgroup=rubyModuleDeclaration skipwhite skipnl
-  syn region rubyBlock start="\<def\>"		matchgroup=rubyDefine end="\%(\<def\_s\+\)\@<!\<end\>" contains=ALLBUT,@rubyNotTop fold
-  syn region rubyBlock start="\<class\>"	matchgroup=rubyClass  end="\<end\>" contains=ALLBUT,@rubyNotTop fold
-  syn region rubyBlock start="\<module\>"	matchgroup=rubyModule end="\<end\>" contains=ALLBUT,@rubyNotTop fold
+  syn region rubyMethodBlock start="\<def\>"	matchgroup=rubyDefine end="\%(\<def\_s\+\)\@<!\<end\>" contains=ALLBUT,@rubyNotTop fold
+  syn region rubyBlock  start="\<class\>"	matchgroup=rubyClass  end="\<end\>" contains=ALLBUT,@rubyNotTop fold
+  syn region rubyBlock  start="\<module\>"	matchgroup=rubyModule end="\<end\>" contains=ALLBUT,@rubyNotTop fold
 
   " modifiers
   syn match  rubyConditionalModifier "\<\%(if\|unless\)\>"   display
@@ -217,6 +229,9 @@ if !exists("b:ruby_no_expensive") && !exists("ruby_no_expensive")
   syn match rubyConditional "\<\%(then\|else\|when\)\>[?!]\@!"  contained containedin=rubyCaseExpression
   syn match rubyConditional "\<\%(then\|else\|elsif\)\>[?!]\@!" contained containedin=rubyConditionalExpression
 
+  syn match rubyExceptional       "\<\%(\%(\%(;\|^\)\s*\)\@<=rescue\|else\|ensure\)\>[?!]\@!" contained containedin=rubyBlockExpression
+  syn match rubyMethodExceptional "\<\%(\%(\%(;\|^\)\s*\)\@<=rescue\|else\|ensure\)\>[?!]\@!" contained containedin=rubyMethodBlock
+
   " statements with optional 'do'
   syn region rubyOptionalDoLine   matchgroup=rubyRepeat start="\<for\>[?!]\@!" start="\%(\%(^\|\.\.\.\=\|[{:,;([<>~\*/%&^|+-]\|\%(\<[_[:lower:]][_[:alnum:]]*\)\@<![!=?]\)\s*\)\@<=\<\%(until\|while\)\>" matchgroup=rubyOptionalDo end="\%(\<do\>\)" end="\ze\%(;\|$\)" oneline contains=ALLBUT,@rubyNotTop
   syn region rubyRepeatExpression start="\<for\>[?!]\@!" start="\%(\%(^\|\.\.\.\=\|[{:,;([<>~\*/%&^|+-]\|\%(\<[_[:lower:]][_[:alnum:]]*\)\@<![!=?]\)\s*\)\@<=\<\%(until\|while\)\>" matchgroup=rubyRepeat end="\<end\>" contains=ALLBUT,@rubyNotTop nextgroup=rubyOptionalDoLine fold
@@ -230,19 +245,9 @@ else
   syn match   rubyControl "\<def\>[?!]\@!"	nextgroup=rubyMethodDeclaration skipwhite skipnl
   syn match   rubyControl "\<class\>[?!]\@!"	nextgroup=rubyClassDeclaration	skipwhite skipnl
   syn match   rubyControl "\<module\>[?!]\@!"	nextgroup=rubyModuleDeclaration skipwhite skipnl
-  syn match   rubyControl "\<\%(case\|begin\|do\|for\|if\|unless\|while\|until\|else\|elsif\|then\|when\|end\)\>[?!]\@!"
+  syn match   rubyControl "\<\%(case\|begin\|do\|for\|if\|unless\|while\|until\|else\|elsif\|ensure\|then\|when\|end\)\>[?!]\@!"
   syn match   rubyKeyword "\<\%(alias\|undef\)\>[?!]\@!"
 endif
-
-" Keywords
-" Note: the following keywords have already been defined:
-" begin case class def do end for if module unless until while
-syn match   rubyControl		"\<\%(and\|break\|ensure\|in\|next\|not\|or\|redo\|rescue\|retry\|return\)\>[?!]\@!"
-syn match   rubyOperator	"\<defined?" display
-syn match   rubyKeyword		"\<\%(super\|yield\)\>[?!]\@!"
-syn match   rubyBoolean		"\<\%(true\|false\)\>[?!]\@!"
-syn match   rubyPseudoVariable	"\<\%(nil\|self\|__FILE__\|__LINE__\)\>[?!]\@!"
-syn match   rubyBeginEnd	"\<\%(BEGIN\|END\)\>[?!]\@!"
 
 " Special Methods
 if !exists("ruby_no_special_methods")
@@ -291,10 +296,12 @@ syn region rubyData matchgroup=rubyDataDirective start="^__END__$" end="\%$" fol
 
 hi def link rubyClass			rubyDefine
 hi def link rubyModule			rubyDefine
+hi def link rubyMethodExceptional	rubyDefine
 hi def link rubyDefine			Define
 hi def link rubyFunction		Function
 hi def link rubyConditional		Conditional
 hi def link rubyConditionalModifier	rubyConditional
+hi def link rubyExceptional		rubyConditional
 hi def link rubyRepeat			Repeat
 hi def link rubyRepeatModifier		rubyRepeat
 hi def link rubyOptionalDo		rubyRepeat
