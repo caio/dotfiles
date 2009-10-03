@@ -42,6 +42,8 @@ stty -ixon -ixoff
 
 # Bash completion
 [ -e /etc/bash_completion ] && . /etc/bash_completion
+# Custom completion for '~/src'
+. ~/.source/projects_complete.sh
 
 # EXPORTS
 export GWT_EXTERNAL_BROWSER="firefox"
