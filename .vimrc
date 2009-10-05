@@ -50,8 +50,10 @@ set foldmethod=marker
 set completeopt=menu,preview,longest,menuone
 
 if has("gui_running")
-    set guifont=Envy\ Code\ R\ 9
-    colorscheme herald
+    set guifont=Inconsolata\ 11
+    colorscheme vitamins
+    set number
+    set cursorline
     " FontSize plugin
     nmap <silent><A-+> :call LargerFont()<CR>
     nmap <silent><A--> :call SmallerFont()<CR>
