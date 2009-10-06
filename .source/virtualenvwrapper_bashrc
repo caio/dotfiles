@@ -97,7 +97,7 @@ function mkvirtualenv () {
     # If they passed a help option or got an error from virtualenv,
     # the environment won't exist.  Use that to tell whether
     # we should switch to the environment and run the hook.
-    [ ! -d "$WORKON_HOME/$envname" ] && return 0
+    [ ! -d "$WORKON_HOME/$envname" ] && unset envname && return 0
     workon "$envname"
     virtualenvwrapper_source_hook "$WORKON_HOME/postmkvirtualenv"
 }

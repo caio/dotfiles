@@ -75,7 +75,7 @@ bash_prompt_cmd() {
     local VENVSTATUS=""
     if [ ${#envname} -gt 0 ]
     then
-        VENVSTATUS="·${OR}·${envname} "
+        VENVSTATUS="${OR}·${envname}· "
         ps_len=$((ps_len + ${#envname} - 12 - 2))
     fi
 
