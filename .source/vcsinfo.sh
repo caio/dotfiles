@@ -76,7 +76,7 @@ __vcs_dir() {
       while [ -d "$base_dir/../.svn" ]; do base_dir="$base_dir/.."; done
       base_dir=$(readlink -f "$base_dir")
       sub_dir=$(sub_dir "${base_dir}")
-      ref=$(svn info "$base_dir" | awk '/^URL/ { sub(".*/","",$0); r=$0 } /^Revision/ { sub("[^0-9]*","",$0); print r":"$0 }')
+      ref=$(svn info "$base_dir" | awk '/^Revision/ { sub("[^0-9]*","",$0); print $0 }')
       vcs="svn"
   }
 
