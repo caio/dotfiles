@@ -75,7 +75,8 @@ bash_prompt_cmd() {
     ps_len=$((ps_len + 1))
 
     local VENVSTATUS=""
-    if [ ${#envname} -gt 0 ]
+    local envname=$(basename $VIRTUAL_ENV 2>/dev/null)
+    if [ -n "$envname" ]
     then
         VENVSTATUS="${OR}·${envname}· "
         ps_len=$((ps_len + ${#envname} - 12 - 2))
