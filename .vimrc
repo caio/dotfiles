@@ -105,6 +105,10 @@ nnoremap <silent><HOME> :call <SID>SmartHome()<CR>
 imap <F2> <C-O><leader>be
 nmap <F2> <leader>be
 
+" Supertab
+let g:SuperTabDefaultCompletionType='context'
+" let g:SuperTabContextDefaultCompletionType='keyword'
+
 " Yankring
 imap <leader>p <C-O>:YRShow<CR>
 nmap <leader>p :YRShow<CR>

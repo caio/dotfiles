@@ -1,107 +1,81 @@
 # UTF-8 support
-  setenv LC_CTYPE en_US.UTF-8
-  defutf8 on
+setenv LC_CTYPE en_US.UTF-8
+defutf8 on
 
 # Statusline
-  hardstatus alwayslastline
-  hardstatus string '%{= kw}%?%-Lw%?%{B}(%{W}%n%f %t%?(%u)%?%{B})%{w}%?%+Lw%?%?%= %{K}%{B} %{w}%c%{K}'
+hardstatus off
+hardstatus alwayslastline
+hardstatus string '%{= kw}%?%-Lw%?%{B}(%{W}%n%f %t%?(%u)%?%{B})%{w}%?%+Lw%?%?%= %{K}%{B} %{w}%c%{K}'
 
 # use F8 to turn the status bar off at the bottom of the screen
-  bindkey -k k8 hardstatus alwayslastline
+bindkey -k k8 hardstatus alwayslastline
 # use F9 to turn the status bar on the bottom back on
-  bindkey -k k9 hardstatus alwaysignore
+bindkey -k k9 hardstatus alwaysignore
 
 # No bell at all
-  vbell off                                # default: off
-  vbell_msg "   -- Ring, Ring!! --   "     # default: "Wuff,Wuff!!"
+vbell off                                # default: off
+vbell_msg "   -- Ring, Ring!! --   "     # default: "Wuff,Wuff!!"
 
 # Automatically detach on hangup. 
-  autodetach on                            # default: on
+autodetach on                            # default: on
 
 # Don't display the copyright page
-  startup_message off                      # default: on
+startup_message off                      # default: on
 
 # Affects the copying of text regions
-  crlf off                                 # default: off
+crlf off                                 # default: off
 
 # Change default scrollback value for new windows
-  defscrollback 1000                       # default: 100
+defscrollback 1000                       # default: 100
 
 # Define the time that all windows monitored for silence should 
 # wait before displaying a message. Default 30 seconds.
-  silencewait 15                           # default: 30
+silencewait 15                           # default: 30
 
-  shell $SHELL
+shell $SHELL
 
 # emulate .logout message
-  pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 
-# XTERM TWEAKS
-# ===============================================================
-
-# xterm understands both im/ic and doesn't have a status line.
-# Note: Do not specify im and ic in the real termcap/info file as
-# some programs (e.g. vi) will not work anymore.
-  termcap  xterm hs@:cs=\E[%i%d;%dr:im=\E[4h:ei=\E[4l
-  terminfo xterm hs@:cs=\E[%i%p1%d;%p2%dr:im=\E[4h:ei=\E[4l
-
-# 80/132 column switching must be enabled for ^AW to work
-# change init sequence to not switch width
-  termcapinfo  xterm Z0=\E[?3h:Z1=\E[?3l:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
-
-# Make the output buffer large for (fast) xterms.
-# termcapinfo xterm* OL=10000
-  termcapinfo xterm* OL=100
-
-# tell screen that xterm can switch to dark background and has function
-# keys.
-  termcapinfo xterm 'VR=\E[?5h:VN=\E[?5l'
-  termcapinfo xterm 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
-  termcapinfo xterm 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
-
-# special xterm hardstatus: use the window title.
-  termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
-
-#terminfo xterm 'vb=\E[?5h$<200/>\E[?5l'
-  termcapinfo xterm 'vi=\E[?25l:ve=\E[34h\E[?25h:vs=\E[34l'
 
 # Let's remove some dangerous key bindings ...
-  bind k
-  bind ^k
-  bind .
-  bind ^\
-  bind \\
-  bind ^h
-  bind h
+bind k
+bind ^k
+bind .
+bind ^\
+bind \\
+bind ^h
+bind h
 
 # ... and make them better.
-  bind 'K' kill
-  bind 'I' login on
-  bind 'O' login off
-  bind '}' history
+bind 'K' kill
+bind 'I' login on
+bind 'O' login off
+bind '}' history
 
 # Yet another hack:
 # Prepend/append register [/] to the paste if ^a^] is pressed.
 # This lets me have autoindent mode in vi.
-  register [ "\033:se noai\015a"
-  register ] "\033:se ai\015a"
-  bind ^] paste [.]
+register [ "\033:se noai\015a"
+register ] "\033:se ai\015a"
+bind ^] paste [.]
 
 # Time a message is displayed if screen is not disturbed by
 # other activity. The dafault is 5 seconds:
-  msgwait 15
+msgwait 15
 
 # Don't you want to start programs which need a DISPLAY ?
-  setenv DISPLAY ':0'
-  logfile ~/.logs/screen/%Y-%m-%d_%0c
+setenv DISPLAY ':0'
+logfile ~/.logs/screen/%Y-%m-%d_%0c
 
 # tell screen that you term can scroll
-  termcapinfo xterm ti@:te@
+termcapinfo xterm ti@:te@
 # bind Shift+PgUp/PgDn
-  bindkey -m "^[[5;2~" stuff ^b
-  bindkey -m "^[[6;2~" stuff ^f
+bindkey -m "^[[5;2~" stuff ^b
+bindkey -m "^[[6;2~" stuff ^f
 
 # 256 colors
-  attrcolor b ".I"
-  defbce "on"
-  termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+attrcolor b ".I"
+defbce "on"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+

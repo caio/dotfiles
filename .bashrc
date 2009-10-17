@@ -75,7 +75,8 @@ bash_prompt_cmd() {
     ps_len=$((ps_len + 1))
 
     local VENVSTATUS=""
-    if [ ${#envname} -gt 0 ]
+    local envname=$(basename $VIRTUAL_ENV 2>/dev/null)
+    if [ -n "$envname" ]
     then
         VENVSTATUS="${OR}·${envname}· "
         ps_len=$((ps_len + ${#envname} - 12 - 2))
@@ -121,7 +122,7 @@ alias rm='rm -i'
 alias j='jobs'
 alias h='history'
 alias grep='egrep'
-alias ls='ls --color=always --time-style=iso -h -F --quoting-style=escape'
+alias ls='ls --color=tty --time-style=iso -h -F --quoting-style=escape'
 alias l='ls -lh'
 alias la='ls -lhA'
 alias ad='ls -A -d */'
