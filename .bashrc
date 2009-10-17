@@ -173,7 +173,7 @@ function hgdiff()
 
 # Virtualenv wrapper
 WORKON_HOME=${HOME}/.virtualenvs
-if [ -f ~/.source/virtualenvwrapper_bashrc ] && [ -d $WORKON_HOME ]
+if [ -f ~/.source/virtualenvwrapper_bashrc ]
 then
     export WORKON_HOME
     . ~/.source/virtualenvwrapper_bashrc
