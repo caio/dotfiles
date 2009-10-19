@@ -66,10 +66,10 @@ endif
 
 nmap <silent> <F3> :silent nohlsearch<CR>
 imap <silent> <F3> <C-o>:silent nohlsearch<CR>
-nmap h :bp<CR>
-nmap l :bn<CR>
-imap h <C-o>:bp<CR>
-imap l <C-o>:bn<CR>
+nmap <silent><leader>N :bp<CR>
+nmap <silent><leader>n :bn<CR>
+imap <silent><leader>N <C-o>:bp<CR>
+imap <silent><leader>n <C-o>:bn<CR>
 imap  
 nmap  
 
