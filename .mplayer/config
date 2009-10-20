@@ -25,4 +25,5 @@ subfont-text-scale=4.2
 
 subfont-osd-scale=4.2
 
-
+# For mplayer-mt. One thread per core.
+lavdopts=threads=2
