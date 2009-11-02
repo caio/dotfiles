@@ -27,3 +27,5 @@ subfont-osd-scale=4.2
 
 # For mplayer-mt. One thread per core.
 lavdopts=threads=2
+
+heartbeat-cmd="qdbus org.freedesktop.ScreenSaver /ScreenSaver org.freedesktop.ScreenSaver.SimulateUserActivity"
