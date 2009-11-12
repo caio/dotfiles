@@ -50,7 +50,7 @@ set foldmethod=marker
 set completeopt=menu,preview,longest,menuone
 
 if has("gui_running")
-    set guifont=Inconsolata\ 11
+    set guifont=Envy\ Code\ R\ 10
     colorscheme vitamins
     set number
     set cursorline
