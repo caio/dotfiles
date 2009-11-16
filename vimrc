@@ -153,6 +153,8 @@ au BufRead,BufNewFile *.stg set syntax=stringtemplate
 au! BufRead,BufNewFile *.md set ft=mkd
 au! BufRead,BufNewFile *.mkd set ft=mkd
 au! BufRead,BufNewFile *.pdc set ft=pdc
+" MIPS Syntax
+au! BufRead,BufNewFile *.spim set ft=mips
 
 " OmniCPPComplete settings
 " let OmniCpp_GlobalScopeSearch = 1
