@@ -134,6 +134,13 @@ let html_number_lines=1
 let html_use_css=1
 let use_xhtml=1
 
+" Number Marks
+map <silent> <unique> mm <Plug>Place_sign
+map <silent> <unique> mb <Plug>Goto_next_sign
+map <silent> <unique> mv <Plug>Goto_prev_sign
+map <silent> <unique> mdd <Plug>Remove_all_signs
+map <silent> <unique> m. <Plug>Move_sign
+
 " Inkpot
 let g:inkpot_black_background=1
 
