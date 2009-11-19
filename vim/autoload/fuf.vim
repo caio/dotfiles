@@ -103,13 +103,37 @@ endfunction
 
 "
 function fuf#filterMatchesAndMapToSetRanks(items, patternSet, stats)
-  " NOTE: To know an excess, plus 1 to limit number
+  " NOTE: In order to know an excess, plus 1 to limit number
   let result = fuf#filterWithLimit(
         \ a:items, a:patternSet.filteringExpr, g:fuf_enumeratingLimit + 1)
   let patternPartial = s:makePartialRegexpPattern(a:patternSet.rawPrimary)
   let patternFuzzy   = s:makeFuzzyRegexpPattern(a:patternSet.rawPrimary)
   let boundaryMatching = (a:patternSet.rawPrimary !~ '\U')
   return map(result, 's:setRanks(v:val, patternPartial, patternFuzzy, boundaryMatching, a:stats)')
+endfunction
+
+"
+function fuf#getFileLines(fname)
+  let lines = getbufline('^' . a:fname . '$', 1, '$')
+  if !empty(lines)
+    return lines
+  endif
+  try
+    return readfile(expand(a:fname))
+  catch /.*/ 
+  endtry
+  return []
+endfunction
+
+"
+function fuf#makePreviewLinesAround(lines, lnum, maxHeight)
+  if empty(a:lines) || a:maxHeight <= 0
+    return []
+  endif
+  let beg = max([0, a:lnum - 1 - a:maxHeight / 2]) 
+  let end = min([beg + a:maxHeight, len(a:lines)])
+  let beg = max([0, end - a:maxHeight])
+  return a:lines[beg : end - 1]
 endfunction
 
 "
@@ -208,7 +232,6 @@ function fuf#makePathItem(fname, menu, appendsDirSuffix)
         \ }
 endfunction
 
-"TODO
 " returns { 'word', 'wordPrimary', 'boundaries', 'menu' }
 function fuf#makeNonPathItem(word, menu)
   return {
@@ -282,9 +305,13 @@ function fuf#launch(modeName, initialPattern, partialMatching)
   let s:runningHandler.bufNrPrev = bufnr('%')
   let s:runningHandler.lastCol = -1
   call s:runningHandler.onModeEnterPre()
-  call s:activateFufBuffer()
   call s:setTemporaryGlobalOption('completeopt', 'menuone')
   call s:setTemporaryGlobalOption('ignorecase', g:fuf_ignoreCase)
+  if s:runningHandler.getPreviewHeight() > 0
+    call s:setTemporaryGlobalOption(
+          \ 'cmdheight', s:runningHandler.getPreviewHeight() + 1)
+  endif
+  call s:activateFufBuffer()
   " local autocommands
   augroup FuzzyfinderLocal
     autocmd!
@@ -299,6 +326,7 @@ function fuf#launch(modeName, initialPattern, partialMatching)
         \   [ g:fuf_keyOpenTabpage, 'onCr(' . s:OPEN_TYPE_TAB     . ', 0)' ],
         \   [ '<BS>'              , 'onBs()'                               ],
         \   [ '<C-h>'             , 'onBs()'                               ],
+        \   [ g:fuf_keyPreview    , 'onPreviewBase()'                      ],
         \   [ g:fuf_keyNextMode   , 'onSwitchMode(+1)'                     ],
         \   [ g:fuf_keyPrevMode   , 'onSwitchMode(-1)'                     ],
         \   [ g:fuf_keyPrevPattern, 'onRecallPattern(+1)'                  ],
@@ -311,6 +339,7 @@ function fuf#launch(modeName, initialPattern, partialMatching)
   call setline(1, s:runningHandler.getPrompt() . a:initialPattern)
   call s:runningHandler.onModeEnterPost()
   call feedkeys("A", 'n') " startinsert! does not work in InsertLeave event handler
+  redraw
 endfunction
 
 "
@@ -350,7 +379,7 @@ endfunction
 "
 function fuf#editInfoFile()
   new
-  file `='[fuf-info]'`
+  silent file `='[fuf-info]'`
   let s:bufNrInfo = bufnr('%')
   setlocal filetype=vim
   setlocal bufhidden=delete
@@ -625,11 +654,11 @@ let s:bufNrFuf = -1
 function s:openFufBuffer()
   if !bufexists(s:bufNrFuf)
     topleft 1new
-    file `='[fuf]'`
+    silent file `='[fuf]'`
     let s:bufNrFuf = bufnr('%')
   elseif bufwinnr(s:bufNrFuf) == -1
     topleft 1split
-    execute s:bufNrFuf . 'buffer'
+    execute 'silent ' . s:bufNrFuf . 'buffer'
     delete _
   elseif bufwinnr(s:bufNrFuf) != bufwinnr('%')
     execute bufwinnr(s:bufNrFuf) . 'wincmd w'
@@ -765,7 +794,7 @@ let s:handlerBase = {}
 " s:handler.onComplete(patternSet)
 " 
 " "
-" s:handler.onOpen(expr, mode)
+" s:handler.onOpen(word, mode)
 " 
 " " Before entering FuzzyFinder buffer. This function should return in a short time.
 " s:handler.onModeEnterPre()
@@ -816,6 +845,7 @@ function s:handlerBase.complete(findstart, base)
   else
     call sort(result, 'fuf#compareRanks')
     call feedkeys("\<C-p>\<Down>", 'n')
+    let self.lastFirstWord = result[0].word
   endif
   return result
 endfunction
@@ -913,6 +943,23 @@ function s:handlerBase.onBs()
     let numBs = 1
   endif
   call feedkeys((pumvisible() ? "\<C-e>" : "") . repeat("\<BS>", numBs), 'n')
+endfunction
+
+"
+function s:handlerBase.onPreviewBase()
+  if self.getPreviewHeight() <= 0
+    return
+  elseif !pumvisible()
+    return
+  elseif !self.existsPrompt(getline('.'))
+    let lines = self.makePreviewLines(self.removePrompt(getline('.')))
+  elseif !exists('self.lastFirstWord')
+    return
+  else
+    let lines = self.makePreviewLines(self.lastFirstWord)
+  endif
+  redraw
+  echo join(lines[: self.getPreviewHeight() - 1], "\n")
 endfunction
 
 "

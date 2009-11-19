@@ -77,8 +77,18 @@ function s:handler.getPrompt()
 endfunction
 
 "
+function s:handler.getPreviewHeight()
+  return 0
+endfunction
+
+"
 function s:handler.targetsPath()
   return 0
+endfunction
+
+"
+function s:handler.makePreviewLines(word)
+  return []
 endfunction
 
 "
@@ -88,10 +98,10 @@ function s:handler.onComplete(patternSet)
 endfunction
 
 "
-function s:handler.onOpen(expr, mode)
-  call s:updateInfo(a:expr)
-  call histadd(a:expr[0], a:expr[1:])
-  call feedkeys(a:expr . "\<CR>", 'n')
+function s:handler.onOpen(word, mode)
+  call s:updateInfo(a:word)
+  call histadd(a:word[0], a:word[1:])
+  call feedkeys(a:word . "\<CR>", 'n')
 endfunction
 
 "

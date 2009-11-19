@@ -69,8 +69,18 @@ function s:handler.getPrompt()
 endfunction
 
 "
+function s:handler.getPreviewHeight()
+  return 0
+endfunction
+
+"
 function s:handler.targetsPath()
   return 1
+endfunction
+
+"
+function s:handler.makePreviewLines(word)
+  return []
 endfunction
 
 "
@@ -80,8 +90,8 @@ function s:handler.onComplete(patternSet)
 endfunction
 
 "
-function s:handler.onOpen(expr, mode)
-  execute ':cd ' . fnameescape(a:expr)
+function s:handler.onOpen(word, mode)
+  execute ':cd ' . fnameescape(a:word)
 endfunction
 
 "

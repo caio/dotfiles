@@ -84,8 +84,19 @@ function s:handler.getPrompt()
 endfunction
 
 "
+function s:handler.getPreviewHeight()
+  return g:fuf_previewHeight
+endfunction
+
+"
 function s:handler.targetsPath()
   return 0
+endfunction
+
+"
+function s:handler.makePreviewLines(word)
+  " TODO show around the last cursor position
+  return []
 endfunction
 
 "
@@ -95,9 +106,9 @@ function s:handler.onComplete(patternSet)
 endfunction
 
 "
-function s:handler.onOpen(expr, mode)
+function s:handler.onOpen(word, mode)
   call fuf#prejump(a:mode)
-  call filter(self.items, 'v:val.word ==# a:expr')
+  call filter(self.items, 'v:val.word ==# a:word')
   if !empty(self.items)
     execute 'cc ' . self.items[0].index
   endif

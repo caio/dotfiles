@@ -69,8 +69,18 @@ function s:handler.getPrompt()
 endfunction
 
 "
+function s:handler.getPreviewHeight()
+  return 0
+endfunction
+
+"
 function s:handler.targetsPath()
   return 0
+endfunction
+
+"
+function s:handler.makePreviewLines(word)
+  return []
 endfunction
 
 "
@@ -80,11 +90,11 @@ function s:handler.onComplete(patternSet)
 endfunction
 
 "
-function s:handler.onOpen(expr, mode)
-  if a:expr[0] =~ '[:/?]'
-    call histadd(a:expr[0], a:expr[1:])
+function s:handler.onOpen(word, mode)
+  if a:word[0] =~ '[:/?]'
+    call histadd(a:word[0], a:word[1:])
   endif
-  call feedkeys(a:expr . "\<CR>", 'n')
+  call feedkeys(a:word . "\<CR>", 'n')
 endfunction
 
 "

@@ -85,8 +85,21 @@ function s:handler.getPrompt()
 endfunction
 
 "
+function s:handler.getPreviewHeight()
+  return g:fuf_previewHeight
+endfunction
+
+"
 function s:handler.targetsPath()
   return 0
+endfunction
+
+" 'cmd' is '/hoge' or line number
+function s:handler.makePreviewLines(word)
+  " TODO show around the last cursor position
+  "      if only one tag is matched
+  let tags = taglist('^' . a:word . '$')
+  return map(tags, 'v:val.filename . ":\t" . v:val.cmd')
 endfunction
 
 "
@@ -97,8 +110,8 @@ function s:handler.onComplete(patternSet)
 endfunction
 
 "
-function s:handler.onOpen(expr, mode)
-  call fuf#openTag(a:expr, a:mode)
+function s:handler.onOpen(word, mode)
+  call fuf#openTag(a:word, a:mode)
 endfunction
 
 "
