@@ -98,20 +98,20 @@ function s:handler.targetsPath()
 endfunction
 
 "
-function s:handler.makePreviewLines(word)
-  if !filereadable(expand(a:word))
-    return []
-  endif
-  " TODO show around the last cursor position
-  return readfile(expand(a:word), '', self.getPreviewHeight())
+function s:handler.makePatternSet(patternBase)
+  return fuf#makePatternSet(a:patternBase, 's:parsePrimaryPatternForPathTail',
+        \                   self.partialMatching)
 endfunction
 
 "
-function s:handler.onComplete(patternSet)
-  let items = s:enumNonCurrentItems(
-        \ fuf#splitPath(a:patternSet.raw).head, self.bufNrPrev, self.cache)
-  return fuf#filterMatchesAndMapToSetRanks(
-        \ items, a:patternSet, self.getFilteredStats(a:patternSet.raw))
+function s:handler.makePreviewLines(word, count)
+  return fuf#makePreviewLinesForFile(a:word, count, self.getPreviewHeight())
+endfunction
+
+"
+function s:handler.getCompleteItems(patternPrimary)
+  return s:enumNonCurrentItems(
+        \ fuf#splitPath(a:patternPrimary).head, self.bufNrPrev, self.cache)
 endfunction
 
 "

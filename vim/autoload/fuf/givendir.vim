@@ -70,7 +70,7 @@ endfunction
 
 "
 function s:handler.getPreviewHeight()
-  return 0
+  return g:fuf_previewHeight
 endfunction
 
 "
@@ -79,14 +79,22 @@ function s:handler.targetsPath()
 endfunction
 
 "
-function s:handler.makePreviewLines(word)
-  return []
+function s:handler.makePatternSet(patternBase)
+  return fuf#makePatternSet(a:patternBase, 's:parsePrimaryPatternForPath',
+        \                   self.partialMatching)
 endfunction
 
 "
-function s:handler.onComplete(patternSet)
-  return fuf#filterMatchesAndMapToSetRanks(
-        \ s:items, a:patternSet, self.getFilteredStats(a:patternSet.raw))
+function s:handler.makePreviewLines(word, count)
+  return fuf#makePreviewLinesAround(
+        \ split(glob(fnamemodify(a:word, ':p') . '*'), "\n"),
+        \ [], a:count, self.getPreviewHeight())
+  return 
+endfunction
+
+"
+function s:handler.getCompleteItems(patternPrimary)
+  return s:items
 endfunction
 
 "

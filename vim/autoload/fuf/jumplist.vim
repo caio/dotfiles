@@ -69,6 +69,8 @@ function s:parseJumpsLine(line, bufnrPrev)
   return  {
         \   'prefix': elements[1],
         \   'count' : elements[2],
+        \   'lnum'  : elements[3],
+        \   'fname' : fname,
         \   'text'  : printf('%s|%d:%d|%s', fname, elements[3], elements[4], text),
         \ }
 endfunction
@@ -81,6 +83,8 @@ function s:makeItem(line, bufnrPrev)
   endif
   let item = fuf#makeNonPathItem(parsed.text, '')
   let item.abbrPrefix = parsed.prefix
+  let item.lnum = parsed.lnum
+  let item.fname = parsed.fname
   return item
 endfunction
 
@@ -111,15 +115,25 @@ function s:handler.targetsPath()
 endfunction
 
 "
-function s:handler.makePreviewLines(word)
-  " TODO show around the last cursor position
-  return []
+function s:handler.makePatternSet(patternBase)
+  return fuf#makePatternSet(a:patternBase, 's:parsePrimaryPatternForNonPath',
+        \                   self.partialMatching)
 endfunction
 
 "
-function s:handler.onComplete(patternSet)
-  return fuf#filterMatchesAndMapToSetRanks(
-        \ self.items, a:patternSet, self.getFilteredStats(a:patternSet.raw))
+function s:handler.makePreviewLines(word, count)
+  let items = filter(copy(self.items), 'v:val.word ==# a:word')
+  if empty(items)
+    return []
+  endif
+  let lines = fuf#getFileLines(items[0].fname)
+  return fuf#makePreviewLinesAround(
+        \ lines, [items[0].lnum - 1], a:count, self.getPreviewHeight())
+endfunction
+
+"
+function s:handler.getCompleteItems(patternPrimary)
+  return self.items
 endfunction
 
 "

@@ -78,6 +78,9 @@ endfunction
 
 "
 function s:handler.getPreviewHeight()
+  if s:forPath
+    return g:fuf_previewHeight
+  endif
   return 0
 endfunction
 
@@ -87,14 +90,24 @@ function s:handler.targetsPath()
 endfunction
 
 "
-function s:handler.makePreviewLines(word)
+function s:handler.makePatternSet(patternBase)
+  let parser = (s:forPath
+        \       ? 's:parsePrimaryPatternForPath'
+        \       : 's:parsePrimaryPatternForNonPath')
+  return fuf#makePatternSet(a:patternBase, parser, self.partialMatching)
+endfunction
+
+"
+function s:handler.makePreviewLines(word, count)
+  if s:forPath
+    return fuf#makePreviewLinesForFile(a:word, count, self.getPreviewHeight())
+  endif
   return []
 endfunction
 
 "
-function s:handler.onComplete(patternSet)
-  return fuf#filterMatchesAndMapToSetRanks(
-        \ s:items, a:patternSet, self.getFilteredStats(a:patternSet.raw))
+function s:handler.getCompleteItems(patternPrimary)
+  return s:items
 endfunction
 
 "

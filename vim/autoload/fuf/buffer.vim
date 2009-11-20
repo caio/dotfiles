@@ -124,19 +124,23 @@ function s:handler.targetsPath()
 endfunction
 
 "
-function s:handler.makePreviewLines(word)
-  let item = s:findItem(self.items, a:word)
-  if !empty(item)
-    " TODO show around the last cursor position
-    return getbufline(item.bufNr, 1, 10)
-  endif
-  return []
+function s:handler.makePatternSet(patternBase)
+  return fuf#makePatternSet(a:patternBase, 's:parsePrimaryPatternForPath',
+        \                   self.partialMatching)
 endfunction
 
 "
-function s:handler.onComplete(patternSet)
-  return fuf#filterMatchesAndMapToSetRanks(
-        \ self.items, a:patternSet, self.getFilteredStats(a:patternSet.raw))
+function s:handler.makePreviewLines(word, count)
+  let item = s:findItem(self.items, a:word)
+  if empty(item)
+    return []
+  endif
+  return fuf#makePreviewLinesForFile(item.bufNr, count, self.getPreviewHeight())
+endfunction
+
+"
+function s:handler.getCompleteItems(patternPrimary)
+  return self.items
 endfunction
 
 "

@@ -76,9 +76,9 @@ function s:getMatchingLineNumber(lines, pattern, lnumBegin)
   let l = min([a:lnumBegin, len(a:lines)])
   for [l0, l1] in map(range(0, g:fuf_bookmark_searchRange),
         \             '[l + v:val, l - v:val]')
-    if l0 <= len(a:lines) && a:lines[l0 - 1] =~ a:pattern
+    if l0 <= len(a:lines) && a:lines[l0 - 1] =~# a:pattern
       return l0
-    elseif l1 >= 0 && a:lines[l1 - 1] =~ a:pattern
+    elseif l1 >= 0 && a:lines[l1 - 1] =~# a:pattern
       return l1
     endif
   endfor
@@ -97,8 +97,8 @@ function s:bookmarkHere(word)
     return
   endif
   let item = {
-        \   'word' : (a:word =~ '\S' ? substitute(a:word, '\n', ' ', 'g')
-        \                            : pathshorten(expand('%:p:~')) . '|' . line('.') . '| ' . getline('.')),
+        \   'word' : (a:word =~# '\S' ? substitute(a:word, '\n', ' ', 'g')
+        \                             : pathshorten(expand('%:p:~')) . '|' . line('.') . '| ' . getline('.')),
         \   'path' : expand('%:p'),
         \   'lnum' : line('.'),
         \   'pattern' : s:getLinePattern(line('.')),
@@ -151,20 +151,26 @@ function s:handler.targetsPath()
 endfunction
 
 "
-function s:handler.makePreviewLines(word)
+function s:handler.makePatternSet(patternBase)
+  return fuf#makePatternSet(a:patternBase, 's:parsePrimaryPatternForNonPath',
+        \                   self.partialMatching)
+endfunction
+
+"
+function s:handler.makePreviewLines(word, count)
   let item = s:findItem(self.info.data, a:word)
   let lines = fuf#getFileLines(item.path)
   if empty(lines)
     return []
   endif
-  let lnum = s:getMatchingLineNumber(lines, item.pattern, item.lnum)
-  return fuf#makePreviewLinesAround(lines, lnum, self.getPreviewHeight())
+  let index = s:getMatchingLineNumber(lines, item.pattern, item.lnum) - 1
+  return fuf#makePreviewLinesAround(
+        \ lines, [index], a:count, self.getPreviewHeight())
 endfunction
 
 "
-function s:handler.onComplete(patternSet)
-  return fuf#filterMatchesAndMapToSetRanks(
-        \ self.items, a:patternSet, self.getFilteredStats(a:patternSet.raw))
+function s:handler.getCompleteItems(patternPrimary)
+  return self.items
 endfunction
 
 "
