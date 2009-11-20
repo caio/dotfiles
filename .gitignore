@@ -1,0 +1,4 @@
+*.pyc
+ipython/db/*
+ipython/history
+fonts/fonts.dir
