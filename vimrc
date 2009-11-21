@@ -85,7 +85,8 @@ nmap <silent><leader>d :FufDir<CR>
 nnoremap <leader>g :FufFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
 
 " List trailing chars
-set listchars=tab:>-,trail:·,eol:$
+set listchars=tab:\➜\ ,trail:·,nbsp:-
+
 nmap <silent> <leader>s :set nolist!<CR>
 
 " Strip trailing whitespace

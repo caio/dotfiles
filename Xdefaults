@@ -4,95 +4,67 @@ Xft.rgba: rgb
 Xft.hintstyle: hintfull
 Xft.hinting: true
 
-! Xterm
+! Terms
+
+
+! terminals
+
+!urxvt*termName:  xterm
+*xftAntialias: true
+*geometry: 80x20
+*tintColor: #dfdfdf
+*font: xft:Envy\ Code\ R:pixelsize=13
+*scrollBar: false
+*scrollBar_floating: true
+*scrollBar_right: false
+*scrollColor:  #000000
+*urllauncher: chromium-browser
+*matcher.button: 3
+*saveLines: 8192
+*cursorColor:  #d8d8d8
+*colorBD:  lightyellow
+*colorUL:  yellow
+
+*background : #000000
+*foreground : #f2f2f2
+
+! Black
+*color8     : #686868
+*color0     : #000000
+! Red
+*color9     : #e52222
+*color1     : #de2121
+! Green
+*color10   : #a6e326
+*color2    : #9fd529
+! Yellow
+*color11   : #fc941d
+*color3    : #dd821a
+! Blue
+*color12   : #c48dff
+*color4    : #9d72ce
+! Purple
+*color13   : #fa2473
+*color5    : #dd2065
+! Cyan
+*color14   : #66d9f0
+*color6    : #5cc6d8
+! White
+*color15   : #f2f2f2
+*color7    : #d5d5d5
+
+! urxvt options
+urxvt.perl-ext-common: default,matcher
+
+! xterm options
 
 xterm*underLine: on
 xterm*colorMode: on
-xterm*colorBD: lightyellow
-!xterm*colorBDMode: off
-xterm*colorUL: yellow
 xterm*colorULMode: on
 xterm*dynamicColors: off
 xterm*highlightSelection: true
 xterm*faceName: Terminus
 xterm*faceSize: 8
-xterm*geometry: 80x20
-xterm*scrollBar: false
-
-xterm*background : #000000
-xterm*foreground : #f2f2f2
-! Black
-xterm*color8     : #686868
-xterm*color0     : #000000
-! Red
-xterm*color9     : #e52222
-xterm*color1     : #de2121
-! Green
-xterm*color10   : #a6e326
-xterm*color2    : #9fd529
-! Yellow
-xterm*color11   : #fc941d
-xterm*color3    : #dd821a
-! Blue
-xterm*color12   : #c48dff
-xterm*color4    : #9d72ce
-! Purple
-xterm*color13   : #fa2473
-xterm*color5    : #dd2065
-! Cyan
-xterm*color14   : #66d9f0
-xterm*color6    : #5cc6d8
-! White
-xterm*color15   : #f2f2f2
-xterm*color7    : #d5d5d5
-
-
-! urxvt
-
-!urxvt*termName:  xterm
-urxvt*xftAntialias: true
-urxvt*geometry: 80x20
-urxvt*tintColor: #dfdfdf
-! urxvt*font: xft:Envy\ Code\ R:pixelsize=14
-urxvt*font: xft:Inconsolata:pixelsize=14
-urxvt.perl-ext-common: default,matcher
-urxvt*scrollBar: false
-urxvt*scrollBar_floating: true
-urxvt*scrollBar_right: false
-urxvt*scrollColor:  #000000
-urxvt*urllauncher: firefox
-urxvt*matcher.button: 3
-urxvt*saveLines: 8192
-urxvt*cursorColor:  #d8d8d8
-urxvt*colorBD:  lightyellow
-urxvt*colorUL:  yellow
-
-urxvt*background : #000000
-urxvt*foreground : #f2f2f2
-! Black
-urxvt*color8     : #686868
-urxvt*color0     : #000000
-! Red
-urxvt*color9     : #e52222
-urxvt*color1     : #de2121
-! Green
-urxvt*color10   : #a6e326
-urxvt*color2    : #9fd529
-! Yellow
-urxvt*color11   : #fc941d
-urxvt*color3    : #dd821a
-! Blue
-urxvt*color12   : #c48dff
-urxvt*color4    : #9d72ce
-! Purple
-urxvt*color13   : #fa2473
-urxvt*color5    : #dd2065
-! Cyan
-urxvt*color14   : #66d9f0
-urxvt*color6    : #5cc6d8
-! White
-urxvt*color15   : #f2f2f2
-urxvt*color7    : #d5d5d5
 
 ! NEDIT
 
@@ -113,3 +85,4 @@ nedit*topShadowColor:          #fefefe
 nedit*XmText.background:       white
 nedit*XmTextField.background:  white
 nedit*XmList.background:       white
+
