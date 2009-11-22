@@ -96,7 +96,7 @@ nmap <silent><leader>ws :%s/\s\+$//g<CR>
 function! s:SmartHome()
     let ll = strpart(getline('.'), -1, col('.'))
     if ll =~ '^\s\+$' | normal! 0
-    else	      | normal! ^
+    else | normal! ^
     endif
 endfunction
 inoremap <silent><HOME> <C-O>:call <SID>SmartHome()<CR>
@@ -165,10 +165,15 @@ au! BufRead,BufNewFile *.pdc set ft=pdc
 au! BufRead,BufNewFile *.spim set ft=mips
 
 " OmniCPPComplete settings
-" let OmniCpp_GlobalScopeSearch = 1
-" let OmniCpp_NamespaceSearch = 2
-" let OmniCpp_ShowPrototypeInAbbr = 1
-" let OmniCpp_SelectFirstItem = 2
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_SelectFirstItem = 2
+let OmniCpp_MayCompleteDot = 1 " autocomplete with .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
+let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
+let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype
+
 
 " Close the preview window automatically
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
