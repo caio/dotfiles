@@ -129,20 +129,6 @@ alias ad='ls -A -d */'
 alias a='ls -d .*'
 alias dc=popd
 alias d='dirs -v'
-
-# This makes pushd behave like cd when no argument is passed
-function cdpushd()
-{
-    if [ -n "$1" ]
-    then
-        [[ $1 != "." ]] && pushd "$*"
-    else
-        [ "$(pwd)" != "$HOME" ] && pushd ~
-    fi
-}
-
-alias cd=cdpushd
-alias cdd='cd -'
 alias cpptags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 
 
