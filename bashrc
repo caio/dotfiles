@@ -122,12 +122,11 @@ alias rm='rm -i'
 alias j='jobs'
 alias h='history'
 alias grep='egrep'
-alias ls='ls --color=tty --time-style=iso -h -F --quoting-style=escape'
+alias ls='ls --color=tty --time-style=iso -h -F --quoting-style=escape --group-directories-first'
 alias l='ls -lh'
 alias la='ls -lhA'
 alias ad='ls -A -d */'
 alias a='ls -d .*'
-alias dc=popd
 alias d='dirs -v'
 alias cpptags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 
