@@ -61,7 +61,7 @@ bash_prompt_cmd() {
     local PK="\[\e[35;40m\]"
     local GR="\[\e[32;40m\]"
     local WH="\[\e[37;40m\]"
-    local YE="\[\e[1;33m\]"
+    local GR="\[\e[1;30m\]"
 
     local ps_len=0
     local RET=""
@@ -85,7 +85,7 @@ bash_prompt_cmd() {
 
     local REMOTE=""
     if [ -n "$SSH_CLIENT" ]; then
-        REMOTE="${YE}$(hostname -s) "
+        REMOTE="${GR}$(hostname -s) "
         ps_len=$((ps_len + ${#REMOTE} - 12))
     fi
 
