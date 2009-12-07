@@ -85,7 +85,7 @@ bash_prompt_cmd() {
 
     local REMOTE=""
     if [ -n "$SSH_CLIENT" ]; then
-        REMOTE="${YE}$(hostname) "
+        REMOTE="${YE}$(hostname -s) "
         ps_len=$((ps_len + ${#REMOTE} - 12))
     fi
 
