@@ -61,6 +61,7 @@ bash_prompt_cmd() {
     local PK="\[\e[35;40m\]"
     local GR="\[\e[32;40m\]"
     local WH="\[\e[37;40m\]"
+    local YE="\[\e[1;33m\]"
 
     local ps_len=0
     local RET=""
@@ -80,6 +81,12 @@ bash_prompt_cmd() {
     then
         VENVSTATUS="${OR}·${envname}· "
         ps_len=$((ps_len + ${#envname} - 12 - 2))
+    fi
+
+    local REMOTE=""
+    if [ -n "$SSH_CLIENT" ]; then
+        REMOTE="${YE}$(hostname) "
+        ps_len=$((ps_len + ${#REMOTE} - 12))
     fi
 
     __vcs_dir
@@ -106,7 +113,7 @@ bash_prompt_cmd() {
         PROMPT_PWD="${overflow_prefix}${PROMPT_PWD:$startpos:$maxpwdlen}"
     fi
 
-    export PS1="${BL}${PROMPT_PWD}${PS1_T1}${PS1_T2}"
+    export PS1="${REMOTE}${BL}${PROMPT_PWD}${PS1_T1}${PS1_T2}"
 }
 PROMPT_COMMAND=bash_prompt_cmd
 
