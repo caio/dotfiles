@@ -48,6 +48,9 @@ set noerrorbells
 set novisualbell
 set foldmethod=marker
 set completeopt=menu,preview,longest,menuone
+" reducing noise
+set more
+set cmdheight=2
 
 if has("gui_running")
     set guifont=Envy\ Code\ R\ 10
