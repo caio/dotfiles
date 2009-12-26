@@ -76,6 +76,12 @@ imap <silent><leader>n <C-o>:bn<CR>
 imap  
 nmap  
 
+" Better navigation when 'wrap' is on
+nmap k gk
+nmap <Up> gk
+nmap j gj
+nmap <Down> gj
+
 nmap <F7> :setlocal spell! spelllang=en<CR>
 imap <F7> <C-o>:setlocal spell! spelllang=en<CR>
 nmap <F8> :setlocal spell! spelllang=pt_br<CR>
