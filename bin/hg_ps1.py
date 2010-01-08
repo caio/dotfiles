@@ -24,15 +24,15 @@ COLOR_STATUS = '\[\e[1;35m\]'
 
 def main():
     import sys
+    from os.path import realpath
     from mercurial import ui, hg, error
+    from mercurial.dispatch import _findrepo as findrepo
 
     u = ui.ui()  # get a ui object
-    try:
-      # get a repository object for the current dir
-      r = hg.repository(u, ".")
-    except error.RepoError:
-      # exit if we're not in a repository
-      sys.exit(1)
+    repo = findrepo(realpath('.'))
+    if repo is None:
+        sys.exit(1)
+    r = hg.repository(u, repo)
 
     # Let's check for local branches
     if hasattr(r, 'getlocalbranch') and hasattr(r, 'loadlocalbranch'):
