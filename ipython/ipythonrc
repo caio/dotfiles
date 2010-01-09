@@ -93,7 +93,7 @@ autocall 1
 # a file with syntax errors in it.  If this variable is true, IPython will ask
 # you whether to re-open the editor immediately to correct such an error.
 
-autoedit_syntax 0
+autoedit_syntax 1
 
 # Auto-indent. IPython can recognize lines ending in ':' and indent the next
 # line, while also un-indenting automatically after 'raise' or 'return'.  
@@ -193,7 +193,7 @@ color_info 1
 # the magic functions %Exit or %Quit you can force a direct exit, bypassing
 # any confirmation.
 
-confirm_exit 1
+confirm_exit 0
 
 # Use deep_reload() as a substitute for reload() by default. deep_reload() is
 # still available as dreload() and appears as a builtin.
@@ -219,7 +219,7 @@ log 0
 logfile ''
 
 # banner 0 -> same as ipython -nobanner
-banner 1
+banner 0
 
 # messages 0 -> same as ipython -nomessages
 messages 1
@@ -243,13 +243,13 @@ pprint 1
 
 # Use \# to represent the current prompt number, and quote them to protect
 # spaces.
-prompt_in1 'In [\#]: '
+prompt_in1 '[\#]: '
 
 # \D is replaced by as many dots as there are digits in the
 # current value of \#.
-prompt_in2 '   .\D.: '
+prompt_in2 '.\D.: '
 
-prompt_out 'Out[\#]: '
+prompt_out '>>> '
 
 # Select whether to left-pad the output prompts to match the length of the
 # input ones.  This allows you for example to use a simple '>' as an output
@@ -477,7 +477,7 @@ readline_merge_completions 1
 # This option is off by default so that new users see all attributes of any
 # objects they are dealing with.
 
-readline_omit__names 0
+readline_omit__names 2
 
 #---------------------------------------------------------------------------
 # Section: modules to be loaded with 'import ...'
