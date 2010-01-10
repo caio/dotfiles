@@ -61,11 +61,18 @@ if has("gui_running")
     nmap <silent><A-+> :call LargerFont()<CR>
     nmap <silent><A--> :call SmallerFont()<CR>
     " Remove GUI
-    set guioptions=a
+    set guioptions=aAe
+    set guitablabel=%(%m\ %)%f
 else
     set t_Co=256
     colorscheme herald
 endif
+
+" Faster tab navigation
+nmap <silent><C-Tab> gt
+imap <silent><C-Tab> <C-O>gt
+nmap <silent><C-S-Tab> gT
+imap <silent><C-S-Tab> <C-O>gT
 
 nmap <silent> <F3> :silent nohlsearch<CR>
 imap <silent> <F3> <C-o>:silent nohlsearch<CR>
@@ -95,7 +102,6 @@ nnoremap <leader>g :FufFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR
 
 " List trailing chars
 set listchars=tab:\➜\ ,trail:·,nbsp:-
-
 nmap <silent> <leader>s :set nolist!<CR>
 
 " Strip trailing whitespace
