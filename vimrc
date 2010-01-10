@@ -98,7 +98,8 @@ imap <F8> <C-o>:setlocal spell! spelllang=pt_br<CR>
 nmap <silent><leader>f :FufFile<CR>
 nmap <silent><leader>t :FufTag<CR>
 nmap <silent><leader>d :FufDir<CR>
-nnoremap <leader>g :FufFile <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+imap <silent><F2> <C-O>:FufBuffer<CR>
+nmap <silent><F2> :FufBuffer<CR>
 
 " List trailing chars
 set listchars=tab:\➜\ ,trail:·,nbsp:-
@@ -116,10 +117,6 @@ function! s:SmartHome()
 endfunction
 inoremap <silent><HOME> <C-O>:call <SID>SmartHome()<CR>
 nnoremap <silent><HOME> :call <SID>SmartHome()<CR>
-
-" Buffer Explorer
-imap <F2> <C-O><leader>be
-nmap <F2> <leader>be
 
 " Supertab
 let g:SuperTabDefaultCompletionType='context'
