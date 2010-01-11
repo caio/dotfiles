@@ -1,6 +1,7 @@
 # plain .bashrc - should work on any Linux environment
 # assembled by: Caio Romão <caioromao@gmail.com>
 
+# {{{ *PATH variables helpers
 pathremove () {
     local IFS=':'
     local NEWPATH
@@ -27,6 +28,7 @@ pathappend () {
 }
 
 alias pwdappend='pathappend $(pwd)'
+# }}}
 
 # disabling flow control
 stty -ixon -ixoff
@@ -45,12 +47,13 @@ stty -ixon -ixoff
 # Custom completion for '~/src'
 . ~/.source/projects_complete.sh
 
-# EXPORTS
+# {{{ EXPORTS
 export GWT_EXTERNAL_BROWSER="firefox"
 export EDITOR="vim"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
+# }}}
 
-# PROMPT
+# {{{ Bash Prompt
 # credits to B-Con from ArchLinux forums for this :)
 bash_prompt_cmd() {
     local RETVAL=$?
@@ -116,12 +119,9 @@ bash_prompt_cmd() {
     export PS1="${REMOTE}${BL}${PROMPT_PWD}${PS1_T1}${PS1_T2}"
 }
 PROMPT_COMMAND=bash_prompt_cmd
+# }}}
 
-
-###########
-# Aliases #
-###########
-
+# {{{ Aliases
 alias c='clear'
 alias mv='mv -i'
 alias cp=' cp -i'
@@ -136,22 +136,17 @@ alias ad='ls -A -d */'
 alias a='ls -d .*'
 alias d='dirs -v'
 alias cpptags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
+# }}}
 
-
-###########
-# History #
-###########
-
+# {{{ History
 export HISTSIZE=4000
 export HISTFILESIZE=4000
 export HISTIGNORE="ls:l:c:clear:d:cd:dc:bg:fg"
 export HISTCONTROL=erasedups
 export HISTTIMEFORMAT='%m%d %H%M: '
+# }}}
 
-
-#############
-# Mercurial #
-#############
+# {{{ Mercurial
 
 # Opens vim in diff mode comparing the current version with
 # the one versioned
@@ -159,18 +154,20 @@ function hgdiff()
 {
     hg cat $1 | gvim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>";
 }
+# }}}
 
 ##########################################################################
 # Add sources bellow this comment to avoid replacing of the new commands #
 ##########################################################################
 
-# Virtualenv wrapper
+# {{{ Virtualenv wrapper
 WORKON_HOME=${HOME}/.virtualenvs
 if [ -f ~/.source/virtualenvwrapper_bashrc ]
 then
     export WORKON_HOME
     . ~/.source/virtualenvwrapper_bashrc
 fi
+# }}}
 
 # KDE's development script
 [ -f ~/.source/kdedevrc ] && [ -d ~/src/kde ] && . ~/.source/kdedevrc
