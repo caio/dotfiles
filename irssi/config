@@ -28,9 +28,8 @@ channels = (
   { name = "#kde-devel"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#ltcbr"; chatnet = "bluenet"; autojoin = "yes"; },
   { name = "#ltcunicamp"; chatnet = "bluenet"; autojoin = "yes"; },
+  { name = "#powerpack"; chatnet = "bluenet"; autojoin = "yes"; },
   { name = "#devdrivers"; chatnet = "bluenet"; autojoin = "yes"; },
-  { name = "#ecm"; chatnet = "bluenet"; autojoin = "yes"; },
-  { name = "#ecm-sst"; chatnet = "bluenet"; autojoin = "yes"; },
   { name = "#ltc-kernel"; chatnet = "bluenet"; autojoin = "yes"; },
   { name = "#kernel-br"; chatnet = "bluenet"; autojoin = "yes"; }
 );
