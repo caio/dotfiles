@@ -223,6 +223,7 @@ settings = {
     beep_when_away = "no";
     autocreate_windows = "yes";
     show_own_nickchange_once = "yes";
+    window_history = "yes";
   };
   "irc/core" = {
     alternate_nick = "errado";
@@ -243,5 +244,6 @@ settings = {
 hilights = (
   { text = "rcaio"; nick = "yes"; word = "yes"; },
   { text = "romao"; nick = "yes"; word = "yes"; },
-  { text = "caio"; nick = "yes"; word = "yes"; },
+  { text = "caio"; nick = "yes"; word = "yes"; }
 );
+logs = { };
