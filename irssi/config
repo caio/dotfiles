@@ -206,7 +206,7 @@ settings = {
   "fe-text" = { actlist_sort = "refnum"; paste_verify_line_count = "3"; };
   "fe-common/core" = {
     theme = "default";
-    autolog_path = "~/.logs/irc/$tag/$0.%m-%d.log";
+    autolog_path = "~/.logs/irc/$tag/%Y.%m.%d-$0.log";
     autolog = "yes";
     autocreate_own_query = "yes";
     autoclose_query = "300";
