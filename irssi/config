@@ -224,6 +224,7 @@ settings = {
     autocreate_windows = "yes";
     show_own_nickchange_once = "yes";
     window_history = "yes";
+    awaylog_colors = "no";
   };
   "irc/core" = {
     alternate_nick = "errado";
