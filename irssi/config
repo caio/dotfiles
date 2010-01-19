@@ -12,6 +12,20 @@ servers = (
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
+  },
+  {
+    address = "rochester.irc.ibm.com";
+    chatnet = "bluenet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+  },
+  {
+    address = "austin.irc.ibm.com";
+    chatnet = "bluenet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
   }
 );
 
