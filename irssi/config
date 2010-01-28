@@ -36,10 +36,8 @@ chatnets = {
 
 channels = (
   { name = "#gpsl"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#git"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#mercurial"; chatnet = "freenode"; autojoin = "yes"; },
-  { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#kde-devel"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#fedora-devel"; chatnet = "freenode"; autojoin = "yes"; },
   { name = "#ltcbr"; chatnet = "bluenet"; autojoin = "yes"; },
   { name = "#ltcunicamp"; chatnet = "bluenet"; autojoin = "yes"; },
   { name = "#powerpack"; chatnet = "bluenet"; autojoin = "yes"; },
