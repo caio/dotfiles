@@ -16,15 +16,15 @@ servers = (
   {
     address = "rochester.irc.ibm.com";
     chatnet = "bluenet";
-    port = "6667";
-    use_ssl = "no";
+    port = "9999";
+    use_ssl = "yes";
     ssl_verify = "no";
   },
   {
     address = "austin.irc.ibm.com";
     chatnet = "bluenet";
-    port = "6667";
-    use_ssl = "no";
+    port = "9999";
+    use_ssl = "yes";
     ssl_verify = "no";
   }
 );
