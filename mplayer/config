@@ -3,7 +3,9 @@ alang=jp,jpn
 
 ass=1
 embeddedfonts=1
-subfont-autoscale=1
+subfont-autoscale=0
+subfont-text-scale=50
+#ass-font-scale=2
 
 spualign=-1
 spuaa=4
