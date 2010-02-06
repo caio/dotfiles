@@ -211,6 +211,10 @@ let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+" Enabling Django snippets
+autocmd FileType python set ft=python.django
+autocmd FileType html set ft=html.django_template
+
 
 " {{{ statusline
 set laststatus=2
