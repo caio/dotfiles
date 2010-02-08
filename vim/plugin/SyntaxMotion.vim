@@ -65,7 +65,7 @@ function! SyntaxMotion(dir, mode, count)
   endif
 endfunction
 
-nnoremap <silent> <Leader><left>  :<c-u>call SyntaxMotion('f', 'n', v:count1)<cr>
-vnoremap <silent> <Leader><left>  :<c-u>call SyntaxMotion('f', 'v', v:count1)<cr>
-nnoremap <silent> <Leader><right> :<c-u>call SyntaxMotion('b', 'n', v:count1)<cr>
-vnoremap <silent> <Leader><right> :<c-u>call SyntaxMotion('b', 'v', v:count1)<cr>
+nnoremap <silent> <Leader>h  :<c-u>call SyntaxMotion('f', 'n', v:count1)<cr>
+vnoremap <silent> <Leader>h  :<c-u>call SyntaxMotion('f', 'v', v:count1)<cr>
+nnoremap <silent> <Leader>l :<c-u>call SyntaxMotion('b', 'n', v:count1)<cr>
+vnoremap <silent> <Leader>l :<c-u>call SyntaxMotion('b', 'v', v:count1)<cr>
