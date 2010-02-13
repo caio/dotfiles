@@ -1,23 +1,47 @@
+# -*- mode: shell-script -*-
 #
 # Shell functions to act as wrapper for Ian Bicking's virtualenv
 # (http://pypi.python.org/pypi/virtualenv)
 #
-
+#
+# Copyright Doug Hellmann, All Rights Reserved
+#
+# Permission to use, copy, modify, and distribute this software and its
+# documentation for any purpose and without fee is hereby granted,
+# provided that the above copyright notice appear in all copies and that
+# both that copyright notice and this permission notice appear in
+# supporting documentation, and that the name of Doug Hellmann not be used
+# in advertising or publicity pertaining to distribution of the software
+# without specific, written prior permission.
+#
+# DOUG HELLMANN DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+# INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+# EVENT SHALL DOUG HELLMANN BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+# CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF
+# USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+# OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+# PERFORMANCE OF THIS SOFTWARE.
+#
+#
+# Project home page: http://www.doughellmann.com/projects/virtualenvwrapper/
+#
 #
 # Setup:
 #
-#  1. Add a line like "export WORKON_HOME=$HOME/.virtualenvs"
+#  1. Create a directory to hold the virtual environments.
+#     (mkdir $HOME/.virtualenvs).
+#  2. Add a line like "export WORKON_HOME=$HOME/.virtualenvs"
 #     to your .bashrc.
-#  2. Add a line like "source /path/to/this/file/virtualenvwrapper_bashrc"
+#  3. Add a line like "source /path/to/this/file/virtualenvwrapper_bashrc"
 #     to your .bashrc.
-#  3. Run: source ~/.bashrc
-#  4. Run: workon
-#  5. A list of environments, empty, is printed.
-#  6. Run: mkvirtualenv temp
-#  7. Run: workon
-#  8. This time, the "temp" environment is included.
-#  9. Run: workon temp
-# 10. The virtual environment is activated.
+#  4. Run: source ~/.bashrc
+#  5. Run: workon
+#  6. A list of environments, empty, is printed.
+#  7. Run: mkvirtualenv temp
+#  8. Run: workon
+#  9. This time, the "temp" environment is included.
+# 10. Run: workon temp
+# 11. The virtual environment is activated.
 #
 
 # Make sure there is a default value for WORKON_HOME.
@@ -29,7 +53,7 @@ fi
 
 # Normalize the directory name in case it includes 
 # relative path components.
-WORKON_HOME=$(sh -c 'cd "$WORKON_HOME" &>/dev/null; pwd')
+WORKON_HOME=$(python -c "import os; print os.path.abspath(os.path.expandvars(os.path.expanduser(\"$WORKON_HOME\")))")
 export WORKON_HOME
 
 # Verify that the WORKON_HOME directory exists
@@ -37,6 +61,71 @@ function virtualenvwrapper_verify_workon_home () {
     if [ ! -d "$WORKON_HOME" ]
     then
         echo "ERROR: Virtual environments directory '$WORKON_HOME' does not exist." >&2
+        return 1
+    fi
+    return 0
+}
+
+# Create a hook script
+#
+# Usage: virtualenvwrapper_make_hook filename comment
+#
+function virtualenvwrapper_make_hook () {
+    filename="$1"
+    comment="$2"
+    if [ ! -f "$filename" ]
+    then
+        #echo "Creating $filename"
+        cat - > "$filename" <<EOF
+#!/bin/sh
+# $comment
+
+EOF
+    fi
+    if [ ! -x "$filename" ]
+    then
+        chmod +x "$filename"
+    fi
+}
+
+# Set up virtualenvwrapper properly
+function virtualenvwrapper_initialize () {
+    virtualenvwrapper_verify_workon_home || return 1
+    # mkvirtualenv
+    virtualenvwrapper_make_hook "$WORKON_HOME/premkvirtualenv" \
+        "This hook is run after a new virtualenv is created and before it is activated."
+    virtualenvwrapper_make_hook "$WORKON_HOME/postmkvirtualenv" \
+        "This hook is run after a new virtualenv is activated."
+    # rmvirtualenv
+    virtualenvwrapper_make_hook "$WORKON_HOME/prermvirtualenv" \
+        "This hook is run before a virtualenv is deleted."
+    virtualenvwrapper_make_hook "$WORKON_HOME/postrmvirtualenv" \
+        "This hook is run after a virtualenv is deleted."
+    # deactivate
+    virtualenvwrapper_make_hook "$WORKON_HOME/predeactivate" \
+        "This hook is run before every virtualenv is deactivated."
+    virtualenvwrapper_make_hook "$WORKON_HOME/postdeactivate" \
+        "This hook is run after every virtualenv is deactivated."
+    # activate
+    virtualenvwrapper_make_hook "$WORKON_HOME/preactivate" \
+        "This hook is run before every virtualenv is activated."
+    virtualenvwrapper_make_hook "$WORKON_HOME/postactivate" \
+        "This hook is run after every virtualenv is activated."
+}
+
+virtualenvwrapper_initialize
+
+# Verify that virtualenv is installed and visible
+function virtualenvwrapper_verify_virtualenv () {
+    venv=$(which virtualenv | grep -v "not found")
+    if [ "$venv" = "" ]
+    then
+        echo "ERROR: virtualenvwrapper could not find virtualenv in your path" >&2
+        return 1
+    fi
+    if [ ! -e "$venv" ]
+    then
+        echo "ERROR: Found virtualenv in path as \"$venv\" but that does not exist" >&2
         return 1
     fi
     return 0
@@ -66,6 +155,7 @@ function virtualenvwrapper_verify_active_environment () {
 # Run a hook script in the current shell
 function virtualenvwrapper_source_hook () {
     scriptname="$1"
+    #echo "Looking for hook $scriptname"
     if [ -f "$scriptname" ]
     then
         source "$scriptname"
@@ -76,9 +166,13 @@ function virtualenvwrapper_source_hook () {
 function virtualenvwrapper_run_hook () {
     scriptname="$1"
     shift
+    #echo "Looking for hook $scriptname"
     if [ -x "$scriptname" ]
     then
         "$scriptname" "$@"
+    elif [ -e "$scriptname" ]
+    then
+        echo "Warning: Found \"$scriptname\" but it is not executable." 1>&2
     fi
 }
 
@@ -90,14 +184,20 @@ function virtualenvwrapper_run_hook () {
 function mkvirtualenv () {
     eval "envname=\$$#"
     virtualenvwrapper_verify_workon_home || return 1
-    (cd "$WORKON_HOME"  &>/dev/null &&
+    virtualenvwrapper_verify_virtualenv || return 1
+    (cd "$WORKON_HOME" &&
         virtualenv "$@" &&
         virtualenvwrapper_run_hook "./premkvirtualenv" "$envname"
         )
     # If they passed a help option or got an error from virtualenv,
     # the environment won't exist.  Use that to tell whether
     # we should switch to the environment and run the hook.
-    [ ! -d "$WORKON_HOME/$envname" ] && unset envname && return 0
+    [ ! -d "$WORKON_HOME/$envname" ] && return 0
+    # Create stubs for the environment-specific hook scripts.
+    virtualenvwrapper_make_hook "$WORKON_HOME/$envname/bin/postactivate" "This hook is sourced after the virtualenv is activated."
+    virtualenvwrapper_make_hook "$WORKON_HOME/$envname/bin/predeactivate" "This hook is sourced before the virtualenv is deactivated."
+    virtualenvwrapper_make_hook "$WORKON_HOME/$envname/bin/postdeactivate" "This hook is sourced after the virtualenv is deactivated."
+    # Now activate the new environment
     workon "$envname"
     virtualenvwrapper_source_hook "$WORKON_HOME/postmkvirtualenv"
 }
@@ -129,7 +229,7 @@ function virtualenvwrapper_show_workon_options () {
     # NOTE: DO NOT use ls here because colorized versions spew control characters
     #       into the output list.
     # echo seems a little faster than find, even with -depth 3.
-    (cd "$WORKON_HOME" &>/dev/null; for f in */bin/activate; do echo $f; done) | sed 's|^\./||' | sed 's|/bin/activate||' | sort
+    (cd "$WORKON_HOME"; for f in */bin/activate; do echo $f; done) 2>/dev/null | sed 's|^\./||' | sed 's|/bin/activate||' | sort
 #    (cd "$WORKON_HOME"; find -L . -depth 3 -path '*/bin/activate') | sed 's|^\./||' | sed 's|/bin/activate||' | sort
 }
 
@@ -163,8 +263,10 @@ function workon () {
     then
         deactivate
     fi
+
+    virtualenvwrapper_run_hook "$WORKON_HOME/preactivate"
+    virtualenvwrapper_run_hook "$WORKON_HOME/$env_name/bin/preactivate"
     
-    envname=$env_name
     source "$activate"
     
     # Save the deactivate function from virtualenv
@@ -187,11 +289,9 @@ function workon () {
 
         virtualenvwrapper_source_hook "$env_postdeactivate_hook"
         virtualenvwrapper_source_hook "$WORKON_HOME/postdeactivate"
-        unset envname
     }'
     
     virtualenvwrapper_source_hook "$WORKON_HOME/postactivate"
-
     virtualenvwrapper_source_hook "$VIRTUAL_ENV/bin/postactivate"    
     
 	return 0
@@ -288,13 +388,13 @@ function add2virtualenv () {
 function cdsitepackages () {
     virtualenvwrapper_verify_active_environment || return 1
     site_packages="`virtualenvwrapper_get_site_packages_dir`"
-    cd "$site_packages" &>/dev/null
+    cd "$site_packages"
 }
 
 # Does a ``cd`` to the root of the currently-active virtualenv.
 function cdvirtualenv () {
     virtualenvwrapper_verify_active_environment || return 1
-    cd $VIRTUAL_ENV/$1 &>/dev/null
+    cd $VIRTUAL_ENV/$1
 }
 
 # Shows the content of the site-packages directory of the currently-active
