@@ -22,7 +22,7 @@ function setup_symlinks
         [ -e $dest ] &&
         echo "$dest exists. " &&
         continue
-        ln -s ${WORKDIR}/$file $dest
+        ln -fs ${WORKDIR}/$file $dest
     done
 }
 
