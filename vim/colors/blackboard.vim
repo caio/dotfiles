@@ -26,6 +26,9 @@ hi StatusLine   guifg=#f6f3e8 guibg=#444444 gui=italic
 hi StatusLineNC guifg=#857b6f guibg=#444444
 hi SpecialKey	guifg=#808080 guibg=#343434 gui=none
 
+" Customizations
+hi Folded term=standout ctermfg=11 ctermbg=8 guifg=white guibg=black
+hi CursorLine term=underline cterm=underline guibg=#090516
 
 hi link Define          Entity
 hi link Function        Entity
