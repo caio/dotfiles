@@ -7,17 +7,17 @@ servers = (
     ssl_verify = "no";
   },
   {
-    address = "brazil.irc.ibm.com";
+    address = "rochester.irc.ibm.com";
     chatnet = "bluenet";
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
   },
   {
-    address = "rochester.irc.ibm.com";
+    address = "brazil.irc.ibm.com";
     chatnet = "bluenet";
-    port = "9999";
-    use_ssl = "yes";
+    port = "6667";
+    use_ssl = "no";
     ssl_verify = "no";
   },
   {
