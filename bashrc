@@ -165,9 +165,13 @@ WORKON_HOME=${HOME}/.virtualenvs
 if [ -f ~/.source/virtualenvwrapper_bashrc ]
 then
     export WORKON_HOME
+    export PIP_VIRTUALENV_BASE=$WORKON_HOME
     . ~/.source/virtualenvwrapper_bashrc
 fi
 # }}}
+
+# Pip completion
+[ -f ~/.source/piprc ] && . ~/.source/piprc
 
 # KDE's development script
 [ -f ~/.source/kdedevrc ] && [ -d ~/src/kde ] && . ~/.source/kdedevrc
