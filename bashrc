@@ -2,7 +2,7 @@
 # assembled by: Caio Romão <caioromao@gmail.com>
 
 # {{{ *PATH variables helpers
-pathremove () {
+pathremove() {
     local IFS=':'
     local NEWPATH
     local DIR
@@ -15,37 +15,51 @@ pathremove () {
     export $PATHVARIABLE="$NEWPATH"
 }
 
-pathprepend () {
+pathprepend() {
     pathremove $1 $2
     local PATHVARIABLE=${2:-PATH}
     export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
 }
 
-pathappend () {
+pathappend() {
     pathremove $1 $2
     local PATHVARIABLE=${2:-PATH}
     export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
 }
 
+do_append() {
+    [ -d $1 ] && pathappend $*
+}
+
+do_prepend() {
+    [ -d $1 ] && pathprepend $*
+}
+
 alias pwdappend='pathappend $(pwd)'
+# }}}
+
+# {{{ Source scripts helper
+do_source() {
+    [ -r $1 ] && . $1
+}
 # }}}
 
 # disabling flow control
 stty -ixon -ixoff
 
 # setting up custom bin-dir
-[ -d ${HOME}/bin ] && pathprepend ${HOME}/bin
+do_prepend ~/bin
 
 # google appengine
-[ -d /opt/google-appengine ] && pathappend /opt/google-appengine
+do_append /opt/google-appengine
 
 # VCS PS1 Command
-. ~/.source/vcsinfo.sh
+do_source ~/.source/vcsinfo.sh
 
 # Bash completion
-[ -e /etc/bash_completion ] && . /etc/bash_completion
+do_source /etc/bash_completion
 # Custom completion for '~/src'
-. ~/.source/projects_complete.sh
+do_source ~/.source/projects_complete.sh
 
 # {{{ EXPORTS
 export GWT_EXTERNAL_BROWSER="firefox"
@@ -171,20 +185,15 @@ fi
 # }}}
 
 # Pip completion
-[ -f ~/.source/piprc ] && . ~/.source/piprc
+do_source ~/.source/piprc
 
 # KDE's development script
-[ -f ~/.source/kdedevrc ] && [ -d ~/src/kde ] && . ~/.source/kdedevrc
+[ -d ~/src/kde ] && do_source ~/.source/kdedevrc
 
 # load Motorola config file
-if [[ "$(whoami)" = "wxmp34" ]] && [[ -f ~/.source/motorolarc ]]
-then
-    . ~/.source/motorolarc
-fi
+[[ "$(whoami)" = "wxmp34" ]] && do_source ~/.source/motorolarc
 
 # load Unicamp config file
-if [[ "$(whoami)" = "ra059467" ]] && [[ -f ~/.source/unicamprc ]]
-then
-    . ~/.source/unicamprc
-fi
+[[ "$(whoami)" = "ra059467" ]] && do_source ~/.source/unicamprc
 
+true # avoid carrying over test status
