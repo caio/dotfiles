@@ -26,7 +26,7 @@ startup_message off                      # default: on
 crlf off                                 # default: off
 
 # Change default scrollback value for new windows
-defscrollback 1000                       # default: 100
+defscrollback 10000                       # default: 100
 
 # Define the time that all windows monitored for silence should 
 # wait before displaying a message. Default 30 seconds.
