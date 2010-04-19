@@ -1,0 +1,18 @@
+#!/bin/bash
+
+MOUNTPOINT="/mnt/gsa"
+GSA_CELL="pokgsa.ibm.com"
+
+[ "$1" ] && GSA_USER="$1" || read -p "GSA Username: " GSA_USER
+[ "$2" ] && GSA_CELL="$2"
+[ "$3" ] && MOUNTPOINT="$3"
+
+read -s -p "GSA Password: " GSA_PASS; echo
+
+GID=$(id -g)
+
+echo "Mounting $GSA_USER homedir on $MOUNTPOINT..."
+sudo mount -t cifs -o username=$GSA_USER,password=$GSA_PASS,uid=$UID,gid=$GID\
+,setuid "//$GSA_CELL/$GSA_USER" $MOUNTPOINT
+echo "done."
+

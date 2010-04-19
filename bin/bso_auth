@@ -1,0 +1,11 @@
+#!/bin/bash
+IBM_MAIL="rcaio@br.ibm.com"
+
+[ "$1" ] && HOST="$1" || HOST="private.ltc.br.ibm.com"
+
+read -s -p "Password: " IBM_PASSWD; echo
+
+wget --no-check-certificate https://"$HOST":443/ --post-data="au_pxytimetag=1396696820&uname=$IBM_MAIL&pwd=$IBM_PASSWD&ok=OK" -O - 2>/dev/null \
+|sed -e 's:.*<H1>::g' -e 's:</H1>.*::g' -e 's:<[^>]*>:\n:g' \
+|head -n 3
+
