@@ -1,6 +1,8 @@
 # Custom commands to be sourced on motorola shells
 # @author Caio Romão <caioromao@gmail.com>
 
+[[ "$(whoami)" != "wxmp34" ]] && return 0
+
 HOSTNAME=$(hostname)
 
 # Setting up proxy

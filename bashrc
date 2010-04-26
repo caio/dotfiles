@@ -175,25 +175,14 @@ function hgdiff()
 ##########################################################################
 
 # {{{ Virtualenv wrapper
-WORKON_HOME=${HOME}/.virtualenvs
-if [ -f ~/.source/virtualenvwrapper_bashrc ]
-then
-    export WORKON_HOME
-    export PIP_VIRTUALENV_BASE=$WORKON_HOME
-    . ~/.source/virtualenvwrapper_bashrc
-fi
+export WORKON_HOME=${HOME}/.virtualenvs
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+mkdir -p $WORKON_HOME
 # }}}
 
-# Pip completion
-do_source ~/.source/piprc
-
-# KDE's development script
-[ -d ~/src/kde ] && do_source ~/.source/kdedevrc
-
-# load Motorola config file
-[[ "$(whoami)" = "wxmp34" ]] && do_source ~/.source/motorolarc
-
-# load Unicamp config file
-[[ "$(whoami)" = "ra059467" ]] && do_source ~/.source/unicamprc
+for script in ~/.source/*
+do
+    [ -f $script ] && do_source $script
+done
 
 true # avoid carrying over test status

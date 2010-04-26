@@ -1,6 +1,8 @@
 # Custom commands to be sourced on unicamp shells
 # @author Caio Romão <caioromao@gmail.com>
 
+[[ "$(whoami)" != "ra059467" ]] && return 0
+
 # Unicamp network is NOT secure
 umask 0077
 
@@ -20,6 +22,4 @@ fi
 # Create a tmp directory
 DIRECTORY=/tmp/home-ra059467
 mkdir -p $DIRECTORY
-
-alias firefox=firefox3
 
