@@ -1,3 +1,5 @@
+[ ! -d ~/src/kde ] && exit 0
+
 ## A script to setup some needed variables and functions for KDE 4 development.
 ## This should normally go in the ~/.bashrc file of your kde-devel user, so
 ## that it is executed when a session for that user is started.
