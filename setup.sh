@@ -9,7 +9,6 @@
 WORKDIR=$(pwd)
 DESTDIR=${HOME}
 
-VIMFILES="vimrc vim"
 BASHFILES="bashrc source"
 VCSFILES="gitconfig hgrc bazaar"
 BASEFILES="Xdefaults fonts pythonrc.py ipython irbrc screenrc"
@@ -26,7 +25,6 @@ function setup_symlinks
     done
 }
 
-setup_symlinks $VIMFILES
 setup_symlinks $BASHFILES
 setup_symlinks mplayer
 setup_symlinks $VCSFILES
