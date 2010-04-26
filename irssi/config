@@ -261,3 +261,4 @@ hilights = (
   { text = "caio"; nick = "yes"; word = "yes"; }
 );
 logs = { };
+ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
