@@ -1,2 +1,5 @@
 # vim: ft=sshconfig:
 HashKnownHosts no
+# Warning! This is UNSAFE.
+# turn this on NOW if you only connect to normal hosts
+StrictHostKeyChecking no
