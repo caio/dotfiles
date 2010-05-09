@@ -150,6 +150,7 @@ alias ad='ls -A -d */'
 alias a='ls -d .*'
 alias d='dirs -v'
 alias cpptags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
+alias -- -='cd -'
 # }}}
 
 # {{{ History
