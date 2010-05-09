@@ -27,5 +27,6 @@ function setup_symlinks
 
 setup_symlinks $BASHFILES
 setup_symlinks mplayer
+setup_symlinks ssh
 setup_symlinks $VCSFILES
 setup_symlinks $BASEFILES
