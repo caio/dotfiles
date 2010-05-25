@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo mount -o hard,intr,nfsvers=3,tcp,rsize=65536,wsize=65536,timeo=200,nosuid,mountproto=tcp rchgsa.ibm.com:/gsa/rchgsa-p2/06/hpc-kernels etc/gsa
+echo ">>> Now login with: gsa_login -c rchgsa"
