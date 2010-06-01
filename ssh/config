@@ -1,5 +1,30 @@
 # vim: ft=sshconfig:
 HashKnownHosts no
+
+Host *
+ControlMaster auto
+ControlPath ~/.ssh/master-%r@%h:%p.control
 # Warning! This is UNSAFE.
 # turn this on NOW if you only connect to normal hosts
 StrictHostKeyChecking no
+
+Host eclipz1
+HostName 9.8.234.204
+User root
+
+Host eclipz2
+HostName 9.8.234.205
+User root
+
+Host eclipz3
+HostName 9.8.234.206
+User root
+
+Host pokgsa
+Hostname pokgsa.ibm.com
+User romao
+
+Host rchgsa
+Hostname rchgsa.ibm.com
+User romao
+
