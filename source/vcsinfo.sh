@@ -82,7 +82,7 @@ __vcs_dir() {
 
   hg_dir() {
       base_dir="."
-      while [ ! -d "$base_dir/.hg" ]; do base_dir="$base_dir/.."; [ $(readlink -f "${base_dir}") = "/" ] && return 1; done
+      while [ ! -d "$base_dir/.hg" ]; do base_dir="$base_dir/.."; b=$(readlink -f "${base_dir}"); [ "$b" = "/" ] && return 1; done
       base_dir=$(readlink -f "$base_dir")
       sub_dir=$(sub_dir "${base_dir}")
       ref="$(hg_ps1.py 2>/dev/null)" || ref=$(cat "${base_dir}/.hg/branch" 2>/dev/null)
