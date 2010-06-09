@@ -28,3 +28,7 @@ Host rchgsa
 Hostname rchgsa.ibm.com
 User romao
 
+Host etrayz
+Hostname 192.168.1.114
+User sysadmin
+
