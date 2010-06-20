@@ -11,6 +11,7 @@ import logging
 import logging.handlers
 import optparse
 import os
+import sys
 
 import pkg_resources
 
@@ -20,6 +21,13 @@ def main():
         prog='virtualenvwrapper.hook_loader',
         description='Manage hooks for virtualenvwrapper',
         )
+
+    parser.add_option('-S', '--script',
+                      help='Runs "hook" then "<hook>_source", writing the ' +
+                           'result to <file>',
+                      dest='script_filename',
+                      default=None,
+                      )
     parser.add_option('-s', '--source',
                       help='Print the shell commands to be run in the current shell',
                       action='store_true',
@@ -84,8 +92,33 @@ def main():
     if not args:
         parser.error('Please specify the hook to run')
     hook = args[0]
+
+    if options.sourcing and options.script_filename:
+        parser.error('--source and --script are mutually exclusive.')
+
     if options.sourcing:
         hook += '_source'
+
+    log = logging.getLogger(__name__)
+
+    log.debug('Running %s hooks', hook)
+    run_hooks(hook, options, args)
+
+    if options.script_filename:
+        log.debug('Saving sourcable %s hooks to %s', hook, options.script_filename)
+        options.sourcing = True
+        output = open(options.script_filename, "w")
+        try:
+            output.write('# %s\n' % hook)
+            run_hooks(hook + '_source', options, args, output)
+        finally:
+            output.close()
+
+    return 0
+
+def run_hooks(hook, options, args, output=None):
+    if output is None:
+        output = sys.stdout
 
     for ep in pkg_resources.iter_entry_points('virtualenvwrapper.%s' % hook):
         if options.names and ep.name not in options.names:
@@ -99,12 +132,12 @@ def main():
             # be run in the calling shell.
             contents = (plugin(args[1:]) or '').strip()
             if contents:
-                print contents
-                print
+                output.write('# %s\n' % ep.name)
+                output.write(contents)
+                output.write("\n")
         else:
             # Just run the plugin ourselves
             plugin(args[1:])
-    return 0
 
 if __name__ == '__main__':
     main()
