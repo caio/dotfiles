@@ -1,0 +1,16 @@
+#!/bin/bash
+
+REPO=/home/romao/src/work/powerpack/
+
+do_mount() {
+    echo "Mounting UnionFS on /opt/wui"
+    unionfs -o allow_other ${REPO}/ppack/wui=RW:${REPO}/common/wui=RW /opt/wui/
+}
+
+do_umount() {
+    echo "Unmounting /opt/wui"
+    fusermount -u /opt/wui/
+}
+
+mount |grep /opt/wui >/dev/null && do_umount || do_mount
+
