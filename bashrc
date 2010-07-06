@@ -44,8 +44,8 @@ do_source() {
 }
 # }}}
 
-# disabling flow control
-stty -ixon -ixoff
+# disabling flow control if stdin is a terminal
+[ -t 0 ] && stty -ixon -ixoff
 
 # setting up custom bin-dir
 do_prepend ~/bin
