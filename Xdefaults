@@ -1,60 +1,61 @@
-! Global
-Xft.antialias: true
-Xft.rgba: rgb
-Xft.hintstyle: hintfull
-Xft.hinting: true
+! XFT
+xft.antialias: true
+xft.rgba: rgb
+xft.dpi:                    96
+xft.hintstyle: hintfull
+xft.hinting: true
 
 ! Terms
 
-
-! terminals
-
-!urxvt*termName:  xterm
-*xftAntialias: true
-*geometry: 80x20
-*tintColor: #dfdfdf
-*font: xft:Envy\ Code\ R:pixelsize=13
 *scrollBar: false
 *scrollBar_floating: true
 *scrollBar_right: false
 *scrollColor:  #000000
-*urllauncher: chromium-browser
+*urllauncher: google-chrome
 *matcher.button: 3
 *saveLines: 8192
-*cursorColor:  #d8d8d8
-*colorBD:  lightyellow
-*colorUL:  yellow
-
-*background : #000000
-*foreground : #f2f2f2
-
-! Black
-*color8     : #686868
-*color0     : #000000
-! Red
-*color9     : #e52222
-*color1     : #de2121
-! Green
-*color10   : #a6e326
-*color2    : #9fd529
-! Yellow
-*color11   : #fc941d
-*color3    : #dd821a
-! Blue
-*color12   : #c48dff
-*color4    : #9d72ce
-! Purple
-*color13   : #fa2473
-*color5    : #dd2065
-! Cyan
-*color14   : #66d9f0
-*color6    : #5cc6d8
-! White
-*color15   : #f2f2f2
-*color7    : #d5d5d5
 
 ! urxvt options
-urxvt.perl-ext-common: default,matcher
+!urxvt*termName:  xterm
+urxvt.background:           #212021
+urxvt.foreground:           #DDDDDD
+urxvt.buffered:             true
+urxvt.font:                 xft:Envy\ Code\ R:pixelsize=13:antialias=False
+urxvt.boldFont:             xft:Envy\ Code\ R:bold:pixelsize=13:antialias=False
+urxvt.secondaryScroll:      true
+!urxvt.inheritPixmap:        True
+urxvt.xftAntialias:         true
+urxvt.underlineColor:       yellow
+urxvt.cursorColor:          #d8d8d8
+urxvt.geometry: 80x20
+
+urxvt.color0:               #353535
+urxvt.color10:              #BDE077
+urxvt.color11:              #FFE863
+urxvt.color12:              #7C96B0
+urxvt.color13:              #D8BFD8
+urxvt.color14:              #F0E68C
+urxvt.color15:              #FFFFFF
+urxvt.color1:               #D81860
+urxvt.color2:               #B7CE42
+urxvt.color3:               #FEA63C
+urxvt.color4:               #6F99B4
+urxvt.color5:               #8B7B8B
+urxvt.color6:               #A7A15E
+urxvt.color7:               #DDDDDD
+urxvt.color8:               #666666
+urxvt.color9:               #F00060
+urxvt.internalBorder:       6
+urxvt.jumpScroll:           false
+urxvt.perl-ext-common:      default,matcher
+urxvt.saveLines:            4000
+urxvt.scrollBar:            false
+urxvt.scrollstyle:          plain
+urxvt.scrollTtyKeypress:    true
+urxvt.scrollTtyOutput:      false
+urxvt.scrollWithBuffer:     false
+!urxvt.skipBuiltinGlyphs:    true
+!urxvt.transparent:          True
 
 ! xterm options
 
@@ -85,4 +86,6 @@ nedit*topShadowColor:          #fefefe
 nedit*XmText.background:       white
 nedit*XmTextField.background:  white
 nedit*XmList.background:       white
+
+
 
