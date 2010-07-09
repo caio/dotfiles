@@ -11,8 +11,6 @@ xft.hinting: true
 *scrollBar_floating: true
 *scrollBar_right: false
 *scrollColor:  #000000
-*urllauncher: google-chrome
-*matcher.button: 3
 *saveLines: 8192
 
 ! urxvt options
@@ -45,9 +43,11 @@ urxvt.color6:               #A7A15E
 urxvt.color7:               #DDDDDD
 urxvt.color8:               #666666
 urxvt.color9:               #F00060
-urxvt.internalBorder:       6
+!urxvt.internalBorder:       6
 urxvt.jumpScroll:           false
 urxvt.perl-ext-common:      default,matcher
+urxvt.urllauncher: /usr/bin/google-chrome
+urxvt.matcher.button: 3
 urxvt.saveLines:            4000
 urxvt.scrollBar:            false
 urxvt.scrollstyle:          plain
