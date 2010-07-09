@@ -1,11 +1,15 @@
 #!/bin/bash
 IBM_MAIL="rcaio@br.ibm.com"
 
-[ "$1" ] && HOST="$1" || HOST="private.ltc.br.ibm.com"
+[ "$1" ] && HOSTS="$1" || HOSTS="private.ltc.br.ibm.com emu1.rchland.ibm.com"
 
 read -s -p "Password: " IBM_PASSWD; echo
 
-wget --no-check-certificate https://"$HOST":443/ --post-data="au_pxytimetag=1396696820&uname=$IBM_MAIL&pwd=$IBM_PASSWD&ok=OK" -O - 2>/dev/null \
+for HOST in $HOSTS
+do
+wget --no-check-certificate https://"$HOST":443/ \
+--post-data="au_pxytimetag=1396696820&uname=$IBM_MAIL&pwd=$IBM_PASSWD&ok=OK" -O - 2>/dev/null \
 |sed -e 's:.*<H1>::g' -e 's:</H1>.*::g' -e 's:<[^>]*>:\n:g' \
-|head -n 3
-
+|head -n 3| grep 'Failed' > /dev/null 2>&1
+[ $? -ne 0 ] && echo "Auth OK on $HOST" || echo "Auth Failed on $HOST"
+done
