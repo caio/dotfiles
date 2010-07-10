@@ -74,10 +74,10 @@ bash_prompt_cmd() {
     local CY="\[\e[0;37m\]" # Each is 12 chars long
     local BL="\[\e[1;34m\]"
     local RE="\[\e[1;31m\]"
-    local OR="\[\e[33;40m\]"
+    local OR="\[\033[1;33m\]"
     local PK="\[\e[35;40m\]"
     local GR="\[\e[32;40m\]"
-    local WH="\[\e[37;40m\]"
+    local WH="\[\033[1;37m\]"
     local GR="\[\e[1;32m\]"
 
     local ps_len=0
