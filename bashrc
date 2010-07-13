@@ -53,6 +53,10 @@ do_prepend ~/bin
 # google appengine
 do_append /opt/google-appengine
 
+# RVM Scripts
+# Must be here to avoid conflics with aliases
+do_source ~/.rvm/scripts/rvm
+
 # VCS PS1 Command
 do_source ~/.source/vcsinfo.sh
 
@@ -187,5 +191,6 @@ for script in ~/.source/*
 do
     [ -f $script ] && do_source $script
 done
+
 
 true # avoid carrying over test status
