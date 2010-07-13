@@ -29,7 +29,7 @@ layouts =
     awful.layout.suit.floating,
     --awful.layout.suit.tile,
     awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
@@ -46,7 +46,8 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6 }, s, layouts[2])
+    tags[s] = awful.tag({"web", "one", "two", "mail", "irc", "misc"}, s,
+      {layouts[5], layouts[2], layouts[2], layouts[5], layouts[3], layouts[1]})
 end
 -- }}}
 
@@ -279,6 +280,8 @@ awful.rules.rules = {
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
+      properties = { floating = true } },
+    { rule = { class = "pidgin" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
