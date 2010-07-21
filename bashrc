@@ -96,18 +96,25 @@ bash_prompt_cmd() {
     [ $UID -eq "0" ] && LPROM="${RE}#"
     ps_len=$((ps_len + 1))
 
+    local RVM=""
+    if [ ! -z $RUBY_VERSION ]
+    then
+        RVM="${GR}$(echo $RUBY_VERSION |sed 's/.*-\(.\+\)-.*/\1/g') "
+        ps_len=$((ps_len + 7))
+    fi
+
     local VENVSTATUS=""
     local envname=$(basename $VIRTUAL_ENV 2>/dev/null)
     if [ -n "$envname" ]
     then
         VENVSTATUS="${OR}·${envname}· "
-        ps_len=$((ps_len + ${#envname} - 12 - 2))
+        ps_len=$((ps_len + ${#envname} + 3))
     fi
 
     local REMOTE=""
     if [ -n "$SSH_CLIENT" ]; then
         REMOTE="${GR}$(hostname -s) "
-        ps_len=$((ps_len + ${#REMOTE} - 12))
+        ps_len=$((ps_len + ${#REMOTE} -12))
     fi
 
     __vcs_dir
@@ -115,7 +122,7 @@ bash_prompt_cmd() {
     [ "$__vcs_prefix" != "" ] && SCMSTATUS="${WH}${__vcs_prefix}:${__vcs_ref} "
     [ ${#SCMSTATUS} -gt 1 ] && ps_len=$((ps_len + ${#SCMSTATUS} - 12))
 
-    local PROMPT="${RET}${VENVSTATUS}${SCMSTATUS}${LPROM}"
+    local PROMPT="${RET}${VENVSTATUS}${RVM}${SCMSTATUS}${LPROM}"
     local PROMPT_PWD=""
     local PS1_T1=" $CY"
     local PS1_T2="$BL${PROMPT} \[\e[0m\]"
