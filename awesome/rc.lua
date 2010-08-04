@@ -7,6 +7,11 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
+function make_me_away ()
+    awful.util.spawn_with_shell("[ -e ~/.weechat/weechat_fifo* ] && echo '*/away screen currently locked' > ~/.weechat/weechat_fifo*")
+    awful.util.spawn_with_shell("xlock -mode blank && [ -e ~/.weechat/weechat_fifo* ] && echo '*/away' > ~/.weechat/weechat_fifo*")
+end
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
@@ -188,7 +193,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     -- xlock
-    awful.key({ "Mod1", "Control"   }, "l", function () awful.util.spawn("xlock -mode blank") end),
+    awful.key({ "Mod1", "Control"   }, "l", function() make_me_away() end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
@@ -282,7 +287,7 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "pidgin" },
-      properties = { floating = true } },
+      properties = { floating = true, tag = tags[1][6] } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
