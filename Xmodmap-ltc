@@ -1,5 +1,0 @@
-clear Mod4
-keycode 47 = ccedilla Ccedilla
-keycode 211 = slash question
-keycode 115 = Meta_L
-add Mod4 = Meta_L
