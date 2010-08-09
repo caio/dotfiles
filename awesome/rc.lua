@@ -6,6 +6,8 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
+-- Widget library
+--require("obvious")
 
 function make_me_away ()
     awful.util.spawn_with_shell("[ -e ~/.weechat/weechat_fifo* ] && echo '*/away screen currently locked' > ~/.weechat/weechat_fifo*")
@@ -54,6 +56,9 @@ for s = 1, screen.count() do
     tags[s] = awful.tag({"web", "one", "two", "mail", "irc", "misc"}, s,
       {layouts[5], layouts[2], layouts[2], layouts[5], layouts[3], layouts[1]})
 end
+-- }}}
+
+-- {{{ Custom widgets
 -- }}}
 
 -- {{{ Wibox
@@ -326,14 +331,21 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 
 -- Autorun {{{
-function run_once(arg)
+function run_once(arg, assudo)
     if not arg then
         do return nil end
     end
-    awful.util.spawn_with_shell("pgrep -u $USER -x " .. arg .. " || (" .. arg .. ")")
+    if not assudo then
+        awful.util.spawn_with_shell("pgrep -u $USER -x " .. arg .. " || (" .. arg .. ")")
+    else
+        arg:gsub("([^ ]+).*", function(c)
+            awful.util.spawn_with_shell("pgrep -u root -x " .. c
+                                        .. " || (sudo " .. arg .. ")")
+        end)
+    end
 end
 run_once("parcellite")
+run_once("tpb -d", true)
 awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")
 awful.util.spawn("/usr/bin/setxkbmap -model us -layout us -variant intl")
-awful.util.spawn("/usr/bin/nitrogen --restore")
 -- }}}}
