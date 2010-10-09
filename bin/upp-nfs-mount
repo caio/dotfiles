@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# sudo mount -o hard,intr,nfsvers=3,tcp,rsize=65536,wsize=65536,timeo=200,nosuid,mountproto=tcp rchgsa.ibm.com:/gsa/rchgsa-p2/06/hpc-kernels etc/gsa
+sudo mount -o hard,intr,nfsvers=3,tcp,rsize=65536,wsize=65536,timeo=200,nosuid,mountproto=tcp pokgsa.ibm.com:/gsa/pokgsa-p6/14/upp $1
+[ $? -eq 0 ] && echo ">>> Now login with: gsa_login -c pokgsa"
