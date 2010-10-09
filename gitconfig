@@ -5,30 +5,33 @@
 [alias]
     ci = commit
     co = checkout
-    st = status -s
+    st = status -sb
     br = branch
     nb = checkout -b
     lo = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
     lw = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --since 'last week'
     report = log --since='last month' --author caio --pretty=format:'%Cgreen(%ci) %Creset%Cblue%s'
     unstage = reset HEAD --
+    revname = name-rev --name-only --refs=refs/heads/*
 
 [core]
     editor = vim
+    whitespace = blank-at-eol,space-before-tab,tab-in-indent
 
 [color]
-    branch = auto
-    diff = auto
-    status = auto
+    ui = auto
+
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
+
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
     old = red bold
     new = green bold
+
 [color "status"]
     added = yellow
     changed = green
@@ -41,4 +44,16 @@
     insteadOf = gh:
 
 [merge]
-	tool = vimdiff
+    tool = gvimdiff
+
+[help]
+    autocorrect = 5
+
+[rebase]
+    stat = true
+
+[web]
+    browser = google-chrome
+
+[diff]
+    renames = copies
