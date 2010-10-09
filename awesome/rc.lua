@@ -346,6 +346,7 @@ function run_once(arg, assudo)
 end
 run_once("parcellite")
 run_once("tpb -d", true)
+run_once("nm-applet")
 awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")
 awful.util.spawn("/usr/bin/setxkbmap -model us -layout us -variant intl")
 -- }}}}
