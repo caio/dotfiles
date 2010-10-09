@@ -8,11 +8,9 @@
     st = status -s
     br = branch
     nb = checkout -b
-    logg = log --pretty=oneline
-    loga = log --pretty=format:'%Cblue%h %Cgreen%an %Creset%s'
-    lastweek = log --pretty=format:'%Cblue%h %Cgreen%an %Creset%s' --since='1 week ago' --until='today'
-    lw = log --pretty=format:'%Cblue%h %Cgreen%an %Creset%s' --since='1 week ago' --until='today' --name-status
-    report = log --date=short --since='last month' --until='today' --grep='caio' --pretty=format:'%Cblue%cd %Cgreen %an %Creset %s' --author='caio'
+    lo = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
+    lw = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --since 'last week'
+    report = log --since='last month' --author caio --pretty=format:'%Cgreen(%ci) %Creset%Cblue%s'
     unstage = reset HEAD --
 
 [core]
