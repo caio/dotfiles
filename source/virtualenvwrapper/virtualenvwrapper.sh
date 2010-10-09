@@ -62,7 +62,7 @@ virtualenvwrapper_derive_workon_home() {
 
     # If the path is relative, prefix it with $HOME
     # (note: for compatibility)
-    if echo "$workon_home_dir" | (unset GREP_OPTIONS; grep -e '^[^/~]' > /dev/null)
+    if echo "$workon_home_dir" | (unset GREP_OPTIONS; \grep -e '^[^/~]' > /dev/null)
     then
         workon_home_dir="$HOME/$WORKON_HOME"
     fi
@@ -71,7 +71,7 @@ virtualenvwrapper_derive_workon_home() {
     # path might contain stuff to expand.
     # (it might be possible to do this in shell, but I don't know a
     # cross-shell-safe way of doing it -wolever)
-    if echo "$workon_home_dir" | (unset GREP_OPTIONS; egrep -e "([\$~]|//)" >/dev/null)
+    if echo "$workon_home_dir" | (unset GREP_OPTIONS; \egrep -e '([\$~]|//)' >/dev/null)
     then
         # This will normalize the path by:
         # - Removing extra slashes (e.g., when TMPDIR ends in a slash)
@@ -100,7 +100,7 @@ virtualenvwrapper_verify_workon_home () {
 virtualenvwrapper_tempfile () {
     # Note: the 'X's must come last
     typeset suffix=${1:-hook}
-    typeset file="`mktemp -t virtualenvwrapper-$suffix-XXXXXXXXXX`"
+    typeset file="`\mktemp -t virtualenvwrapper-$suffix-XXXXXXXXXX`"
     if [ $? -ne 0 ]
     then
         echo "ERROR: virtualenvwrapper could not create a temporary file name." 1>&2
@@ -149,7 +149,7 @@ virtualenvwrapper_initialize () {
 
 # Verify that virtualenv is installed and visible
 virtualenvwrapper_verify_virtualenv () {
-    typeset venv=$(\which virtualenv | (unset GREP_OPTIONS; grep -v "not found"))
+    typeset venv=$(\which virtualenv | (unset GREP_OPTIONS; \grep -v "not found"))
     if [ "$venv" = "" ]
     then
         echo "ERROR: virtualenvwrapper could not find virtualenv in your path" >&2
@@ -197,6 +197,8 @@ mkvirtualenv () {
         virtualenv "$@" &&
         [ -d "$WORKON_HOME/$envname" ] && virtualenvwrapper_run_hook "pre_mkvirtualenv" "$envname"
         )
+    typeset RC=$?
+    [ $RC -ne 0 ] && return $RC
     # If they passed a help option or got an error from virtualenv,
     # the environment won't exist.  Use that to tell whether
     # we should switch to the environment and run the hook.
@@ -233,8 +235,68 @@ virtualenvwrapper_show_workon_options () {
     # NOTE: DO NOT use ls here because colorized versions spew control characters
     #       into the output list.
     # echo seems a little faster than find, even with -depth 3.
-    (cd "$WORKON_HOME"; for f in */bin/activate; do echo $f; done) 2>/dev/null | sed 's|^\./||' | sed 's|/bin/activate||' | sort | (unset GREP_OPTIONS; egrep -v '^\*$')
+    (cd "$WORKON_HOME"; for f in */bin/activate; do echo $f; done) 2>/dev/null | \sed 's|^\./||' | \sed 's|/bin/activate||' | \sort | (unset GREP_OPTIONS; \egrep -v '^\*$')
+    
 #    (cd "$WORKON_HOME"; find -L . -depth 3 -path '*/bin/activate') | sed 's|^\./||' | sed 's|/bin/activate||' | sort
+}
+
+_lsvirtualenv_usage () {
+    echo "lsvirtualenv [-blh]"
+    echo "  -b -- brief mode"
+    echo "  -l -- long mode"
+    echo "  -h -- this help message"
+}
+
+# List virtual environments
+#
+# Usage: lsvirtualenv [-l]
+lsvirtualenv () {
+    typeset args="$(getopt blh "$@")"
+    if [ $? != 0 ]
+    then
+        _lsvirtualenv_usage
+        return 1
+    fi
+    typeset long_mode=true
+    for opt in $args
+    do
+        case "$opt" in
+            -l) long_mode=true;;
+            -b) long_mode=false;;
+            -h) _lsvirtualenv_usage;
+                return 1;;
+        esac
+    done
+
+    if $long_mode
+    then
+        for env_name in $(virtualenvwrapper_show_workon_options)
+        do
+            showvirtualenv "$env_name"
+        done
+    else
+        virtualenvwrapper_show_workon_options
+    fi
+}
+
+# Show details of a virtualenv
+#
+# Usage: showvirtualenv [env]
+showvirtualenv () {
+    typeset env_name="$1"
+    if [ -z "$env_name" ]
+    then
+        if [ -z "$VIRTUAL_ENV" ]
+        then
+            echo "showvirtualenv [env]"
+            return 1
+        fi
+        env_name=$(basename $VIRTUAL_ENV)
+    fi
+
+    echo -n "$env_name"
+    virtualenvwrapper_run_hook "get_env_details" "$env_name"
+    echo
 }
 
 # List or change working virtual environments
@@ -245,7 +307,7 @@ workon () {
 	typeset env_name="$1"
 	if [ "$env_name" = "" ]
     then
-        virtualenvwrapper_show_workon_options
+        lsvirtualenv -b
         return 1
     fi
 
@@ -452,7 +514,7 @@ cpvirtualenv() {
         echo "Please specify target virtualenv"
         return 1
     fi
-    if echo "$WORKON_HOME" | (unset GREP_OPTIONS; grep -e "/$" > /dev/null)
+    if echo "$WORKON_HOME" | (unset GREP_OPTIONS; \grep -e "/$" > /dev/null)
     then
         typset env_home="$WORKON_HOME"
     else
@@ -467,17 +529,17 @@ cpvirtualenv() {
         return 1
     fi
 
-    cp -r "$source_env" "$target_env"
-    for script in $( ls $target_env/bin/* )
+    \cp -r "$source_env" "$target_env"
+    for script in $( \ls $target_env/bin/* )
     do
         newscript="$script-new"
-        sed "s|$source_env|$target_env|g" < "$script" > "$newscript"
-        mv "$newscript" "$script"
-        chmod a+x "$script"
+        \sed "s|$source_env|$target_env|g" < "$script" > "$newscript"
+        \mv "$newscript" "$script"
+        \chmod a+x "$script"
     done
 
     virtualenv "$target_env" --relocatable
-    sed "s/VIRTUAL_ENV\(.*\)$env_name/VIRTUAL_ENV\1$new_env/g" < "$source_env/bin/activate" > "$target_env/bin/activate"
+    \sed "s/VIRTUAL_ENV\(.*\)$env_name/VIRTUAL_ENV\1$new_env/g" < "$source_env/bin/activate" > "$target_env/bin/activate"
 
     (cd "$WORKON_HOME" && 
         virtualenvwrapper_run_hook "pre_cpvirtualenv" "$env_name" "$new_env" &&
