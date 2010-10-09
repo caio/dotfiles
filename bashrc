@@ -66,8 +66,8 @@ do_source /etc/bash_completion
 do_source ~/.source/projects_complete.sh
 
 # {{{ EXPORTS
-export GWT_EXTERNAL_BROWSER="firefox"
-export EDITOR="vim"
+export GWT_EXTERNAL_BROWSER=google-chrome
+export EDITOR=vim
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 # }}}
 
