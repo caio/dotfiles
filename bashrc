@@ -53,17 +53,17 @@ do_prepend ~/bin
 # google appengine
 do_append /opt/google-appengine
 
-# RVM Scripts
-# Must be here to avoid conflics with aliases
-do_source ~/.rvm/scripts/rvm
-
-# VCS PS1 Command
-do_source ~/.source/vcsinfo.sh
-
 # Bash completion
 do_source /etc/bash_completion
-# Custom completion for '~/src'
-do_source ~/.source/projects_complete.sh
+
+# RVM Scripts
+do_source ~/.rvm/scripts/rvm
+
+# Load custom scripts
+for script in ~/.source/*
+do
+    [ -f "$script" ] && do_source "$script"
+done
 
 # {{{ EXPORTS
 export GWT_EXTERNAL_BROWSER=google-chrome
@@ -182,10 +182,6 @@ function hgdiff()
 }
 # }}}
 
-##########################################################################
-# Add sources bellow this comment to avoid replacing of the new commands #
-##########################################################################
-
 # {{{ Virtualenv wrapper
 export WORKON_HOME=${HOME}/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
@@ -193,11 +189,5 @@ mkdir -p $WORKON_HOME
 pathappend ~/.source/ PYTHONPATH
 do_source ~/.source/virtualenvwrapper/virtualenvwrapper.sh
 # }}}
-
-for script in ~/.source/*
-do
-    [ -f $script ] && do_source $script
-done
-
 
 true # avoid carrying over test status
