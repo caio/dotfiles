@@ -152,7 +152,6 @@ alias mv='mv -i'
 alias cp=' cp -i'
 alias rm='rm -I'
 alias j='jobs'
-alias h='history'
 alias grep='egrep'
 alias ls='ls --color=tty --time-style=iso -h --quoting-style=escape --group-directories-first'
 alias l='ls -lh'
@@ -167,7 +166,7 @@ alias -- -='cd -'
 # {{{ History
 export HISTSIZE=4000
 export HISTFILESIZE=4000
-export HISTIGNORE="ls:l:c:clear:d:cd:dc:bg:fg"
+export HISTIGNORE="ls:l:c:clear:d:cd:dc:bg:fg:jk:h:dl"
 export HISTCONTROL=erasedups
 export HISTTIMEFORMAT='%m%d %H%M: '
 # }}}
