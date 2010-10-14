@@ -1,0 +1,24 @@
+#!/bin/bash
+
+REPO=/home/romao/src/work/upp
+DIRS=( $REPO/vpl-sst/wui $REPO/common/wui )
+
+
+do_mount() {
+    echo "Mounting UnionFS on /opt/wui"
+
+    local num_dirs=$((${#DIRS[@]} - 1))
+    for i in $(seq 0 $((num_dirs - 1))); do
+        PARAMS="${PARAMS}${DIRS[$i]}=RW:"
+    done
+    PARAMS="${PARAMS}${DIRS[num_dirs]}=RW"
+    unionfs -o allow_other $PARAMS /opt/wui/
+}
+
+do_umount() {
+    echo "Unmounting /opt/wui"
+    fusermount -u /opt/wui/
+}
+
+mount |grep /opt/wui >/dev/null && do_umount || do_mount
+
