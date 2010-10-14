@@ -10,7 +10,7 @@
     nb = checkout -b
     lo = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
     lw = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --since 'last week'
-    report = log --since='last month' --author caio --pretty=format:'%Cgreen(%ci) %Creset%Cblue%s'
+    report = log --since='30 days ago' --author caio --pretty=format:'%Cgreen(%ci) %Creset%s'
     unstage = reset HEAD --
     revname = name-rev --name-only --refs=refs/heads/*
 
