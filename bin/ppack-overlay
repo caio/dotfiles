@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO=/home/romao/src/work/powerpack/
+REPO=/home/romao/src/work/upp/
 
 do_mount() {
     echo "Mounting UnionFS on /opt/wui"

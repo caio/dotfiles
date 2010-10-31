@@ -2,23 +2,24 @@
 
 REPO=/home/romao/src/work/upp
 DIRS=( $REPO/vpl-sst/wui $REPO/common/wui )
+MOUNTPOINT="/opt/vpl-sst"
 
 
 do_mount() {
-    echo "Mounting UnionFS on /opt/wui"
+    echo "Mounting UnionFS on $MOUNTPOINT"
 
     local num_dirs=$((${#DIRS[@]} - 1))
     for i in $(seq 0 $((num_dirs - 1))); do
         PARAMS="${PARAMS}${DIRS[$i]}=RW:"
     done
     PARAMS="${PARAMS}${DIRS[num_dirs]}=RW"
-    unionfs -o allow_other $PARAMS /opt/wui/
+    unionfs -o allow_other $PARAMS $MOUNTPOINT
 }
 
 do_umount() {
-    echo "Unmounting /opt/wui"
-    fusermount -u /opt/wui/
+    echo "Unmounting $MOUNTPOINT"
+    fusermount -u $MOUNTPOINT
 }
 
-mount |grep /opt/wui >/dev/null && do_umount || do_mount
+mount |grep $MOUNTPOINT >/dev/null && do_umount || do_mount
 
