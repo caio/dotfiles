@@ -54,7 +54,7 @@ tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({"web", "two", "three", "mail", "irc", "misc"}, s,
-      {layouts[5], layouts[2], layouts[2], layouts[5], layouts[3], layouts[1]})
+      {layouts[5], layouts[2], layouts[3], layouts[5], layouts[3], layouts[1]})
 end
 -- }}}
 
@@ -347,6 +347,7 @@ end
 run_once("parcellite")
 run_once("tpb -d", true)
 run_once("nm-applet")
+run_once("gnome-power-manager")
 awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")
 awful.util.spawn("/usr/bin/setxkbmap -model us -layout us -variant intl")
 -- }}}}
