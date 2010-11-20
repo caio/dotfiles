@@ -348,6 +348,7 @@ run_once("parcellite")
 run_once("tpb -d", true)
 run_once("nm-applet")
 run_once("gnome-power-manager")
+awful.util.spawn("nitrogen --restore")
 awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")
 awful.util.spawn("/usr/bin/setxkbmap -model us -layout us -variant intl")
 -- }}}}
