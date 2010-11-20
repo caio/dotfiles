@@ -8,11 +8,10 @@ MOUNTPOINT="/opt/ibm/vpl-sst"
 do_mount() {
     echo "Mounting UnionFS on $MOUNTPOINT"
 
-    local num_dirs=$((${#DIRS[@]} - 1))
-    for i in $(seq 0 $((num_dirs - 1))); do
-        PARAMS="${PARAMS}${DIRS[$i]}=RW:"
+    for d in ${DIRS[@]}; do
+        PARAMS="${PARAMS}${d}=RW:"
     done
-    PARAMS="${PARAMS}${DIRS[num_dirs]}=RW"
+    PARAMS="${PARAMS%:}"
     unionfs -o allow_other $PARAMS $MOUNTPOINT
 }
 
