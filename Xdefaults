@@ -18,8 +18,8 @@ xft.hinting: true
 urxvt.background:           #212021
 urxvt.foreground:           #DDDDDD
 urxvt.buffered:             true
-urxvt.font:                 xft:Envy\ Code\ R:pixelsize=13:antialias=False
-urxvt.boldFont:             xft:Envy\ Code\ R:bold:pixelsize=13:antialias=False
+urxvt.font:                 xft:Dejavu\ Sans\ Mono:pixelsize=12:antialias=False
+urxvt.boldFont:             xft:Dejavu\ Sans\ Mono:pixelsize=12:antialias=False
 urxvt.secondaryScroll:      true
 !urxvt.inheritPixmap:        True
 urxvt.xftAntialias:         true
