@@ -1,9 +1,30 @@
 ! XFT
-xft.antialias: true
-xft.rgba: rgb
+xft.antialias:              true
+xft.rgba:                   rgb
 xft.dpi:                    96
-xft.hintstyle: hintfull
-xft.hinting: true
+xft.hintstyle:              hintfull
+xft.hinting:                true
+
+! Colors
+*foreground: rgb:ff/ff/ff
+*background: rgb:00/00/00
+*color0:     rgb:00/00/00
+*color1:     rgb:bf/72/76
+*color2:     rgb:86/af/80
+*color3:     rgb:96/8a/38
+*color4:     rgb:36/73/b5
+*color5:     rgb:9a/70/b2
+*color6:     rgb:7a/be/cc
+*color7:     rgb:db/db/db
+*color8:     rgb:66/92/af
+*color9:     rgb:e5/50/5f
+*color10:    rgb:87/bc/87
+*color11:    rgb:e0/d9/5c
+*color12:    rgb:1b/85/d6
+*color13:    rgb:ad/73/ba
+*color14:    rgb:33/8e/aa
+*color15:    rgb:f4/f4/f4
+
 
 ! Terms
 
@@ -27,22 +48,6 @@ urxvt.underlineColor:       yellow
 urxvt.cursorColor:          #d8d8d8
 urxvt.geometry: 80x20
 
-urxvt.color0:               #353535
-urxvt.color10:              #BDE077
-urxvt.color11:              #FFE863
-urxvt.color12:              #7C96B0
-urxvt.color13:              #D8BFD8
-urxvt.color14:              #F0E68C
-urxvt.color15:              #FFFFFF
-urxvt.color1:               #D81860
-urxvt.color2:               #B7CE42
-urxvt.color3:               #FEA63C
-urxvt.color4:               #6F99B4
-urxvt.color5:               #8B7B8B
-urxvt.color6:               #A7A15E
-urxvt.color7:               #DDDDDD
-urxvt.color8:               #666666
-urxvt.color9:               #F00060
 !urxvt.internalBorder:       6
 urxvt.jumpScroll:           false
 urxvt.perl-ext-common:      default,matcher
