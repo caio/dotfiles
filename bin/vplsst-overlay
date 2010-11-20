@@ -2,7 +2,7 @@
 
 REPO=/home/romao/src/work/upp
 DIRS=( $REPO/vpl-sst/wui $REPO/common/wui )
-MOUNTPOINT="/opt/vpl-sst"
+MOUNTPOINT="/opt/ibm/vpl-sst"
 
 
 do_mount() {
