@@ -147,7 +147,6 @@ PROMPT_COMMAND=bash_prompt_cmd
 # }}}
 
 # {{{ Aliases
-alias c='clear'
 alias mv='mv -i'
 alias cp=' cp -i'
 alias rm='rm -I'
@@ -190,3 +189,4 @@ do_source ~/.source/virtualenvwrapper/virtualenvwrapper.sh
 # }}}
 
 true # avoid carrying over test status
+
