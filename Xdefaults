@@ -6,7 +6,7 @@ xft.hintstyle:              hintfull
 xft.hinting:                true
 
 ! Colors
-*foreground: #ffffff
+*foreground: #dbdbdb
 *background: #000000
 *color0:     #000000
 *color1:     #bf7276
