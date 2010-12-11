@@ -58,10 +58,15 @@
 
 [diff]
     renames = copies
+
 [sendemail]
     smtpserver = la.relay.ibm.com
     chainreplyto = false
+
 [giggle]
-	main-window-maximized = false
-	main-window-geometry = 696x1027+694+19
+    main-window-maximized = false
+    main-window-geometry = 696x1027+694+19
     main-window-view = HistoryView
+
+[push]
+    default = tracking
