@@ -59,6 +59,9 @@ do_source /etc/bash_completion
 # RVM Scripts
 do_source ~/.rvm/scripts/rvm
 
+# PythonBrew
+do_source ~/.pythonbrew/etc/bashrc
+
 # Load custom scripts
 for script in ~/.source/*
 do
