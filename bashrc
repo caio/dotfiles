@@ -106,6 +106,13 @@ bash_prompt_cmd() {
         ps_len=$((ps_len + 7))
     fi
 
+    local PYBREW="$(echo $(which python) 2>/dev/null|sed -n 's/.*Python-\([0-9].[0-9]\).*/\1/p')"
+    if [ ! -z "$PYBREW" ]
+    then
+        PYBREW="${GR}${PYBREW} "
+        ps_len=$((ps_len + 3))
+    fi
+
     local VENVSTATUS=""
     local envname=$(basename $VIRTUAL_ENV 2>/dev/null)
     if [ -n "$envname" ]
@@ -125,7 +132,7 @@ bash_prompt_cmd() {
     [ "$__vcs_prefix" != "" ] && SCMSTATUS="${WH}${__vcs_prefix}:${__vcs_ref} "
     [ ${#SCMSTATUS} -gt 1 ] && ps_len=$((ps_len + ${#SCMSTATUS} - 12))
 
-    local PROMPT="${RET}${VENVSTATUS}${RVM}${SCMSTATUS}${LPROM}"
+    local PROMPT="${RET}${VENVSTATUS}${PYBREW}${RVM}${SCMSTATUS}${LPROM}"
     local PROMPT_PWD=""
     local PS1_T1=" $CY"
     local PS1_T2="$BL${PROMPT} \[\e[0m\]"
