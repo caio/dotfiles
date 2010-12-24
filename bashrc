@@ -74,84 +74,98 @@ export EDITOR=vim
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 # }}}
 
+# {{{ Colors
+col_txtblk='\e[0;30m' # Black - Regular
+col_txtred='\e[0;31m' # Red
+col_txtgrn='\e[0;32m' # Green
+col_txtylw='\e[0;33m' # Yellow
+col_txtblu='\e[0;34m' # Blue
+col_txtpur='\e[0;35m' # Purple
+col_txtcyn='\e[0;36m' # Cyan
+col_txtwht='\e[0;37m' # White
+col_bldblk='\e[1;30m' # Black - Bold
+col_bldred='\e[1;31m' # Red
+col_bldgrn='\e[1;32m' # Green
+col_bldylw='\e[1;33m' # Yellow
+col_bldblu='\e[1;34m' # Blue
+col_bldpur='\e[1;35m' # Purple
+col_bldcyn='\e[1;36m' # Cyan
+col_bldwht='\e[1;37m' # White
+col_unkblk='\e[4;30m' # Black - Underline
+col_undred='\e[4;31m' # Red
+col_undgrn='\e[4;32m' # Green
+col_undylw='\e[4;33m' # Yellow
+col_undblu='\e[4;34m' # Blue
+col_undpur='\e[4;35m' # Purple
+col_undcyn='\e[4;36m' # Cyan
+col_undwht='\e[4;37m' # White
+col_bakblk='\e[40m'   # Black - Background
+col_bakred='\e[41m'   # Red
+col_badgrn='\e[42m'   # Green
+col_bakylw='\e[43m'   # Yellow
+col_bakblu='\e[44m'   # Blue
+col_bakpur='\e[45m'   # Purple
+col_bakcyn='\e[46m'   # Cyan
+col_bakwht='\e[47m'   # White
+col_txtrst='\e[0m'    # Text Reset
+# }}}
+
 # {{{ Bash Prompt
-# credits to B-Con from ArchLinux forums for this :)
 bash_prompt_cmd() {
     local RETVAL=$?
-    local CY="\[\e[0;37m\]" # Each is 12 chars long
-    local BL="\[\e[1;34m\]"
-    local RE="\[\e[1;31m\]"
-    local OR="\[\033[1;33m\]"
-    local PK="\[\e[35;40m\]"
-    local GR="\[\e[32;40m\]"
-    local WH="\[\033[1;37m\]"
-    local GR="\[\e[1;32m\]"
+    PS1=""
 
-    local ps_len=0
-    local RET=""
-    if [ $RETVAL -ne 0 ]; then
-        CNT=${#RETVAL}
-        ps_len=$((ps_len + CNT + 2))
-        RET="${RE}${RETVAL}! "
-    fi
+    append_ps1() {
+        PS1="${PS1}${1}"
+    }
 
-    local LPROM="${CY}$"
-    [ $UID -eq "0" ] && LPROM="${RE}#"
-    ps_len=$((ps_len + 1))
-
-    local RVM=""
-    if [ ! -z $RUBY_VERSION ]
-    then
-        RVM="${GR}∼$(echo $RUBY_VERSION |sed 's/.*-\(.\+\)-.*/\1/g') "
-        ps_len=$((ps_len + 8))
-    fi
-
-    local PYBREW="$(echo $(which python) 2>/dev/null|sed -n 's/.*Python-\([0-9].[0-9]\).*/\1/p')"
-    if [ ! -z "$PYBREW" ]
-    then
-        PYBREW="${PK}∝${PYBREW} "
-        ps_len=$((ps_len + 4))
-    fi
-
-    local VENVSTATUS=""
-    local envname=$(basename $VIRTUAL_ENV 2>/dev/null)
-    if [ -n "$envname" ]
-    then
-        VENVSTATUS="${OR}·${envname}· "
-        ps_len=$((ps_len + ${#envname} + 3))
-    fi
-
-    local REMOTE=""
+    # Add hostname if connected through SSH
     if [ -n "$SSH_CLIENT" ]; then
-        REMOTE="${GR}$(hostname -s) "
-        ps_len=$((ps_len + ${#REMOTE} -12))
+        append_ps1 "${col_bldgrn}$(hostname -s) "
     fi
 
+    # CWD
+    append_ps1 "${col_txtblu}${PWD/#$HOME/~}"
+
+    # Return-code
+    if [ $RETVAL -ne 0 ]; then
+        append_ps1 " ${col_bldred}${RETVAL}!"
+    fi
+
+    # Virtualenv
+    local envname=$(basename $VIRTUAL_ENV 2>/dev/null)
+    if [ -n "$envname" ]; then
+        append_ps1 " ${col_txtylw}·${envname}·"
+    fi
+
+    # Pythonbrew
+    local PYBREW="$(echo $(which python) 2>/dev/null|sed -n 's/.*Python-\([0-9].[0-9]\).*/\1/p')"
+    if [ ! -z "$PYBREW" ]; then
+        append_ps1 " ${col_txtpur}∝${PYBREW}"
+    fi
+
+    # RVM
+    if [ ! -z $RUBY_VERSION ]; then
+        append_ps1 " ${col_txtgrn}∼$(echo $RUBY_VERSION |sed 's/.*-\(.\+\)-.*/\1/g')"
+    fi
+
+    # Source-controlled directories
     __vcs_dir
-    local SCMSTATUS=""
-    [ "$__vcs_prefix" != "" ] && SCMSTATUS="${WH}${__vcs_prefix}:${__vcs_ref} "
-    [ ${#SCMSTATUS} -gt 1 ] && ps_len=$((ps_len + ${#SCMSTATUS} - 12))
-
-    local PROMPT="${RET}${VENVSTATUS}${PYBREW}${RVM}${SCMSTATUS}${LPROM}"
-    local PROMPT_PWD=""
-    local PS1_T1=" $CY"
-    local PS1_T2="$BL${PROMPT} \[\e[0m\]"
-    ps_len=$((ps_len + 2))
-    local startpos=""
-
-    PROMPT_PWD="${PWD/#$HOME/~}"
-    local overflow_prefix="..."
-    local pwdlen=${#PROMPT_PWD}
-    local maxpwdlen=$(( COLUMNS - ps_len ))
-    # Sometimes COLUMNS isn't initiliased, if it isn't, fall back on 80
-    [ $maxpwdlen -lt 0 ] && maxpwdlen=$(( 80 - ps_len ))
-
-    if [ $pwdlen -gt $maxpwdlen ] ; then
-        startpos=$(( $pwdlen - maxpwdlen + ${#overflow_prefix} ))
-        PROMPT_PWD="${overflow_prefix}${PROMPT_PWD:$startpos:$maxpwdlen}"
+    if [ ! -z "$__vcs_prefix" ]; then
+        append_ps1 " ${col_bldwht}${__vcs_prefix}${__vcs_ref}"
     fi
 
-    export PS1="${REMOTE}${BL}${PROMPT_PWD}${PS1_T1}${PS1_T2}"
+    # Super-user identification
+    if [ "$UID" -eq "0" ]; then
+        append_ps1 " ${col_txtred}#"
+    else
+        append_ps1 " ${col_txtwht}$"
+    fi
+
+    # Reset colors
+    append_ps1 "${col_txtrst} "
+
+    export PS1
 }
 PROMPT_COMMAND=bash_prompt_cmd
 # }}}
