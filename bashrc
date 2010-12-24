@@ -119,13 +119,22 @@ bash_prompt_cmd() {
         PS1="${PS1}${1}"
     }
 
+    transform_pwd() {
+        curdir=$1
+        curdir=${curdir/#~\/src\//:}
+        curdir=${curdir/#:personal\//${col_undcyn}➤${col_txtblu}}
+        curdir=${curdir/#:work\//${col_undred}⚒${col_txtblu}}
+        echo $curdir
+    }
+
     # Add hostname if connected through SSH
     if [ -n "$SSH_CLIENT" ]; then
         append_ps1 "${col_bldgrn}$(hostname -s) "
     fi
 
     # CWD
-    append_ps1 "${col_txtblu}${PWD/#$HOME/~}"
+    CUR_DIR=${PWD/$HOME/\~}
+    append_ps1 "${col_txtblu}$(transform_pwd ${CUR_DIR})"
 
     # Return-code
     if [ $RETVAL -ne 0 ]; then
