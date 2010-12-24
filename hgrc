@@ -18,6 +18,7 @@ parentrevspec=
 rebase=
 bookmarks=
 mq=
+prompt = ~/src/personal/dotfiles/hg-prompt/prompt.py
 
 [alias]
 blame=annotate -u -n
