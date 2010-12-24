@@ -67,7 +67,7 @@ __vcs_dir() {
       sub_dir=$(git rev-parse --show-prefix)
       sub_dir=${sub_dir%/}
       ref=$(parse_git_branch)
-      vcs="git"
+      vcs="±"
   }
 
   svn_dir() {
@@ -77,7 +77,7 @@ __vcs_dir() {
       base_dir=$(readlink -f "$base_dir")
       sub_dir=$(sub_dir "${base_dir}")
       ref=$(svn info "$base_dir" | awk '/^Revision/ { sub("[^0-9]*","",$0); print $0 }')
-      vcs="svn"
+      vcs="⚒"
   }
 
   hg_dir() {
@@ -85,9 +85,17 @@ __vcs_dir() {
       while [ ! -d "$base_dir/.hg" ]; do base_dir="$base_dir/.."; b=$(readlink -f "${base_dir}"); [ "$b" = "/" ] && return 1; done
       base_dir=$(readlink -f "$base_dir")
       sub_dir=$(sub_dir "${base_dir}")
-      ref="$(hg_ps1.py 2>/dev/null)" || ref=$(cat "${base_dir}/.hg/branch" 2>/dev/null)
+      ref=$(hg_prompt_info)
       [ "$ref" == "" ] && ref="${GREEN}default"
-      vcs="hg"
+      vcs="∇"
+  }
+
+  hg_prompt_info() {
+    hg prompt --angle-brackets "\
+<<branch>>\
+<@<tags|,>>\
+<status|modified|unknown><update><
+patches:<patches|join(→)>>" 2>/dev/null
   }
 
   git_dir ||
