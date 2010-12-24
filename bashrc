@@ -102,15 +102,15 @@ bash_prompt_cmd() {
     local RVM=""
     if [ ! -z $RUBY_VERSION ]
     then
-        RVM="${GR}$(echo $RUBY_VERSION |sed 's/.*-\(.\+\)-.*/\1/g') "
-        ps_len=$((ps_len + 7))
+        RVM="${GR}∼$(echo $RUBY_VERSION |sed 's/.*-\(.\+\)-.*/\1/g') "
+        ps_len=$((ps_len + 8))
     fi
 
     local PYBREW="$(echo $(which python) 2>/dev/null|sed -n 's/.*Python-\([0-9].[0-9]\).*/\1/p')"
     if [ ! -z "$PYBREW" ]
     then
-        PYBREW="${GR}${PYBREW} "
-        ps_len=$((ps_len + 3))
+        PYBREW="${PK}∝${PYBREW} "
+        ps_len=$((ps_len + 4))
     fi
 
     local VENVSTATUS=""
