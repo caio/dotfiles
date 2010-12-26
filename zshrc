@@ -1,8 +1,10 @@
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="caioromao"
+export CASE_SENSITIVE="true"
+export DISABLE_AUTO_UPDATE="true"
 
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git make-dir-complete)
+plugins=(git make-dir-complete fabric gem)
 
 source $ZSH/oh-my-zsh.sh
 
