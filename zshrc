@@ -4,7 +4,7 @@ export CASE_SENSITIVE="true"
 export DISABLE_AUTO_UPDATE="true"
 
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git make-dir-complete fabric gem)
+plugins=(git make-dir-complete fabric gem task)
 
 source $ZSH/oh-my-zsh.sh
 
