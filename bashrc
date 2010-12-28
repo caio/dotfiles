@@ -198,6 +198,7 @@ alias cpptags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 alias -- -='cd -'
 alias beep="echo -ne '\a'"
 alias S="screen -S"
+alias t=task
 # }}}
 
 # {{{ History
