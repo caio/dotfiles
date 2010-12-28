@@ -123,7 +123,7 @@ bash_prompt_cmd() {
     }
 
     transform_pwd() {
-        curdir=$1
+        curdir="$@"
         curdir=${curdir/#~\/src\//:}
         curdir=${curdir/#:personal\//${col_undcyn}➤${col_txtblu}}
         curdir=${curdir/#:work\//${col_undred}⚒${col_txtblu}}
