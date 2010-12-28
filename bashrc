@@ -62,6 +62,9 @@ do_source ~/.rvm/scripts/rvm
 # PythonBrew
 do_source ~/.pythonbrew/etc/bashrc
 
+# TaskWarrior completion
+do_source /usr/share/doc/task/scripts/bash/task_completion.sh
+
 # Load custom scripts
 for script in ~/.source/*
 do
