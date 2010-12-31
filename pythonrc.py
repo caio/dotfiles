@@ -64,9 +64,19 @@ class TermColors(dict):
     NoColor = ''
     _base  = '\001\033[%sm\002'
 
+    colored_terms = (
+        'xterm-color',
+        'xterm-256color',
+        'linux',
+        'screen',
+        'screen-256color',
+        'screen-bce',
+        'rxvt',
+        'rxvt-256color',
+    )
+
     def __init__(self):
-        if os.environ.get('TERM') in ('xterm-color', 'xterm-256color', 'linux',
-                                    'screen', 'screen-256color', 'screen-bce'):
+        if os.environ.get('TERM') in self.colored_terms:
             self.update(dict([(k, self._base % v)
                               for k,v in self.COLOR_TEMPLATES]))
         else:
