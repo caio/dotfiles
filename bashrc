@@ -135,25 +135,6 @@ bash_prompt_cmd() {
         append_ps1 "${col_bldgrn}$(hostname -s) "
     fi
 
-    if which task >/dev/null 2>&1; then
-        local overdue_tasks
-        local duetoday_tasks
-        overdue_tasks=$(task overdue| tail -n 1|cut -d\  -f 1)
-        duetoday_tasks=$(task list due:today| tail -n 1|cut -d\  -f 1)
-        typeset -i overdue_tasks
-        typeset -i duetoday_tasks
-        overdue_tasks=$((overdue_tasks - duetoday_tasks))
-        if [ "$overdue_tasks" -gt 0 ]; then
-            append_ps1 "${col_bakred}${col_bldwht}${overdue_tasks}${col_txtrst}"
-        fi
-        if [ "$duetoday_tasks" -gt 0 ]; then
-            append_ps1 "${col_bakpur}${col_bldwht}${duetoday_tasks}${col_txtrst}"
-        fi
-        if [ $((duetoday_tasks + overdue_tasks)) -gt 0 ]; then
-            append_ps1 " "
-        fi
-    fi
-
     # CWD
     CUR_DIR=${PWD/$HOME/\~}
     append_ps1 "${col_txtblu}$(transform_pwd ${CUR_DIR})"

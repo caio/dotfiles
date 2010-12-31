@@ -16,7 +16,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/romao/.config/awesome/themes/defaultmod/theme.lua")
+beautiful.init("/home/rcaio/.config/awesome/themes/defaultmod/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -336,7 +336,7 @@ function run_once(arg, assudo)
     end
 end
 run_once("parcellite")
-run_once("tpb -d", true)
+--run_once("tpb -d", true)
 run_once("nm-applet")
 run_once("gnome-power-manager")
 awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")
