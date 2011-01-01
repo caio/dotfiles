@@ -32,7 +32,6 @@ else:
 
     import atexit
     atexit.register(savehist)
-finally:
     del rlcompleter
     del atexit
 
@@ -272,7 +271,7 @@ class EditableBufferInteractiveConsole(InteractiveConsole):
         line = InteractiveConsole.raw_input(self, *args)
         if line == EDIT_CMD:
             fd, tmpfl = mkstemp('.py')
-            os.write(fd, b'\n'.join(self.last_buffer))
+            os.write(fd, '\n'.join(self.last_buffer))
             os.close(fd)
             os.system('%s %s' % (EDITOR, tmpfl))
             line = open(tmpfl).read()
