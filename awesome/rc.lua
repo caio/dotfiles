@@ -18,7 +18,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/rcaio/.config/awesome/themes/defaultmod/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/defaultmod/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
