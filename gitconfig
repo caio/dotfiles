@@ -46,6 +46,7 @@
 
 [merge]
     tool = gvimdiff
+    log = true
 
 [help]
     autocorrect = 5
@@ -70,3 +71,5 @@
 
 [push]
     default = tracking
+[branch]
+    autosetuprebase = always
