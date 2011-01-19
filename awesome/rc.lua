@@ -9,6 +9,7 @@ require("naughty")
 -- Widget library
 --require("obvious")
 require("scratch")
+require("calendar2")
 
 function make_me_away ()
     awful.util.spawn_with_shell("[ -e ~/.weechat/weechat_fifo* ] && echo '*/away screen currently locked' > ~/.weechat/weechat_fifo*")
@@ -35,8 +36,8 @@ modkey = "Mod4"
 layouts =
 {
     awful.layout.suit.floating,
-    --awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
+    awful.layout.suit.tile,
+    --awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
     awful.layout.suit.fair,
@@ -65,6 +66,8 @@ end
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
+calendar2.addCalendarToWidget(mytextclock, "<span color='red'>%s</span>")
+
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
