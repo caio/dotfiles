@@ -8,6 +8,7 @@ require("beautiful")
 require("naughty")
 -- Widget library
 --require("obvious")
+require("scratch")
 
 function make_me_away ()
     awful.util.spawn_with_shell("[ -e ~/.weechat/weechat_fifo* ] && echo '*/away screen currently locked' > ~/.weechat/weechat_fifo*")
@@ -127,7 +128,7 @@ for s = 1, screen.count() do
                                           end, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height="18",  screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
@@ -209,7 +210,12 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)
+              end),
+
+    -- Scratchpad
+    awful.key({ modkey }, "]", function ()
+        scratch.drop("urxvt -e screen -D -RR -S scratch", "bottom", "center", 0.70, 0.40, true) 
+    end)
 )
 
 clientkeys = awful.util.table.join(
@@ -339,6 +345,7 @@ run_once("parcellite")
 --run_once("tpb -d", true)
 run_once("nm-applet")
 run_once("gnome-power-manager")
+run_once("udiskie")
 awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")
 awful.util.spawn("/usr/bin/setxkbmap -model us -layout us -variant intl")
 -- }}}}
