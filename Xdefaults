@@ -46,7 +46,8 @@ urxvt.cursorColor:          #d8d8d8
 urxvt.geometry:             80x20
 
 urxvt.jumpScroll:           false
-urxvt.perl-ext-common:      default,matcher
+urxvt.perl-lib:             /home/rcaio/.urxvt/
+urxvt.perl-ext-common:      keyboard-select,url-select,clipboard,-searchable-scrollback
 urxvt.urllauncher:          /usr/bin/chromium-browser
 urxvt.matcher.button:       3
 urxvt.saveLines:            4000
@@ -55,6 +56,13 @@ urxvt.scrollstyle:          plain
 urxvt.scrollTtyKeypress:    true
 urxvt.scrollTtyOutput:      false
 urxvt.scrollWithBuffer:     false
+
+urxvt.keysym:M-s:           perl:keyboard-select:search
+urxvt.keysym.M-u:           perl:url-select:select_next
+urxvt.keysym.M-c:           perl:clipboard:copy
+urxvt.keysym.M-v:           perl:clipboard:paste
+urxvt.keysym.S-C-v:         perl:clipboard:paste_escaped
+
 
 ! xterm options
 
