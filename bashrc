@@ -199,6 +199,7 @@ alias -- -='cd -'
 alias beep="echo -ne '\a'"
 alias S="screen -S"
 alias t=task
+alias v=viewnior
 # }}}
 
 # {{{ History
