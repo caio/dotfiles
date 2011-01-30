@@ -62,6 +62,10 @@ do_source ~/.rvm/scripts/rvm
 # PythonBrew
 do_source ~/.pythonbrew/etc/bashrc
 
+# NVM
+NVM_DIR=~/.nvm
+do_source ${NVM_DIR}/nvm.sh
+
 # TaskWarrior completion
 do_source /usr/share/doc/task/scripts/bash/task_completion.sh
 
