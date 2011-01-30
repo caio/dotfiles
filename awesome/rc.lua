@@ -355,13 +355,14 @@ function run_once(arg, assudo)
         end)
     end
 end
+awful.util.spawn_with_shell("if ! pgrep urxvtd; then (sleep 5s; urxvtd -q -f -o)&  fi")
 run_once("parcellite")
-run_once("urxvtd -q -f -o")
+--run_once("urxvtd -q -f -o")
 --run_once("tpb -d", true)
 run_once("nm-applet")
 run_once("gnome-power-manager")
 run_once("udiskie")
 --awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")
 awful.util.spawn("/usr/bin/setxkbmap -model us -layout us -variant intl")
-awful.util.spawn("xplanetFX --start")
+--awful.util.spawn("xplanetFX --start")
 -- }}}}

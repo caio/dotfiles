@@ -1,3 +1,3 @@
 #!/bin/bash
 
-duplicity  $* ~/etc/Dropbox/mail/ file:////home/romao/etc/Dropbox/backup/ibm-mail/
+duplicity  $* ~/etc/Dropbox/mail/ file:////home/rcaio/etc/Dropbox/backup/ibm-mail/
