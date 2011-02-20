@@ -47,6 +47,9 @@ do_source() {
 # disabling flow control if stdin is a terminal
 [ -t 0 ] && stty -ixon -ixoff
 
+# Force 256color
+[ "$TERM" == "screen" ] && export -p TERM="screen-256color"
+
 # setting up custom bin-dir
 do_prepend ~/bin
 
