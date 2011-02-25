@@ -91,11 +91,12 @@ __vcs_dir() {
   }
 
   hg_prompt_info() {
-    hg prompt --angle-brackets "\
-<<branch>>\
-<@<tags|,>>\
-<status|modified|unknown><update><
-patches:<patches|join(→)>>" 2>/dev/null
+    hg prompt --angle-brackets "${col_txtgrn}<branch>\
+${col_txtpur}@<tags|${col_txtwht},${col_txtpur}>\
+${col_txtylw}<status|modified|unknown><update><
+${col_txtred}✉:<patches|join(→)|pre_applied(${col_bldcyn})|\
+post_applied(${col_txtrst})|pre_unapplied(${col_bldred})|\
+post_unapplied(${col_txtrst})>>" 2>/dev/null
   }
 
   git_dir ||
