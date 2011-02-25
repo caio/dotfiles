@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO=/home/romao/src/work/upp
+REPO=/home/rcaio/src/work/upp
 DIRS=( $REPO/ppack/wui $REPO/common/wui )
 MOUNTPOINT="/opt/wui"
 
@@ -20,5 +20,9 @@ do_umount() {
     fusermount -u $MOUNTPOINT
 }
 
-mount |grep $MOUNTPOINT >/dev/null && do_umount || do_mount
+if mount|grep $MOUNTPOINT >/dev/null; then
+    do_umount
+else
+    do_mount
+fi
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 REPO=/home/rcaio/src/work/upp
-DIRS=( $REPO/vpl-sst/wui $REPO/common/wui )
-MOUNTPOINT="/opt/ibm/vpl-sst"
+DIRS=( $REPO/sst/wui $REPO/common/wui )
+MOUNTPOINT="/opt/ibm/sst"
 
 
 do_mount() {
@@ -20,5 +20,9 @@ do_umount() {
     fusermount -u $MOUNTPOINT
 }
 
-mount |grep $MOUNTPOINT >/dev/null && do_umount || do_mount
+if mount|grep $MOUNTPOINT >/dev/null; then
+    do_umount
+else
+    do_mount
+fi
 
