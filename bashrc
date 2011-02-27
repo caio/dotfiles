@@ -1,6 +1,16 @@
 # plain .bashrc - should work on any Linux environment
 # assembled by: Caio Romão <caioromao@gmail.com>
 
+# {{{ Shell options
+shopt -s cdable_vars
+shopt -s checkjobs
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s extglob
+shopt -s histappend
+shopt -s no_empty_cmd_completion
+# }}}
+
 # {{{ *PATH variables helpers
 pathremove() {
     local IFS=':'
