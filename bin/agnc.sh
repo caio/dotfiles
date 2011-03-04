@@ -10,4 +10,8 @@ do_rcexec() {
     sudo ${clientd} ${1}
 }
 
-pgrep -f agnclient 2>&1 >/dev/null && do_rcexec "stop" || do_rcexec "start"
+if pgrep -f agnclient 2>&1 >/dev/null; then
+    do_rcexec "stop"
+else
+    do_rcexec "start"
+fi
