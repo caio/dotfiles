@@ -2,7 +2,6 @@
 # assembled by: Caio Romão <caioromao@gmail.com>
 
 # {{{ Shell options
-shopt -s cdable_vars
 shopt -s checkjobs
 shopt -s checkwinsize
 shopt -s cmdhist
