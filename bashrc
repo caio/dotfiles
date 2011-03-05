@@ -2,6 +2,7 @@
 # assembled by: Caio Romão <caioromao@gmail.com>
 
 # {{{ Shell options
+set -o vi
 shopt -s checkjobs
 shopt -s checkwinsize
 shopt -s cmdhist
