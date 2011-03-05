@@ -223,7 +223,7 @@ alias gvim='/usr/bin/gvim --remote-silent'
 # {{{ History
 export HISTSIZE=4000
 export HISTFILESIZE=4000
-export HISTIGNORE="ls:l:c:clear:d:cd:dc:bg:fg:jk:h:dl"
+export HISTIGNORE="ls:l:c:clear:d:cd:dc:bg:fg:jk:h:dl:mv:cp:rm"
 export HISTCONTROL=erasedups
 export HISTTIMEFORMAT='%m%d %H%M: '
 # }}}
