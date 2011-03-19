@@ -222,6 +222,16 @@ globalkeys = awful.util.table.join(
     awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn("amixer sset Master 10- unmute") end),
     awful.key({}, "XF86AudioMute", function() awful.util.spawn("amixer sset Master toggle") end),
 
+    -- Mouse toggle
+    awful.key({}, "Menu", function()
+        state = io.popen("synclient -l |grep -i touchpadoff| awk '{ print $3 }'"):read()
+        flag = "0"
+        if state == "0" then
+            flag = "1"
+        end
+        awful.util.spawn("synclient TouchpadOff=" .. flag)
+    end),
+
     -- Layout
     awful.key({}, "XF86Forward", function () awful.layout.inc(layouts,  1) end),
     awful.key({}, "XF86Back", function () awful.layout.inc(layouts, -1) end),
