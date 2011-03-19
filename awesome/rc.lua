@@ -368,6 +368,7 @@ end
 awful.util.spawn_with_shell("if ! pgrep urxvtd; then (sleep 2s; urxvtd -q -f -o)&  fi")
 awful.util.spawn_with_shell("if ! pgrep conky; then (sleep 2s; conky -c ~/.conky/conkyrc_orange)& fi")
 run_once("parcellite")
+run_once("unclutter -idle 1")
 --run_once("urxvtd -q -f -o")
 --run_once("tpb -d", true)
 run_once("nm-applet")
