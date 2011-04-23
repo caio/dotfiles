@@ -352,29 +352,27 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 
 -- Autorun {{{
-function run_once(arg, assudo)
-    if not arg then
-        do return nil end
-    end
-    if not assudo then
-        awful.util.spawn_with_shell("pgrep -u $USER -x -f \"" .. arg .. "\" || (" .. arg .. ")")
-    else
-        arg:gsub("([^ ]+).*", function(c)
-            awful.util.spawn_with_shell("pgrep -u root -x " .. c
-                                        .. " || (sudo " .. arg .. ")")
-        end)
-    end
+local r = require("runonce")
+local autostart = {
+    "urxvtd -q -f -o",
+    "conky -c ~/.conky/conkyrc_orange",
+    "parcellite",
+    "nm-applet",
+    "gnome-power-manager",
+    "udiskie",
+    "unclitter -idle 1"
+}
+
+for idx=1, #autostart do
+    r.run(autostart[idx])
 end
-awful.util.spawn_with_shell("if ! pgrep urxvtd; then (sleep 2s; urxvtd -q -f -o)&  fi")
-awful.util.spawn_with_shell("if ! pgrep conky; then (sleep 2s; conky -c ~/.conky/conkyrc_orange)& fi")
-run_once("parcellite")
-run_once("unclutter -idle 1")
---run_once("urxvtd -q -f -o")
---run_once("tpb -d", true)
-run_once("nm-applet")
-run_once("gnome-power-manager")
-run_once("udiskie")
---awful.util.spawn_with_shell("xmodmap ~/.Xmodmap")
-awful.util.spawn("/usr/bin/setxkbmap -model us -layout us -variant intl")
---awful.util.spawn("xplanetFX --start")
+
+local runaways = {
+    "setxkbmap -model us -layout us -variant intl",
+    "xinput set-button-map $(xinput list| sed -n 's/.*Synaptics.*id=\([0-9]\+\).*/\1/p') 1 2 3 5 4 7 6"
+}
+
+for idx=1, #runaways do
+    awful.util.spawn_with_shell(runaways[idx])
+end
 -- }}}}
