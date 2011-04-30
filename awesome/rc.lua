@@ -360,7 +360,7 @@ local autostart = {
     "nm-applet",
     "gnome-power-manager",
     "udiskie",
-    "unclitter -idle 1"
+    "unclutter -idle 1"
 }
 
 for idx=1, #autostart do
