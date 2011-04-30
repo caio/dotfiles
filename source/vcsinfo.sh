@@ -8,8 +8,8 @@ __vcs_dir() {
   local LIGHT_RED LIGHT_GREEN WHITE LIGHT_GRAY COLOR_NONE
 
   RED="\[\033[0;31m\]"
-  YELLOW="\[\033[0;33m\]"
-  GREEN="\[\033[0;32m\]"
+  YELLOW="\[\033[0;35m\]"
+  GREEN='\[\e[0;36m\]'
   BLUE="\[\033[0;34m\]"
   LIGHT_RED="\[\033[1;31m\]"
   LIGHT_GREEN="\[\033[1;32m\]"
