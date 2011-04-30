@@ -11,7 +11,7 @@ DESTDIR=${HOME}
 
 BASHFILES="bashrc source"
 VCSFILES="gitconfig hgrc bazaar"
-BASEFILES="Xdefaults fonts pythonrc.py ipython irbrc screenrc inputrc"
+BASEFILES="Xdefaults fonts pythonrc.py ipython irbrc screenrc inputrc dircolors"
 
 function setup_symlinks
 {
