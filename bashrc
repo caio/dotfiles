@@ -217,7 +217,7 @@ alias beep="echo -ne '\a'"
 alias S="screen -S"
 alias t=task
 alias v=viewnior
-alias gvim='/usr/bin/gvim --remote-silent'
+alias e='/usr/bin/gvim --remote-silent'
 # }}}
 
 # {{{ History

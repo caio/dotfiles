@@ -357,7 +357,7 @@ local autostart = {
     "urxvtd -q -f -o",
     "conky -c ~/.conky/conkyrc_orange",
     "parcellite",
-    "nm-applet",
+    "nm-applet --sm-disable",
     "gnome-power-manager",
     "udiskie",
     "unclutter -idle 1"
@@ -369,7 +369,7 @@ end
 
 local runaways = {
     "setxkbmap -model us -layout us -variant intl",
-    "xinput set-button-map $(xinput list| sed -n 's/.*Synaptics.*id=\([0-9]\+\).*/\1/p') 1 2 3 5 4 7 6"
+    "xinput set-button-map 11 1 2 3 5 4 7 6"
 }
 
 for idx=1, #runaways do
