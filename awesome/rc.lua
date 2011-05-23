@@ -358,7 +358,7 @@ local autostart = {
     "conky -c ~/.conky/conkyrc_orange",
     "parcellite",
     "nm-applet --sm-disable",
-    "gnome-power-manager",
+    "xfce4-power-manager",
     "udiskie",
     "unclutter -idle 1"
 }
