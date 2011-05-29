@@ -1,61 +1,61 @@
 [user]
-    name = Caio Romão
-    email = caioromao@gmail.com
+	name = Caio Romão
+	email = caioromao@gmail.com
 
 [alias]
-    ci = commit
-    co = checkout
-    st = status -sb
-    br = branch
-    nb = checkout -b
-    lo = log --graph --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
-    la = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
-    lw = log --graph --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --since 'last week'
-    report = log --since='30 days ago' --author caio --pretty=format:'%Cgreen(%ci) %Creset%s'
-    unstage = reset HEAD --
-    revname = name-rev --name-only --refs=refs/heads/*
+	ci = commit
+	co = checkout
+	st = status -sb
+	br = branch
+	nb = checkout -b
+	lo = log --graph --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
+	la = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
+	lw = log --graph --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --since 'last week'
+	report = log --since='30 days ago' --author caio --pretty=format:'%Cgreen(%ci) %Creset%s'
+	unstage = reset HEAD --
+	revname = name-rev --name-only --refs=refs/heads/*
 	from = !sh -c \"git branch -r|grep $1\"
 
 [core]
-    editor = vim
-    whitespace = blank-at-eol,space-before-tab,tab-in-indent
+	editor = vim
+	whitespace = blank-at-eol,space-before-tab,tab-in-indent
 
 [color]
-    ui = auto
+	ui = auto
 
 [url "git@github.com:caio/"]
-    insteadOf = github:
+	insteadOf = github:
 
 [url "git://github.com/"]
-    insteadOf = gh:
+	insteadOf = gh:
 
 [merge]
-    tool = gvimdiff
-    log = true
+	tool = gvimdiff
+	log = true
 
 [help]
-    autocorrect = 5
+	autocorrect = 5
 
 [rebase]
-    stat = true
+	stat = true
 
 [web]
-    browser = google-chrome
+	browser = google-chrome
 
 [diff]
-    renames = copies
+	renames = copies
 
 [sendemail]
-    smtpserver = la.relay.ibm.com
-    chainreplyto = false
+	smtpserver = la.relay.ibm.com
+	chainreplyto = false
 
 [giggle]
-    main-window-maximized = false
-    main-window-geometry = 696x1027+694+19
-    main-window-view = HistoryView
+	main-window-maximized = false
+	main-window-geometry = 696x1027+694+19
+	main-window-view = HistoryView
 
 [push]
-    default = tracking
+	default = tracking
 [branch]
-    autosetuprebase = always
-    autosetupmerge = always
+	autosetuprebase = always
+	autosetupmerge = always
