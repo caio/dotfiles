@@ -4,6 +4,7 @@
 
 progname=$(basename $0)
 verbose=false
+noerror=false
 
 usage() {
     cat 1>&2 <<EOF
@@ -19,6 +20,7 @@ Mandatory Parameters:
 Optional Parameters:
   -h             Show this message
   -v             Verbose mode
+  -n             Don't exit with error if share already mounted
   -p PASSWORD    Password to the given username
   -o PARAMETERS  Extra options to pass to the mount command
   -u UID         Custom UID to use on mount (Defaults to current user's ID)
@@ -64,7 +66,7 @@ EOF
 }
 
 read_opts() {
-    while getopts "hu:c:m:vp:" opt; do
+    while getopts "hu:c:m:vp:n" opt; do
         case $opt in
             u)
                 GSA_USER=$OPTARG;;
@@ -76,6 +78,8 @@ read_opts() {
                 usage; exit 0;;
             v)
                 verbose=true;;
+            n)
+                noerror=true;;
             p)
                 GSA_PASS=$OPTARG;;
             o)
@@ -110,9 +114,9 @@ main() {
     # Check if already mounted
     if awk '{ print $1 }' /proc/mounts | grep -x "$target/" &>/dev/null; then
         cat 2>&1 <<EOF
-Error: Share ${target} already mounted!
+WARNING: Share ${target} already mounted!
 EOF
-        exit 2
+        $noerror && exit 0 || exit 2
     fi
 
     $verbose && set -x
