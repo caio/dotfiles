@@ -218,6 +218,7 @@ alias S="screen -S"
 alias t=task
 alias v=viewnior
 alias e='/usr/bin/gvim --remote-silent'
+alias p='ps -eo pid,ruser,cmd| grep -i'
 # }}}
 
 # {{{ History
