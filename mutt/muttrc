@@ -147,3 +147,6 @@ charset-hook windows-1256 CP1256
 charset-hook windows-1257 CP1257
 charset-hook windows-1258 CP1258
 
+# hooks
+folder-hook +work.* set from="caio@linux.vnet.ibm.com"
+folder-hook +notes.* set from="rcaio@br.ibm.com"
