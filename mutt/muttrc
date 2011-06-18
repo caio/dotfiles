@@ -124,13 +124,14 @@ bind pager G bottom
 macro index \Cr "<tag-pattern>~N\n<tag-prefix><clear-flag>N" \
   "Mark all new messages as read"
 
-# Automatically use entries from ~/.mailcap to view these MIME types
 
+# Automatically use entries from ~/.mailcap to view these MIME types
 set mailcap_path=$HOME/.mutt/mailcap
-auto_view application/x-gunzip
-auto_view application/x-gzip
+# auto_view application/x-gunzip
+# auto_view application/x-gzip
 auto_view text/html
 alternative_order text/enriched text/plain text/html
+mime_lookup application/octec-stream
 
 # aliases for broken MUAs
 charset-hook US-ASCII ISO-8859-1
