@@ -18,6 +18,7 @@ for mail in processor:
     elif (mail["subject"].matches(r"^Invitation|^Rescheduled|^Cancelled") or
           mail["subject"].matches(r"^Accepted|^Declined") or
           mail["subject"].contains("Rookery") or
+          mail["from"].contains("noreply@linux.ibm.com") or
           mail["subject"].contains("Information Update")):
         mail.move(".Invitations")
 
