@@ -1,0 +1,20 @@
+# vim: ft=muttrc
+
+# get the url view working
+macro index \cb |urlview\n 'call urlview to extract URLs out of a message'
+macro pager \cb |urlview\n 'call urlview to extract URLs out of a message'
+
+# h will take you to the folder list in the index
+macro index h "c?t"
+
+# Shortcut for inboxes
+macro index ga "<change-folder>=work/INBOX<enter>"
+macro index gA "<change-folder>=notes<enter>"
+
+# b toggles sidebar visibility
+macro index b ':toggle sidebar_visible'
+macro pager b ':toggle sidebar_visible'
+
+macro index \Cr "<tag-pattern>~N\n<tag-prefix><clear-flag>N" \
+  "Mark all new messages as read"
+
