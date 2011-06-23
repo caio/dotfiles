@@ -1,0 +1,29 @@
+# vim: ft=python
+
+processor.maildir_base = "~/.mail/notes"
+processor.maildirs = ["."]
+processor.logfile = "~/.mail/maildirproc.log"
+processor.auto_reload_rc_file = True
+
+for mail in processor:
+    if mail["subject"].contains("[Work Item"):
+        mail.move(".RTC")
+
+    elif (mail["subject"].matches(r"^IBM Not.cias|^Friday News |^Wednesday News ") or
+          mail["subject"].contains("TAP ") or
+          mail["subject"].contains("TLC ") or
+          mail["from"].contains("brlabcom@br.ibm.com")):
+        mail.move(".Noticias")
+
+    elif (mail["subject"].matches(r"^Invitation|^Rescheduled|^Cancelled") or
+          mail["subject"].matches(r"^Accepted|^Declined") or
+          mail["subject"].contains("Rookery") or
+          mail["subject"].contains("Information Update")):
+        mail.move(".Invitations")
+
+    elif (mail["subject"].matches(r"^ABAT") or
+          mail["subject"].contains("SOS Order") or
+          mail["subject"].contains("Request Submitted") or
+          mail["subject"].contains("bugzilla") or
+          mail["from"].matches(r".*@abat.linux.ibm.com")):
+        mail.move(".Infra")
