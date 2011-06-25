@@ -117,6 +117,8 @@ bind generic \177 last-entry
 
 bind pager G bottom
 
+bind index - collapse-thread
+
 source $HOME/.mutt/macros
 
 # Automatically use entries from ~/.mailcap to view these MIME types
@@ -144,7 +146,33 @@ charset-hook windows-1258 CP1258
 # hooks
 folder-hook +work.* set from="caio@linux.vnet.ibm.com"
 folder-hook +notes.* set from="rcaio@br.ibm.com"
-folder-hook +.* macro index A "<copy-message>=TODO<enter>"
-folder-hook +.* macro pager A "<copy-message>=TODO<enter>"
-folder-hook +TODO.* macro index A "<delete-message>"
-folder-hook +TODO.* macro pager A "<delete-message>"
+folder-hook +.* macro index s "<copy-message>=TODO<enter>"
+folder-hook +.* macro pager s "<copy-message>=TODO<enter>"
+folder-hook +TODO.* macro index s "<delete-message>"
+folder-hook +TODO.* macro pager s "<delete-message>"
+
+# "e" to archive/unarchive messages
+folder-hook +notes.* macro index e "<save-message>=notes/.Archive<enter>"
+folder-hook +notes.* macro pager e "<save-message>=notes/.Archive<enter>"
+folder-hook +notes/\.Archive macro index e "<save-message>=notes<enter>"
+folder-hook +notes/\.Archive macro pager e "<save-message>+notes<enter>"
+
+folder-hook +work.* macro index e "<save-message>=work/archive<enter>"
+folder-hook +work.* macro pager e "<save-message>=work/archive<enter>"
+folder-hook +work/archive macro index e "<save-message>=work/INBOX<enter>"
+folder-hook +work/archive macro pager e "<save-message>=work/INBOX<enter>"
+
+# Shortcut for inboxes
+folder-hook +work.* macro index gi "<change-folder>=work/INBOX<enter>"
+folder-hook +work.* macro pager gi "<change-folder>=work/INBOX<enter>"
+folder-hook +notes.* macro index gi "<change-folder>=notes<enter>"
+folder-hook +notes.* macro pager gi "<change-folder>=notes<enter>"
+
+folder-hook +work.* macro index ga "<change-folder>=work/archive<enter>"
+folder-hook +work.* macro pager ga "<change-folder>=work/archive<enter>"
+folder-hook +notes.* macro index ga "<change-folder>=notes/.Archive<enter>"
+folder-hook +notes.* macro pager ga "<change-folder>=notes/.Archive<enter>"
+
+macro index gs "<change-folder>=TODO<enter>"
+
+folder-hook . push "<collapse-all>"
