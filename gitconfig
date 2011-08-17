@@ -14,7 +14,8 @@
 	report = log --since='30 days ago' --author caio --pretty=format:'%Cgreen(%ci) %Creset%s'
 	unstage = reset HEAD --
 	revname = name-rev --name-only --refs=refs/heads/*
-	from = !sh -c \"git branch -r|grep $1\"
+	changed = diff --name-status -r
+	from = !sh -c 'git branch -r|grep "$1"' -
 
 [core]
 	editor = vim
