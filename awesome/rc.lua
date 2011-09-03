@@ -355,13 +355,12 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 local r = require("runonce")
 local autostart = {
     "urxvtd -q -f -o",
-    --"conky -c ~/.conky/conkyrc_orange",
+    "xrdb -load /home/romao/Desktop/.Xresources",
     "parcellite",
-    "nm-applet --sm-disable",
     "xfce4-power-manager",
     "xfce4-volumed",
     "udiskie",
-    --"unclutter -idle 1"
+    "bluetooth-applet"
 }
 
 for idx=1, #autostart do

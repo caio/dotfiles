@@ -5,18 +5,25 @@
 theme = {}
 theme.wallpaper_cmd = { "nitrogen --restore" }
 
-theme.font          = "inconsolata 8"
-theme.bg_normal     = "#222222"
---theme.bg_focus      = "#3465a4"
-theme.bg_focus      = "#0069B3"
+theme.font          = "Terminus 5"
+
+theme.bg_normal     = "#0F0F0F"
+theme.bg_focus      = "#0F0F0F"
+--theme.bg_urgent     = "#000000"
 theme.bg_urgent     = "#ff0000"
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
+theme.bg_minimize   = "#000000"
+
+theme.fg_normal     = "#C6C6C6"
+theme.fg_focus      = "#FFFFFF"
+--theme.fg_focus      = "#D8D9DA"
+theme.fg_urgent     = "#000000"
+theme.fg_minimize   = "#000000"
+
 theme.border_width  = "1"
-theme.border_normal = "#555555"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.border_normal = "#151515"
+theme.border_focus  = "#C6C6C6"
+theme.border_marked = "#000000"
+
 
 -- There are other variable sets
 -- overriding the default one when
