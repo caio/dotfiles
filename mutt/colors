@@ -31,7 +31,7 @@ color message       color37         color234
 color markers       color160        color254        
 color attachment    color254        color234        
 color search        color61         color234        
-#color status        J_black         J_status        
+# color status        J_black         J_status        
 color status        color241        color235        
 color indicator     color234        color136        
 color tree          color136        color234                                    # arrow in threads
@@ -44,11 +44,11 @@ mono  error         bold
 
 # index ----------------------------------------------------------------
 
-#color index         color160        color234        "~D(!~p|~p)"               # deleted
-#color index         color235        color234        ~F                         # flagged
-#color index         color166        color234        ~=                         # duplicate messages
-#color index         color240        color234        "~A!~N!~T!~p!~Q!~F!~D!~P"  # the rest
-#color index         J_base          color234        "~A~N!~T!~p!~Q!~F!~D"      # the rest, new
+color index         color160        color234        "~D(!~p|~p)"               # deleted
+color index         color235        color234        ~F                         # flagged
+color index         color166        color234        ~=                         # duplicate messages
+color index         color240        color234        "~A!~N!~T!~p!~Q!~F!~D!~P"  # the rest
+# color index         J_base          color234        "~A~N!~T!~p!~Q!~F!~D"      # the rest, new
 color index         color160        color234        "~A"                        # all messages
 color index         color166        color234        "~E"                        # expired messages
 color index         color33         color234        "~N"                        # new messages
@@ -80,14 +80,14 @@ color index         color64         color235        "~N~v~(~F~N)"               
 color index         color64         color235        "~N~v~(~F)"                 # collapsed thread with unread parent, no unread inside, but some flagged
 color index         color37         color235        "~v~(~p)"                   # collapsed thread with unread parent, no unread inside, some to me directly
 color index         color136        color160        "~v~(~D)"                   # thread with deleted (doesn't differentiate between all or partial)
-#color index         color136        color234        "~(~N)"                    # messages in threads with some unread
-#color index         color64         color234        "~S"                       # superseded messages
-#color index         color160        color234        "~T"                       # tagged messages
-#color index         color166        color160        "~="                       # duplicated messages
+color index         color136        color234        "~(~N)"                    # messages in threads with some unread
+color index         color64         color234        "~S"                       # superseded messages
+color index         color160        color234        "~T"                       # tagged messages
+color index         color166        color160        "~="                       # duplicated messages
 
 # message headers ------------------------------------------------------
 
-#color header        color240        color234        "^"
+color header        color240        color234        "^"
 color hdrdefault    color240        color234        
 color header        color241        color234        "^(From)"
 color header        color33         color234        "^(Subject)"

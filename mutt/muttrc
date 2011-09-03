@@ -115,9 +115,13 @@ bind generic { top-page
 bind generic } bottom-page
 bind generic \177 last-entry
 
-bind pager G bottom
+bind index G group-reply
+bind pager G group-reply
 
 bind index - collapse-thread
+
+bind index S save-message
+bind pager S save-message
 
 source $HOME/.mutt/macros
 
