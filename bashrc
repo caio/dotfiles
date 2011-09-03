@@ -54,11 +54,10 @@ do_source() {
 }
 # }}}
 
+[ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
+
 # disabling flow control if stdin is a terminal
 [ -t 0 ] && stty -ixon -ixoff
-
-# Force 256color
-[ "$TERM" == "screen" ] && export -p TERM="screen-256color"
 
 # setting up custom bin-dir
 do_prepend ~/bin
@@ -222,8 +221,8 @@ alias p='ps -eo pid,ruser,cmd| grep -i'
 # }}}
 
 # {{{ History
-export HISTSIZE=4000
-export HISTFILESIZE=4000
+export HISTSIZE=40000
+export HISTFILESIZE=40000
 export HISTIGNORE="ls:l:c:clear:d:cd:dc:bg:fg:jk:h:dl:mv:cp:rm"
 export HISTCONTROL=erasedups
 export HISTTIMEFORMAT='%m%d %H%M: '
@@ -248,4 +247,3 @@ do_source ~/.source/virtualenvwrapper/virtualenvwrapper.sh
 # }}}
 
 true # avoid carrying over test status
-
