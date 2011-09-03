@@ -1,0 +1,93 @@
+*background: #101010
+*foreground: #b5b5b5
+*color0:  #1c1c1c
+*color8:  #3d3a3a
+*color1:  #d74b73
+*color9:  #b94062
+*color2 : #9acc79
+*color10: #8fb676
+*color3:  #d0d26b
+*color11: #c8bc45
+*color4 : #77b6c5
+*color12: #8fa7b9
+*color5:  #a488d9
+*color13: #8888a1
+*color6:  #7fcab3
+*color14: #6ec2a8
+*color7:  #8d8d8d
+*color15: #dad3d3
+
+! XFT
+xft.antialias:              true
+xft.rgba:                   rgb
+xft.dpi:                    96
+xft.hintstyle:              hintfull
+xft.hinting:                true
+
+! Terms
+
+*scrollBar: false
+*scrollBar_floating: true
+*scrollBar_right: false
+*scrollColor:  #000000
+*saveLines: 8192
+
+! urxvt options
+urxvt.urgentOnBell:         true
+urxvt.buffered:             true
+urxvt.font:                 xft:Dejavu\ Sans\ Mono:pixelsize=12:antialias=False
+urxvt.boldFont:             xft:Dejavu\ Sans\ Mono:pixelsize=12:antialias=False
+urxvt.secondaryScroll:      true
+urxvt.xftAntialias:         true
+urxvt.underlineColor:       yellow
+urxvt.geometry:             80x20
+
+urxvt.jumpScroll:           false
+urxvt.perl-lib:             /home/romao/.urxvt
+urxvt.perl-ext-common:      keyboard-select,url-select,clipboard,-searchable-scrollback
+urxvt.urllauncher:          /usr/bin/google-chrome
+urxvt.matcher.button:       3
+urxvt.saveLines:            4000
+urxvt.scrollBar:            false
+urxvt.scrollstyle:          plain
+urxvt.scrollTtyKeypress:    true
+urxvt.scrollTtyOutput:      false
+urxvt.scrollWithBuffer:     false
+
+urxvt.keysym:M-s:           perl:keyboard-select:search
+urxvt.keysym.M-u:           perl:url-select:select_next
+urxvt.keysym.M-c:           perl:clipboard:copy
+urxvt.keysym.M-v:           perl:clipboard:paste
+urxvt.keysym.S-C-v:         perl:clipboard:paste_escaped
+
+
+! xterm options
+
+xterm*underLine: on
+xterm*colorMode: on
+xterm*colorULMode: on
+xterm*dynamicColors: off
+xterm*highlightSelection: true
+xterm*faceName: Terminus
+xterm*faceSize: 8
+
+! NEDIT
+
+nedit*enableThinThickness:     True
+nedit*enableToggleVisual:      True
+nedit*enableToggleColor:       True
+nedit*XmToggleButton.indicatorSize: 11
+nedit*enableEtchedInMenu:      True
+nedit*XmMenuShell*XmTearOffButton*ShadowThickness:   2
+nedit*text.background:          white
+nedit*text.selectBackground:   #D0D0FF
+nedit*text.lineNumForeground:  #A0A0D0
+nedit*background:              gray85
+nedit*statsForm.background:    gray85
+nedit*statsLine.background:    gray85
+nedit*bottomShadowColor:       gray65
+nedit*topShadowColor:          #fefefe
+nedit*XmText.background:       white
+nedit*XmTextField.background:  white
+nedit*XmList.background:       white
+
