@@ -1,3 +1,4 @@
+# vim: noet:sw=8
 [user]
 	name = Caio Romão
 	email = caioromao@gmail.com
@@ -20,6 +21,7 @@
 [core]
 	editor = vim
 	whitespace = blank-at-eol,space-before-tab,tab-in-indent
+	preloadindex = true
 
 [color]
 	ui = auto
@@ -45,6 +47,10 @@
 
 [diff]
 	renames = copies
+	noprefix = true
+
+[log]
+	decorate = short
 
 [sendemail]
 	smtpserver = la.relay.ibm.com
