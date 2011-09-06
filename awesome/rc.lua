@@ -364,7 +364,7 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 local r = require("runonce")
 local autostart = {
     "urxvtd -q -f -o",
-    "xrdb -load /home/romao/Desktop/.Xresources",
+    "xrdb -load /home/romao/.Xresources",
     "parcellite",
     "xfce4-power-manager",
     "xfce4-volumed",
