@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO=/home/rcaio/src/work/upp
+REPO=/home/romao/src/work/upp
 DIRS=( $REPO/sst/wui $REPO/common/wui )
 MOUNTPOINT="/opt/ibm/sst"
 
@@ -12,7 +12,7 @@ do_mount() {
         PARAMS="${PARAMS}${d}=RW:"
     done
     PARAMS="${PARAMS%:}"
-    unionfs -o allow_other $PARAMS $MOUNTPOINT
+    unionfs-fuse -o allow_other $PARAMS $MOUNTPOINT
 }
 
 do_umount() {
