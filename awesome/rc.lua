@@ -53,10 +53,19 @@ layouts =
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag({"web", "two", "three", "mail", "irc", "misc"}, s,
-      {layouts[5], layouts[2], layouts[3], layouts[5], layouts[3], layouts[1]})
+if screen.count() == 1 then
+    tags[1] = awful.tag({"web", "two", "three", "mail", "irc", "misc"}, 1,
+                        {layouts[5], layouts[2], layouts[3], layouts[5],
+                        layouts[3], layouts[1]})
+elseif screen.count() == 2 then
+    tags[1] = awful.tag({"web", "src", "term", "extra"}, 1,
+                        {layouts[5], layouts[2], layouts[3], layouts[3]})
+    tags[2] = awful.tag({"mail", "irc", "misc"}, 2,
+                        {layouts[5], layouts[3], layouts[1]})
+else
+    for s = 1, screen.count() do
+        tags[s] = awful.tag({"fixme"}, s, {layouts[1]})
+    end
 end
 -- }}}
 
