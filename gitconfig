@@ -33,8 +33,12 @@
 	insteadOf = gh:
 
 [merge]
-	tool = gvimdiff
+	tool = threesome
 	log = true
+
+[mergetool "threesome"]
+	cmd = gvim --nofork -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'
+	trustExitCode = true
 
 [help]
 	autocorrect = 5
