@@ -2,17 +2,18 @@
 [user]
 	name = Caio Romão
 	email = caioromao@gmail.com
+	signingkey = caioromao@gmail.com
 
 [alias]
 	ci = commit
 	co = checkout
 	st = status -sb
-	br = branch
+	br = branch -v
 	nb = checkout -b
 	lo = log --graph --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
 	la = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
 	lw = log --graph --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --since 'last week'
-	report = log --since='30 days ago' --author caio --pretty=format:'%Cgreen(%ci) %Creset%s'
+	report = log --no-merges --since='30 days ago' --author caio --pretty=format:'%Cgreen(%ci) %Creset%s'
 	unstage = reset HEAD --
 	revname = name-rev --name-only --refs=refs/heads/*
 	changed = diff --name-status -r
@@ -22,6 +23,7 @@
 	editor = vim
 	whitespace = blank-at-eol,space-before-tab,tab-in-indent
 	preloadindex = true
+	excludesfile = ~/.gitignore
 
 [color]
 	ui = auto
@@ -52,6 +54,7 @@
 [diff]
 	renames = copies
 	noprefix = true
+	wordRegex = [^[:space:]]
 
 [log]
 	decorate = short
@@ -66,7 +69,7 @@
 	main-window-view = HistoryView
 
 [push]
-	default = tracking
+	default = current
 [branch]
 	autosetuprebase = always
 	autosetupmerge = always
