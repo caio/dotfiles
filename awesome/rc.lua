@@ -54,8 +54,8 @@ layouts =
 -- Define a tag table which hold all screen tags.
 tags = {}
 if screen.count() == 1 then
-    tags[1] = awful.tag({"web", "two", "three", "mail", "irc", "misc"}, 1,
-                        {layouts[5], layouts[2], layouts[3], layouts[5],
+    tags[1] = awful.tag({"web", "two", "three", "msg", "misc"}, 1,
+                        {layouts[5], layouts[2], layouts[3],
                         layouts[3], layouts[1]})
 elseif screen.count() == 2 then
     tags[1] = awful.tag({"web", "src", "term", "extra"}, 1,
