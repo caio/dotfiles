@@ -1,6 +1,8 @@
 "\eOd": backward-word
 "\eOc": forward-word
 "\C-l": clear-screen
+"\e[A": history-search-backward
+"\e[B": history-search-forward
 set completion-ignore-case on
 set completion-prefix-display-length 2
 Control-j: menu-complete
