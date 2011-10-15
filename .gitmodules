@@ -1,3 +1,6 @@
 [submodule "bundle/nvm"]
 	path = bundle/nvm
 	url = http://github.com/creationix/nvm.git
+[submodule "bundle/rbenv"]
+	path = bundle/rbenv
+	url = https://github.com/sstephenson/rbenv
