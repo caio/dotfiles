@@ -164,7 +164,7 @@ bash_prompt_cmd() {
     fi
 
     # Pythonbrew
-    local PYBREW="$(echo $(which python) 2>/dev/null|sed -n 's/.*Python-\([0-9].[0-9]\).*/\1/p')"
+    local PYBREW="$(echo $(which python 2>/dev/null)|sed -n 's/.*Python-\([0-9].[0-9]\).*/\1/p')"
     if [ ! -z "$PYBREW" ]; then
         append_ps1 " ${col_txtpur}∝${PYBREW}"
     fi

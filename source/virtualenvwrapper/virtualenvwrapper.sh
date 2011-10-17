@@ -47,7 +47,7 @@
 # Locate the global Python where virtualenvwrapper is installed.
 if [ "$VIRTUALENVWRAPPER_PYTHON" = "" ]
 then
-    VIRTUALENVWRAPPER_PYTHON="$(\which python)"
+    VIRTUALENVWRAPPER_PYTHON="$(\which python2)"
 fi
 
 virtualenvwrapper_derive_workon_home() {
