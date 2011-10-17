@@ -149,7 +149,7 @@ virtualenvwrapper_initialize () {
 
 # Verify that virtualenv is installed and visible
 virtualenvwrapper_verify_virtualenv () {
-    typeset venv=$(\which virtualenv | (unset GREP_OPTIONS; \grep -v "not found"))
+    typeset venv=$(\which virtualenv2 | (unset GREP_OPTIONS; \grep -v "not found"))
     if [ "$venv" = "" ]
     then
         echo "ERROR: virtualenvwrapper could not find virtualenv in your path" >&2
