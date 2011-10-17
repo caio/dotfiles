@@ -67,7 +67,7 @@ def main():
     # Set up logging to a file
     root_logger.setLevel(logging.DEBUG)
     file_handler = logging.handlers.RotatingFileHandler(
-        os.path.expandvars(os.path.join('$WORKON_HOME', 'hook.log')),
+        os.path.expandvars(os.path.join('$VIRTUALENVWRAPPER_LOG_DIR', 'hook.log')),
         maxBytes=10240,
         backupCount=1,
         )
@@ -125,7 +125,7 @@ def run_hooks(hook, options, args, output=None):
             continue
         plugin = ep.load()
         if options.listing:
-            print '  {0:10} -- {1}'.format(ep.name, inspect.getdoc(plugin) or '')
+            print '  %-10s -- %s' % (ep.name, inspect.getdoc(plugin) or '')
             continue
         if options.sourcing:
             # Show the shell commands so they can

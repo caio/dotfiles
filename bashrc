@@ -241,7 +241,7 @@ function hgdiff()
 export WORKON_HOME=${HOME}/.virtualenvs
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 mkdir -p $WORKON_HOME
-pathappend ~/.source/ PYTHONPATH
+pathappend ~/.source/virtualenvwrapper PYTHONPATH
 do_source ~/.source/virtualenvwrapper/virtualenvwrapper.sh
 # }}}
 
