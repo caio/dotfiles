@@ -364,12 +364,12 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 local r = require("runonce")
 local autostart = {
     "urxvtd -q -f -o",
-    "xrdb -load /home/romao/.Xresources",
+    "xrdb -load /home/errado/.Xresources",
     "parcellite",
     "xfce4-power-manager",
     "xfce4-volumed",
     "udiskie",
-    "bluetooth-applet"
+    --"bluetooth-applet"
 }
 
 for idx=1, #autostart do
@@ -377,7 +377,8 @@ for idx=1, #autostart do
 end
 
 local runaways = {
-    "setxkbmap -model us -layout us -variant intl",
+    --"setxkbmap -model us -layout us -variant intl",
+    "setxkbmap -model abnt2 -layout br -variant abnt2",
     "xinput set-button-map 11 1 2 3 5 4 7 6"
 }
 
