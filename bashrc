@@ -68,9 +68,6 @@ do_append /opt/google-appengine
 # Bash completion
 do_source /etc/bash_completion
 
-# RVM Scripts
-do_source ~/.rvm/scripts/rvm
-
 # PythonBrew
 do_source ~/.pythonbrew/etc/bashrc
 
