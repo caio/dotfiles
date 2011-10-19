@@ -64,7 +64,7 @@ function switchNaughtyMonth(switchMonths)
         if (#calendar < 3) then return end
         local swMonths = switchMonths or 1
         calendar[1] = calendar[1] + swMonths
-        calendar[3].box.widgets[2].text = string.format('<span font_desc="%s">%s</span>', "Terminus", displayMonth(calendar[1], calendar[2], 2))
+        calendar[3].box.widgets[2].text = string.format('<span font_desc="%s">%s</span>', "Inconsolata", displayMonth(calendar[1], calendar[2], 2))
 end
 
 function addCalendarToWidget(mywidget, custom_current_day_format)
@@ -74,7 +74,7 @@ function addCalendarToWidget(mywidget, custom_current_day_format)
         local month, year = os.date('%m'), os.date('%Y')
         calendar = { month, year,
         naughty.notify({
-                text = string.format('<span font_desc="%s">%s</span>', "Terminus", displayMonth(month, year, 2)),
+                text = string.format('<span font_desc="%s">%s</span>', "Inconsolata", displayMonth(month, year, 2)),
                 timeout = 0,
                 hover_timeout = 0.5,
                 screen = capi.mouse.screen
