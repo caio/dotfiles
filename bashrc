@@ -68,7 +68,10 @@ do_append /opt/google-appengine
 # Bash completion
 do_source /etc/bash_completion
 
-# # PythonBrew
+# RVM Scripts
+do_source ~/.rvm/scripts/rvm
+
+# PythonBrew
 do_source ~/.pythonbrew/etc/bashrc
 
 # NVM
@@ -169,10 +172,9 @@ bash_prompt_cmd() {
         append_ps1 " ${col_txtpur}∝${PYBREW}"
     fi
 
-    # rbenv
-    local RUBY_VERSION=$(rbenv local 2>/dev/null)
+    # RVM
     if [ ! -z $RUBY_VERSION ]; then
-        append_ps1 " ${col_txtgrn}★$(echo $RUBY_VERSION |sed 's/\(.*\)-.*/\1/')"
+        append_ps1 " ${col_txtgrn}∼$(echo $RUBY_VERSION |sed 's/.*-\(.\+\)-.*/\1/g')"
     fi
 
     # Source-controlled directories
