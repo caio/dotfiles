@@ -37,8 +37,8 @@ xft.hinting:                true
 ! urxvt options
 urxvt.urgentOnBell:         true
 urxvt.buffered:             true
-urxvt.font:                 xft:Inconsolata:pixelsize=14:antialias=False
-urxvt.boldFont:             xft:Inconsolata:pixelsize=14:antialias=False
+urxvt.font:                 xft:Terminus:size=10:antialias=False
+urxvt.boldFont:             xft:Terminus:size=10:antialias=False
 urxvt.secondaryScroll:      true
 urxvt.xftAntialias:         true
 urxvt.underlineColor:       yellow
