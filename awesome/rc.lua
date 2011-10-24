@@ -242,8 +242,8 @@ globalkeys = awful.util.table.join(
     end),
 
     -- Layout
-    awful.key({}, "XF86Forward", function () awful.layout.inc(layouts,  1) end),
-    awful.key({}, "XF86Back", function () awful.layout.inc(layouts, -1) end),
+    awful.key({ modkey, }, "Up", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ modkey, }, "Down", function () awful.layout.inc(layouts, -1) end),
 
     -- Scratchpad
     awful.key({ modkey }, "space", function ()
@@ -378,9 +378,9 @@ for idx=1, #autostart do
 end
 
 local runaways = {
-    --"setxkbmap -model us -layout us -variant intl",
-    "setxkbmap -model abnt2 -layout br -variant abnt2",
-    "xinput set-button-map 11 1 2 3 5 4 7 6"
+    "setxkbmap -model us -layout us -variant intl",
+    --"setxkbmap -model abnt2 -layout br -variant abnt2",
+    "xinput set-button-map 13 1 2 3 5 4 7 6"
 }
 
 for idx=1, #runaways do

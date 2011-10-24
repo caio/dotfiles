@@ -5,7 +5,7 @@
 theme = {}
 theme.wallpaper_cmd = { "nitrogen --restore" }
 
-theme.font          = "Inconsolata 9"
+theme.font          = "Inconsolata 11"
 
 theme.bg_normal     = "#0F0F0F"
 theme.bg_focus      = "#0F0F0F"
