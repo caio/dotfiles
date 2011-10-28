@@ -245,6 +245,18 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "Up", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, }, "Down", function () awful.layout.inc(layouts, -1) end),
 
+    -- Float resize
+   awful.key({ modkey }, "Next",  function () awful.client.moveresize( 20,  20, -40, -40) end),
+   awful.key({ modkey }, "Prior", function () awful.client.moveresize(-20, -20,  40,  40) end),
+   awful.key({ modkey, "Shift" }, "Down",  function () awful.client.moveresize(  0,  20,   0,   0) end),
+   awful.key({ modkey, "Shift" }, "Up",    function () awful.client.moveresize(  0, -20,   0,   0) end),
+   awful.key({ modkey, "Shift" }, "Left",  function () awful.client.moveresize(-20,   0,   0,   0) end),
+   awful.key({ modkey, "Shift" }, "Right", function () awful.client.moveresize( 20,   0,   0,   0) end),
+   awful.key({ modkey, "Control" }, "Down",  function () awful.client.moveresize(0, 0, 0, 20) end),
+   awful.key({ modkey, "Control" }, "Up",    function () awful.client.moveresize(0, 0, 0, -20) end),
+   awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize(0, 0, -20, 0) end),
+   awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize(0, 0, 20, 0) end),
+
     -- Scratchpad
     awful.key({ modkey }, "space", function ()
         scratch.drop("urxvtc -e screen -D -RR -S scratch", "bottom", "center", 0.70, 0.40, true)
