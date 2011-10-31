@@ -392,7 +392,8 @@ end
 local runaways = {
     "setxkbmap -model us -layout us -variant intl",
     --"setxkbmap -model abnt2 -layout br -variant abnt2",
-    "xinput set-button-map 13 1 2 3 5 4 7 6"
+    "xinput set-button-map 13 1 2 3 5 4 7 6",
+    "xrandr --dpi 141"
 }
 
 for idx=1, #runaways do
