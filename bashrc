@@ -207,14 +207,4 @@ export HISTCONTROL=erasedups
 export HISTTIMEFORMAT='%m%d %H%M: '
 # }}}
 
-# {{{ Mercurial
-
-# Opens vim in diff mode comparing the current version with
-# the one versioned
-function hgdiff()
-{
-    hg cat $1 | gvim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>";
-}
-# }}}
-
 true # avoid carrying over test status
