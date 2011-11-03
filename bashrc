@@ -26,23 +26,17 @@ pathremove() {
 }
 
 pathprepend() {
+    test ! -d ${1} && return 0
     pathremove $1 $2
     local PATHVARIABLE=${2:-PATH}
     export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
 }
 
 pathappend() {
+    test ! -d ${1} && return 0
     pathremove $1 $2
     local PATHVARIABLE=${2:-PATH}
     export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
-}
-
-do_append() {
-    [ -d $1 ] && pathappend $*
-}
-
-do_prepend() {
-    [ -d $1 ] && pathprepend $*
 }
 
 alias pwdappend='pathappend $(pwd)'
@@ -63,7 +57,7 @@ do_source() {
 [ -t 0 ] && stty -ixon -ixoff
 
 # setting up custom bin-dir
-do_prepend ~/bin
+pathprepend ~/bin
 
 # Load custom scripts
 do_source ~/.source/*
