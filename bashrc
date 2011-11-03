@@ -62,6 +62,9 @@ pathprepend ~/bin
 # Load custom scripts
 do_source ~/.source/*
 
+# Load custom non-versioned scripts
+do_source ~/.source.local.d/*
+
 # {{{ EXPORTS
 export GWT_EXTERNAL_BROWSER=google-chrome
 export EDITOR=vim
