@@ -50,7 +50,9 @@ alias pwdappend='pathappend $(pwd)'
 
 # {{{ Source scripts helper
 do_source() {
-    [ -r $1 ] && . $1
+    for file in ${@}; do
+        test -f ${file} -a -x ${file} && . ${file}
+    done
 }
 # }}}
 
@@ -62,24 +64,8 @@ do_source() {
 # setting up custom bin-dir
 do_prepend ~/bin
 
-# Bash completion
-do_source /etc/bash_completion
-
-# PythonBrew
-do_source ~/.pythonbrew/etc/bashrc
-
-# NVM
-NVM_DIR=~/.nvm
-do_source ${NVM_DIR}/nvm.sh
-
-# TaskWarrior completion
-do_source /usr/share/doc/task/scripts/bash/task_completion.sh
-
 # Load custom scripts
-for script in ~/.source/*
-do
-    [ -f "$script" ] && do_source "$script"
-done
+do_source ~/.source/*
 
 # {{{ EXPORTS
 export GWT_EXTERNAL_BROWSER=google-chrome
@@ -231,14 +217,6 @@ function hgdiff()
 {
     hg cat $1 | gvim - -c  ":vert diffsplit $1" -c "map q :qa!<CR>";
 }
-# }}}
-
-# {{{ Virtualenv wrapper
-export WORKON_HOME=${HOME}/.virtualenvs
-export PIP_VIRTUALENV_BASE=$WORKON_HOME
-mkdir -p $WORKON_HOME
-pathappend ~/.source/virtualenvwrapper PYTHONPATH
-do_source ~/.source/virtualenvwrapper/virtualenvwrapper.sh
 # }}}
 
 true # avoid carrying over test status
