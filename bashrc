@@ -62,9 +62,6 @@ do_source() {
 # setting up custom bin-dir
 do_prepend ~/bin
 
-# google appengine
-do_append /opt/google-appengine
-
 # Bash completion
 do_source /etc/bash_completion
 
