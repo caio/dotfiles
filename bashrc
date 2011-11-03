@@ -1,8 +1,7 @@
-# plain .bashrc - should work on any Linux environment
-# assembled by: Caio Romão <caioromao@gmail.com>
+export EDITOR=vim
+export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 
 # {{{ Shell options
-# set -o vi
 shopt -s checkjobs
 shopt -s checkwinsize
 shopt -s cmdhist
@@ -51,12 +50,7 @@ do_source() {
 }
 # }}}
 
-[ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
-
-# disabling flow control if stdin is a terminal
-[ -t 0 ] && stty -ixon -ixoff
-
-# setting up custom bin-dir
+# Custom bin-dir
 pathprepend ~/bin
 
 # Load custom scripts
@@ -65,11 +59,10 @@ do_source ~/.source/*
 # Load custom non-versioned scripts
 do_source ~/.source.local.d/*
 
-# {{{ EXPORTS
-export GWT_EXTERNAL_BROWSER=google-chrome
-export EDITOR=vim
-export PYTHONSTARTUP="$HOME/.pythonrc.py"
-# }}}
+[ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
+
+# Disable flow control if stdin is a terminal
+[ -t 0 ] && stty -ixon -ixoff
 
 # {{{ Colors
 col_txtblk='\[\e[0;30m\]' # Black - Regular
@@ -182,12 +175,10 @@ alias cp=' cp -i'
 alias rm='rm -I'
 alias j='jobs'
 alias grep='egrep'
-alias ls='ls --color=tty --time-style=iso -h --quoting-style=escape --group-directories-first'
+alias ls='ls --color --time-style=iso -h --group-directories-first'
 alias l='ls -lh'
 alias la='ls -lhA'
-alias ad='ls -A -d */'
 alias a='ls -d .*'
-alias d='dirs -v'
 alias cpptags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 alias -- -='cd -'
 alias beep="echo -ne '\a'"
@@ -197,6 +188,7 @@ alias v=viewnior
 alias e='/usr/bin/gvim --remote-silent'
 alias p='ps -eo pid,ruser,cmd| grep -i'
 alias gg='git grep'
+alias G='grep -i'
 # }}}
 
 # {{{ History
