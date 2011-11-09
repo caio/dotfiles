@@ -375,14 +375,10 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- Autorun {{{
 local r = require("runonce")
 local autostart = {
+    "/usr/lib/openbox/openbox-xdg-autostart Old",
     "urxvtd -q -f -o",
     "xrdb -load /home/errado/.Xresources",
-    "parcellite",
-    "xfce4-power-manager",
-    "xfce4-volumed",
     "udiskie",
-    "nm-applet --sm-disable",
-    --"bluetooth-applet"
 }
 
 for idx=1, #autostart do
