@@ -13,11 +13,10 @@ theme.bg_focus      = "#0F0F0F"
 theme.bg_urgent     = "#ff0000"
 theme.bg_minimize   = "#000000"
 
-theme.fg_normal     = "#C6C6C6"
+theme.fg_normal     = "#555555"
 theme.fg_focus      = "#FFFFFF"
---theme.fg_focus      = "#D8D9DA"
 theme.fg_urgent     = "#000000"
-theme.fg_minimize   = "#000000"
+theme.fg_minimize   = "#333333"
 
 theme.border_width  = "0"
 theme.border_normal = "#151515"
@@ -38,8 +37,8 @@ theme.basedir = "/usr/share/awesome/themes/default/"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Display the taglist squares
-theme.taglist_squares_sel   = theme.basedir .. "taglist/squarefw.png"
-theme.taglist_squares_unsel = theme.basedir .. "taglist/squarew.png"
+--theme.taglist_squares_sel   = theme.basedir .. "taglist/squarefw.png"
+--theme.taglist_squares_unsel = theme.basedir .. "taglist/squarew.png"
 
 --theme.tasklist_floating_icon = theme.basedir .. "tasklist/floatingw.png"
 
