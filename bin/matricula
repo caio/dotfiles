@@ -1,6 +1,0 @@
-#!/bin/bash
-
-[ $1 ] && EMAIL=$1 || read -p "E-mail: " EMAIL
-[ `expr match "$EMAIL" '.*@.*'` -eq 0 ] && EMAIL="${EMAIL}@br.ibm.com"
-
-ldapsearch -b "OU=BLUEPAGES,O=IBM.COM" -h bluepages.ibm.com -x mail=$EMAIL notesmailserver|grep uid #|cut -d= -f2|cut -d, -f 1| sed 's/[0-9]\{3\}$//g'

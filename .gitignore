@@ -1,9 +1,2 @@
 *.pyc
-ipython/db/*
-ipython/history
-fonts/fonts.dir
-vim/tags/*
-vim/doc/*
 mplayer/registry
-vim/.netrwhist
-mutt/headercache

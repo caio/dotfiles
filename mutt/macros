@@ -1,23 +1,0 @@
-# vim: ft=muttrc
-
-# get the url view working
-macro index \cb |urlview\n 'call urlview to extract URLs out of a message'
-macro pager \cb |urlview\n 'call urlview to extract URLs out of a message'
-
-# b toggles sidebar visibility
-macro index b ':toggle sidebar_visible'
-macro pager b ':toggle sidebar_visible'
-
-macro index \Cr "<tag-pattern>~N\n<tag-prefix><clear-flag>N" \
-  "Mark all new messages as read"
-
-macro index *A "<tag-pattern>~A\n" "select all messages"
-macro index *U "<tag-pattern>~U\n" "select unread messages"
-macro index I "<tag-prefix><toggle-new>" "mark selected messages as read"
-
-macro index ,f \
-  "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
-  "search mail (using notmuch)"
-macro index ,t \
-  "<enter-command>unset wait_key<enter><pipe-message>~/.mutt/bin/mutt-notmuch thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
-  "search and reconstruct owning thread (using notmuch)"

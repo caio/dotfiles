@@ -1,5 +1,0 @@
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
-application/pdf; mutt_bgrun zathura %s
-application/x-pdf; mutt_bgrun zathura %s
-image/*; mutt_bgrun viewnior %s
-
