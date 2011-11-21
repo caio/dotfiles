@@ -44,7 +44,7 @@ alias pwdappend='pathappend $(pwd)'
 # {{{ Source scripts helper
 do_source() {
     for file in ${@}; do
-        test ! -f ${file} -a -x ${file} && continue
+        test ! -f ${file} -o ! -x ${file} && continue
         . ${file} || echo ">>> Error loading ${file}" 1>&2
     done
 }
