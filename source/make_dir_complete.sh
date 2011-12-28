@@ -20,4 +20,4 @@ make_dir_complete() {
 
 make_dir_complete dl ~/download/
 make_dir_complete jk ~/src/
-make_dir_complete h ~/
+make_dir_complete h ~/etc/
