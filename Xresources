@@ -39,8 +39,8 @@ Xft.rgba: rgb
 ! urxvt options
 urxvt.urgentOnBell:         true
 urxvt.buffered:             true
-urxvt.font:                 xft:Droid Sans Mono:size=6:antialias=False
-urxvt.boldFont:             xft:Droid Sans Mono:size=6:antialias=False
+urxvt.font:                 xft:Droid Sans Mono:size=12:antialias=False
+urxvt.boldFont:             xft:Droid Sans Mono:size=12:antialias=False
 urxvt.secondaryScroll:      true
 urxvt.xftAntialias:         true
 urxvt.underlineColor:       yellow
