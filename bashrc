@@ -24,18 +24,22 @@ pathremove() {
     export $PATHVARIABLE="$NEWPATH"
 }
 
+unckecked_pathappend() {
+    pathremove "$1" "$2"
+    local PATHVARIABLE=${2:-PATH}
+    export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
+}
+
 pathprepend() {
-    test ! -d ${1} && return 0
-    pathremove $1 $2
+    test ! -d "${1}" && return 0
+    pathremove "$1" "$2"
     local PATHVARIABLE=${2:-PATH}
     export $PATHVARIABLE="$1${!PATHVARIABLE:+:${!PATHVARIABLE}}"
 }
 
 pathappend() {
-    test ! -d ${1} && return 0
-    pathremove $1 $2
-    local PATHVARIABLE=${2:-PATH}
-    export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}$1"
+    test ! -d "${1}" && return 0
+    unckecked_pathappend "$1" "$2"
 }
 
 alias pwdappend='pathappend $(pwd)'
@@ -192,11 +196,18 @@ alias G='grep -i'
 # }}}
 
 # {{{ History
+_hist_ignore_fullcmd() {
+    for arg in ${@}; do
+        unckecked_pathappend "${arg} *" HISTIGNORE
+    done
+}
 export HISTSIZE=40000
 export HISTFILESIZE=40000
-export HISTIGNORE="ls:l:c:clear:d:cd:dc:bg:fg:jk:h:dl:mv:cp:rm"
-export HISTCONTROL=erasedups
+export HISTIGNORE="ls:l:c:clear:d:cd:bg:fg:wnext:wprev:alsamixer:history"
+export HISTCONTROL="erasedups:ignorespace"
 export HISTTIMEFORMAT='%m%d %H%M: '
+_hist_ignore_fullcmd ls l cd jk h dl unpack cp mv mplayer
 # }}}
 
-true # avoid carrying over test status
+# avoid carrying over test status
+true
