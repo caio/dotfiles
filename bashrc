@@ -208,7 +208,7 @@ export HISTFILESIZE=40000
 export HISTIGNORE="ls:l:c:clear:d:cd:bg:fg:wnext:wprev:alsamixer:history"
 export HISTCONTROL="erasedups:ignorespace"
 export HISTTIMEFORMAT='%m%d %H%M: '
-_hist_ignore_fullcmd l jk h dl unpack mplayer
+_hist_ignore_fullcmd l jk h dl unpack
 # }}}
 
 # avoid carrying over test status
