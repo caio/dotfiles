@@ -1,12 +1,50 @@
 "\eOd": backward-word
 "\eOc": forward-word
-"\C-l": clear-screen
 "\e[A": history-search-backward
 "\e[B": history-search-forward
-set completion-ignore-case on
-set completion-prefix-display-length 2
+
+Control-l: clear-screen
 Control-j: menu-complete
 Control-k: menu-complete-backward
+
+set editing-mode vi
+set keymap vi-insert
+
+set bell-style visible
+set bind-tty-special-chars on
+set blink-matching-paren on
+set byte-oriented off
+set comment-begin #
+set completion-ignore-case off
+# set completion-ignore-case on
+set completion-map-case on
+set completion-prefix-display-length 2
+set completion-query-items 100
+set convert-meta off
+set disable-completion off
+set echo-control-characters on
+set enable-keypad off
+set enable-meta-key on
+set expand-tilde off
+set history-preserve-point off
+set history-size 40000
+set horizontal-scroll-mode off
+set input-meta on
+set mark-directories on
+set mark-modified-lines off
+set mark-symlinked-directories on
+set match-hidden-files on
+set meta-flag on
+set output-meta on
+set page-completions on
+set prefer-visible-bell on
+set print-completions-horizontally off
+set revert-all-at-newline off
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
-set completion-map-case on
+set skip-completed-text on
+set visible-stats off
+
+$if Bash
+    Control-l: "\e\C-la"
+$endif
