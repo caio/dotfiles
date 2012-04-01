@@ -48,4 +48,6 @@ set visible-stats off
 $if Bash
     Control-l: "\e\C-la"
     Control-g: " |grep --color=auto -i "
+    Control-e: "\eA"
+    Control-a: "\eI"
 $endif
