@@ -47,13 +47,13 @@
 # Locate the global Python where virtualenvwrapper is installed.
 if [ "$VIRTUALENVWRAPPER_PYTHON" = "" ]
 then
-    VIRTUALENVWRAPPER_PYTHON="$(\which python)"
+    VIRTUALENVWRAPPER_PYTHON="$(\which python2)"
 fi
 
 # Set the name of the virtualenv app to use.
 if [ "$VIRTUALENVWRAPPER_VIRTUALENV" = "" ]
 then
-    VIRTUALENVWRAPPER_VIRTUALENV="virtualenv"
+    VIRTUALENVWRAPPER_VIRTUALENV="virtualenv2"
 fi
 
 # Define script folder depending on the platorm (Win32/Unix)
