@@ -229,15 +229,6 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
 
-    -- Sound
-    --awful.key({}, "XF86AudioPlay", function() awful.util.spawn("") end),
-    --awful.key({}, "XF86AudioNext", function() awful.util.spawn("") end),
-    --awful.key({}, "XF86AudioPrev", function() awful.util.spawn("") end),
-    --awful.key({}, "XF86AudioStop", function() awful.util.spawn("") end),
-    --awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn("amixer sset Master 10+ unmute") end),
-    --awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn("amixer sset Master 10- unmute") end),
-    --awful.key({}, "XF86AudioMute", function() awful.util.spawn("amixer sset Master toggle") end),
-
     -- Mouse toggle
     awful.key({}, "Menu", function()
         state = io.popen("synclient -l |grep -i touchpadoff| awk '{ print $3 }'"):read()
