@@ -18,6 +18,7 @@
 	revname = name-rev --name-only --refs=refs/heads/*
 	changed = diff --name-status -r
 	from = !sh -c 'git branch -r|grep "$1"' -
+	findoldfile = rev-list -n 1 HEAD --
 
 [core]
 	editor = vim
@@ -69,7 +70,7 @@
 	main-window-view = HistoryView
 
 [push]
-	default = current
+	default = upstream
 [branch]
 	autosetuprebase = always
 	autosetupmerge = always
