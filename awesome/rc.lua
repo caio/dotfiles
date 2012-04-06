@@ -65,9 +65,9 @@ tags = {
 if screen.count() == 1 then
     tags[1] = awful.tag(tags.names, 1, tags.layout)
 elseif screen.count() == 2 then
-    tags[1] = awful.tag({"web", "src", "term", "extra"}, 1,
+    tags[2] = awful.tag({"web", "src", "term", "extra"}, 2,
                         {layouts[5], layouts[2], layouts[3], layouts[3]})
-    tags[2] = awful.tag({"mail", "irc", "misc"}, 2,
+    tags[1] = awful.tag({"mail", "irc", "misc"}, 1,
                         {layouts[5], layouts[3], layouts[1]})
 else
     for s = 1, screen.count() do
@@ -382,10 +382,9 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- Autorun {{{
 local r = require("runonce")
 local autostart = {
-    "/usr/lib/openbox/openbox-xdg-autostart Old",
     "urxvtd -q -f -o",
-    "xrdb -load /home/errado/.Xresources",
-    "udiskie",
+    "/home/caromao/autostart",
+    "xfce4-volumed"
 }
 
 for idx=1, #autostart do
@@ -395,8 +394,7 @@ end
 local runaways = {
     "setxkbmap -model us -layout us -variant intl",
     --"setxkbmap -model abnt2 -layout br -variant abnt2",
-    "xinput set-button-map 13 1 2 3 5 4 7 6",
-    "xrandr --dpi 141"
+    --"xinput set-button-map 13 1 2 3 5 4 7 6",
 }
 
 for idx=1, #runaways do
