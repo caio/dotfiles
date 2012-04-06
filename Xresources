@@ -39,17 +39,17 @@ Xft.rgba: rgb
 ! urxvt options
 urxvt.urgentOnBell:         true
 urxvt.buffered:             true
-urxvt.font:                 xft:Droid Sans Mono for Powerline:size=9:antialias=False
-urxvt.boldFont:             xft:Droid Sans Mono for Powerline:size=9:antialias=False
+urxvt.font:                 xft:Inconsolata-dz for Powerline:size=10:antialias=True:
+urxvt.boldFont:             xft:Inconsolata-dz for Powerline:size=10:antialias=True:
 urxvt.secondaryScroll:      true
 urxvt.xftAntialias:         true
 urxvt.underlineColor:       yellow
 urxvt.geometry:             80x24
 
 urxvt.jumpScroll:           false
-urxvt.perl-lib:             /home/errado/.urxvt
+urxvt.perl-lib:             /home/caromao/.urxvt
 urxvt.perl-ext-common:      keyboard-select,url-select,clipboard,-searchable-scrollback
-urxvt.urllauncher:          /usr/bin/google-chrome
+urxvt.urllauncher:          /usr/bin/chromium
 urxvt.matcher.button:       3
 urxvt.saveLines:            4000
 urxvt.scrollBar:            false
