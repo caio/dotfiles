@@ -40,7 +40,7 @@
 	log = true
 
 [mergetool "threesome"]
-	cmd = gvim --nofork -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'
+	cmd = vim -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'
 	trustExitCode = true
 
 [help]
