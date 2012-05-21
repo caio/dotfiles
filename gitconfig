@@ -19,6 +19,7 @@
 	changed = diff --name-status -r
 	from = !sh -c 'git branch -r|grep "$1"' -
 	findoldfile = rev-list -n 1 HEAD --
+	fixup = commit --amend --no-edit
 
 [core]
 	editor = vim
