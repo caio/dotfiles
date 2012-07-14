@@ -9,15 +9,13 @@
 	co = checkout
 	st = status -sb
 	br = branch -v
-	nb = checkout -b
-	lo = log --graph --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%ar)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
+	mt = mergetool
+	gmt = mergetool --tool=guisplice
+	lo = log --no-merges --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%ar)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
 	la = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%ar)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
-	lw = log --graph --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%ar)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative --since 'last week'
-	report = log --no-merges --since='30 days ago' --author caio --pretty=format:'%Cgreen(%ci) %Creset%s'
 	unstage = reset HEAD --
 	revname = name-rev --name-only --refs=refs/heads/*
 	changed = diff --name-status -r
-	from = !sh -c 'git branch -r|grep "$1"' -
 	findoldfile = rev-list -n 1 HEAD --
 	fixup = commit --amend --no-edit
 
@@ -30,18 +28,16 @@
 [color]
 	ui = auto
 
-[url "git@github.com:caio/"]
-	insteadOf = github:
-
-[url "git://github.com/"]
-	insteadOf = gh:
-
 [merge]
-	tool = threesome
+	tool = splice
 	log = true
 
-[mergetool "threesome"]
-	cmd = vim -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'
+[mergetool "splice"]
+	cmd = vim $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'
+	trustExitCode = true
+
+[mergetool "guisplice"]
+	cmd = gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'
 	trustExitCode = true
 
 [help]
@@ -51,7 +47,7 @@
 	stat = true
 
 [web]
-	browser = google-chrome
+	browser = chromium
 
 [diff]
 	renames = copies
@@ -61,17 +57,9 @@
 [log]
 	decorate = short
 
-[sendemail]
-	smtpserver = la.relay.ibm.com
-	chainreplyto = false
-
-[giggle]
-	main-window-maximized = false
-	main-window-geometry = 696x1027+694+19
-	main-window-view = HistoryView
-
 [push]
 	default = upstream
+
 [branch]
 	autosetuprebase = always
 	autosetupmerge = always
