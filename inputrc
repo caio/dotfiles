@@ -50,4 +50,5 @@ $if Bash
     Control-g: " |grep --color=auto -i "
     Control-e: "\eA"
     Control-a: "\eI"
+    Control-w: unix-filename-rubout
 $endif

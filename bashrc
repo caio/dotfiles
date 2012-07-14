@@ -66,7 +66,7 @@ do_source ~/.source.local.d/*
 [ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
 
 # Disable flow control if stdin is a terminal
-[ -t 0 ] && stty -ixon -ixoff
+[ -t 0 ] && (stty -ixon -ixoff; stty werase undef)
 
 # {{{ Colors
 col_txtblk='\[\e[0;30m\]' # Black - Regular
