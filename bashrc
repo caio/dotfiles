@@ -181,17 +181,13 @@ alias cp=' cp -i'
 alias rm='rm -I'
 alias j='jobs'
 alias grep='egrep'
-alias ls='ls --color --time-style=iso -h --group-directories-first'
+alias ls='ls --color -h --group-directories-first'
 alias l='ls -lh'
 alias la='ls -lhA'
 alias a='ls -d .*'
-alias cpptags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .'
 alias -- -='cd -'
 alias beep="echo -ne '\a'"
 alias S="screen -S"
-alias t=task
-alias v=viewnior
-alias e='/usr/bin/gvim --remote-silent'
 alias p='ps -eo pid,ruser,cmd| grep -i'
 alias gg='git grep'
 alias G='grep -i'
