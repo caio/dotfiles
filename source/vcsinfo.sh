@@ -28,7 +28,7 @@ __vcs_dir() {
 
       parse_git_branch() {
           # Capture the output of the "git status" command.
-          git_status="$(git status 2> /dev/null)"
+          git_status="$(git status --ignore-submodules 2> /dev/null)"
 
           # Set color based on clean/staged/dirty.
           if [[ ${git_status} =~ "working directory clean" ]]; then

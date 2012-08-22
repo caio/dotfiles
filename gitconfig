@@ -7,7 +7,7 @@
 [alias]
 	ci = commit
 	co = checkout
-	st = status -sb
+	st = status -sb --ignore-submodules
 	br = branch -v
 	mt = mergetool
 	gmt = mergetool --tool=guisplice
