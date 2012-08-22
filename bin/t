@@ -1,0 +1,5 @@
+#!/bin/sh
+
+SESSION=${1-scratch}
+
+tmux attach -t $SESSION || tmux new-session -s $SESSION
