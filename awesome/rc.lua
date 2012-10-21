@@ -382,8 +382,7 @@ for idx=1, #autostart do
 end
 
 local runaways = {
-    "setxkbmap -model us -layout us -variant intl",
-    --"setxkbmap -model abnt2 -layout br -variant abnt2",
+    --"setxkbmap -model us -layout us -variant intl",
     --"xinput set-button-map 13 1 2 3 5 4 7 6",
 }
 
