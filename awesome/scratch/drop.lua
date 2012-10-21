@@ -97,7 +97,7 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
 
         -- Add manage signal and spawn the program
         capi.client.add_signal("manage", spawnw)
-        awful.util.spawn(prog, false)
+        awful.util.spawn_with_shell(prog, false)
     else
         -- Get a running client
         c = dropdown[prog][screen]
