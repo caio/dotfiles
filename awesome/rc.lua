@@ -257,7 +257,7 @@ globalkeys = awful.util.table.join(
 
     -- Scratchpad
     awful.key({ modkey }, "space", function ()
-        scratch.drop("urxvtc -e ~/bin/scratch", "bottom", "center", 0.70, 0.40, true)
+        scratch.drop("urxvtc -e ~/bin/t scratch", "bottom", "center", 0.70, 0.40, true)
     end)
 )
 
