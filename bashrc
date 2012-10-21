@@ -1,7 +1,7 @@
 # vim:ft=sh
 export DOTFILES_DIR="${HOME}/src/personal/dotfiles"
 export BASHD_DIR="${DOTFILES_DIR}/bash.d"
-
+export PYTHONSTARTUP="${DOTFILES_DIR}/pythonrc.py"
 
 export EDITOR=vim
 export BROWSER=chromium
