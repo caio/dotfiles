@@ -1,0 +1,6 @@
+#!/bin/bash
+
+HOST=$1
+PORT=${2-443}
+
+openssl s_client -quiet -connect $HOST:$PORT
