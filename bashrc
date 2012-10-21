@@ -1,4 +1,6 @@
 # vim:ft=sh
+test ! -t 0 && return 0
+
 export DOTFILES_DIR="${HOME}/src/personal/dotfiles"
 export BASHD_DIR="${DOTFILES_DIR}/bash.d"
 export PYTHONSTARTUP="${DOTFILES_DIR}/pythonrc.py"
