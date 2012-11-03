@@ -374,7 +374,7 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 local r = require("runonce")
 local autostart = {
     "urxvtd -q -f -o",
-    "/home/errado/etc/Dropbox/autostart",
+    "~/etc/Dropbox/autostart",
 }
 
 for idx=1, #autostart do
