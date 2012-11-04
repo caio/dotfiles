@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ ! -z $1 ] && SESSION=$(which $1) || SESSION=awesome
+SESSION=awesome
 
 source /etc/X11/xinit/xinitrc.d/*
 eval $(/usr/bin/gnome-keyring-daemon -s -d -c pkcs11,secrets,ssh,gpg| sed 's/^/export /g')
