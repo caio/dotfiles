@@ -8,7 +8,7 @@ xrdb -load ~/.Xresources
 
 export HOSTD_PATH="${DOTFILES_DIR}/host.d/$(hostname)"
 
-for f in "${HOSTD_PATH}/*.sh"; do
+for f in "${HOSTD_PATH}"/*.sh; do
     test -f "$f" && . "$f"
 done
 test -f "${HOSTD_PATH}/Xresources" && xrdb -merge "${HOSTD_PATH}/Xresources"
