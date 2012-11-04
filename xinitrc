@@ -14,4 +14,4 @@ done
 test -f "${HOSTD_PATH}/Xresources" && xrdb -merge "${HOSTD_PATH}/Xresources"
 test -f "${HOSTD_PATH}/Xmodmap" && xmodmap "${HOSTD_PATH}/Xmodmap"
 
-exec ck-launch-session $SESSION
+exec $SESSION
