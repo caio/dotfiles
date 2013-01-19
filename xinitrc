@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SESSION=awesome
+SESSION=i3
 
 source /etc/X11/xinit/xinitrc.d/*
 eval $(/usr/bin/gnome-keyring-daemon -s -d -c pkcs11,secrets,ssh,gpg| sed 's/^/export /g')
