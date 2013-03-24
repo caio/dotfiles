@@ -31,5 +31,5 @@ alias la='ls -lhA'
 alias a='ls -d .*'
 alias -- -='cd -'
 alias beep="echo -ne '\a'"
-alias p='ps -eo pid,ruser,cmd| grep -i'
+alias p='ps -eo pid,ruser,cmd| grep -v grep| grep -i'
 alias o='xdg-open'
