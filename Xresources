@@ -58,8 +58,8 @@ Xft.rgba: rgb
 ! urxvt options
 urxvt.urgentOnBell:         true
 urxvt.buffered:             true
-urxvt.font:                 xft:Inconsolata-dz for Powerline:size=10:antialias=True:
-urxvt.boldFont:             xft:Inconsolata-dz for Powerline:size=10:antialias=True:
+urxvt.font:                 xft:Droid Sans Mono for Powerline:size=8:antialias=True:
+urxvt.boldFont:             xft:Droid Sans Mono for Powerline:size=8:antialias=True:
 urxvt.secondaryScroll:      true
 urxvt.xftAntialias:         true
 urxvt.underlineColor:       yellow
