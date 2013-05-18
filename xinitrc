@@ -3,6 +3,7 @@
 SESSION=i3
 
 source /etc/X11/xinit/xinitrc.d/*
+/usr/bin/start-pulseaudio-x11
 eval $(/usr/bin/gnome-keyring-daemon -s -d -c pkcs11,secrets,ssh,gpg| sed 's/^/export /g')
 xrdb -load ~/.Xresources
 
