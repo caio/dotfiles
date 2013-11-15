@@ -5,7 +5,7 @@
 	signingkey = caioromao@gmail.com
 
 [alias]
-	ci = commit
+	ci = commit -v
 	co = checkout
 	st = status -sb --ignore-submodules
 	br = branch -v
