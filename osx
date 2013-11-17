@@ -122,3 +122,6 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 # Real keyboard repeat
 defaults write -g ApplePressAndHoldEnabled -bool false
 
+# Disable the useless dashboard
+defaults write com.apple.dashboard mcx-disabled -boolean YES
+
