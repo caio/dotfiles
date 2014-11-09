@@ -1,12 +1,15 @@
 # vim:ft=sh
 test ! -t 0 && return 0
 
+export VIRTUALENVWRAPPER_PYTHON="python"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
 export DOTFILES_DIR="${HOME}/src/personal/dotfiles"
 export BASHD_DIR="${DOTFILES_DIR}/bash.d"
 export PYTHONSTARTUP="${DOTFILES_DIR}/pythonrc.py"
 
-export EDITOR=vim
-export BROWSER=chromium
+export EDITOR='mvim -v'
+export BROWSER=firefox
 export HISTIGNORE="ls:l:clear:d:cd:bg:fg:history"
 export HISTTIMEFORMAT='[%Y-%m-%d %H:%M]  '
 
@@ -31,5 +34,15 @@ alias la='ls -lhA'
 alias a='ls -d .*'
 alias -- -='cd -'
 alias beep="echo -ne '\a'"
-alias p='ps -eo pid,ruser,cmd| grep -v grep| grep -i'
+alias p='ps -eo pid,ruser,command| grep -v grep| grep -i'
 alias o='xdg-open'
+alias vim='mvim -v'
+
+pathprepend "$(/usr/libexec/java_home -R -v 1.6)/bin"
+pathprepend /bin
+pathprepend /usr/bin
+pathprepend /usr/local/bin
+pathprepend /usr/local/opt/coreutils/libexec/gnubin
+pathprepend /usr/local/opt/coreutils/libexec/gnuman MANPATH
+
+bashd_source -f /usr/local/git/contrib/completion/git-completion.bash
