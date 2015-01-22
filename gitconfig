@@ -58,7 +58,7 @@
 	decorate = short
 
 [push]
-	default = upstream
+	default = current
 
 [branch]
 	autosetuprebase = always
