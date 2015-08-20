@@ -20,7 +20,7 @@
 	fixup = commit --amend --no-edit
 
 [core]
-	editor = vim
+	editor = mvim -v
 	whitespace = blank-at-eol,space-before-tab,tab-in-indent
 	preloadindex = true
 	excludesfile = ~/.gitignore
