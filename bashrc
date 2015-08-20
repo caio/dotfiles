@@ -44,5 +44,6 @@ pathprepend /usr/bin
 pathprepend /usr/local/bin
 pathprepend /usr/local/opt/coreutils/libexec/gnubin
 pathprepend /usr/local/opt/coreutils/libexec/gnuman MANPATH
+pathprepend /usr/local/opt/go/libexec/bin
 
 bashd_source -f /usr/local/git/contrib/completion/git-completion.bash
