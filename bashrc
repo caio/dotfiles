@@ -39,7 +39,7 @@ alias o='xdg-open'
 alias vim='mvim -v'
 alias shuffle='sort --random-sort'
 
-pathprepend "$(/usr/libexec/java_home -R -v 1.6)/bin"
+pathprepend "$(/usr/libexec/java_home -R -v 1.8)/bin"
 pathprepend /bin
 pathprepend /usr/bin
 pathprepend /usr/local/bin
