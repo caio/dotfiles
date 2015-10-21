@@ -37,6 +37,7 @@ alias beep="echo -ne '\a'"
 alias p='ps -eo pid,ruser,command| grep -v grep| grep -i'
 alias o='xdg-open'
 alias vim='mvim -v'
+alias shuffle='sort --random-sort'
 
 pathprepend "$(/usr/libexec/java_home -R -v 1.6)/bin"
 pathprepend /bin
