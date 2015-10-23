@@ -41,7 +41,11 @@ alias o='xdg-open'
 alias vim='mvim -v'
 alias shuffle='sort --random-sort'
 
-pathprepend "$(/usr/libexec/java_home -R -v 1.8)/bin"
+if [[ "$OSTYPE" =~ darwin ]]; then
+    export JAVA_HOME="$(/usr/libexec/java_home -R -v 1.8)"
+    pathprepend "${JAVA_HOME}/bin"
+fi
+
 pathprepend /bin
 pathprepend /usr/bin
 pathprepend /usr/local/bin
