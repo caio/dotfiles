@@ -6,7 +6,7 @@ stty discard undef
 export VIRTUALENVWRAPPER_PYTHON="python"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
-export DOTFILES_DIR="${HOME}/src/personal/dotfiles"
+export DOTFILES_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 export BASHD_DIR="${DOTFILES_DIR}/bash.d"
 export PYTHONSTARTUP="${DOTFILES_DIR}/pythonrc.py"
 
