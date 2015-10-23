@@ -1,6 +1,8 @@
 # vim:ft=sh
 test ! -t 0 && return 0
 
+stty discard undef
+
 export VIRTUALENVWRAPPER_PYTHON="python"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
