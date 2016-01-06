@@ -43,9 +43,6 @@
 	cmd = gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'
 	trustExitCode = true
 
-[help]
-	autocorrect = 5
-
 [rebase]
 	stat = true
 
