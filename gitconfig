@@ -7,6 +7,7 @@
 [alias]
 	ci = commit -v
 	co = checkout
+	p = cherry-pick
 	st = status -sb --ignore-submodules
 	br = branch -v
 	mt = mergetool
