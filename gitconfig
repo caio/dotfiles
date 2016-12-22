@@ -54,6 +54,7 @@
 	renames = copies
 	noprefix = true
 	wordRegex = [^[:space:]]
+	compactionHeuristic = true
 
 [log]
 	decorate = short
