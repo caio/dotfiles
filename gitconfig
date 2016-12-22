@@ -65,3 +65,5 @@
 [branch]
 	autosetuprebase = always
 	autosetupmerge = always
+[commit]
+	verbose = true
