@@ -10,7 +10,7 @@ export DOTFILES_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 export BASHD_DIR="${DOTFILES_DIR}/bash.d"
 export PYTHONSTARTUP="${DOTFILES_DIR}/pythonrc.py"
 
-export EDITOR='mvim -v'
+export EDITOR='vim'
 export BROWSER=firefox
 export HISTIGNORE="ls:l:clear:d:cd:bg:fg:history"
 export HISTTIMEFORMAT='[%Y-%m-%d %H:%M]  '
@@ -38,7 +38,6 @@ alias -- -='cd -'
 alias beep="echo -ne '\a'"
 alias p='ps -eo pid,ruser,command| grep -v grep| grep -i'
 alias o='xdg-open'
-alias vim='mvim -v'
 alias shuffle='sort --random-sort'
 
 if [[ "$OSTYPE" =~ darwin ]]; then

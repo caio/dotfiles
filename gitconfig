@@ -24,7 +24,7 @@
 	rb = !git remote-branches |sed \"s/\\s\\+origin\\///g\"
 
 [core]
-	editor = mvim -v
+	editor = vim
 	whitespace = blank-at-eol,space-before-tab,tab-in-indent
 	preloadindex = true
 	excludesfile = ~/.gitignore
