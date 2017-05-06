@@ -1,4 +1,0 @@
-urxvt.font:                 xft:Envy Code R for Powerline:size=10:
-urxvt.boldFont:             xft:Envy Code R for Powerline:bold:size=10:
-urxvt.italicFont:           xft:Envy Code R for Powerline:italic:size=10:
-urxvt.perl-lib:             /home/errado/.urxvt

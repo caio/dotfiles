@@ -1,7 +1,0 @@
-install: --no-ri --no-rdoc --env-shebang
-:sources:
-- http://gemcutter.org
-- http://gems.rubyforge.org
-- http://gems.github.com
-update: --no-ri --no-rdoc --env-shebang
-

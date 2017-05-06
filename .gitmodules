@@ -1,3 +1,0 @@
-[submodule "bash.d"]
-	path = bash.d
-	url = git://github.com/caio/bash.d.git

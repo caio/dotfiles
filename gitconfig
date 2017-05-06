@@ -40,15 +40,8 @@
 	cmd = vim $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'
 	trustExitCode = true
 
-[mergetool "guisplice"]
-	cmd = gvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'
-	trustExitCode = true
-
 [rebase]
 	stat = true
-
-[web]
-	browser = chromium
 
 [diff]
 	renames = copies
