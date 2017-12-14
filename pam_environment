@@ -1,0 +1,4 @@
+SSH_AUTH_SOCK   DEFAULT=/run/user/1000/keyring/ssh
+TERMINAL        DEFAULT=/usr/bin/termite
+EDITOR          DEFAULT=vim
+GOPATH          DEFAULT=${HOME}/src/go
