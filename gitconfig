@@ -33,12 +33,9 @@
 	ui = auto
 
 [merge]
-	tool = splice
-	log = true
-
-[mergetool "splice"]
-	cmd = vim $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'
-	trustExitCode = true
+	tool = vimdiff
+	conflictstyle = diff3
+	prompt = false
 
 [rebase]
 	stat = true
