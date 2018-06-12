@@ -7,3 +7,5 @@ fish_vi_key_bindings
 
 set -U fish_user_paths {$HOME}/bin {$GOPATH}/bin {$HOME}/.cargo/bin
 
+abbr -a -- - 'cd -'
+
