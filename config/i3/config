@@ -48,16 +48,10 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $mod+Shift+h split v
-bindsym $mod+Shift+j split h
-bindsym $mod+Shift+k split h
-bindsym $mod+Shift+l split v
-
-# split in horizontal orientation
-bindsym $mod+Shift+- split h
-
-# split in vertical orientation
-bindsym $mod+Shift+\ split v
+bindsym $mod+Shift+h split h
+bindsym $mod+Shift+j split v
+bindsym $mod+Shift+k split v
+bindsym $mod+Shift+l split h
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
