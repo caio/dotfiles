@@ -1,0 +1,5 @@
+mpd_connection_timeout = 30
+ask_before_clearing_playlists = no
+clock_display_seconds = no
+display_volume_level = no
+startup_screen = playlist_editor
