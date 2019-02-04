@@ -1,3 +1,4 @@
 *.pyc
 custom.d/*
 mplayer/registry
+bin/idea
