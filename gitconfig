@@ -57,3 +57,5 @@
 	autosetupmerge = always
 [commit]
 	verbose = true
+[mergetool]
+	keepBackup = false
