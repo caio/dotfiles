@@ -2,4 +2,8 @@
 
 SESSION=${1-scratch}
 
-tmux attach -t $SESSION || tmux new-session -s $SESSION
+if tmux has-session -t $SESSION; then
+    exec tmux attach -t $SESSION
+else
+    exec tmux new-session -s $SESSION
+fi
