@@ -17,7 +17,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:Fira Code 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -30,7 +30,7 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -132,21 +132,23 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-client.focused #3b1261 #3b1261 #ffffff #662b9c
-client.focused_inactive #333333 #5f676a #ffffff #484e50
-client.unfocused #222222 #222222 #888888 #292d2e
-client.urgent #2f343a #900000 #ffffff #900000
+# class                 border  backgr. text    indicator child_border
+client.focused          #3B4252 #3B4252 #D8DEE9 #3B4252   #3B4252
+client.focused_inactive #2E3440 #2E3440 #D8DEE9 #2E3440   #2E3440
+client.unfocused        #2E3440 #2E3440 #D8DEE9 #2E3440   #2E3440
+client.urgent           #2E3440 #BF616A #D8DEE9 #2E3440   #2E3440
+client.placeholder      #2E3440 #2E3440 #D8DEE9 #2E3440   #2E3440
 
 bar {
     status_command i3status
     colors {
         separator #666666
-        background #000000
-        statusline #ffffff
-        focused_workspace #551a8b #551a8b #ffffff #cccccc
-        active_workspace #333333 #5f676a #ffffff #181715
-        inactive_workspace #000000 #000000 #888888 #AAAAAA
-        urgent_workspace #2f343a #900000 #ffffff #FFFFFF
+        background #2E3440
+        statusline #D8DEE9
+        focused_workspace #4C566A #4C566A #ECEFF4 #ECEFF4
+        active_workspace #333333 #5F676A #D8DEE9 #ECEFF4
+        inactive_workspace #2E3440 #2E3440 #888888 #E5E9F0
+        urgent_workspace #BF616A #BF616A #D8DEE9 #D8DEE9
     }
 }
 
