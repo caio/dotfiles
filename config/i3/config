@@ -144,6 +144,7 @@ client.placeholder      #2E3440 #2E3440 #D8DEE9 #2E3440   #2E3440
 
 bar {
     status_command i3status
+    font pango:Fira Code 9
     colors {
         separator #666666
         background #2E3440
