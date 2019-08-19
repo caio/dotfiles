@@ -135,6 +135,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+default_border pixel 2
+
 # class                 border  backgr. text    indicator child_border
 client.focused          #3B4252 #3B4252 #D8DEE9 #3B4252   #3B4252
 client.focused_inactive #2E3440 #2E3440 #D8DEE9 #2E3440   #2E3440
@@ -145,6 +147,7 @@ client.placeholder      #2E3440 #2E3440 #D8DEE9 #2E3440   #2E3440
 bar {
     status_command i3status
     font pango:Fira Code 9
+    mode hide
     colors {
         separator #666666
         background #2E3440
