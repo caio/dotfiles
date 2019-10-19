@@ -7,21 +7,15 @@
 [alias]
 	ci = commit -v
 	co = checkout
-	p = cherry-pick
 	st = status -sb --ignore-submodules
 	br = branch -v
 	mt = mergetool
-	gmt = mergetool --tool=guisplice
-	lo = log --no-merges --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%ar)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
-	la = log --graph --all --pretty=format:'%Cred%h%Creset - %Cblue%an%Creset - %Cgreen(%ar)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
-	lm = log --no-merges --date=relative --author='Caio R'
 	unstage = reset HEAD --
 	revname = name-rev --name-only --refs=refs/heads/*
 	changed = diff --name-status -r
 	findoldfile = rev-list -n 1 HEAD --
 	fixup = commit --amend --no-edit
-	remote-branches = branch --list --no-column --no-color -r 'origin/caio/*'
-	rb = !git remote-branches |sed \"s/\\s\\+origin\\///g\"
+	news = log --reverse --no-merges --stat @{1}..
 
 [core]
 	editor = vim
