@@ -39,6 +39,7 @@
 	noprefix = true
 	wordRegex = [^[:space:]]
 	compactionHeuristic = true
+	algorithm = patience
 
 [log]
 	decorate = short
