@@ -1,34 +1,31 @@
 -- Settings {{{
-local set = vim.api.nvim_set_option
+local opt, g, window, buffer = vim.o, vim.g, vim.wo, vim.bo
 
-set('shortmess', "at")
-set('showmatch', true)
-set('ignorecase', true)
-set('hidden', true)
-set('scrolloff', 3)
-set('shada', "'1000,f1,<500,:1000,/1000,h")
-set('history', 500)
-set('backspace', "indent,eol,start")
-set('errorbells', false)
-set('visualbell', false)
-set('completeopt', "menu,menuone,noinsert,noselect,preview")
-set('showbreak', "↪")
-set('virtualedit', "block")
-set('foldlevelstart', 0)
-set('shiftround', true)
-set('wildmode', "list:longest")
-set('updatetime', 300)
+opt.shortmess = "at"
+opt.showmatch = true
+opt.ignorecase = true
+opt.hidden = true
+opt.scrolloff = 3
+opt.shada = "'1000,f1,<500,:1000,/1000,h"
+opt.history = 500
+opt.backspace = "indent,eol,start"
+opt.errorbells = false
+opt.visualbell = false
+opt.completeopt = "menu,menuone,noinsert,noselect,preview"
+opt.showbreak = "↪"
+opt.virtualedit = "block"
+opt.foldlevelstart = 0
+opt.shiftround = true
+opt.wildmode = "list:longest"
+opt.updatetime = 300
 
-local global, window, buffer = vim.g, vim.wo, vim.bo
-
-global.mapleader = ','
-global.smartmatch = true
-
+g.mapleader = ','
+g.smartmatch = true
 -- A way less "in your face" netrw
-global.netrw_sizestyle="h"
-global.netrw_banner=0
-global.netrw_list_style=3
-global.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
+g.netrw_sizestyle="h"
+g.netrw_banner=0
+g.netrw_list_style=3
+g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
 
 window.wrap = false
 window.list = true
