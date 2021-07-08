@@ -11,13 +11,15 @@
 
 set $mod Mod4
 
+set $lock i3lock -c 2E3440 -e -f -n
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Fira Code 8
+font pango:Fira Code 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -57,7 +59,7 @@ bindsym $mod+Shift+k split v
 bindsym $mod+Shift+l split h
 
 # Ctrl+Alt+L to lock screen
-bindsym Ctrl+Mod1+l exec i3lock -c 2E3440 -e -f -n
+bindsym Ctrl+Mod1+l exec $lock
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -149,7 +151,7 @@ client.placeholder      #2E3440 #2E3440 #D8DEE9 #2E3440   #2E3440
 
 bar {
     status_command i3status
-    font pango:Fira Code 9
+    font pango:Fira Code 12
     mode hide
     colors {
         separator #666666
@@ -171,5 +173,12 @@ bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 
+bindsym XF86Favorites exec --no-startup-id mpc toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5
+bindsym XF86AudioMute exec --no-startup-id pamixer -t
+
+exec --no-startup-id ~/bin/i3-hue -r
+exec --no-startup-id xss-lock -- $lock
 # Start apps in /etc/xdg/autostart and $XDG_HOME/autostart
 exec dex -ae i3
