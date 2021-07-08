@@ -54,3 +54,5 @@
 	verbose = true
 [mergetool]
 	keepBackup = false
+[init]
+	defaultBranch = main
