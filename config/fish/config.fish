@@ -6,13 +6,10 @@ set -g fish_color_error red --bold
 fish_vi_key_bindings
 
 set -U fish_user_paths \
-    {$GOPATH}/bin \
     {$HOME}/.cargo/bin \
-    {$HOME}/.poetry/bin \
-    {$HOME}/.node_modules/bin \
     {$HOME}/bin
 
-set -x npm_config_prefix {$HOME}/.node_modules
+set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 abbr -a -- - 'cd -'
 alias ls=exa

@@ -1,0 +1,10 @@
+[Unit]
+Description=Changes to a random wallpaper
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/nitrogen --random --set-zoom-fill Dropbox/wallpaper/
+Type=oneshot
+
+[Install]
+WantedBy=graphical-session.target
