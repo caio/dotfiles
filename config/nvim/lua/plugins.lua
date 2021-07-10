@@ -16,6 +16,12 @@ return require('packer').startup(function()
     }
 
     use {
+        'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+        config = [[require('config.telescope')]]
+    }
+
+    use {
         'neovim/nvim-lspconfig',
         cmd = 'LspStart',
         config = [[require('config.lsp')]]
