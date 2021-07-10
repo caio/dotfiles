@@ -10,9 +10,9 @@ return require('packer').startup(function()
     }
 
     use {
-        'arcticicestudio/nord-vim',
-        -- Does it need to be this verbose?
-        config = [[vim.api.nvim_command "colorscheme nord"]]
+        'hoob3rt/lualine.nvim',
+        requires = { 'shaunsingh/nord.nvim' },
+        config = [[require('config.colors')]]
     }
 
     use {
