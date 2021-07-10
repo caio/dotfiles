@@ -9,9 +9,6 @@ return require('packer').startup(function()
 
     use {
         'neovim/nvim-lspconfig',
-        -- If I inline them instead of wrapping with `requires`
-        -- config never gets called...............
-        requires = { 'onsails/lspkind-nvim', 'glepnir/lspsaga.nvim' },
         cmd = 'LspStart',
         config = [[require('config.lsp')]]
     }

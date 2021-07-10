@@ -1,9 +1,3 @@
-require('lspkind').init({ with_text = true })
-
-require('lspsaga').init_lsp_saga({
-    use_saga_diagnostic_sign = false
-})
-
 local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
