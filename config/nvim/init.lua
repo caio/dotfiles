@@ -56,15 +56,15 @@ local packer_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(packer_path)) > 0 then
 
-  function packer_bootstrap()
-    cmd [[echo "Cloning packer.nvim..."]]
-    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', packer_path})
-    vim.api.nvim_command 'packadd packer.nvim'
-    cmd [[echo "Bootstrapped! Restart and +PackerSync to install plugins"]]
-  end
+    function packer_bootstrap()
+        cmd [[echo "Cloning packer.nvim..."]]
+        fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', packer_path})
+        vim.api.nvim_command 'packadd packer.nvim'
+        cmd [[echo "Bootstrapped! Restart and +PackerSync to install plugins"]]
+    end
 
-  cmd [[command! BootstrapPacker lua packer_bootstrap() ]]
-  cmd [[echo "Plugins disabled! Run :BootstrapPacker to setup"]]
+    cmd [[command! BootstrapPacker lua packer_bootstrap() ]]
+    cmd [[echo "Plugins disabled! Run :BootstrapPacker to setup"]]
 else
-  require('plugins')
+    require('plugins')
 end
