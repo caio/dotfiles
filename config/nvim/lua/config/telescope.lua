@@ -11,14 +11,20 @@ require('telescope').setup({
             theme = "ivy",
             previewer = false
         },
-	git_files = {
+        git_files = {
             theme = "ivy",
-	    previewer = false,
-	},
-	buffers = {
-	    theme = "dropdown",
-	    previewer = false,
-	},
+            previewer = false,
+        },
+        buffers = {
+            theme = "dropdown",
+            previewer = false,
+            sort_lastused = true,
+            mappings = {
+                i = {
+                    ["<c-d>"] = "delete_buffer",
+                },
+            },
+        },
     },
 })
 
