@@ -17,7 +17,6 @@ opt.virtualedit = "block"
 opt.foldlevelstart = 0
 opt.shiftround = true
 opt.wildmode = "list:longest"
-opt.updatetime = 300
 -- Launching the lsp server doesn't work with a non-posix shell...
 opt.shell = "/bin/bash"
 
