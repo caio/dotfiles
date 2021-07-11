@@ -18,6 +18,12 @@ noremap('v', "`", "'")
 noremap('v', "<", "<gv")
 noremap('v', ">", ">gv")
 
+-- Faster window nagivation
+noremap('n', '<C-h>', '<C-w>h')
+noremap('n', '<C-l>', '<C-w>l')
+noremap('n', '<C-j>', '<C-w>j')
+noremap('n', '<C-k>', '<C-w>k')
+
 -- Act like a normal thing when navigating wrapped lines
 map('n', "k", "gk", {})
 map('n', "j", "gj", {})
