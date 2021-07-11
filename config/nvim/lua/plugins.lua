@@ -2,6 +2,12 @@ return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
     use {
+        'tpope/vim-commentary',
+        'tpope/vim-repeat',
+        'tpope/vim-surround',
+    }
+
+    use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             vim.g.indent_blankline_show_first_indent_level = false
