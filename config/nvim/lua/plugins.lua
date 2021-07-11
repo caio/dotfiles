@@ -8,6 +8,11 @@ return require('packer').startup(function()
     }
 
     use {
+        'windwp/nvim-autopairs',
+        config = [[require('nvim-autopairs').setup()]]
+    }
+
+    use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             vim.g.indent_blankline_show_first_indent_level = false
