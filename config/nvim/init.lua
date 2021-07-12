@@ -1,5 +1,5 @@
 -- Settings {{{
-local opt, g, window, buffer = vim.o, vim.g, vim.wo, vim.bo
+local opt, g = vim.o, vim.g
 
 opt.shortmess = "at"
 opt.showmatch = true
@@ -20,6 +20,19 @@ opt.wildmode = "list:longest"
 -- Launching the lsp server doesn't work with a non-posix shell...
 opt.shell = "/bin/bash"
 
+opt.wrap = false
+opt.list = true
+opt.listchars = [[tab:▸ ,trail:·,precedes:…,extends:…,nbsp:‗]]
+opt.cursorline = true
+opt.foldmethod = "marker"
+opt.shiftwidth = 4
+opt.textwidth = 79
+opt.expandtab = true
+opt.softtabstop = 4
+opt.formatoptions = "qrn1"
+opt.undofile = true
+opt.swapfile = false
+
 g.mapleader = ','
 g.smartmatch = true
 -- A way less "in your face" netrw
@@ -27,20 +40,6 @@ g.netrw_sizestyle="h"
 g.netrw_banner=0
 g.netrw_list_style=3
 g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
-
-window.wrap = false
-window.list = true
-window.listchars = [[tab:▸ ,trail:·,precedes:…,extends:…,nbsp:‗]]
-window.cursorline = true
-window.foldmethod = "marker"
-
-buffer.shiftwidth = 4
-buffer.textwidth = 79
-buffer.expandtab = true
-buffer.softtabstop = 4
-buffer.formatoptions = "qrn1"
-buffer.undofile = true
-buffer.swapfile = false
 -- }}}
 
 -- Configure general-purpose mappings
