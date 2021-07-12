@@ -18,8 +18,7 @@ return require('packer').startup(function()
 
     use {
         'hoob3rt/lualine.nvim',
-        requires = { 'shaunsingh/nord.nvim' },
-        config = [[require('config.colors')]]
+        config = [[require('config.lualine')]]
     }
 
     use {
