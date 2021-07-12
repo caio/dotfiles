@@ -1,1 +1,1 @@
-setlocal textwidth=4 softtabstop=4
+setlocal softtabstop=4
