@@ -5,11 +5,7 @@ return require('packer').startup(function()
         'tpope/vim-commentary',
         'tpope/vim-repeat',
         'tpope/vim-surround',
-    }
-
-    use {
-        'windwp/nvim-autopairs',
-        config = [[require('nvim-autopairs').setup()]]
+        'cohama/lexima.vim',
     }
 
     use {
