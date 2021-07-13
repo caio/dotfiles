@@ -20,7 +20,7 @@ local on_attach = function(client, bufnr)
     map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     -- Show a pop-up with the line diagnostic details
-    map('n', '<C-k>', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 
     map('n', '<leader>d', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
     map('n', '<leader>D', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
