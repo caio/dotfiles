@@ -17,6 +17,14 @@ return require('packer').startup(function()
     }
 
     use {
+        'shaunsingh/nord.nvim',
+        config = function()
+            vim.o.termguicolors = true
+            vim.cmd("colorscheme nord")
+        end
+    }
+
+    use {
         'hoob3rt/lualine.nvim',
         config = [[require('config.lualine')]]
     }
