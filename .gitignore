@@ -2,3 +2,5 @@
 custom.d/*
 mplayer/registry
 bin/idea
+config/fish/fish_variables
+config/ncmpcpp/error.log
