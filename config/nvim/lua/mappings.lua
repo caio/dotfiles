@@ -28,8 +28,6 @@ noremap('n', '<C-k>', '<C-w>k')
 map('n', "k", "gk", {})
 map('n', "j", "gj", {})
 
-map('c', "w!!", "w !sudo tee % &>/dev/null", {})
-
 map('n', "<leader><space>", ":nohlsearch<CR>", { noremap = true, silent = true })
 
 
