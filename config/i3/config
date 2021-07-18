@@ -19,7 +19,7 @@ set $lock i3lock -c 2E3440 -e -f -n
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Fira Code 10
+font pango:JetBrains Mono 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -151,7 +151,7 @@ client.placeholder      #2E3440 #2E3440 #D8DEE9 #2E3440   #2E3440
 
 bar {
     status_command i3status
-    font pango:Fira Code 12
+    font pango:JetBrains Mono 10
     mode hide
     colors {
         separator #666666
