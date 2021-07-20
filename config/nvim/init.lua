@@ -66,3 +66,7 @@ if fn.empty(fn.glob(packer_path)) > 0 then
 else
     require('plugins')
 end
+
+-- Don't leave preview windows hanging
+cmd("autocmd CursorMovedI * if pumvisible() == 0|pclose|endif")
+cmd("autocmd InsertLeave * if pumvisible() == 0|pclose|endif")
