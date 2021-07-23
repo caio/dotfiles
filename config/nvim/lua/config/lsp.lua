@@ -11,17 +11,17 @@ local on_attach = function(client, bufnr)
 
     map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     map('n', 'gD', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
     map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    map('n', 'ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
     map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     -- Show a pop-up with the line diagnostic details
     map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 
+    map('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
+    map('n', 'ac', '<cmd>Telescope lsp_code_actions<CR>', opts)
     map('n', '<leader>d', '<cmd>Telescope lsp_workspace_diagnostics<CR>', opts)
     map('n', '<leader>D', '<cmd>Telescope lsp_document_diagnostics<CR>', opts)
     map('n', '<leader>t', '<cmd>Telescope lsp_workspace_symbols<CR>', opts)
