@@ -27,6 +27,14 @@ return require('packer').startup(function()
         config = [[require('config.colors')]]
     }
 
+    -- Zen-mode
+    use {
+        'folke/zen-mode.nvim',
+        config = function()
+            require('zen-mode').setup({})
+        end
+    }
+
     -- Fancyful pop-up/floating windows with fuzzy finding support
     use {
         'nvim-telescope/telescope.nvim',
