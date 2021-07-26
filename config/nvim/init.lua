@@ -23,6 +23,7 @@ opt.shell = "/bin/bash"
 opt.wrap = false
 opt.list = true
 opt.listchars = [[tab:▸ ,trail:·,precedes:…,extends:…,nbsp:‗]]
+opt.cursorline = true
 opt.foldmethod = "marker"
 opt.shiftwidth = 4
 opt.textwidth = 79
