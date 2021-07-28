@@ -1,0 +1,52 @@
+config.nvim
+
+   Simple configuration for neovim with (optional) LSP support. Built
+   by plucking options out of my .vimrc [VIMRC] when a default behavior
+   bothered me.
+
+   Plugins are managed via the emacsesque packer.nvim [PACKER] and not
+   having it configured doesn't leave anything broken nor throws errors
+   at my face.
+
+   Here be no icons, text rules.
+
+Basic Installation
+
+   $ git clone https://github.com/caio/config.nvim ~/.config/nvim
+
+Enabling and Installing/Updating Plugins
+
+   It's assumed git is installed and neovim is running with a UI capable
+   displaying 24-bit colors, be it a terminal (:help termguicolors) or a
+   GUI.
+
+   $ nvim +BootstrapPacker
+   $ nvim +PackerSync
+
+Starting/Using LSP
+
+   It's not always that I want to boot heavy IDE-like features when I
+   open a file with the editor, so lsp functionality is gated behind
+   the LspStart command. Issuing it will launch a server and configure
+   mappings accordingly.
+
+   :LspStart
+
+To-Do
+
+   1. Runnables [RUN] support, mostly to launch tests. It's the only
+      thing that I actually miss from my previous setup.
+   2. A statusline that's easier to configure dynamically.
+   3. Some sort of non-intrusive completion system as ^X^O gets quite
+      tiresome when wiring a bunch of different components together
+
+References
+
+   [VIMRC]   My vim configuration files
+             https://github.com/caio/vim-runtime
+
+   [PACKER]  packer.nvim: A Plugin Manager for Neovim
+             https://github.com/wbthomason/packer.nvim
+
+   [RUN]     Rust-analyzer's Runnables lsp extension
+             https://rust-analyzer.github.io/manual.html#run
