@@ -24,10 +24,13 @@ noremap('n', '<C-l>', '<C-w>l')
 noremap('n', '<C-j>', '<C-w>j')
 noremap('n', '<C-k>', '<C-w>k')
 
+-- Easier marking on intl keyboards
+noremap('n', "'", "`")
+noremap('n', "`", "'")
+
 -- Act like a normal thing when navigating wrapped lines
 map('n', "k", "gk", {})
 map('n', "j", "gj", {})
 
 map('n', "<leader><space>", ":nohlsearch<CR>", { noremap = true, silent = true })
-
 

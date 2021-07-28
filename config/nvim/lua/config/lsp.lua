@@ -47,11 +47,6 @@ local on_attach = function(client, bufnr)
             },
         }
     )
-
-    -- TODO vim.lsp.codelens.run() calls 'workspace/executeCommand' via RPC
-    --      and rust-analyzer will not support it. I do want the "run this
-    --      test" and "run all tests" functionality, but not the "X references"
-    --      thing that other LSP servers implement.
 end
 
 require('lspconfig').rust_analyzer.setup({
