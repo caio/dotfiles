@@ -34,3 +34,21 @@ map('n', "j", "gj", {})
 
 map('n', "<leader><space>", ":nohlsearch<CR>", { noremap = true, silent = true })
 
+-- It's very inconvenient to use the ^ motion (first non blank)
+-- in a intl keyboard with dead keys. This functions acts as
+-- a "smart" wrapper that flip-flops between ^ or 0, depending
+-- on the cursor position.
+function caret_or_zero()
+    -- select what's between the cursor and the beginning of the line
+    local linepart = vim.fn.strpart(vim.fn.getline('.'), -1, vim.fn.col('.'))
+
+    -- Are there only whitespace characters between the beginning
+    -- and our cursor?
+    if string.match(linepart, "^%s+$") then
+        vim.cmd("normal! 0")
+    else
+        vim.cmd("normal! ^")
+    end
+end
+
+map('n', '0', ":lua caret_or_zero()<CR>", { noremap = true, silent = true })
