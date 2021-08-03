@@ -72,3 +72,21 @@ end
 -- Don't leave preview windows hanging
 cmd("autocmd CursorMovedI * if pumvisible() == 0|pclose|endif")
 cmd("autocmd InsertLeave * if pumvisible() == 0|pclose|endif")
+
+-- If the current file has been opened before, try to jump to the
+-- last cursor position the editor was at. If there are fewer
+-- lines than remembered, it jumps to the end instead
+function jump_to_last_position()
+    local previous_position = vim.fn.line("'\"")
+
+    if previous_position > 0 then
+        local cur_max_lines = vim.fn.line("$")
+
+        if previous_position < cur_max_lines then
+            cmd("normal '\"")
+        else
+            cmd("normal $")
+        end
+    end
+end
+cmd("autocmd BufReadPost * lua jump_to_last_position()")
