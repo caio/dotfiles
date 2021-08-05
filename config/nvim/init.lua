@@ -80,9 +80,9 @@ function jump_to_last_position()
     local previous_position = vim.fn.line("'\"")
 
     if previous_position > 0 then
-        local cur_max_lines = vim.fn.line("$")
+        local max_line_nr = vim.fn.line("$")
 
-        if previous_position < cur_max_lines then
+        if previous_position < max_line_nr then
             cmd("normal '\"")
         else
             cmd("normal $")

@@ -28,6 +28,10 @@ noremap('n', '<C-k>', '<C-w>k')
 noremap('n', "'", "`")
 noremap('n', "`", "'")
 
+-- Faster buffer switching
+noremap('n', "<leader>n", ":bn<CR>")
+noremap('n', "<leader>m", ":bp<CR>")
+
 -- Act like a normal thing when navigating wrapped lines
 map('n', "k", "gk", {})
 map('n', "j", "gj", {})
@@ -42,8 +46,7 @@ function caret_or_zero()
     -- select what's between the cursor and the beginning of the line
     local linepart = vim.fn.strpart(vim.fn.getline('.'), -1, vim.fn.col('.'))
 
-    -- Are there only whitespace characters between the beginning
-    -- and our cursor?
+    -- Are there only whitespace characters in it?
     if string.match(linepart, "^%s+$") then
         vim.cmd("normal! 0")
     else
