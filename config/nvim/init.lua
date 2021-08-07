@@ -73,20 +73,4 @@ end
 cmd("autocmd CursorMovedI * if pumvisible() == 0|pclose|endif")
 cmd("autocmd InsertLeave * if pumvisible() == 0|pclose|endif")
 
--- If the current file has been opened before, try to jump to the
--- last cursor position the editor was at. If there are fewer
--- lines than remembered, it jumps to the end instead
-function jump_to_last_position()
-    local previous_position = vim.fn.line("'\"")
-
-    if previous_position > 0 then
-        local max_line_nr = vim.fn.line("$")
-
-        if previous_position < max_line_nr then
-            cmd("normal '\"")
-        else
-            cmd("normal $")
-        end
-    end
-end
-cmd("autocmd BufReadPost * lua jump_to_last_position()")
+cmd("autocmd BufReadPost * lua require('custom').jump_to_last_position()")
