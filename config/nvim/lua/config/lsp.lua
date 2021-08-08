@@ -17,6 +17,11 @@ local on_attach = function(client, bufnr)
 
     map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+
+    -- Next/Previous *Error* diagnostic
+    map('n', ']ed', '<cmd>lua vim.lsp.diagnostic.goto_next({ severity = "Error"})<CR>', opts)
+    map('n', '[ed', '<cmd>lua vim.lsp.diagnostic.goto_prev({ severity = "Error"})<CR>', opts)
+
     -- Show a pop-up with the line diagnostic details
     map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 
