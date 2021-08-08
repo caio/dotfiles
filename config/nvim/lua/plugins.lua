@@ -18,6 +18,8 @@ return require('packer').startup(function()
         end
     }
 
+    use { 'qpkorr/vim-renamer', cmd = 'Renamer' }
+
     -- Theme
     use 'marko-cerovac/material.nvim'
 
