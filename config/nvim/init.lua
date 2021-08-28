@@ -34,9 +34,9 @@ opt.softtabstop = 4
 opt.formatoptions = "qrn1"
 opt.undofile = true
 opt.swapfile = false
+opt.smartcase = true
 
 g.mapleader = ','
-g.smartmatch = true
 -- A way less "in your face" netrw
 g.netrw_sizestyle="h"
 g.netrw_banner=0
