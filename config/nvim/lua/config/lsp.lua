@@ -34,9 +34,9 @@ local on_attach = function(client, bufnr)
 
     local cmd = vim.api.nvim_command
     -- Format right before saving
-    -- XXX Only for `*.rs`, make it for `*` calling something that checks
-    --     capabilities or smth
+    -- FIXME Warty
     cmd([[autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync()]])
+    cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync()]])
 
     -- Highlight current "word" under cursor
     cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
@@ -54,7 +54,9 @@ local on_attach = function(client, bufnr)
     )
 end
 
-require('lspconfig').rust_analyzer.setup({
+local config = require('lspconfig')
+
+config.rust_analyzer.setup({
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150,
@@ -66,4 +68,11 @@ require('lspconfig').rust_analyzer.setup({
             },
         },
     }
+})
+
+config.gopls.setup({
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150,
+    },
 })
