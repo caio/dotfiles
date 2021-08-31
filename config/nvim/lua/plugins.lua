@@ -20,13 +20,34 @@ return require('packer').startup(function()
 
     use { 'qpkorr/vim-renamer', cmd = 'Renamer' }
 
-    -- Theme
-    use 'marko-cerovac/material.nvim'
+    -- Appearance
+    use {
+        '~/src/personal/gord.nvim/',
+        requires = { 'rktjmp/lush.nvim', opt = true },
+        config = [[
+            vim.opt.termguicolors = true
+            vim.g.nord_italic = 1
+            vim.g.nord_italic_comments = 1
+            vim.g.nord_underline = 1
 
-    -- Statusbar
+            vim.cmd("colorscheme gord")
+        ]]
+    }
+
     use {
         'hoob3rt/lualine.nvim',
-        config = [[require('config.colors')]]
+        config = [[
+            require('lualine').setup({
+                options = {
+                    theme = 'nord',
+                    section_separators = '',
+                    component_separators = '',
+                    icons_enabled = false,
+                },
+                -- Disable the default "git branch" section
+                sections = { lualine_b = {} },
+            })
+        ]],
     }
 
     -- Fancyful pop-up/floating windows with fuzzy finding support
