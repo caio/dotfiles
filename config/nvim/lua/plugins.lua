@@ -26,10 +26,6 @@ return require('packer').startup(function()
         requires = { 'rktjmp/lush.nvim', opt = true },
         config = [[
             vim.opt.termguicolors = true
-            vim.g.nord_italic = 1
-            vim.g.nord_italic_comments = 1
-            vim.g.nord_underline = 1
-
             vim.cmd("colorscheme gord")
         ]]
     }
