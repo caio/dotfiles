@@ -58,7 +58,7 @@ if fn.empty(fn.glob(packer_path)) > 0 then
 
     function packer_bootstrap()
         cmd [[echo "Cloning packer.nvim..."]]
-        fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', packer_path})
+        fn.system({'git', 'clone','--depth=1', 'https://github.com/wbthomason/packer.nvim', packer_path})
         vim.api.nvim_command 'packadd packer.nvim'
         cmd [[echo "Bootstrapped! Restart and +PackerSync to install plugins"]]
     end
