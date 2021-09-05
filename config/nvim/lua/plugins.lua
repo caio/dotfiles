@@ -30,22 +30,6 @@ return require('packer').startup(function()
         ]]
     }
 
-    use {
-        'hoob3rt/lualine.nvim',
-        config = [[
-            require('lualine').setup({
-                options = {
-                    theme = 'nord',
-                    section_separators = '',
-                    component_separators = '',
-                    icons_enabled = false,
-                },
-                -- Disable the default "git branch" section
-                sections = { lualine_b = {} },
-            })
-        ]],
-    }
-
     -- Fancyful pop-up/floating windows with fuzzy finding support
     use {
         'nvim-telescope/telescope.nvim',

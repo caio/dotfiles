@@ -36,8 +36,7 @@ To-Do
 
    1. Runnables [RUN] support, mostly to launch tests. It's the only
       thing that I actually miss from my previous setup.
-   2. A statusline that's easier to configure dynamically.
-   3. Some sort of non-intrusive completion system as ^X^O gets quite
+   2. Some sort of non-intrusive completion system as ^X^O gets quite
       tiresome when wiring a bunch of different components together
 
 References
