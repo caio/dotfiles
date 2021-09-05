@@ -30,6 +30,11 @@ return require('packer').startup(function()
         ]]
     }
 
+    use {
+        'mcchrish/zenbones.nvim',
+        requires = { 'rktjmp/lush.nvim', opt = true },
+    }
+
     -- Fancyful pop-up/floating windows with fuzzy finding support
     use {
         'nvim-telescope/telescope.nvim',
