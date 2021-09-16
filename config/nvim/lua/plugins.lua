@@ -6,7 +6,25 @@ return require('packer').startup(function()
         'tpope/vim-commentary',
         'tpope/vim-repeat',
         'tpope/vim-surround',
-        'cohama/lexima.vim',
+    }
+
+    use {
+        'windwp/nvim-autopairs',
+        config = function()
+            local autopairs = require('nvim-autopairs')
+
+            autopairs.setup({})
+
+            function complete_or_autopairs()
+                if vim.fn.pumvisible() ~= 0  then
+                    return autopairs.esc("<cr>")
+                else
+                    return autopairs.autopairs_cr()
+                end
+            end
+
+            vim.api.nvim_set_keymap('i' , '<CR>','v:lua.complete_or_autopairs()', {expr = true , noremap = true})
+        end
     }
 
     -- Visual indentation guides
