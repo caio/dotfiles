@@ -1,7 +1,7 @@
 # vim: noet:sw=8
 [user]
-	name = Caio Romão
-	email = hello@caio.co
+	name = Caio
+	email = contact@caio.co
 	signingkey = caioromao@gmail.com
 
 [alias]
@@ -18,7 +18,7 @@
 	news = log --reverse --no-merges --stat @{1}..
 
 [core]
-	editor = vim
+	editor = nvim
 	whitespace = blank-at-eol,space-before-tab,tab-in-indent
 	preloadindex = true
 	excludesfile = ~/.gitignore
