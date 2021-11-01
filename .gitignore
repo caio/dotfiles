@@ -1,6 +1,7 @@
 *.pyc
-custom.d/*
-mplayer/registry
 bin/idea
+bin/rust-analyzer
 config/fish/fish_variables
 config/ncmpcpp/error.log
+custom.d/*
+mplayer/registry
