@@ -66,6 +66,9 @@ config.rust_analyzer.setup({
             checkOnSave = {
                 command = "clippy",
             },
+            cargo = {
+                allFeatures = true,
+            },
         },
     }
 })
