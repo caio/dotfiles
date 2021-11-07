@@ -52,7 +52,7 @@ return require('packer').startup(function()
         'mcchrish/zenbones.nvim',
         requires = { 'rktjmp/lush.nvim', opt = true },
         config = [[
-            vim.g.zenflesh_darkness = "warm"
+            vim.g.zenbones_darkness = "warm"
             vim.g.zenbones_lightness = "dim"
         ]]
     }
