@@ -60,6 +60,9 @@ return require('packer').startup(function()
     -- Fancyful pop-up/floating windows with fuzzy finding support
     use {
         'nvim-telescope/telescope.nvim',
+        -- Most recent non-feature commit before the hard breakage
+        -- for neovim 0.6+ on 61240ac75a93b3cdafb4325ab4e9d407f83965f4
+        commit = "991d0127f0abc6db9d8efd3a49e53a6867de5559",
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
         config = [[require('config.telescope')]]
     }
