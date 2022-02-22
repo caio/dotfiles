@@ -27,6 +27,13 @@ return require('packer').startup(function()
         end
     }
 
+    -- Front-end stuff
+    use {
+        'yuezk/vim-js',
+        'HerringtonDarkholme/yats.vim',
+        'maxmellon/vim-jsx-pretty',
+    }
+
     -- Visual indentation guides
     use {
         'lukas-reineke/indent-blankline.nvim',
