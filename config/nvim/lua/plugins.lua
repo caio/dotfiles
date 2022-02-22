@@ -9,6 +9,11 @@ return require('packer').startup(function()
     }
 
     use {
+        'tpope/vim-fugitive',
+        cmd = 'Git',
+    }
+
+    use {
         'windwp/nvim-autopairs',
         config = function()
             local autopairs = require('nvim-autopairs')
