@@ -53,3 +53,4 @@ local opts = { noremap = true, silent = true }
 map('n', "<leader>f", "<cmd>lua git_files_with_fallback()<CR>", opts)
 map('n', "<leader>b", ":Telescope buffers<CR>", opts)
 map('n', "z=", ":Telescope spell_suggest<CR>", opts)
+map('n', '<leader>d', '<cmd>Telescope diagnostics<CR>', opts)
