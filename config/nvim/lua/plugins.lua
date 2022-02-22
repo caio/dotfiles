@@ -64,6 +64,17 @@ return require('packer').startup(function()
         ]]
     }
 
+    -- autocomplete
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-path'},
+            {'hrsh7th/cmp-buffer'},
+        },
+        config = [[require('config.completions')]]
+    }
+
     -- Fancyful pop-up/floating windows with fuzzy finding support
     use {
         'nvim-telescope/telescope.nvim',
