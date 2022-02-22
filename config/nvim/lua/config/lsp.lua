@@ -9,8 +9,8 @@ local on_attach = function(client, bufnr)
     local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = { silent = true, noremap =  true }
 
-    map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    map('n', 'gD', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    map('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
+    map('n', 'gD', '<cmd>Telescope lsp_implementations<CR>', opts)
     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
     map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
