@@ -44,6 +44,12 @@ config.rust_analyzer.setup({
             checkOnSave = {
                 command = "clippy",
             },
+            -- https://github.com/rust-analyzer/rust-analyzer/issues/11533
+            procMacro = {
+                ignored = {
+                    ["async-trait"] = {"async_trait"},
+                },
+            },
             cargo = {
                 allFeatures = true,
             },
