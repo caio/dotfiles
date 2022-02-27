@@ -42,6 +42,19 @@ g.netrw_sizestyle="h"
 g.netrw_banner=0
 g.netrw_list_style=3
 g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
+
+vim.diagnostic.config({
+    virtual_text = {
+        severity = {
+            -- TODO ability to cycle this `min` setting since I do like
+            --      warnings in my face after prototyping is done
+            min = vim.diagnostic.severity.ERROR,
+            max = vim.diagnostic.severity.ERROR,
+        },
+        spacing = 2,
+        source = "if_many",
+    },
+})
 -- }}}
 
 -- Configure general-purpose mappings

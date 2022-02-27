@@ -30,16 +30,6 @@ local on_attach = function(client, bufnr)
     cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
     -- And clear the highlight after move
     cmd([[autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()]])
-
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = {
-                spacing = "2",
-                -- Do NOT show inline diagnostics unless they are errors
-                severity_limit = "Error",
-            },
-        }
-    )
 end
 
 local config = require('lspconfig')
