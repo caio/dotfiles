@@ -54,10 +54,6 @@ return require('packer').startup(function()
     use {
         '~/src/personal/gord.nvim/',
         requires = { 'rktjmp/lush.nvim', opt = true },
-        config = [[
-            vim.opt.termguicolors = true
-            vim.cmd("colorscheme gord")
-        ]]
     }
 
     use {
@@ -66,6 +62,10 @@ return require('packer').startup(function()
         config = [[
             vim.g.zenbones_darkness = "warm"
             vim.g.zenbones_lightness = "dim"
+
+            vim.opt.termguicolors = true
+            vim.opt.background = "dark"
+            vim.cmd("colorscheme zenbones")
         ]]
     }
 
