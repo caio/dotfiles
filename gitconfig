@@ -40,6 +40,7 @@
 	wordRegex = [^[:space:]]
 	compactionHeuristic = true
 	algorithm = patience
+	relative = true
 
 [log]
 	decorate = short
