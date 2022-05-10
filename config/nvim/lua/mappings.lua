@@ -8,8 +8,8 @@ noremap('i', "<F1>", "<ESC>")
 noremap('n', "<F1>", "<ESC>")
 noremap('v', "<F1>", "<ESC>")
 
-noremap('n', "<space>", "za")
-noremap('v', "<space>", "za")
+noremap('n', "<space>", "zA")
+noremap('v', "<space>", "zA")
 
 noremap('v', "'", "`")
 noremap('v', "`", "'")
