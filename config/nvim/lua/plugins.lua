@@ -14,6 +14,15 @@ return require('packer').startup(function()
     }
 
     use {
+        'fatih/vim-go',
+        run = ':GoInstallBinaries',
+        ft = {'go'},
+        config = function()
+            vim.g.go_gopls_enabled = 0
+        end
+    }
+
+    use {
         'windwp/nvim-autopairs',
         config = function()
             local autopairs = require('nvim-autopairs')
