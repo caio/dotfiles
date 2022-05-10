@@ -62,4 +62,19 @@ config.gopls.setup({
     flags = {
         debounce_text_changes = 150,
     },
+    cmd = {
+        'gopls',
+        '-remote=auto',
+    },
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+          nilness = true,
+          shadow = true,
+          unusedwrite = true,
+        },
+        staticcheck = true,
+      },
+    },
 })
