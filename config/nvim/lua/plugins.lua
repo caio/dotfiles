@@ -85,7 +85,7 @@ return require('packer').startup(function()
     -- Fancyful pop-up/floating windows with fuzzy finding support
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+        requires = {{'nvim-lua/plenary.nvim'}},
         config = [[require('config.telescope')]]
     }
 
