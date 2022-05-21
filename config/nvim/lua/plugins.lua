@@ -59,12 +59,6 @@ return require('packer').startup(function()
 
     use { 'qpkorr/vim-renamer', cmd = 'Renamer' }
 
-    -- Appearance
-    use {
-        '~/src/personal/gord.nvim/',
-        requires = { 'rktjmp/lush.nvim', opt = true },
-    }
-
     use {
         'mcchrish/zenbones.nvim',
         requires = { 'rktjmp/lush.nvim', opt = true },
