@@ -1,42 +1,38 @@
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
-local function noremap(mode, key, action)
-  map(mode, key, action, { noremap = true })
-end
+map('i', "<F1>", "<ESC>")
+map('n', "<F1>", "<ESC>")
+map('v', "<F1>", "<ESC>")
 
-noremap('i', "<F1>", "<ESC>")
-noremap('n', "<F1>", "<ESC>")
-noremap('v', "<F1>", "<ESC>")
+map('n', "<space>", "zA")
+map('v', "<space>", "zA")
 
-noremap('n', "<space>", "zA")
-noremap('v', "<space>", "zA")
-
-noremap('v', "'", "`")
-noremap('v', "`", "'")
+map('v', "'", "`")
+map('v', "`", "'")
 
 -- Re-select block after (de)indent
-noremap('v', "<", "<gv")
-noremap('v', ">", ">gv")
+map('v', "<", "<gv")
+map('v', ">", ">gv")
 
 -- Faster window nagivation
-noremap('n', '<C-h>', '<C-w>h')
-noremap('n', '<C-l>', '<C-w>l')
-noremap('n', '<C-j>', '<C-w>j')
-noremap('n', '<C-k>', '<C-w>k')
+map('n', '<C-h>', '<C-w>h')
+map('n', '<C-l>', '<C-w>l')
+map('n', '<C-j>', '<C-w>j')
+map('n', '<C-k>', '<C-w>k')
 
 -- Easier marking on intl keyboards
-noremap('n', "'", "`")
-noremap('n', "`", "'")
+map('n', "'", "`")
+map('n', "`", "'")
 
 -- Faster buffer switching
-noremap('n', "<leader>n", ":bn<CR>")
-noremap('n', "<leader>m", ":bp<CR>")
+map('n', "<leader>n", ":bn<CR>")
+map('n', "<leader>m", ":bp<CR>")
 
 -- Act like a normal thing when navigating wrapped lines
-map('n', "k", "gk", {})
-map('n', "j", "gj", {})
+map('n', "k", "gk")
+map('n', "j", "gj")
 
-local opts = { silent = true, noremap =  true }
+local opts = { silent = true }
 map('n', "<leader><space>", ":nohlsearch<CR>", opts)
 
 map('n', '0', ":lua require('custom').caret_or_zero()<CR>", opts)
