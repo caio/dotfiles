@@ -48,15 +48,6 @@ return require('packer').startup(function()
         'maxmellon/vim-jsx-pretty',
     }
 
-    -- Visual indentation guides
-    use {
-        'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            vim.g.indent_blankline_show_first_indent_level = false
-            vim.g.indent_blankline_show_trailing_blankline_indent = false
-        end
-    }
-
     use { 'qpkorr/vim-renamer', cmd = 'Renamer' }
 
     use {
