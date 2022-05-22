@@ -37,7 +37,7 @@ return require('packer').startup(function()
                 end
             end
 
-            vim.api.nvim_set_keymap('i' , '<CR>','v:lua.complete_or_autopairs()', {expr = true , noremap = true})
+            vim.keymap.set('i' , '<CR>','v:lua.complete_or_autopairs()', {expr = true})
         end
     }
 

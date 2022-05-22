@@ -47,8 +47,8 @@ function git_files_with_fallback()
     if not ok then require'telescope.builtin'.find_files(opts) end
 end
 
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
+local map = vim.keymap.set
+local opts = { silent = true }
 
 map('n', "<leader>f", "<cmd>lua git_files_with_fallback()<CR>", opts)
 map('n', "<leader>b", ":Telescope buffers<CR>", opts)
