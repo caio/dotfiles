@@ -15,13 +15,6 @@ require('telescope').setup({
             theme = "ivy",
             previewer = false,
         },
-        lsp_references = {
-            theme = "cursor",
-            previewer = false,
-        },
-        lsp_code_actions = {
-            theme = "cursor",
-        },
         buffers = {
             theme = "dropdown",
             previewer = false,

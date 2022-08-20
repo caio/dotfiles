@@ -9,16 +9,16 @@ local on_attach = function(client, bufnr)
     local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local opts = { silent = true, noremap =  true }
 
-    map('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-    map('n', 'gD', '<cmd>Telescope lsp_implementations<CR>', opts)
+    map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    map('n', 'gD', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
     map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 
-    map('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-    map('n', 'ac', '<cmd>Telescope lsp_code_actions<CR>', opts)
-    map('n', '<leader>t', '<cmd>Telescope lsp_workspace_symbols<CR>', opts)
-    map('n', '<leader>T', '<cmd>Telescope lsp_document_symbols<CR>', opts)
+    map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    map('n', 'ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    map('n', '<leader>t', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
+    map('n', '<leader>T', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
 
     local cmd = vim.api.nvim_command
     -- Format right before saving
