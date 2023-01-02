@@ -37,16 +37,11 @@ config.rust_analyzer.setup({
     flags = {
         debounce_text_changes = 150,
     },
+    cmd = {"rustup", "run", "stable", "rust-analyzer"},
     settings = {
         ["rust-analyzer"] = {
             checkOnSave = {
                 command = "clippy",
-            },
-            -- https://github.com/rust-analyzer/rust-analyzer/issues/11533
-            procMacro = {
-                ignored = {
-                    ["async-trait"] = {"async_trait"},
-                },
             },
             cargo = {
                 allFeatures = true,
