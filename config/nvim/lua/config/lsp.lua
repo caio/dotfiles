@@ -32,6 +32,13 @@ end
 
 local config = require('lspconfig')
 
+local ok, _ = pcall(require, 'cmp_nvim_lsp')
+if ok then
+    config.util.default_config = vim.tbl_deep_extend('force', config.util.default_config, {
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    })
+end
+
 config.rust_analyzer.setup({
     on_attach = on_attach,
     flags = {

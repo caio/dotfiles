@@ -1,6 +1,7 @@
-local cmp = require'cmp'
+local cmp = require('cmp')
+
 cmp.setup({
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
@@ -13,10 +14,10 @@ cmp.setup({
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
         })
-    },
+    }),
 
-    sources = {
+    sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'buffer' },
-    },
+    }),
 })
