@@ -42,6 +42,10 @@
 	algorithm = patience
 	relative = true
 
+[difftool "nvim"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd L\"
+
+
 [log]
 	decorate = short
 
@@ -53,8 +57,13 @@
 	autosetupmerge = always
 [commit]
 	verbose = true
+
 [mergetool]
 	keepBackup = false
+
+[mergetool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$MERGED\" \"$BASE\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd J\"
+
 [init]
 	defaultBranch = main
 [pull]
