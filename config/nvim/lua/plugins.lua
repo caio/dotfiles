@@ -63,6 +63,11 @@ return require('packer').startup(function()
         ]]
     }
 
+    use {
+        'sindrets/diffview.nvim',
+        requires = 'nvim-lua/plenary.nvim'
+    }
+
     -- autocomplete
     use {
         'hrsh7th/nvim-cmp',
