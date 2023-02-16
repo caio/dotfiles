@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
 
     local cmd = vim.api.nvim_command
     -- Format right before saving
-    cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]])
+    cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
 
     -- Highlight current "word" under cursor
     cmd([[autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()]])
