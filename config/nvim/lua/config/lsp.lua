@@ -34,8 +34,11 @@ local config = require('lspconfig')
 
 local ok, _ = pcall(require, 'cmp_nvim_lsp')
 if ok then
+    local caps = require('cmp_nvim_lsp').default_capabilities()
+    caps["textDocument"]["completion"]["completionItem"]["snippetSupport"] = false
+
     config.util.default_config = vim.tbl_deep_extend('force', config.util.default_config, {
-        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        capabilities = caps
     })
 end
 
