@@ -13,4 +13,5 @@ set -U fish_user_paths \
 set -gx EDITOR nvim
 
 abbr -a -- - 'cd -'
-
+abbr --add gh --set-cursor 'cd ~/src/github/%'
+abbr --add p --set-cursor 'cd ~/src/personal/%'
