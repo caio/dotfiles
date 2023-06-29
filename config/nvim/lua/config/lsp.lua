@@ -82,3 +82,24 @@ config.gopls.setup({
       },
     },
 })
+
+local function home_cache_dir(tail)
+  local base = vim.env.XDG_CACHE_HOME
+  if not base and vim.env.HOME then
+    base = vim.env.HOME .. "/.cache"
+  end
+  -- fallback to a hidden dir on cwd
+  if not base then
+    return '.' .. tail
+  end
+
+  return base .. '/' .. tail
+end
+
+config.ccls.setup({
+  init_options = {
+    cache = {
+      directory = home_cache_dir('ccls'),
+    },
+  },
+})
