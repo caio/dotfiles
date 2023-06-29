@@ -9,6 +9,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.unzoom_on_switch_pane = true
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
+config.scrollback_lines = 10000
 
 config.color_schemes = require('schemes')
 config.color_scheme = 'light'
