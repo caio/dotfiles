@@ -44,11 +44,14 @@ if ok then
     })
 end
 
+config.util.default_config = vim.tbl_deep_extend('force', config.util.default_config, {
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  }
+})
+
 config.rust_analyzer.setup({
-    on_attach = on_attach,
-    flags = {
-        debounce_text_changes = 150,
-    },
     cmd = {"rustup", "run", "stable", "rust-analyzer"},
     settings = {
         ["rust-analyzer"] = {
@@ -63,10 +66,6 @@ config.rust_analyzer.setup({
 })
 
 config.gopls.setup({
-    on_attach = on_attach,
-    flags = {
-        debounce_text_changes = 150,
-    },
     cmd = {
         'gopls',
         '-remote=auto',
