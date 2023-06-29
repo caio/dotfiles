@@ -11,12 +11,14 @@ local on_attach = function(client, bufnr)
 
     map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     map('n', 'gD', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    map('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+
     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
     map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-
-    map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     map('n', 'ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+
     map('n', '<leader>t', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
     map('n', '<leader>T', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
 
