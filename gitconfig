@@ -18,7 +18,6 @@
 	news = log --reverse --no-merges --stat @{1}..
 
 [core]
-	editor = nvim
 	whitespace = blank-at-eol,space-before-tab,tab-in-indent
 	preloadindex = true
 	excludesfile = ~/.gitignore
