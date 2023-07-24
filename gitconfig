@@ -34,7 +34,6 @@
 	stat = true
 
 [diff]
-	renames = copies
 	noprefix = true
 	wordRegex = [^[:space:]]
 	compactionHeuristic = true
