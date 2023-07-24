@@ -13,6 +13,7 @@ function mod.setup(config)
 
     { key = 'c', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' },
     { key = 'K', mods = 'LEADER', action = act.CloseCurrentTab{ confirm = true } },
+    { key = 'w', mods = 'LEADER', action = act.CloseCurrentPane{ confirm = true } },
     { key = ',', mods = 'LEADER', action = act.PromptInputLine {
       description = 'Enter new tab name',
       action = wezterm.action_callback(function(window, pane, line)
