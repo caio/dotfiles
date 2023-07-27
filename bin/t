@@ -1,9 +1,0 @@
-#!/bin/sh
-
-SESSION=${1-scratch}
-
-if tmux has-session -t $SESSION; then
-    exec tmux attach -t $SESSION
-else
-    exec tmux new-session -s $SESSION
-fi

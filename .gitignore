@@ -1,6 +1,5 @@
 *.pyc
-bin/idea
-bin/rust-analyzer
+bin/*
 config/fish/fish_variables
 config/ncmpcpp/error.log
 custom.d/*
