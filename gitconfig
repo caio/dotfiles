@@ -25,6 +25,9 @@
 [rebase]
 	stat = true
 
+[format]
+	pretty = fuller
+
 [diff]
 	noprefix = true
 
