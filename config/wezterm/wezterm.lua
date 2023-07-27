@@ -58,7 +58,7 @@ config.window_padding = {
   bottom = 0,
 }
 
-function tab_title(tab_info)
+local function tab_title(tab_info)
   local title = tab_info.tab_title
   -- if the tab title is explicitly set, take that
   if title and #title > 0 then
@@ -70,7 +70,7 @@ end
 
 wezterm.on(
   'format-tab-title',
-  function(tab, tabs, panes, config, hover, max_width)
+  function(tab, _, _, _, _, max_width)
     local background = bg
     local foreground = fg
 

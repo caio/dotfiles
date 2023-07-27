@@ -16,7 +16,7 @@ function mod.setup(config)
     { key = 'w', mods = 'LEADER', action = act.CloseCurrentPane{ confirm = true } },
     { key = ',', mods = 'LEADER', action = act.PromptInputLine {
       description = 'Enter new tab name',
-      action = wezterm.action_callback(function(window, pane, line)
+      action = wezterm.action_callback(function(window, _, line)
         if line then
           window:active_tab():set_title(line)
         end
