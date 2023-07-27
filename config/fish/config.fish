@@ -10,8 +10,6 @@ set -U fish_user_paths \
     {$HOME}/.cargo/bin \
     {$HOME}/bin
 
-set -gx EDITOR nvim
-
 abbr -a -- - 'cd -'
 abbr --add gh --set-cursor 'cd ~/src/github/%'
 abbr --add p --set-cursor 'cd ~/src/personal/%'
