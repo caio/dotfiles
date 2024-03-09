@@ -11,5 +11,5 @@ set -U fish_user_paths \
     {$HOME}/bin
 
 abbr -a -- - 'cd -'
-abbr --add gh --set-cursor 'cd ~/src/github/%'
-abbr --add p --set-cursor 'cd ~/src/personal/%'
+abbr --add c --set-cursor 'cd ~/src/contrib/%'
+abbr --add p --set-cursor 'cd ~/src/caio.co/%'
