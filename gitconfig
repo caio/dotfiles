@@ -8,11 +8,8 @@
 	co = checkout
 	st = status -sb --ignore-submodules
 	br = branch -v
-	mt = mergetool
 	unstage = reset HEAD --
-	revname = name-rev --name-only --refs=refs/heads/*
 	changed = diff --name-status -r
-	findoldfile = rev-list -n 1 HEAD --
 	fixup = commit --amend --no-edit
 	news = log --reverse --stat @{1}..
 
