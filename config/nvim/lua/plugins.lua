@@ -52,11 +52,8 @@ return require('packer').startup(function()
 
     use {
         'mcchrish/zenbones.nvim',
-        requires = { 'rktjmp/lush.nvim', opt = true },
+        requires = { 'rktjmp/lush.nvim' },
         config = [[
-            vim.g.zenbones_darkness = "warm"
-            vim.g.zenbones_lightness = "dim"
-
             vim.opt.termguicolors = true
             vim.opt.background = "dark"
             vim.cmd("colorscheme zenbones")

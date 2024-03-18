@@ -4,8 +4,8 @@ map('i', "<F1>", "<ESC>")
 map('n', "<F1>", "<ESC>")
 map('v', "<F1>", "<ESC>")
 
-map('n', "<space>", "zA")
-map('v', "<space>", "zA")
+map('n', ",", "zA")
+map('v', ",", "zA")
 
 map('v', "'", "`")
 map('v', "`", "'")
@@ -43,4 +43,4 @@ map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 map('n', ']ed', '<cmd>lua vim.diagnostic.goto_next({ severity = "Error"})<CR>', opts)
 map('n', '[ed', '<cmd>lua vim.diagnostic.goto_prev({ severity = "Error"})<CR>', opts)
 -- Show a pop-up with the line diagnostic details
-map('n', '<C-n>', '<cmd>lua vim.diagnostic.open_float(nil, { focusable = false })<CR>', opts)
+map('n', '<leader>k', '<cmd>lua vim.diagnostic.open_float(nil, { focusable = false })<CR>', opts)
