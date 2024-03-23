@@ -19,8 +19,8 @@ local on_attach = function(client, bufnr)
     map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     map('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-    map('n', '<leader>s', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', opts)
-    map('n', '<leader>S', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
+    map('n', '<leader>s', '<cmd>Telescope lsp_document_symbols<CR>', opts)
+    map('n', '<leader>S', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opts)
 
     local cmd = vim.api.nvim_command
     -- Format right before saving
