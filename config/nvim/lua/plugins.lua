@@ -15,6 +15,7 @@ return require('packer').startup(function()
 
     use {
         'fatih/vim-go',
+        -- ensure maximum regret when I open go files
         run = ':GoInstallBinaries',
         ft = {'go'},
         config = function()
@@ -24,10 +25,10 @@ return require('packer').startup(function()
 
     use {
         'windwp/nvim-autopairs',
+        event = 'InsertEnter',
         requires = { 'hrsh7th/nvim-cmp' },
         config = function()
-            local autopairs = require('nvim-autopairs')
-            autopairs.setup({})
+            require('nvim-autopairs').setup({})
 
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
             local cmp = require('cmp')
@@ -47,11 +48,13 @@ return require('packer').startup(function()
     use {
         'mcchrish/zenbones.nvim',
         requires = { 'rktjmp/lush.nvim' },
-        config = [[
+        config = function()
+            vim.g.zenbones_darkness = "stark" -- warm/undef
+            vim.g.zenbones_lightness = "bright" -- dim/undef
             vim.opt.termguicolors = true
             vim.opt.background = "dark"
             vim.cmd("colorscheme zenbones")
-        ]]
+        end
     }
 
     use {
@@ -66,28 +69,33 @@ return require('packer').startup(function()
             {'hrsh7th/cmp-nvim-lsp'},
             {'hrsh7th/cmp-buffer'},
         },
-        config = [[require('config.completions')]]
+        config = function()
+            require('config.completions')
+        end
     }
 
-    -- Fancyful pop-up/floating windows with fuzzy finding support
     use {
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}},
-        config = [[require('config.telescope')]]
+        config = function()
+            require('config.telescope')
+        end
     }
 
-    -- Settings for the built-in LSP client
     -- Only gets loaded when `:LspStart` is called manually
     use {
         'neovim/nvim-lspconfig',
         cmd = 'LspStart',
-        config = [[require('config.lsp')]]
+        config = function()
+            require('config.lsp')
+        end
     }
 
-    -- Treesitter-based syntax support
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = [[require('config.treesitter')]]
+        config = function()
+            require('config.treesitter')
+        end
     }
 end)
