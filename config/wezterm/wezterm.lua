@@ -16,7 +16,7 @@ config.color_scheme = 'light'
 
 config.inactive_pane_hsb = {
   saturation = 1.0,
-  brightness = 0.95,
+  brightness = 0.8,
 }
 
 local scheme = config.color_schemes[config.color_scheme]
