@@ -16,7 +16,7 @@ local on_attach = function(client, bufnr)
 
     map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
-    map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    map('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     map('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
     map('n', '<leader>s', '<cmd>Telescope lsp_document_symbols<CR>', opts)
