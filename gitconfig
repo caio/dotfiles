@@ -17,7 +17,7 @@
 	ui = auto
 
 [merge]
-	tool = vimdiff
+	tool = nvimdiff
 
 [rebase]
 	stat = true
@@ -27,6 +27,7 @@
 
 [diff]
 	noprefix = true
+	tool = nvimdiff
 
 [log]
 	decorate = short
@@ -43,6 +44,9 @@
 
 [mergetool]
 	keepBackup = false
+
+[mergetool "nvimdiff"]
+	layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [init]
 	defaultBranch = main
