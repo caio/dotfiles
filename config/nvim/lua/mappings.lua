@@ -36,11 +36,3 @@ local opts = { silent = true }
 map('n', "<leader><space>", ":nohlsearch<CR>", opts)
 
 map('n', '0', ":lua require('custom').caret_or_zero()<CR>", opts)
-
--- Next/Previous diagnostic
-map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-map('n', ']ed', '<cmd>lua vim.diagnostic.goto_next({ severity = "Error"})<CR>', opts)
-map('n', '[ed', '<cmd>lua vim.diagnostic.goto_prev({ severity = "Error"})<CR>', opts)
--- Show a pop-up with the line diagnostic details
-map('n', '<leader>k', '<cmd>lua vim.diagnostic.open_float(nil, { focusable = false })<CR>', opts)
