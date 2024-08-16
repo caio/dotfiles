@@ -19,6 +19,8 @@ map('n', '<C-h>', '<C-w>h')
 map('n', '<C-l>', '<C-w>l')
 map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
+map('n', '<C-Tab>', ':tabnext<CR>')
+map('n', '<C-S-Tab>', ':tabprevious<CR>')
 
 -- Easier marking on intl keyboards
 map('n', "'", "`")
