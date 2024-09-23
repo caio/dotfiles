@@ -1,5 +1,7 @@
 *.pyc
 bin/*
+config/newsboat/urls
+config/newsboat/cache.db
 config/fish/fish_variables
 config/ncmpcpp/error.log
 custom.d/*

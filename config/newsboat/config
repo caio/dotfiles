@@ -1,0 +1,3 @@
+goto-next-feed no
+browser "xdg-open %u"
+include /usr/share/doc/newsboat/contrib/colorschemes/plain
