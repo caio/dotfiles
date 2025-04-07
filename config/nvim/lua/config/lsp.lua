@@ -1,5 +1,9 @@
 local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    vim.o.foldmethod = "expr"
+    vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
+
     -- Run cursor+timer triggers faster
     vim.o.updatetime = 300
     -- So that the window doesn't shift around in the presence of
