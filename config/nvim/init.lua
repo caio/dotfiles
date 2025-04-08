@@ -54,6 +54,12 @@ vim.diagnostic.config({
 })
 -- }}}
 
+vim.g.zenbones_darkness = "stark" -- warm/undef
+vim.g.zenbones_lightness = "bright" -- dim/undef
+vim.opt.termguicolors = true
+vim.opt.background = "light"
+vim.cmd("colorscheme zenbones")
+
 -- Configure general-purpose mappings
 -- Plugin-related ones are managed along with the plugins
 require('mappings')

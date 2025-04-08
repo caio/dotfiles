@@ -24,18 +24,6 @@ return require('packer').startup(function()
     use { 'qpkorr/vim-renamer', cmd = 'Renamer' }
 
     use {
-        'mcchrish/zenbones.nvim',
-        config = function()
-            vim.g.zenbones_compat = 1
-            vim.g.zenbones_darkness = "stark" -- warm/undef
-            vim.g.zenbones_lightness = "bright" -- dim/undef
-            vim.opt.termguicolors = true
-            vim.opt.background = "light"
-            vim.cmd("colorscheme zenbones")
-        end
-    }
-
-    use {
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/plenary.nvim'}},
         config = function()
