@@ -28,6 +28,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         if client:supports_method('textDocument/foldingRange') then
+            vim.o.foldlevel = 99
             vim.o.foldmethod = "expr"
             vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
         end
