@@ -11,7 +11,7 @@ opt.history = 500
 opt.backspace = "indent,eol,start"
 opt.errorbells = false
 opt.visualbell = false
-opt.completeopt = "menu,menuone,noinsert,noselect,preview"
+opt.completeopt = "menuone,noselect,preview"
 opt.showbreak = "↪"
 opt.virtualedit = "block"
 opt.foldlevelstart = 0
@@ -57,6 +57,7 @@ vim.diagnostic.config({
 -- Configure general-purpose mappings
 -- Plugin-related ones are managed along with the plugins
 require('mappings')
+require("config.lsp")
 
 -- Load plugins via `packer`
 -- If the packer installation is not found, no plugins
