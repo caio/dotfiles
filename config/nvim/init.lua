@@ -60,36 +60,13 @@ vim.opt.termguicolors = true
 vim.opt.background = "light"
 vim.cmd("colorscheme zenbones")
 
--- Configure general-purpose mappings
--- Plugin-related ones are managed along with the plugins
 require('mappings')
 require("config.lsp")
-
--- Load plugins via `packer`
--- If the packer installation is not found, no plugins
--- will be configured.
-local fn, cmd = vim.fn, vim.cmd
-local packer_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-
-if fn.empty(fn.glob(packer_path)) > 0 then
-
-    function packer_bootstrap()
-        cmd [[echo "Cloning packer.nvim..."]]
-        fn.system({'git', 'clone','--depth=1', 'https://github.com/wbthomason/packer.nvim', packer_path})
-        vim.api.nvim_command('packadd packer.nvim')
-        require('plugins')
-        vim.cmd('autocmd User PackerComplete quitall!')
-        vim.api.nvim_command('PackerSync')
-    end
-
-    cmd [[command! BootstrapPacker lua packer_bootstrap() ]]
-    cmd [[echo "Plugins disabled! Run :BootstrapPacker to install and exit"]]
-else
-    require('plugins')
-end
+require('nvim-autopairs').setup({})
+require('config.telescope')
 
 -- Don't leave preview windows hanging
-cmd("autocmd CursorMovedI * if pumvisible() == 0|pclose|endif")
-cmd("autocmd InsertLeave * if pumvisible() == 0|pclose|endif")
+vim.cmd("autocmd CursorMovedI * if pumvisible() == 0|pclose|endif")
+vim.cmd("autocmd InsertLeave * if pumvisible() == 0|pclose|endif")
 
-cmd("autocmd BufReadPost * lua require('custom').jump_to_last_position()")
+vim.cmd("autocmd BufReadPost * lua require('custom').jump_to_last_position()")
