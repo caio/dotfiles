@@ -14,7 +14,7 @@ map('v', "`", "'")
 map('v', "<", "<gv")
 map('v', ">", ">gv")
 
--- Faster window nagivation
+-- Faster window navigation
 map('n', '<C-h>', '<C-w>h')
 map('n', '<C-l>', '<C-w>l')
 map('n', '<C-j>', '<C-w>j')
@@ -25,10 +25,6 @@ map('n', '<C-S-Tab>', ':tabprevious<CR>')
 -- Easier marking on intl keyboards
 map('n', "'", "`")
 map('n', "`", "'")
-
--- Faster buffer switching
-map('n', "<leader>n", ":bn<CR>")
-map('n', "<leader>m", ":bp<CR>")
 
 -- Act like a normal thing when navigating wrapped lines
 map('n', "k", "gk")
