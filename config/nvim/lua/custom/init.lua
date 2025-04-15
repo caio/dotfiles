@@ -33,5 +33,18 @@ function M.caret_or_zero()
     end
 end
 
+function M.home_cache_dir(tail)
+  local base = vim.env.XDG_CACHE_HOME
+  if not base and vim.env.HOME then
+    base = vim.env.HOME .. "/.cache"
+  end
+  -- fallback to a hidden dir on cwd
+  if not base then
+    return '.' .. tail
+  end
+
+  return base .. '/' .. tail
+end
+
 
 return M

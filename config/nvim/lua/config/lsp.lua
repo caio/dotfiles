@@ -114,26 +114,13 @@ vim.lsp.config("gopls", {
     }
 })
 
-local function home_cache_dir(tail)
-  local base = vim.env.XDG_CACHE_HOME
-  if not base and vim.env.HOME then
-    base = vim.env.HOME .. "/.cache"
-  end
-  -- fallback to a hidden dir on cwd
-  if not base then
-    return '.' .. tail
-  end
-
-  return base .. '/' .. tail
-end
-
 vim.lsp.config("ccls", {
     cmd = { "ccls" },
     filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
     root_markers = { "compile_commands.json" },
     init_options = {
         cache = {
-            directory = home_cache_dir('ccls'),
+            directory = require("custom").home_cache_dir('ccls'),
         },
     },
 })
