@@ -6,9 +6,9 @@ config.nvim
 
    Here be no icons, text rules.
 
-Basic Installation
+Installation
 
-   $ git clone --recurse-submodules https://github.com/caio/config.nvim ~/.config/nvim
+   $ git clone --recurse-submodules https://caio.co/de/config.nvim ~/.config/nvim
 
 Starting/Using LSP
 
