@@ -1,8 +1,0 @@
-[language-server.rust-analyzer.config]
-cachePriming.enable = false
-diagnostics.experimental.enable = true
-checkOnSave.command = "clippy"
-cargo.allFeatures = true
-
-[[language]]
-name = "rust"
