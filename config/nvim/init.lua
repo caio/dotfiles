@@ -70,3 +70,8 @@ vim.cmd("autocmd CursorMovedI * if pumvisible() == 0|pclose|endif")
 vim.cmd("autocmd InsertLeave * if pumvisible() == 0|pclose|endif")
 
 vim.cmd("autocmd BufReadPost * lua require('custom').jump_to_last_position()")
+
+-- Load local (unversioned) settings if they exist
+if vim.fn.filereadable(vim.fn.expand('~/.vimrc.lua')) then
+    vim.cmd.so("~/.vimrc.lua")
+end
