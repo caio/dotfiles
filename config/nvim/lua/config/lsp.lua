@@ -35,32 +35,28 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         local group = vim.api.nvim_create_augroup('my.lsp', {clear=false})
 
-        if not client:supports_method('textDocument/willSaveWaitUntil')
-            and client:supports_method('textDocument/formatting') then
-            vim.api.nvim_create_autocmd('BufWritePre', {
+        local setup_handler = function(event, callback)
+            vim.api.nvim_create_autocmd(event, {
                 group = group,
                 buffer = args.buf,
-                callback = function()
-                    vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
-                end,
+                callback = callback
             })
         end
 
+        if not client:supports_method('textDocument/willSaveWaitUntil')
+            and client:supports_method('textDocument/formatting') then
+            setup_handler('BufWritePre', function()
+                vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000 })
+            end)
+        end
+
         if client:supports_method('textDocument/documentHighlight') then
-            vim.api.nvim_create_autocmd('CursorHold', {
-                group = group,
-                buffer = args.buf,
-                callback = function()
+            setup_handler('CursorHold', function()
                     vim.lsp.buf.document_highlight()
-                end,
-            })
-            vim.api.nvim_create_autocmd('CursorMoved', {
-                group = group,
-                buffer = args.buf,
-                callback = function()
+            end)
+            setup_handler('CursorMoved', function()
                     vim.lsp.buf.clear_references()
-                end,
-            })
+            end)
         end
 
     end,
