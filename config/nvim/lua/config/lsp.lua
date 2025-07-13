@@ -80,7 +80,8 @@ vim.lsp.config("rust_analyzer", {
     filetypes = { "rust" },
     settings = {
         ["rust-analyzer"] = {
-            checkOnSave = {
+            checkOnSave = true,
+            check = {
                 command = "clippy",
             },
             cargo = {
