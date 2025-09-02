@@ -93,6 +93,8 @@ wezterm.on(
   end
 )
 
+config.window_close_confirmation = 'NeverPrompt'
+
 require('keys').setup(config)
 
 return config
