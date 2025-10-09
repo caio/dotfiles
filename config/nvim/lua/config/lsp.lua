@@ -132,6 +132,7 @@ vim.lsp.config("lua_ls", {
     cmd = { 'lua-language-server' },
     filetypes = { 'lua' },
     root_markers = { '.git' },
+    settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
 })
 
 vim.api.nvim_create_user_command("LspStart", function()
