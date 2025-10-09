@@ -129,7 +129,13 @@ vim.lsp.config("ruff", {
     settings = {},
 })
 
+vim.lsp.config("lua_ls", {
+    cmd = { 'lua-language-server' },
+    filetypes = { 'lua' },
+    root_markers = { '.git' },
+})
+
 vim.api.nvim_create_user_command("LspStart", function()
-    vim.lsp.enable({"rust_analyzer", "gopls", "ccls", "ruff"})
+    vim.lsp.enable({ "rust_analyzer", "gopls", "ccls", "ruff", "lua_ls" })
     vim.cmd("edit") -- reload buffer
 end, {})
