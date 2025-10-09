@@ -122,7 +122,14 @@ vim.lsp.config("ccls", {
     },
 })
 
+vim.lsp.config("ruff", {
+    cmd = { 'ruff', 'server' },
+    filetypes = { 'python' },
+    root_markers = { 'pyproject.toml', 'ruff.toml', '.ruff.toml', '.git' },
+    settings = {},
+})
+
 vim.api.nvim_create_user_command("LspStart", function()
-    vim.lsp.enable({"rust_analyzer", "gopls", "ccls"})
+    vim.lsp.enable({"rust_analyzer", "gopls", "ccls", "ruff"})
     vim.cmd("edit") -- reload buffer
 end, {})
