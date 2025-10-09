@@ -36,8 +36,8 @@ function git_files_with_fallback()
     --      it would pass `-- path/to/current/buffer/directory`
     --      to `git ls-files` when outside of the repository root
     local opts = {}
-    local ok = pcall(require'telescope.builtin'.git_files, opts)
-    if not ok then require'telescope.builtin'.find_files(opts) end
+    local ok = pcall(require 'telescope.builtin'.git_files, opts)
+    if not ok then require 'telescope.builtin'.find_files(opts) end
 end
 
 local map = vim.keymap.set

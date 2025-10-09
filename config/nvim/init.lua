@@ -35,9 +35,9 @@ opt.smartcase = true
 
 g.mapleader = ' '
 -- A way less "in your face" netrw
-g.netrw_sizestyle="h"
-g.netrw_banner=0
-g.netrw_list_style=3
+g.netrw_sizestyle = "h"
+g.netrw_banner = 0
+g.netrw_list_style = 3
 g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
 
 vim.diagnostic.config({
@@ -54,7 +54,7 @@ vim.diagnostic.config({
 })
 -- }}}
 
-vim.g.zenbones_darkness = "stark" -- warm/undef
+vim.g.zenbones_darkness = "stark"   -- warm/undef
 vim.g.zenbones_lightness = "bright" -- dim/undef
 vim.opt.termguicolors = true
 vim.opt.background = "light"
@@ -66,7 +66,7 @@ require('nvim-autopairs').setup({})
 require('config.telescope')
 
 -- Don't leave preview windows hanging
-vim.api.nvim_create_autocmd({'CursorMovedI', 'InsertLeave'}, {
+vim.api.nvim_create_autocmd({ 'CursorMovedI', 'InsertLeave' }, {
     command = "if pumvisible() == 0| pclose | endif"
 })
 

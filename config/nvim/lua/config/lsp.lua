@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- grn: rename
         -- gra: code_action
         local function nmap(seq, action)
-            local opts = { silent = true, noremap = true}
+            local opts = { silent = true, noremap = true }
             vim.api.nvim_buf_set_keymap(args.buf, 'n', seq, string.format("<cmd>%s<CR>", action), opts)
         end
         nmap('gy', 'lua vim.lsp.buf.type_definition()')
@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
         end
 
-        local group = vim.api.nvim_create_augroup('my.lsp', {clear=false})
+        local group = vim.api.nvim_create_augroup('my.lsp', { clear = false })
 
         local setup_handler = function(event, callback)
             vim.api.nvim_create_autocmd(event, {
@@ -52,13 +52,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         if client:supports_method('textDocument/documentHighlight') then
             setup_handler('CursorHold', function()
-                    vim.lsp.buf.document_highlight()
+                vim.lsp.buf.document_highlight()
             end)
             setup_handler('CursorMoved', function()
-                    vim.lsp.buf.clear_references()
+                vim.lsp.buf.clear_references()
             end)
         end
-
     end,
 })
 
@@ -76,7 +75,7 @@ vim.lsp.config('*', {
 })
 
 vim.lsp.config("rust_analyzer", {
-    cmd = {"rustup", "run", "stable", "rust-analyzer"},
+    cmd = { "rustup", "run", "stable", "rust-analyzer" },
     filetypes = { "rust" },
     settings = {
         ["rust-analyzer"] = {
