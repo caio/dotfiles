@@ -84,7 +84,7 @@ vim.lsp.config("rust_analyzer", {
                 command = "clippy",
             },
             cargo = {
-                allFeatures = true,
+                features = "all",
             },
         },
     }
@@ -134,7 +134,21 @@ vim.lsp.config("lua_ls", {
     settings = { Lua = { diagnostics = { globals = { 'vim' } } } },
 })
 
+vim.lsp.config("ts_ls", {
+    init_options = { hostInfo = 'neovim' },
+    cmd = { 'typescript-language-server', '--stdio' },
+    filetypes = {
+        'javascript',
+        'javascriptreact',
+        'javascript.jsx',
+        'typescript',
+        'typescriptreact',
+        'typescript.tsx',
+    },
+    root_markers = { 'package.json', '.git' }
+})
+
 vim.api.nvim_create_user_command("LspStart", function()
-    vim.lsp.enable({ "rust_analyzer", "gopls", "ccls", "ruff", "lua_ls" })
+    vim.lsp.enable({ "rust_analyzer", "gopls", "ccls", "ruff", "lua_ls", "ts_ls" })
     vim.cmd("edit") -- reload buffer
 end, {})
