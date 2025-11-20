@@ -12,6 +12,7 @@ opt.backspace = "indent,eol,start"
 opt.errorbells = false
 opt.visualbell = false
 opt.completeopt = "menuone,noselect,preview"
+opt.linebreak = true
 opt.showbreak = "↪"
 opt.virtualedit = "block"
 opt.foldlevelstart = 99
