@@ -22,4 +22,3 @@
 [submodule "config/nvim/pack/ext/start/telescope.nvim"]
 	path = config/nvim/pack/ext/start/telescope.nvim
 	url = https://github.com/nvim-telescope/telescope.nvim
-	branch = 0.1.x
